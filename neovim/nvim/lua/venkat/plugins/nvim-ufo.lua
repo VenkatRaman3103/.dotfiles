@@ -1,0 +1,77 @@
+return {
+	-- "kevinhwang91/nvim-ufo",
+	-- dependencies = "kevinhwang91/promise-async", -- Required dependency
+	--
+	-- config = function()
+	-- 	require("ufo").setup({
+	-- 		open_fold_hl_timeout = 150,
+	-- 		close_fold_kinds_for_ft = {
+	-- 			lua = { "imports", "comment" },
+	-- 			python = { "imports" },
+	-- 		},
+	-- 		-- Custom fold handler to show right arrow and fold line count
+	-- 		fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
+	-- 			local newVirtText = {}
+	-- 			local folded = lnum ~= endLnum
+	-- 			local arrow = folded and "→" or "" -- Right arrow when folded
+	-- 			local suffix = (" %s %d lines"):format(arrow, endLnum - lnum) -- Arrow with fold line count
+	-- 			local sufWidth = vim.fn.strdisplaywidth(suffix)
+	-- 			local targetWidth = width - sufWidth
+	-- 			local curWidth = 0
+	-- 			for _, chunk in ipairs(virtText) do
+	-- 				local chunkText = chunk[1]
+	-- 				local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+	-- 				if targetWidth > curWidth + chunkWidth then
+	-- 					table.insert(newVirtText, chunk)
+	-- 				else
+	-- 					chunkText = truncate(chunkText, targetWidth - curWidth)
+	-- 					local hlGroup = chunk[2]
+	-- 					table.insert(newVirtText, { chunkText, hlGroup })
+	-- 					curWidth = curWidth + vim.fn.strdisplaywidth(chunkText)
+	-- 					break
+	-- 				end
+	-- 				curWidth = curWidth + chunkWidth
+	-- 			end
+	-- 			table.insert(newVirtText, { suffix, "MoreMsg" }) -- Custom highlight group for arrow
+	-- 			return newVirtText
+	-- 		end,
+	-- 		preview = {
+	-- 			win_config = {
+	-- 				border = { "", "─", "", "", "", "─", "", "" },
+	-- 				winhighlight = "Normal:Folded",
+	-- 				winblend = 0,
+	-- 			},
+	-- 			mappings = {
+	-- 				scrollU = "<C-u>",
+	-- 				scrollD = "<C-d>",
+	-- 			},
+	-- 		},
+	-- 	})
+	--
+	-- 	-- Set folding options
+	-- 	vim.o.foldcolumn = "0" -- Remove fold column entirely
+	-- 	vim.o.foldlevel = 99 -- Start with all folds open
+	-- 	vim.o.foldlevelstart = 99 -- Open all folds by default
+	-- 	vim.o.foldenable = true -- Enable folding
+	--
+	-- 	-- Remove fold-related symbols from the line number section
+	-- 	vim.o.fillchars = "fold: " -- Clear all fold symbols (no +, -)
+	-- 	vim.o.signcolumn = "no" -- Disable sign column if not using it
+	-- 	vim.o.relativenumber = true -- Enable relative line numbers (optional)
+	-- 	vim.o.number = true -- Show absolute line numbers
+	--
+	-- 	-- Keymaps for folding
+	-- 	vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+	-- 	vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+	-- 	vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
+	-- 	vim.keymap.set("n", "zm", require("ufo").closeFoldsWith)
+	--
+	-- 	-- Keymap to preview fold
+	-- 	vim.keymap.set("n", "K", function()
+	-- 		local winid = require("ufo").peekFoldedLinesUnderCursor()
+	-- 		if not winid then
+	-- 			vim.lsp.buf.hover()
+	-- 		end
+	-- 	end)
+	-- end,
+}
