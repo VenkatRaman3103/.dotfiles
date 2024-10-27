@@ -1,8 +1,0 @@
-indent_type = "Tabs"
-indent_width = 4
-
-# Override for React files
-# [[override]]
-#   files = { "*.jsx", "*.tsx", "*.js", "*.ts" }
-#   indent_width = 4
-
