@@ -22,13 +22,13 @@ keymap.set("v", "<leader>y", '"+y', { desc = "Yank selection to clipboard" })
 -- Map clean paste from system clipboard in all modes
 keymap.set("n", "<leader>p", paste_clean, { expr = true, desc = "Paste from clipboard (cleaned)" })
 keymap.set("v", "<leader>p", paste_clean, { expr = true, desc = "Paste selection from clipboard (cleaned)" })
-keymap.set("i", "<leader>p", function()
-    -- Set cleaned clipboard content
-    local reg_content = vim.fn.getreg("+"):gsub("\r\n", "\n"):gsub("\r", "\n")
-    vim.fn.setreg("+", reg_content)
-    -- Paste in insert mode
-    return vim.api.nvim_replace_termcodes("<C-r>+", true, true, true)
-end, { expr = true, desc = "Paste from clipboard in insert mode (cleaned)" })
+-- keymap.set("n", "<leader>p", function()
+--     -- Set cleaned clipboard content
+--     local reg_content = vim.fn.getreg("+"):gsub("\r\n", "\n"):gsub("\r", "\n")
+--     vim.fn.setreg("+", reg_content)
+--     -- Paste in insert mode
+--     return vim.api.nvim_replace_termcodes("<C-r>+", true, true, true)
+-- end, { expr = true, desc = "Paste from clipboard in insert mode (cleaned)" })
 
 -- Mapping for Alt+n to escape insert mode
 keymap.set("i", "<A-n>", "<Esc>", { noremap = true, silent = true, desc = "Alt + n to escape insert mode" })
@@ -75,3 +75,7 @@ keymap.set("n", "<leader><CR>", ":source ~/.config/nvim/init.lua<CR>")
 
 -- closing all buffers
 keymap.set("n", "<leader>bd", ":%bd<CR>")
+
+-- quick fix likst
+keymap.set("n", "<leader>co", ":copen<CR>")
+keymap.set("n", "<leader>cc", ":cclose<CR>")

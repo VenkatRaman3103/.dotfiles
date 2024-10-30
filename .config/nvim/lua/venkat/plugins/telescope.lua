@@ -6,20 +6,35 @@ return {
         { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
         "nvim-tree/nvim-web-devicons",
         "nvim-telescope/telescope-live-grep-args.nvim",
+        "ThePrimeagen/harpoon", -- Add Harpoon as a dependency
     },
     config = function()
         local telescope = require("telescope")
         local actions = require("telescope.actions")
         local builtin = require("telescope.builtin")
+        local harpoon_mark = require("harpoon.mark")
 
         telescope.setup({
             defaults = {
                 path_display = { "smart" },
                 mappings = {
                     i = {
-                        ["<C-k>"] = actions.move_selection_previous, -- move to prev result
-                        ["<C-j>"] = actions.move_selection_next, -- move to next result
-                        ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+                        ["<C-k>"] = actions.move_selection_previous, -- Move to prev result
+                        ["<C-j>"] = actions.move_selection_next, -- Move to next result
+                        ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist, -- Send to quickfix
+                        ["<C-h>"] = function(prompt_bufnr)
+                            local action_state = require("telescope.actions.state")
+                            local picker = action_state.get_current_picker(prompt_bufnr)
+                            local multi_selections = picker:get_multi_selection()
+
+                            -- Add each selected entry to Harpoon
+                            for _, entry in ipairs(multi_selections) do
+                                harpoon_mark.add_file(entry.path or entry.filename)
+                            end
+
+                            actions.close(prompt_bufnr) -- Close Telescope
+                            print("Added to Harpoon") -- Optional confirmation message
+                        end,
                     },
                 },
             },
@@ -27,8 +42,8 @@ return {
 
         telescope.load_extension("fzf")
 
-        -- set keymaps
-        local keymap = vim.keymap -- for conciseness
+        -- Key mappings
+        local keymap = vim.keymap -- For conciseness
 
         keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
         keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
