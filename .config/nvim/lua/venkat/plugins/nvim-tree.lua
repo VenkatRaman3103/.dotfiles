@@ -40,7 +40,7 @@ return {
 
             local function colors()
                 -- NvimTree colors
-                vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "#0e0e0e" })
+                vim.api.nvim_set_hl(0, "NvimTreeNormal", { fg = "#888888", bg = "#0e0e0e" }) -- Uncommented and moved to top
                 vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { bg = "#0e0e0e" })
                 vim.api.nvim_set_hl(0, "NvimTreeVertSplit", { fg = "#222222", bg = "none" })
                 vim.api.nvim_set_hl(0, "NvimTreeFolderName", { fg = "#888888" })
@@ -50,15 +50,14 @@ return {
                 vim.api.nvim_set_hl(0, "NvimTreeGitDirty", { fg = "#FFB800" })
                 vim.api.nvim_set_hl(0, "NvimTreeGitNew", { fg = "#4BB543" })
                 vim.api.nvim_set_hl(0, "NvimTreeGitDeleted", { fg = "#FF3333" })
-                vim.api.nvim_set_hl(0, "NvimTreeSpecialFile", { fg = "#ffb86c", underline = true })
+                vim.api.nvim_set_hl(0, "NvimTreeSpecialFile", { fg = "#888888", underline = true })
                 vim.api.nvim_set_hl(0, "NvimTreeIndentMarker", { fg = "#222222" })
-                vim.api.nvim_set_hl(0, "NvimTreeImageFile", { fg = "#666666" })
-                vim.api.nvim_set_hl(0, "NvimTreeSymlink", { fg = "#ffb86c" })
-                vim.api.nvim_set_hl(0, "NvimTreeFile", { fg = "#ffb86c" })
+                vim.api.nvim_set_hl(0, "NvimTreeImageFile", { fg = "#888888" })
+                vim.api.nvim_set_hl(0, "NvimTreeSymlink", { fg = "#888888" })
+                vim.api.nvim_set_hl(0, "NvimTreeFile", { fg = "#888888" })
                 vim.api.nvim_set_hl(0, "NvimTreeExecFile", { fg = "#888888" })
-                vim.api.nvim_set_hl(0, "NvimTreeOpenedFileIcon", { fg = "#ffb86c" })
+                vim.api.nvim_set_hl(0, "NvimTreeOpenedFileIcon", { fg = "#888888" })
                 vim.api.nvim_set_hl(0, "NvimTreeModifiedFile", { fg = "#888888", italic = true })
-                -- vim.api.nvim_set_hl(0, "NvimTreeNormal", { fg = "#888888", bg = "#0e0e0e" })
             end
 
             colors()

@@ -22,10 +22,10 @@ function colorscheme.colorMyPencils()
         "TabLine",
         "TabLineFill",
         "TabLineSel",
-        "Pmenu",
-        "PmenuSbar",
-        "PmenuThumb",
-        "PmenuSel",
+        -- "Pmenu",
+        -- "PmenuSbar",
+        -- "PmenuThumb",
+        -- "PmenuSel",
         "VertSplit",
         "VisualNOS",
         -- "DiffAdd",
@@ -42,21 +42,24 @@ function colorscheme.colorMyPencils()
         vim.api.nvim_set_hl(0, group, { bg = "#0e0e0e" })
     end
 
+    -- Zen-mode highlights
+    vim.api.nvim_set_hl(0, "ZenBg", { bg = "#0e0e0e" })
+
     vim.api.nvim_set_hl(0, "Delimiter", { fg = white })
     vim.api.nvim_set_hl(0, "@punctuation.bracket", { fg = white })
     vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = white })
 
     -- Borders and caret highlights
-    vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#ffffff", bg = "none" })
-    vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = "#ffffff", bg = "none" })
-    vim.api.nvim_set_hl(0, "HarpoonBorder", { fg = "#ffffff", bg = "none" })
-    vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ffffff", bg = "none" })
+    vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#ffffff", bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = "#ffffff", bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "HarpoonBorder", { fg = "#ffffff", bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ffffff", bg = "#0e0e0e" })
 
     -- Borders and caret highlights
-    vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#222222", bg = "none" })
-    vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = "#222222", bg = "none" })
-    vim.api.nvim_set_hl(0, "HarpoonBorder", { fg = "#222222", bg = "none" })
-    vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#222222", bg = "none" })
+    vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#222222", bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = "#222222", bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "HarpoonBorder", { fg = "#222222", bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#222222", bg = "#0e0e0e" })
 
     -- set title colors
     vim.api.nvim_set_hl(0, "TelescopeTitle", { fg = "#ffffff", bold = true })
@@ -92,20 +95,20 @@ function colorscheme.colorMyPencils()
     vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#505050", bg = "" })
 
     -- Inactive lines with grayed-out numbers
-    vim.api.nvim_set_hl(0, "LineNr", { fg = "#242424", bg = "none" })
-    vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+    vim.api.nvim_set_hl(0, "LineNr", { fg = "#242424", bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "NormalNC", { bg = "#0e0e0e" })
 
     -- Custom settings for completion menu
     vim.api.nvim_set_hl(0, "Pmenu", { bg = "#0e0e0e", fg = "#ffffff" })
-    vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#3a3a3a" })
-    vim.api.nvim_set_hl(0, "PmenuSbar", { bg = "none" })
+    vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#ffb86c" })
+    vim.api.nvim_set_hl(0, "PmenuSbar", { bg = "#0e0e0e" })
     vim.api.nvim_set_hl(0, "PmenuThumb", { bg = "", fg = "none" })
 
     -- Telescope specific highlights
-    vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
-    vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = "none" })
-    vim.api.nvim_set_hl(0, "TelescopeResultsNormal", { bg = "none" })
-    vim.api.nvim_set_hl(0, "TelescopePreviewNormal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "TelescopeResultsNormal", { bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "TelescopePreviewNormal", { bg = "#0e0e0e" })
     vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = "#222222", fg = "#ffffff" })
     vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = "#ff6a00", bold = true })
 
@@ -126,12 +129,12 @@ function colorscheme.colorMyPencils()
     }
 
     -- Make window separators more visible with a brighter color
-    vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#222222", bg = "none" })
+    vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#222222", bg = "#0e0e0e" })
     vim.api.nvim_set_hl(0, "IndentBlanklineChar", { fg = redistOrange })
 
     -- Add top and bottom border highlights for buffers
-    vim.api.nvim_set_hl(0, "BufferLineTop", { fg = "#222222", bg = "none" })
-    vim.api.nvim_set_hl(0, "BufferLineBottom", { fg = "#222222", bg = "none" })
+    vim.api.nvim_set_hl(0, "BufferLineTop", { fg = "#222222", bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "BufferLineBottom", { fg = "#222222", bg = "#0e0e0e" })
 
     -- Enable window borders
     vim.opt.laststatus = 3 -- Global status line
@@ -141,6 +144,12 @@ function colorscheme.colorMyPencils()
     vim.opt.fillchars:append("eob: ") -- Hide empty line tildes
     vim.opt.lazyredraw = false -- Ensure separators are always drawn
     vim.opt.splitkeep = "screen" -- Maintain window separators during splits
+
+    vim.api.nvim_create_autocmd("ColorScheme", {
+        callback = function()
+            vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#ffb86c", fg = "#000000" })
+        end,
+    })
 end
 
 function colorscheme.syntax()
@@ -242,8 +251,8 @@ function colorscheme.syntax()
     vim.api.nvim_set_hl(0, "Null", { fg = purple }) -- Purple
     vim.api.nvim_set_hl(0, "None", { fg = purple }) -- Purple
     vim.api.nvim_set_hl(0, "Identifier", { fg = "#FFFFFF", underline = false })
-    vim.api.nvim_set_hl(0, "Normal", { fg = "#FFFFFF", bg = "NONE" })
-    vim.api.nvim_set_hl(0, "Variable", { fg = "#FFFFFF", bg = "NONE" }) -- Variable names
+    vim.api.nvim_set_hl(0, "Normal", { fg = "#FFFFFF", bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "Variable", { fg = "#FFFFFF", bg = "#0e0e0e" }) -- Variable names
 
     -- Add these to your ColorMyPencils function
     vim.api.nvim_set_hl(0, "@function", { fg = orange, underline = false })

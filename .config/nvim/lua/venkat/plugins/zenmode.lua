@@ -8,6 +8,7 @@ return {
             options = {
                 relativenumber = true,
             },
+            backdrop_hlgroup = "ZenBg",
         },
         plugins = {
             options = {
@@ -35,5 +36,12 @@ return {
         vim.keymap.set("n", "<leader>zm", function()
             require("zen-mode").toggle()
         end, { desc = "Toggle Zen Mode" })
+
+        -- Add an autocmd to restore tmux status bar when Neovim exits
+        vim.api.nvim_create_autocmd("VimLeavePre", {
+            callback = function()
+                vim.fn.system("tmux set status on")
+            end,
+        })
     end,
 }
