@@ -70,6 +70,27 @@ function colorscheme.colorMyPencils()
     vim.api.nvim_set_hl(0, "HarpoonTitle", { fg = "#ffffff", bold = true })
     vim.api.nvim_set_hl(0, "FloatTitle", { fg = "#ffffff", bold = true })
 
+    -- neogit specific highlights
+    vim.api.nvim_set_hl(0, "NeogitDiffAdd", { bg = "#103510", fg = "#4BB543" }) -- green background for added lines
+    vim.api.nvim_set_hl(0, "NeogitDiffDelete", { bg = "#351010", fg = "#FF3333" }) -- red background for deleted lines
+    vim.api.nvim_set_hl(0, "NeogitDiffContext", { bg = "#0e0e0e", fg = "#ffffff" }) -- context lines
+    vim.api.nvim_set_hl(0, "NeogitHunkHeader", { bg = "#222222", fg = "#ffffff", bold = true }) -- hunk headers
+    vim.api.nvim_set_hl(0, "NeogitHunkHeaderHighlight", { bg = "#333333", fg = "#ffffff", bold = true })
+    vim.api.nvim_set_hl(0, "NeogitDiffAddHighlight", { fg = "#4BB543" })
+    vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", { fg = "#FF3333" })
+
+    -- Status highlights for better readability in the Neogit interface
+    vim.api.nvim_set_hl(0, "NeogitBranch", { fg = "#ffb86c", bold = true }) -- branch name
+    vim.api.nvim_set_hl(0, "NeogitRemote", { fg = "#ff6a00", bold = true }) -- remote
+    vim.api.nvim_set_hl(0, "NeogitUntrackedfiles", { fg = "#ff6a00" }) -- untracked files
+    vim.api.nvim_set_hl(0, "NeogitStagedChanges", { fg = "#4BB543" }) -- staged changes
+    vim.api.nvim_set_hl(0, "NeogitUnstagedChanges", { fg = "#FFB800" }) -- unstaged changes
+    vim.api.nvim_set_hl(0, "NeogitRecentCommits", { fg = "#ffb86c" }) -- recent commits
+
+    -- Section titles in Neogit (e.g., staged changes, untracked files)
+    vim.api.nvim_set_hl(0, "NeogitSectionTitle", { fg = "#ffffff", bold = true })
+    vim.api.nvim_set_hl(0, "NeogitSectionHighlight", { bg = "#222222", fg = "#ffffff" })
+
     -- -- Add these to your ColorMyPencils function or init.lua
     -- vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = "#4BB543" }) -- A nice bright green
     -- vim.api.nvim_set_hl(0, "GitSignsChange", { fg = "#FFB800" }) -- A warm yellow/orange
