@@ -12,7 +12,7 @@ return {
                     width = 30, -- Adjusted width to avoid excessive space
                     relativenumber = true,
                     side = "left", -- Setting nvim-tree to always open on the left side
-                    adaptive_size = true, -- This allows nvim-tree to automatically resize
+                    -- adaptive_size = true, -- This allows nvim-tree to automatically resize
                 },
                 renderer = {
                     indent_markers = {
@@ -24,10 +24,10 @@ return {
                 },
                 actions = {
                     open_file = {
-                        resize_window = true, -- This resizes the window automatically when a file opens
-                        window_picker = {
-                            enable = false,
-                        },
+                        -- resize_window = true, -- This resizes the window automatically when a file opens
+                        -- window_picker = {
+                        --     enable = false,
+                        -- },
                     },
                 },
                 filters = {

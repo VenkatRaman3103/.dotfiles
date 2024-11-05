@@ -50,16 +50,16 @@ function colorscheme.colorMyPencils()
     vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = white })
 
     -- Borders and caret highlights
-    vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#ffffff", bg = "#0e0e0e" })
-    vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = "#ffffff", bg = "#0e0e0e" })
-    vim.api.nvim_set_hl(0, "HarpoonBorder", { fg = "#ffffff", bg = "#0e0e0e" })
-    vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ffffff", bg = "#0e0e0e" })
+    -- vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#ffffff", bg = "#0e0e0e" })
+    -- vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = "#ffffff", bg = "#0e0e0e" })
+    -- vim.api.nvim_set_hl(0, "HarpoonBorder", { fg = "#ffffff", bg = "#0e0e0e" })
+    -- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ffffff", bg = "#0e0e0e" })
 
     -- Borders and caret highlights
-    vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#222222", bg = "#0e0e0e" })
-    vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = "#222222", bg = "#0e0e0e" })
-    vim.api.nvim_set_hl(0, "HarpoonBorder", { fg = "#222222", bg = "#0e0e0e" })
-    vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#222222", bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#555555", bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = "#555555", bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "HarpoonBorder", { fg = "#555555", bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#555555", bg = "#0e0e0e" })
 
     -- set title colors
     vim.api.nvim_set_hl(0, "TelescopeTitle", { fg = "#ffffff", bold = true })
@@ -70,14 +70,25 @@ function colorscheme.colorMyPencils()
     vim.api.nvim_set_hl(0, "HarpoonTitle", { fg = "#ffffff", bold = true })
     vim.api.nvim_set_hl(0, "FloatTitle", { fg = "#ffffff", bold = true })
 
+    vim.api.nvim_set_hl(0, "NeogitNotificationInfo", { fg = "#4BB543", bold = true })
+    vim.api.nvim_set_hl(0, "NeogitNotificationWarning", { fg = "#FFB800", bold = true })
+    vim.api.nvim_set_hl(0, "NeogitNotificationError", { fg = "#FF3333", bold = true })
+
     -- neogit specific highlights
     vim.api.nvim_set_hl(0, "NeogitDiffAdd", { bg = "#103510", fg = "#4BB543" }) -- green background for added lines
     vim.api.nvim_set_hl(0, "NeogitDiffDelete", { bg = "#351010", fg = "#FF3333" }) -- red background for deleted lines
     vim.api.nvim_set_hl(0, "NeogitDiffContext", { bg = "#0e0e0e", fg = "#ffffff" }) -- context lines
-    vim.api.nvim_set_hl(0, "NeogitHunkHeader", { bg = "#222222", fg = "#ffffff", bold = true }) -- hunk headers
+    vim.api.nvim_set_hl(0, "NeogitHunkHeader", { bg = "#0e0e0e", fg = "#ffffff", bold = true }) -- hunk headers
     vim.api.nvim_set_hl(0, "NeogitHunkHeaderHighlight", { bg = "#333333", fg = "#ffffff", bold = true })
     vim.api.nvim_set_hl(0, "NeogitDiffAddHighlight", { fg = "#4BB543" })
     vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", { fg = "#FF3333" })
+
+    vim.api.nvim_set_hl(0, "NeogitDiffAddHighlight", { fg = "#4BB543", bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", { fg = "#FF3333", bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "NeogitDiffContextHighlight", { bg = "#1e1e1e" })
+    vim.api.nvim_set_hl(0, "NeogitHunkHeader", { bg = "#1e1e1e", fg = "#ffffff" })
+    vim.api.nvim_set_hl(0, "NeogitHunkHeaderHighlight", { bg = "#2e2e2e", fg = "#ffffff", bold = true })
+    vim.api.nvim_set_hl(0, "NeogitFoldIcon", { fg = "#ffb86c" })
 
     -- Status highlights for better readability in the Neogit interface
     vim.api.nvim_set_hl(0, "NeogitBranch", { fg = "#ffb86c", bold = true }) -- branch name
@@ -144,8 +155,8 @@ function colorscheme.colorMyPencils()
     vim.opt.fillchars = {
         horiz = "─", -- Horizontal separator (thin)
         vert = "│", -- Vertical separator (thin)
-        vertleft = "┘", -- T-piece pointing left (thin)
-        vertright = "┌", -- T-piece pointing right (thin)
+        vertleft = "┤", -- T-piece pointing left (thin)
+        vertright = "├", -- T-piece pointing right (thin)
         verthoriz = "┼", -- Cross piece (thin)
     }
 
