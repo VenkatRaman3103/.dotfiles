@@ -45,14 +45,28 @@ return {
         -- Key mappings
         local keymap = vim.keymap -- For conciseness
 
-        keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
+        keymap.set("n", "<leader>fd", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
         keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
         keymap.set("n", "<leader>fs", builtin.lsp_document_symbols, {})
         keymap.set("n", "<leader>fw", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
-        keymap.set("n", "<leader>fg", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
+        keymap.set("n", "<leader>fa", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
         keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
         keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
         keymap.set("n", "<leader>fb", builtin.buffers, {})
         keymap.set("n", "<leader>fj", "<cmd>Telescope jumplist<CR>")
+
+        keymap.set("n", "<leader>/", function()
+            builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+                winblend = 10,
+                previewer = false,
+            }))
+        end, { desc = "Fuzzy search in current file" })
+
+        -- keymap.set("n", "<leader>s/", function()
+        --     builtin.live_grep({
+        --         grep_open_files = true,
+        --         propt_title = "Live Grep in Open File",
+        --     })
+        -- end, { desc = "Search in open files" })
     end,
 }

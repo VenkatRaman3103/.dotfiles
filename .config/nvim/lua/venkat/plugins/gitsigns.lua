@@ -2,6 +2,7 @@ return {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPre", "BufNewFile" },
     opts = {
+
         signs = {
             add = { text = "│" },
             change = { text = "│" },
@@ -40,11 +41,11 @@ return {
 
             -- Git actions with leader g (git)
             map("n", "<leader>gs", gs.stage_hunk, "Git stage hunk")
-            map("n", "<leader>gr", gs.reset_hunk, "Git reset hunk")
+            map("n", "<leader>gtr", gs.reset_hunk, "Git reset hunk")
             map("v", "<leader>gs", function()
                 gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
             end, "Git stage selected hunk")
-            map("v", "<leader>gr", function()
+            map("v", "<leader>gtr", function()
                 gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
             end, "Git reset selected hunk")
             map("n", "<leader>gS", gs.stage_buffer, "Git stage entire buffer")
@@ -54,8 +55,8 @@ return {
             map("n", "<leader>gb", function()
                 gs.blame_line({ full = true })
             end, "Git blame line")
-            map("n", "<leader>gd", gs.diffthis, "Git diff this")
-            map("n", "<leader>gD", function()
+            map("n", "<leader>gtd", gs.diffthis, "Git diff this")
+            map("n", "<leader>gtD", function()
                 gs.diffthis("~")
             end, "Git diff against last commit")
 

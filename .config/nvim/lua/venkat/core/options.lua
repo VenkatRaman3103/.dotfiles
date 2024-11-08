@@ -1,6 +1,7 @@
 vim.cmd("let g:netrw_liststyle = 3")
 
 local opt = vim.opt
+local api = vim.api
 
 opt.relativenumber = true
 opt.number = true
@@ -58,3 +59,10 @@ opt.updatetime = 50
 opt.ff = "unix"
 -- color column
 -- opt.colorcolumn = "80"
+
+api.nvim_create_autocmd("TextYankPost", {
+    desc = "Highlight the yanked region",
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+})

@@ -187,7 +187,9 @@ end
 function colorscheme.syntax()
     -- Custom color scheme
     local blue = "#3aa8e3"
-    local orange = "#fb8a20"
+    -- local orange = "#fb8a20"
+    local orange = "#de8430"
+    local brightGree = "#5ad39d"
     local green = "#70b276"
     local purple = "#7b95ce"
     local white = "#FFFFFF"
@@ -231,7 +233,7 @@ function colorscheme.syntax()
     -- Strings and numbers
     vim.api.nvim_set_hl(0, "@string", { fg = green })
     vim.api.nvim_set_hl(0, "@string.escape", { fg = orange })
-    vim.api.nvim_set_hl(0, "@number", { fg = orange })
+    vim.api.nvim_set_hl(0, "@number", { fg = brightGree })
     vim.api.nvim_set_hl(0, "@boolean", { fg = purple })
 
     -- Properties and parameters

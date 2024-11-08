@@ -27,6 +27,7 @@ return {
         -- Key mappings for debugging
         vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, {})
         vim.keymap.set("n", "<leader>dc", dap.continue, {})
+        vim.keymap.set("n", "<leader>dn", dap.step_over, {}) -- Adds step over key binding
 
         -- Setup dap-ui
         require("dapui").setup()

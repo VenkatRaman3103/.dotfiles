@@ -9,6 +9,8 @@ return {
     },
     config = function()
         local neogit = require("neogit")
+        local keymap = vim.keymap
+
         neogit.setup({
             integrations = {
                 diffview = true,
@@ -29,5 +31,7 @@ return {
                 },
             },
         })
+
+        keymap.set("n", "<leader>ng", "<cmd>Neogit<CR>")
     end,
 }
