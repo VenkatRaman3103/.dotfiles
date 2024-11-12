@@ -32,9 +32,17 @@ keymap.set("v", "<leader>p", paste_clean, { expr = true, desc = "Paste selection
 -- end, { expr = true, desc = "Paste from clipboard in insert mode (cleaned)" })
 
 -- Mapping for Alt+n to escape insert mode
-keymap.set("i", "<A-n>", "<Esc>", { noremap = true, silent = true, desc = "Alt + n to escape insert mode" })
-keymap.set("n", "<A-n>", "<Esc>", { noremap = true, silent = true })
-keymap.set("v", "<A-n>", "<Esc>", { noremap = true, silent = true })
+-- keymap.set("i", "<A-n>", "<Esc>", { noremap = true, silent = true, desc = "Alt + n to escape insert mode" })
+-- keymap.set("n", "<A-n>", "<Esc>", { noremap = true, silent = true })
+-- keymap.set("v", "<A-n>", "<Esc>", { noremap = true, silent = true })
+-- keymap.set("x", "<A-n>", "<Esc>", { noremap = true, silent = true, desc = "Alt + n to escape visual block mode" })
+-- -- keymap.set("t", "<A-n>", "<C-\\><C-n>", { noremap = true, silent = true, desc = "Alt + n to escape visual block mode" })
+keymap.set(
+    "t",
+    "<Esc",
+    "<C-\\><C-n>:set modifiable<CR>",
+    { noremap = true, silent = true, desc = "Alt + n to enter normal mode and make modifiable" }
+)
 
 -- Clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })

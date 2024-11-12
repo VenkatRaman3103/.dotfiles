@@ -57,7 +57,7 @@ return {
 
         keymap.set("n", "<leader>/", function()
             builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-                winblend = 10,
+                -- winblend = 10,
                 previewer = false,
             }))
         end, { desc = "Fuzzy search in current file" })

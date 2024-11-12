@@ -3,6 +3,14 @@ return {
     lazy = true,
     config = function()
         require("nvim-treesitter.configs").setup({
+            modules = {},
+            ignore_install = {},
+            ensure_installed = {},
+            sync_install = false,
+            auto_install = false,
+            highlight = {
+                enable = true,
+            },
             textobjects = {
                 select = {
                     enable = true,

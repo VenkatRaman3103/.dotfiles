@@ -1,14 +1,14 @@
--- return {
---     "catppuccin/nvim",
---     name = "catppuccin",
---     priority = 1000,
---     config = function()
---         require("catppuccin").setup({
---             flavour = "mocha", -- or "latte", "frappe", "macchiato"
---         })
---         vim.cmd("colorscheme catppuccin")
---     end,
--- }
+return {
+    --     "catppuccin/nvim",
+    --     name = "catppuccin",
+    --     priority = 1000,
+    --     config = function()
+    --         require("catppuccin").setup({
+    --             flavour = "mocha", -- or "latte", "frappe", "macchiato"
+    --         })
+    --         vim.cmd("colorscheme catppuccin")
+    --     end,
+}
 
 -- return {
 --     "shaunsingh/nord.nvim",
@@ -27,9 +27,6 @@
 --     name = "kanagawa",
 --     priority = 1000,
 --     config = function()
---         -- require("nord").setup({
---         --     -- flavour = "mocha", -- or "latte", "frappe", "macchiato"
---         -- })
 --         vim.cmd("colorscheme kanagawa-dragon")
 --     end,
 -- }
@@ -56,8 +53,17 @@
 --             -- ...
 --         })
 --
---         vim.cmd("colorscheme github_dark")
+--         vim.cmd("colorscheme github_dark_default")
 --     end,
 -- }
 
-return {}
+-- return {
+--     "kdheepak/monochrome.nvim",
+--     lazy = false, -- make sure we load this during startup if it is your main colorscheme
+--     priority = 1000, -- make sure to load this before all the other start plugins
+--     config = function()
+--         vim.cmd("colorscheme monochrome")
+--     end,
+-- }
+
+-- return {}

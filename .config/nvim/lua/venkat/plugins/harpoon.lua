@@ -7,14 +7,14 @@ return {
         vim.keymap.set("n", "<leader>h", ui.toggle_quick_menu) -- Toggle Harpoon menu
         vim.keymap.set("n", "<leader>a", mark.add_file) -- Add file to Harpoon
 
-        vim.keymap.set("n", "<leader>1", function()
+        vim.keymap.set("n", "<leader>j", function()
             ui.nav_file(1)
         end)
-        vim.keymap.set("n", "<leader>2", function()
+        vim.keymap.set("n", "<leader>k", function()
             ui.nav_file(2)
         end)
 
-        vim.keymap.set("n", "<leader>3", function()
+        vim.keymap.set("n", "<leader>l", function()
             ui.nav_file(3)
         end)
     end,

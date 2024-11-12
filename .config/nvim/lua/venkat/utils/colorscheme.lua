@@ -1,5 +1,7 @@
 local colorscheme = {}
 
+local bgColor = "#0e0e0e"
+
 function colorscheme.colorMyPencils()
     -- Set a dark background
     vim.opt.background = "dark"
@@ -36,30 +38,33 @@ function colorscheme.colorMyPencils()
         "HarpoonWindowTitle",
         "HarpoonBorder",
     }
+
     --171717
     -- Set background to none for specific groups
     for _, group in ipairs(hl_groups) do
-        vim.api.nvim_set_hl(0, group, { bg = "#0e0e0e" })
+        vim.api.nvim_set_hl(0, group, { bg = bgColor })
     end
 
+    vim.api.nvim_set_hl(0, "IblIndent", { fg = "#242424" })
+
     -- Zen-mode highlights
-    vim.api.nvim_set_hl(0, "ZenBg", { bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "ZenBg", { bg = bgColor })
 
     vim.api.nvim_set_hl(0, "Delimiter", { fg = white })
     vim.api.nvim_set_hl(0, "@punctuation.bracket", { fg = white })
     vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = white })
 
     -- Borders and caret highlights
-    -- vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#ffffff", bg = "#0e0e0e" })
-    -- vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = "#ffffff", bg = "#0e0e0e" })
-    -- vim.api.nvim_set_hl(0, "HarpoonBorder", { fg = "#ffffff", bg = "#0e0e0e" })
-    -- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ffffff", bg = "#0e0e0e" })
+    -- vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#ffffff", bg = bgColor })
+    -- vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = "#ffffff", bg = bgColor })
+    -- vim.api.nvim_set_hl(0, "HarpoonBorder", { fg = "#ffffff", bg = bgColor })
+    -- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ffffff", bg = bgColor })
 
     -- Borders and caret highlights
-    vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#555555", bg = "#0e0e0e" })
-    vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = "#555555", bg = "#0e0e0e" })
-    vim.api.nvim_set_hl(0, "HarpoonBorder", { fg = "#555555", bg = "#0e0e0e" })
-    vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#555555", bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#555555", bg = bgColor })
+    vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = "#555555", bg = bgColor })
+    vim.api.nvim_set_hl(0, "HarpoonBorder", { fg = "#555555", bg = bgColor })
+    vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#555555", bg = bgColor })
 
     -- set title colors
     vim.api.nvim_set_hl(0, "TelescopeTitle", { fg = "#ffffff", bold = true })
@@ -77,14 +82,14 @@ function colorscheme.colorMyPencils()
     -- neogit specific highlights
     vim.api.nvim_set_hl(0, "NeogitDiffAdd", { bg = "#103510", fg = "#4BB543" }) -- green background for added lines
     vim.api.nvim_set_hl(0, "NeogitDiffDelete", { bg = "#351010", fg = "#FF3333" }) -- red background for deleted lines
-    vim.api.nvim_set_hl(0, "NeogitDiffContext", { bg = "#0e0e0e", fg = "#ffffff" }) -- context lines
-    vim.api.nvim_set_hl(0, "NeogitHunkHeader", { bg = "#0e0e0e", fg = "#ffffff", bold = true }) -- hunk headers
+    vim.api.nvim_set_hl(0, "NeogitDiffContext", { bg = bgColor, fg = "#ffffff" }) -- context lines
+    vim.api.nvim_set_hl(0, "NeogitHunkHeader", { bg = bgColor, fg = "#ffffff", bold = true }) -- hunk headers
     vim.api.nvim_set_hl(0, "NeogitHunkHeaderHighlight", { bg = "#333333", fg = "#ffffff", bold = true })
     vim.api.nvim_set_hl(0, "NeogitDiffAddHighlight", { fg = "#4BB543" })
     vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", { fg = "#FF3333" })
 
-    vim.api.nvim_set_hl(0, "NeogitDiffAddHighlight", { fg = "#4BB543", bg = "#0e0e0e" })
-    vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", { fg = "#FF3333", bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "NeogitDiffAddHighlight", { fg = "#4BB543", bg = bgColor })
+    vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", { fg = "#FF3333", bg = bgColor })
     vim.api.nvim_set_hl(0, "NeogitDiffContextHighlight", { bg = "#1e1e1e" })
     vim.api.nvim_set_hl(0, "NeogitHunkHeader", { bg = "#1e1e1e", fg = "#ffffff" })
     vim.api.nvim_set_hl(0, "NeogitHunkHeaderHighlight", { bg = "#2e2e2e", fg = "#ffffff", bold = true })
@@ -121,26 +126,26 @@ function colorscheme.colorMyPencils()
 
     -- Highlight the current line with a subtle background 0e0e0e
     -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1a1a1a" })
-    vim.api.nvim_set_hl(0, "CursorLine", { bg = "#111111" })
+    -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#111111" })
     -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#222222" })
-    -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1a1a1a" })
+    vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1a1a1a" })
     vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#505050", bg = "" })
 
     -- Inactive lines with grayed-out numbers
-    vim.api.nvim_set_hl(0, "LineNr", { fg = "#242424", bg = "#0e0e0e" })
-    vim.api.nvim_set_hl(0, "NormalNC", { bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "LineNr", { fg = "#242424", bg = bgColor })
+    vim.api.nvim_set_hl(0, "NormalNC", { bg = bgColor })
 
     -- Custom settings for completion menu
-    vim.api.nvim_set_hl(0, "Pmenu", { bg = "#0e0e0e", fg = "#ffffff" })
+    vim.api.nvim_set_hl(0, "Pmenu", { bg = bgColor, fg = "#ffffff" })
     vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#ffb86c" })
-    vim.api.nvim_set_hl(0, "PmenuSbar", { bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "PmenuSbar", { bg = bgColor })
     vim.api.nvim_set_hl(0, "PmenuThumb", { bg = "", fg = "none" })
 
     -- Telescope specific highlights
-    vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "#0e0e0e" })
-    vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = "#0e0e0e" })
-    vim.api.nvim_set_hl(0, "TelescopeResultsNormal", { bg = "#0e0e0e" })
-    vim.api.nvim_set_hl(0, "TelescopePreviewNormal", { bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = bgColor })
+    vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = bgColor })
+    vim.api.nvim_set_hl(0, "TelescopeResultsNormal", { bg = bgColor })
+    vim.api.nvim_set_hl(0, "TelescopePreviewNormal", { bg = bgColor })
     vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = "#222222", fg = "#ffffff" })
     vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = "#ff6a00", bold = true })
 
@@ -161,12 +166,12 @@ function colorscheme.colorMyPencils()
     }
 
     -- Make window separators more visible with a brighter color
-    vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#222222", bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#222222", bg = bgColor })
     vim.api.nvim_set_hl(0, "IndentBlanklineChar", { fg = redistOrange })
 
     -- Add top and bottom border highlights for buffers
-    vim.api.nvim_set_hl(0, "BufferLineTop", { fg = "#222222", bg = "#0e0e0e" })
-    vim.api.nvim_set_hl(0, "BufferLineBottom", { fg = "#222222", bg = "#0e0e0e" })
+    vim.api.nvim_set_hl(0, "BufferLineTop", { fg = "#222222", bg = bgColor })
+    vim.api.nvim_set_hl(0, "BufferLineBottom", { fg = "#222222", bg = bgColor })
 
     -- Enable window borders
     vim.opt.laststatus = 3 -- Global status line
@@ -285,8 +290,8 @@ function colorscheme.syntax()
     vim.api.nvim_set_hl(0, "Null", { fg = purple }) -- Purple
     vim.api.nvim_set_hl(0, "None", { fg = purple }) -- Purple
     vim.api.nvim_set_hl(0, "Identifier", { fg = "#FFFFFF", underline = false })
-    vim.api.nvim_set_hl(0, "Normal", { fg = "#FFFFFF", bg = "#0e0e0e" })
-    vim.api.nvim_set_hl(0, "Variable", { fg = "#FFFFFF", bg = "#0e0e0e" }) -- Variable names
+    vim.api.nvim_set_hl(0, "Normal", { fg = "#FFFFFF", bg = bgColor })
+    vim.api.nvim_set_hl(0, "Variable", { fg = "#FFFFFF", bg = bgColor }) -- Variable names
 
     -- Add these to your ColorMyPencils function
     vim.api.nvim_set_hl(0, "@function", { fg = orange, underline = false })

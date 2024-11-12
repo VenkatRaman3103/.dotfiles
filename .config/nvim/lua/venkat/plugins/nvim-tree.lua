@@ -7,12 +7,12 @@ return {
         vim.g.loaded_netrw = 1
         vim.g.loaded_netrwPlugin = 1
         nvimtree.setup({
-            -- view = {
-            --     width = 30, -- Adjusted width to avoid excessive space
-            --     relativenumber = true,
-            --     side = "left", -- Setting nvim-tree to always open on the left side
-            --     -- adaptive_size = true, -- This allows nvim-tree to automatically resize
-            -- },
+            view = {
+                --     width = 30, -- Adjusted width to avoid excessive space
+                relativenumber = true,
+                --     side = "left", -- Setting nvim-tree to always open on the left side
+                --     -- adaptive_size = true, -- This allows nvim-tree to automatically resize
+            },
             renderer = {
                 indent_markers = {
                     enable = true,
@@ -40,7 +40,8 @@ return {
         local function colors()
             -- NvimTree colors
             vim.api.nvim_set_hl(0, "NvimTreeNormal", { fg = "#888888", bg = "#0e0e0e" }) -- Uncommented and moved to top
-            vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { bg = "#0e0e0e" })
+            -- vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { bg = "#0e0e0e" })
+            vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { bg = "" })
             vim.api.nvim_set_hl(0, "NvimTreeVertSplit", { fg = "#222222", bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeFolderName", { fg = "#888888" })
             vim.api.nvim_set_hl(0, "NvimTreeFolderIcon", { fg = "#2f2f2f" })

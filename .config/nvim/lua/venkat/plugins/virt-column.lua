@@ -4,5 +4,6 @@ return {
         char = { "┆" },
         virtcolumn = "80",
         -- highlight = { "NonText" },
+        highlight = "IblIndent",
     },
 }
