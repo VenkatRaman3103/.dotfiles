@@ -9,6 +9,9 @@ return {
                         a = { fg = "#ffffff", bg = "#111111" }, -- active section
                         b = { fg = "#ffffff", bg = "#111111" }, -- inactive section (lighter shade)
                         c = { fg = "#ffffff", bg = "#111111" }, -- current section (lighter shade)
+                        x = { fg = "#505050", bg = "#111111" }, -- current section (lighter shade)
+                        y = { fg = "#505050", bg = "#111111" }, -- current section (lighter shade)
+                        z = { fg = "#505050", bg = "#111111" }, -- current section (lighter shade)
                     }, --2f2f2f -- 1a1a1a
 
                     -- normal = {

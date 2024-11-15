@@ -1,14 +1,14 @@
-return {
-    --     "catppuccin/nvim",
-    --     name = "catppuccin",
-    --     priority = 1000,
-    --     config = function()
-    --         require("catppuccin").setup({
-    --             flavour = "mocha", -- or "latte", "frappe", "macchiato"
-    --         })
-    --         vim.cmd("colorscheme catppuccin")
-    --     end,
-}
+-- return {
+--     "catppuccin/nvim",
+--     name = "catppuccin",
+--     priority = 1000,
+--     config = function()
+--         require("catppuccin").setup({
+--             flavour = "mocha", -- or "latte", "frappe", "macchiato"
+--         })
+--         vim.cmd("colorscheme catppuccin")
+--     end,
+-- }
 
 -- return {
 --     "shaunsingh/nord.nvim",
@@ -66,4 +66,36 @@ return {
 --     end,
 -- }
 
--- return {}
+-- example lazy.nvim install setup
+-- return {
+--     "slugbyte/lackluster.nvim",
+--     lazy = false,
+--     priority = 1000,
+--     init = function()
+--         vim.cmd.colorscheme("lackluster")
+--         -- vim.cmd.colorscheme("lackluster-hack") -- my favorite
+--         -- vim.cmd.colorscheme("lackluster-mint")
+--     end,
+-- }
+
+-- return {
+-- "aktersnurra/no-clown-fiesta.nvim",
+-- lazy = false,
+-- priority = 1000,
+-- init = function()
+--     vim.cmd.colorscheme("no-clown-fiesta")
+--     -- vim.cmd.colorscheme("lackluster-hack") -- my favorite
+--     -- vim.cmd.colorscheme("lackluster-mint")
+-- end,
+-- }
+
+-- return {
+--     "AlexvZyl/nordic.nvim",
+--     lazy = false,
+--     priority = 1000,
+--     config = function()
+--         require("nordic").load()
+--     end,
+-- }
+
+return {}
