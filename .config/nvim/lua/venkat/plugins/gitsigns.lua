@@ -4,7 +4,6 @@ return {
     opts = {
 
         signs = {
-            -- add = { text = "│" },
             add = { text = "+" },
             -- change = { text = "│" },
             change = { text = "-" },
@@ -63,7 +62,7 @@ return {
             end, "Git diff against last commit")
 
             -- Toggle mappings under leader t (toggle)
-            map("n", "<leader>tg", gs.toggle_signs, "Toggle git signs")
+            map("n", "<leader>tgs", gs.toggle_signs, "Toggle git signs")
             map("n", "<leader>tgn", gs.toggle_numhl, "Toggle git number highlight")
             map("n", "<leader>tgl", gs.toggle_linehl, "Toggle git line highlight")
             map("n", "<leader>tgw", gs.toggle_word_diff, "Toggle git word diff")
