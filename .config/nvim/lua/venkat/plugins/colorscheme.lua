@@ -31,17 +31,17 @@
 --     end,
 -- }
 
--- return {
--- "Mofiqul/vscode.nvim",
--- name = "vscode",
--- priority = 1000,
--- config = function()
---     -- require("nord").setup({
---     --     -- flavour = "mocha", -- or "latte", "frappe", "macchiato"
---     -- })
---     vim.cmd("colorscheme vscode")
--- end,
--- }
+return {
+    "Mofiqul/vscode.nvim",
+    name = "vscode",
+    priority = 1000,
+    config = function()
+        -- require("nord").setup({
+        --     -- flavour = "mocha", -- or "latte", "frappe", "macchiato"
+        -- })
+        vim.cmd("colorscheme vscode")
+    end,
+}
 
 -- return {
 --     "projekt0n/github-nvim-theme",
@@ -79,14 +79,14 @@
 -- }
 
 -- return {
--- "aktersnurra/no-clown-fiesta.nvim",
--- lazy = false,
--- priority = 1000,
--- init = function()
---     vim.cmd.colorscheme("no-clown-fiesta")
---     -- vim.cmd.colorscheme("lackluster-hack") -- my favorite
---     -- vim.cmd.colorscheme("lackluster-mint")
--- end,
+--     "aktersnurra/no-clown-fiesta.nvim",
+--     lazy = false,
+--     priority = 1000,
+--     init = function()
+--         vim.cmd.colorscheme("no-clown-fiesta")
+--         -- vim.cmd.colorscheme("lackluster-hack") -- my favorite
+--         -- vim.cmd.colorscheme("lackluster-mint")
+--     end,
 -- }
 
 -- return {
@@ -98,4 +98,4 @@
 --     end,
 -- }
 
-return {}
+-- return {}
