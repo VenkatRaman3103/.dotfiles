@@ -4,7 +4,7 @@ require("venkat.lazy")
 -- utils
 require("venkat.utils.diagnostics").setup()
 require("venkat.utils.colorscheme").colorMyPencils()
--- require("venkat.utils.colorscheme").syntax()
+require("venkat.utils.colorscheme").syntax()
 -- 4f5258
 
 vim.opt.conceallevel = 1 -- or 2

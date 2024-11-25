@@ -32,16 +32,30 @@
 -- }
 
 return {
-    "Mofiqul/vscode.nvim",
-    name = "vscode",
-    priority = 1000,
-    config = function()
-        -- require("nord").setup({
-        --     -- flavour = "mocha", -- or "latte", "frappe", "macchiato"
-        -- })
-        vim.cmd("colorscheme vscode")
-    end,
+    -- "maxmx03/solarized.nvim",
+    -- lazy = false,
+    -- priority = 1000,
+    -- ---@type solarized.config
+    -- opts = {},
+    -- config = function(_, opts)
+    --     vim.o.termguicolors = true
+    --     vim.o.background = "dark"
+    --     require("solarized").setup(opts)
+    --     vim.cmd.colorscheme("solarized")
+    -- end,
 }
+
+-- return {
+--     "Mofiqul/vscode.nvim",
+--     name = "vscode",
+--     priority = 1000,
+--     config = function()
+--         -- require("nord").setup({
+--         --     -- flavour = "mocha", -- or "latte", "frappe", "macchiato"
+--         -- })
+--         vim.cmd("colorscheme vscode")
+--     end,
+-- }
 
 -- return {
 --     "projekt0n/github-nvim-theme",
