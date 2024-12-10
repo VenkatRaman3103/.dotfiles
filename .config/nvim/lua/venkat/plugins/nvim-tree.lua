@@ -6,27 +6,45 @@ return {
         -- recommended settings from nvim-tree documentation
         vim.g.loaded_netrw = 1
         vim.g.loaded_netrwPlugin = 1
+
+        local HEIGHT_RATIO = 0.95 -- Adjust this as needed
+        local WIDTH_RATIO = 0.7 -- Adjust this as needed
+
         nvimtree.setup({
             view = {
-                --     width = 30, -- Adjusted width to avoid excessive space
                 relativenumber = true,
-                --     side = "left", -- Setting nvim-tree to always open on the left side
-                --     -- adaptive_size = true, -- This allows nvim-tree to automatically resize
+                float = {
+                    enable = true,
+                    open_win_config = function()
+                        local screen_w = vim.opt.columns:get()
+                        local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
+                        local window_w = screen_w * WIDTH_RATIO
+                        local window_h = screen_h * HEIGHT_RATIO
+                        local window_w_int = math.floor(window_w)
+                        local window_h_int = math.floor(window_h)
+                        local center_x = (screen_w - window_w) / 2
+                        local center_y = ((vim.opt.lines:get() - window_h) / 2) - vim.opt.cmdheight:get()
+                        return {
+                            border = "rounded",
+                            relative = "editor",
+                            row = center_y,
+                            col = center_x,
+                            width = window_w_int,
+                            height = window_h_int,
+                        }
+                    end,
+                },
+                width = function()
+                    return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
+                end,
             },
             renderer = {
-                indent_markers = {
-                    enable = true,
-                },
-                icons = {
-                    glyphs = {},
-                },
+                indent_markers = { enable = true },
+                icons = { glyphs = {} },
             },
             actions = {
                 open_file = {
-                    -- resize_window = true, -- This resizes the window automatically when a file opens
-                    -- window_picker = {
-                    --     enable = false,
-                    -- },
+                    -- You can add any actions here if needed
                 },
             },
             filters = {
@@ -37,10 +55,9 @@ return {
             },
         })
 
+        -- Define custom highlight colors
         local function colors()
-            -- NvimTree colors
-            vim.api.nvim_set_hl(0, "NvimTreeNormal", { fg = "#888888", bg = "#0e0e0e" }) -- Uncommented and moved to top
-            -- vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { bg = "#0e0e0e" })
+            vim.api.nvim_set_hl(0, "NvimTreeNormal", { fg = "#888888", bg = "#0e0e0e" })
             vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { bg = "" })
             vim.api.nvim_set_hl(0, "NvimTreeVertSplit", { fg = "#222222", bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeFolderName", { fg = "#888888" })
@@ -62,27 +79,26 @@ return {
 
         colors()
 
-        -- Also create an autocmd to apply colors when ColorScheme changes
+        -- Apply colors when the ColorScheme changes
         vim.api.nvim_create_autocmd("ColorScheme", {
             callback = colors,
         })
 
         -- Set keymaps for nvim-tree
         local keymap = vim.keymap
-        keymap.set("n", "<leader>eo", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
+        keymap.set("n", "<leader>ed", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
         keymap.set(
             "n",
-            "<leader>ed",
+            "<leader>eo",
             "<cmd>NvimTreeFindFileToggle<CR>",
             { desc = "Toggle file explorer on current file" }
         )
         keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })
         keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
 
-        -- Open nvim-tree when starting nvim
+        -- Optionally open nvim-tree when starting nvim (uncomment if desired)
         -- vim.api.nvim_create_autocmd({ "VimEnter" }, {
         --     callback = function()
-        --         -- Open nvim-tree only if there is no file or buffer open
         --         if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0) == "" then
         --             vim.cmd("NvimTreeOpen")
         --         end

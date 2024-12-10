@@ -9,6 +9,8 @@ require("venkat.utils.colorscheme").syntax()
 
 vim.opt.conceallevel = 1 -- or 2
 
+vim.cmd([[autocmd BufWritePre *.scss lua vim.lsp.buf.format({ async = true })]])
+
 vim.api.nvim_create_autocmd("VimEnter", {
     callback = function()
         vim.cmd("set winhl=WinSeparator:WinSeparator")

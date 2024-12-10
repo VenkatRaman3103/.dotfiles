@@ -1,6 +1,7 @@
 local colorscheme = {}
 
 local bgColor = "#0e0e0e"
+-- local bgColor = ""
 
 function colorscheme.colorMyPencils()
     -- Set a dark background

@@ -19,7 +19,7 @@ return {
                 opts.desc = "Show LSP references"
                 keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
 
-                -- Other keybindings omitted for brevity
+                -- Additional keybindings can go here
             end,
         })
 
@@ -42,7 +42,7 @@ return {
                 "emmet_ls",
                 "prismals",
                 "pyright",
-                "ts_ls", -- updated to ts_ls
+                "ts_ls",
             },
         })
 
@@ -52,35 +52,20 @@ return {
                     capabilities = capabilities,
                 })
             end,
-            -- ["ts_ls"] = function()
-            --     lspconfig["ts_ls"].setup({
-            --         capabilities = capabilities,
-            --         settings = {
-            --             typescript = {
-            --                 format = {
-            --                     indentSize = 2,
-            --                     convertTabsToSpaces = true,
-            --                     tabSize = 2,
-            --                 },
-            --             },
-            --             javascript = {
-            --                 format = {
-            --                     indentSize = 2,
-            --                     convertTabsToSpaces = true,
-            --                     tabSize = 2,
-            --                 },
-            --             },
-            --             diagnostics = {
-            --                 enabled = true,
-            --             },
-            --             suggest = {
-            --                 enabled = true,
-            --             },
-            --         },
-            --         root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
-            --         single_file_support = true,
-            --     })
-            -- end,
+            ["cssls"] = function()
+                lspconfig["cssls"].setup({
+                    capabilities = capabilities,
+                    settings = {
+                        css = { validate = true },
+                        scss = { validate = true },
+                        less = { validate = true },
+                    },
+                    on_attach = function(_, bufnr)
+                        -- Disable formatting for CSS/SCSS if you use an external formatter
+                        vim.api.nvim_buf_set_option(bufnr, "formatexpr", "")
+                    end,
+                })
+            end,
             ["graphql"] = function()
                 lspconfig["graphql"].setup({
                     capabilities = capabilities,
