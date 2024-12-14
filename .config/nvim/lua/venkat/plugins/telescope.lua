@@ -16,6 +16,16 @@ return {
 
         telescope.setup({
             defaults = {
+                layout_config = {
+                    width = 0.85, -- Adjust the width (fraction of the screen width, 1.0 is full width)
+                    height = 0.95, -- Adjust the height (fraction of the screen height, 1.0 is full height)
+                    -- prompt_position = "bottom", -- Place the prompt at the top or bottom
+                    preview_cutoff = 120, -- Don't show the preview window for files smaller than this value
+                    horizontal = {
+                        preview_width = 0.5, -- Adjust preview pane width
+                        results_width = 0.5, -- Adjust results pane width
+                    },
+                },
                 path_display = { "smart" },
                 mappings = {
                     i = {
@@ -58,6 +68,7 @@ return {
         keymap.set("n", "<leader>/", function()
             builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
                 -- winblend = 10,
+                -- prompt_position = "top",
                 previewer = false,
             }))
         end, { desc = "Fuzzy search in current file" })
