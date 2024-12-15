@@ -1,14 +1,14 @@
--- return {
---     "catppuccin/nvim",
---     name = "catppuccin",
---     priority = 1000,
---     config = function()
---         require("catppuccin").setup({
---             flavour = "mocha", -- or "latte", "frappe", "macchiato"
---         })
---         vim.cmd("colorscheme catppuccin")
---     end,
--- }
+return {
+    -- "catppuccin/nvim",
+    -- name = "catppuccin",
+    -- priority = 1000,
+    -- config = function()
+    --     require("catppuccin").setup({
+    --         flavour = "mocha", -- or "latte", "frappe", "macchiato"
+    --     })
+    --     vim.cmd("colorscheme catppuccin")
+    -- end,
+}
 
 -- return {
 --     "shaunsingh/nord.nvim",
@@ -31,19 +31,19 @@
 --     end,
 -- }
 
-return {
-    -- "maxmx03/solarized.nvim",
-    -- lazy = false,
-    -- priority = 1000,
-    -- ---@type solarized.config
-    -- opts = {},
-    -- config = function(_, opts)
-    --     vim.o.termguicolors = true
-    --     vim.o.background = "dark"
-    --     require("solarized").setup(opts)
-    --     vim.cmd.colorscheme("solarized")
-    -- end,
-}
+-- return {
+-- "maxmx03/solarized.nvim",
+-- lazy = false,
+-- priority = 1000,
+-- ---@type solarized.config
+-- opts = {},
+-- config = function(_, opts)
+--     vim.o.termguicolors = true
+--     vim.o.background = "dark"
+--     require("solarized").setup(opts)
+--     vim.cmd.colorscheme("solarized")
+-- end,
+-- }
 
 -- return {
 --     "Mofiqul/vscode.nvim",
