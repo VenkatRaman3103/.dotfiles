@@ -27,6 +27,7 @@ return {
                     },
                 },
                 path_display = { "smart" },
+                -- winblend = 10,
                 mappings = {
                     i = {
                         ["<C-k>"] = actions.move_selection_previous, -- Move to prev result

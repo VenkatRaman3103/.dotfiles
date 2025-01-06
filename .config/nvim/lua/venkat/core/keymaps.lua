@@ -37,8 +37,10 @@ keymap.set("n", "<leader>-", "<C-w>s", { desc = "Split window horizontally" })
 keymap.set("n", "<leader>eq", "<C-w>=", { desc = "Make splits equal size" })
 keymap.set("n", "<leader>xx", "<cmd>close<CR>", { desc = "Close current split" })
 
+keymap.set("n", "<leader>tw", ":set wrap!<CR>", { noremap = true, silent = true })
+
 -- Tabs management
-keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" })
+keymap.set("n", "<leader>tc", "<cmd>tabnew<CR>", { desc = "Open new tab" })
 keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" })
 keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" })
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
@@ -83,13 +85,22 @@ keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 keymap.set("n", "<leader><CR>", ":source ~/.config/nvim/init.lua<CR>")
 
 -- closing all buffers
-keymap.set("n", "<leader>bd", ":%bd<CR>")
+vim.keymap.set("n", "<leader>bd", function()
+    local current_buf = vim.fn.bufnr("%") -- Get the current buffer number
+    local buffers = vim.api.nvim_list_bufs() -- List all buffers
+
+    for _, buf in ipairs(buffers) do
+        if buf ~= current_buf and vim.api.nvim_buf_is_loaded(buf) then
+            vim.cmd("bdelete " .. buf)
+        end
+    end
+end, { desc = "Delete all buffers except the current one" })
 
 -- quick fix likst
 keymap.set("n", "<leader>qo", ":copen<CR>")
 keymap.set("n", "<leader>qc", ":cclose<CR>")
--- keymap.set("n", "<leader>a", function()
---     vim.fn.setqflist({ { bufnr = vim.fn.bufnr() } }, "a")
--- end)
+keymap.set("n", "<leader>a", function()
+    vim.fn.setqflist({ { bufnr = vim.fn.bufnr() } }, "a")
+end)
 keymap.set("n", "<leader>qn", ":cnext<CR>")
 keymap.set("n", "<leader>qp", ":cprev<CR>")

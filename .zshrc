@@ -75,6 +75,7 @@ alias cd="z"
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-user"
 
 alias vim="nvim" 
+alias python="python3"
 
 # ---- Zoxide (better cd) ----
 eval "$(zoxide init zsh)"

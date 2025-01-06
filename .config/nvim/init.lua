@@ -4,10 +4,12 @@ require("venkat.lazy")
 -- utils
 require("venkat.utils.diagnostics").setup()
 require("venkat.utils.colorscheme").colorMyPencils()
-require("venkat.utils.colorscheme").syntax()
+-- require("venkat.utils.colorscheme").syntax()
 -- 4f5258
 
 vim.opt.conceallevel = 1 -- or 2
+
+-- vim.cmd([[packadd pieces.nvim]])
 
 vim.cmd([[autocmd BufWritePre *.scss lua vim.lsp.buf.format({ async = true })]])
 
