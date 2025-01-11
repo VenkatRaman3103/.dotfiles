@@ -1,4 +1,4 @@
-# If you come from bash you might have to change your $PATH.
+
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
@@ -71,6 +71,8 @@ setopt hist_verify
 alias ls="ls -la"
 alias cd="z"
 
+alias t="tmuxifier"
+
 # ---- Eza (better ls) -----
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-user"
 
@@ -123,6 +125,15 @@ _fzf_comprun() {
 # bat theme variable
 export BAT_THEME="Catppuccin Mocha"
 
+# tmuxifier
+export PATH="$HOME/.tmuxifier/bin:$PATH"
+
+# default editor
+export EDITOR=nvim
+
 # thefuck alias
 eval $(thefuck --alias)
 eval $(thefuck --alias fk)
+
+eval $(tmuxifier init -)
+export PATH="$PATH:/usr/local/bin"

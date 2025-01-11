@@ -12,39 +12,38 @@ return {
         local telescope = require("telescope")
         local actions = require("telescope.actions")
         local builtin = require("telescope.builtin")
+        local harpoon = require("harpoon")
         local harpoon_mark = require("harpoon.mark")
+        local harpoon_ui = require("harpoon.ui")
 
         telescope.setup({
             defaults = {
                 layout_config = {
-                    width = 0.85, -- Adjust the width (fraction of the screen width, 1.0 is full width)
-                    height = 0.95, -- Adjust the height (fraction of the screen height, 1.0 is full height)
-                    -- prompt_position = "bottom", -- Place the prompt at the top or bottom
-                    preview_cutoff = 120, -- Don't show the preview window for files smaller than this value
+                    width = 0.85,
+                    height = 0.95,
+                    preview_cutoff = 120,
                     horizontal = {
-                        preview_width = 0.5, -- Adjust preview pane width
-                        results_width = 0.5, -- Adjust results pane width
+                        preview_width = 0.5,
+                        results_width = 0.5,
                     },
                 },
                 path_display = { "smart" },
-                -- winblend = 10,
                 mappings = {
                     i = {
-                        ["<C-k>"] = actions.move_selection_previous, -- Move to prev result
-                        ["<C-j>"] = actions.move_selection_next, -- Move to next result
-                        ["<C-a>"] = actions.send_selected_to_qflist + actions.open_qflist, -- Send to quickfix
+                        ["<C-k>"] = actions.move_selection_previous,
+                        ["<C-j>"] = actions.move_selection_next,
+                        ["<C-a>"] = actions.send_selected_to_qflist + actions.open_qflist,
                         ["<C-h>"] = function(prompt_bufnr)
                             local action_state = require("telescope.actions.state")
                             local picker = action_state.get_current_picker(prompt_bufnr)
                             local multi_selections = picker:get_multi_selection()
 
-                            -- Add each selected entry to Harpoon
                             for _, entry in ipairs(multi_selections) do
                                 harpoon_mark.add_file(entry.path or entry.filename)
                             end
 
-                            actions.close(prompt_bufnr) -- Close Telescope
-                            print("Added to Harpoon") -- Optional confirmation message
+                            actions.close(prompt_bufnr)
+                            print("Added to Harpoon")
                         end,
                     },
                 },
@@ -54,8 +53,7 @@ return {
         telescope.load_extension("fzf")
 
         -- Key mappings
-        local keymap = vim.keymap -- For conciseness
-
+        local keymap = vim.keymap
         keymap.set("n", "<leader>fd", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
         keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
         keymap.set("n", "<leader>fs", builtin.lsp_document_symbols, {})
@@ -68,17 +66,47 @@ return {
 
         keymap.set("n", "<leader>/", function()
             builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-                -- winblend = 10,
-                -- prompt_position = "top",
                 previewer = false,
             }))
         end, { desc = "Fuzzy search in current file" })
 
-        -- keymap.set("n", "<leader>s/", function()
-        --     builtin.live_grep({
-        --         grep_open_files = true,
-        --         propt_title = "Live Grep in Open File",
-        --     })
-        -- end, { desc = "Search in open files" })
+        -- Fuzzy search Harpoon files
+        keymap.set("n", "<leader>fh", function()
+            local harpoon_files = harpoon.get_mark_config().marks or {}
+            local entries = {}
+            for _, file in ipairs(harpoon_files) do
+                if file.filename and vim.fn.filereadable(file.filename) == 1 then
+                    table.insert(entries, file.filename)
+                end
+            end
+
+            local finders = require("telescope.finders")
+            local pickers = require("telescope.pickers")
+            local sorters = require("telescope.sorters")
+            local themes = require("telescope.themes")
+
+            pickers
+                .new(themes.get_dropdown({}), {
+                    prompt_title = "Files",
+                    finder = finders.new_table({
+                        results = entries,
+                    }),
+                    sorter = sorters.get_generic_fuzzy_sorter(),
+                    attach_mappings = function(_, map)
+                        map("i", "<CR>", function(prompt_bufnr)
+                            local selection = require("telescope.actions.state").get_selected_entry()
+                            actions.close(prompt_bufnr)
+                            vim.cmd("edit " .. selection.value)
+                        end)
+                        map("n", "<CR>", function(prompt_bufnr)
+                            local selection = require("telescope.actions.state").get_selected_entry()
+                            actions.close(prompt_bufnr)
+                            vim.cmd("edit " .. selection.value)
+                        end)
+                        return true
+                    end,
+                })
+                :find()
+        end, { desc = "Fuzzy find Harpoon files" })
     end,
 }

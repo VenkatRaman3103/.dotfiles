@@ -1,7 +1,9 @@
 local colorscheme = {}
 
-local bgColor = "#0e0e0e"
--- local bgColor = ""
+-- local bgColor = "#0e0e0e"
+local bgColor = ""
+
+local selectionBgColor = "#ffb86c"
 
 function colorscheme.colorMyPencils()
     -- Set a dark background
@@ -129,11 +131,16 @@ function colorscheme.colorMyPencils()
     -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1a1a1a" })
     -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#111111" })
     -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#222222" })
-    vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1a1a1a" })
-    vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#505050", bg = "" })
+
+    -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1a1a1a" })
+    -- vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#505050", bg = "" })
+
+    -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1a1a1a" })
+    vim.api.nvim_set_hl(0, "CursorLine", { bg = bgColor })
+    vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#ffffff", bg = "" })
 
     -- Inactive lines with grayed-out numbers
-    vim.api.nvim_set_hl(0, "LineNr", { fg = "#242424", bg = bgColor })
+    vim.api.nvim_set_hl(0, "LineNr", { fg = "#505050", bg = bgColor })
     vim.api.nvim_set_hl(0, "NormalNC", { bg = bgColor })
 
     -- Custom settings for completion menu
@@ -149,6 +156,8 @@ function colorscheme.colorMyPencils()
     vim.api.nvim_set_hl(0, "TelescopePreviewNormal", { bg = bgColor })
     vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = "#222222", fg = "#ffffff" })
     vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = "#ff6a00", bold = true })
+    -- vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = selectionBgColor, fg = "#000000" })
+    -- vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = "#ffffff", bold = true })
 
     -- Disable underlines
     vim.api.nvim_set_hl(0, "Underlined", { underline = false })

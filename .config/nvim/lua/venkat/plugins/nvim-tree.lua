@@ -8,7 +8,7 @@ return {
         vim.g.loaded_netrwPlugin = 1
 
         local HEIGHT_RATIO = 0.95 -- Adjust this as needed
-        local WIDTH_RATIO = 0.7 -- Adjust this as needed
+        local WIDTH_RATIO = 0.5 -- Adjust this as needed
 
         nvimtree.setup({
             view = {
@@ -77,12 +77,12 @@ return {
             vim.api.nvim_set_hl(0, "NvimTreeModifiedFile", { fg = "#888888", italic = true })
         end
 
-        colors()
+        -- colors()
 
         -- Apply colors when the ColorScheme changes
-        vim.api.nvim_create_autocmd("ColorScheme", {
-            callback = colors,
-        })
+        -- vim.api.nvim_create_autocmd("ColorScheme", {
+        --     callback = colors,
+        -- })
 
         -- Set keymaps for nvim-tree
         local keymap = vim.keymap

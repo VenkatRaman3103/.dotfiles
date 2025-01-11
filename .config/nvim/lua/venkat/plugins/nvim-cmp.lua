@@ -59,7 +59,7 @@ return {
             window = {
                 completion = {
                     border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-                    winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+                    winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual",
                 },
                 documentation = {
                     border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
