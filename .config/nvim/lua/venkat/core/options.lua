@@ -66,3 +66,16 @@ api.nvim_create_autocmd("TextYankPost", {
         vim.highlight.on_yank()
     end,
 })
+vim.o.showtabline = 0
+
+api.nvim_create_user_command("ClearMarks", function()
+    vim.cmd("delmarks a-zA-Z0-9")
+end, {})
+
+api.nvim_create_user_command("GetFullPath", function()
+    print(vim.fn.expand("%:p"))
+end, {})
+
+api.nvim_create_user_command("GetDirectoryPath", function()
+    print(vim.fn.expand("%:p:h"))
+end, {})

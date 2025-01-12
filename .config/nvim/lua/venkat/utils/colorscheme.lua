@@ -48,7 +48,8 @@ function colorscheme.colorMyPencils()
         vim.api.nvim_set_hl(0, group, { bg = bgColor })
     end
 
-    vim.api.nvim_set_hl(0, "IblIndent", { fg = "#242424" })
+    -- vim.api.nvim_set_hl(0, "IblIndent", { fg = "#242424" })
+    vim.api.nvim_set_hl(0, "IblIndent", { fg = "#333333" })
 
     -- Zen-mode highlights
     vim.api.nvim_set_hl(0, "ZenBg", { bg = bgColor })

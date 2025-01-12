@@ -36,6 +36,7 @@ return {
             local function map(mode, l, r, desc)
                 vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc })
             end
+
             -- Navigation
             map("n", "]g", gs.next_hunk, "Next git hunk")
             map("n", "[g", gs.prev_hunk, "Previous git hunk")
@@ -79,9 +80,9 @@ return {
             highlight GitSignsChange guifg=#e5c07b guibg=NONE
             highlight GitSignsDelete guifg=#e06c75 guibg=NONE
             
-            highlight GitSignsAddInline    guibg=#2d3828
-            highlight GitSignsChangeInline guibg=#2d2e28
-            highlight GitSignsDeleteInline guibg=#2d2828
+            " highlight GitSignsAddInline    guibg=#2d3828
+            " highlight GitSignsChangeInline guibg=#2d2e28
+            " highlight GitSignsDeleteInline guibg=#2d2828
         ]])
         require("gitsigns").setup(opts)
     end,

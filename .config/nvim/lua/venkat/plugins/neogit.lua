@@ -6,6 +6,7 @@ return {
         "nvim-telescope/telescope.nvim",
         "ibhagwan/fzf-lua",
         "echasnovski/mini.pick",
+        "isakbm/gitgraph.nvim",
     },
     config = function()
         local neogit = require("neogit")
@@ -21,6 +22,7 @@ return {
                 item = { "▷", "▼" },
                 hunk = { "", "" },
             },
+            -- graph_style = "kitty",
             mappings = {
                 -- These are the valid commands from the error message
                 status = {

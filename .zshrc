@@ -135,5 +135,9 @@ export EDITOR=nvim
 eval $(thefuck --alias)
 eval $(thefuck --alias fk)
 
+# for topie
+export PATH="$HOME/.cargo/bin:$PATH"
+alias type-test="toipe"
+
 eval $(tmuxifier init -)
 export PATH="$PATH:/usr/local/bin"
