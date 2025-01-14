@@ -126,7 +126,8 @@ function colorscheme.colorMyPencils()
     vim.api.nvim_set_hl(0, "Cursor", { fg = "#ffb86c", bg = "#000000" })
 
     -- Visual selection highlight
-    vim.api.nvim_set_hl(0, "Visual", { bg = "#ffb86c", fg = "#000000" })
+    -- vim.api.nvim_set_hl(0, "Visual", { bg = "#ffb86c", fg = "#000000" })
+    vim.api.nvim_set_hl(0, "Visual", { bg = "#45475a", bold = false })
 
     -- Highlight the current line with a subtle background 0e0e0e
     -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1a1a1a" })
@@ -146,7 +147,7 @@ function colorscheme.colorMyPencils()
 
     -- Custom settings for completion menu
     vim.api.nvim_set_hl(0, "Pmenu", { bg = bgColor, fg = "#ffffff" })
-    vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#ffb86c" })
+    -- vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#ffb86c" })
     vim.api.nvim_set_hl(0, "PmenuSbar", { bg = bgColor })
     vim.api.nvim_set_hl(0, "PmenuThumb", { bg = "", fg = "none" })
 
@@ -155,8 +156,8 @@ function colorscheme.colorMyPencils()
     vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = bgColor })
     vim.api.nvim_set_hl(0, "TelescopeResultsNormal", { bg = bgColor })
     vim.api.nvim_set_hl(0, "TelescopePreviewNormal", { bg = bgColor })
-    vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = "#222222", fg = "#ffffff" })
-    vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = "#ff6a00", bold = true })
+    -- vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = "#222222", fg = "#ffffff" })
+    -- vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = "#ff6a00", bold = true })
     -- vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = selectionBgColor, fg = "#000000" })
     -- vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = "#ffffff", bold = true })
 
@@ -167,14 +168,13 @@ function colorscheme.colorMyPencils()
     vim.api.nvim_set_hl(0, "SpellRare", { underline = false })
     vim.api.nvim_set_hl(0, "SpellLocal", { underline = false })
 
-    -- Modified: Thicker window separators with custom characters
-    vim.opt.fillchars = {
-        horiz = "─", -- Horizontal separator (thin)
-        vert = "│", -- Vertical separator (thin)
-        vertleft = "┤", -- T-piece pointing left (thin)
-        vertright = "├", -- T-piece pointing right (thin)
-        verthoriz = "┼", -- Cross piece (thin)
-    }
+    -- vim.opt.fillchars = {
+    --     horiz = "─", -- Horizontal separator (thin)
+    --     vert = "│", -- Vertical separator (thin)
+    --     vertleft = "┤", -- T-piece pointing left (thin)
+    --     vertright = "├", -- T-piece pointing right (thin)
+    --     verthoriz = "┼", -- Cross piece (thin)
+    -- }
 
     -- Make window separators more visible with a brighter color
     vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#222222", bg = bgColor })
@@ -193,11 +193,11 @@ function colorscheme.colorMyPencils()
     vim.opt.lazyredraw = false -- Ensure separators are always drawn
     vim.opt.splitkeep = "screen" -- Maintain window separators during splits
 
-    vim.api.nvim_create_autocmd("ColorScheme", {
-        callback = function()
-            vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#ffb86c", fg = "#000000" })
-        end,
-    })
+    -- vim.api.nvim_create_autocmd("ColorScheme", {
+    --     callback = function()
+    --         vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#ffb86c", fg = "#000000" })
+    --     end,
+    -- })
 end
 
 function colorscheme.syntax()

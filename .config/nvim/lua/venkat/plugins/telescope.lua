@@ -7,6 +7,7 @@ return {
         "nvim-tree/nvim-web-devicons",
         "nvim-telescope/telescope-live-grep-args.nvim",
         "ThePrimeagen/harpoon", -- Add Harpoon as a dependency
+        "nvim-telescope/telescope-file-browser.nvim", -- Add telescope-file-browser extension
     },
     config = function()
         local telescope = require("telescope")
@@ -16,6 +17,7 @@ return {
         local harpoon_mark = require("harpoon.mark")
         local harpoon_ui = require("harpoon.ui")
 
+        -- Setup Telescope
         telescope.setup({
             defaults = {
                 layout_config = {
@@ -32,7 +34,7 @@ return {
                     i = {
                         ["<C-k>"] = actions.move_selection_previous,
                         ["<C-j>"] = actions.move_selection_next,
-                        ["<C-a>"] = actions.send_selected_to_qflist + actions.open_qflist,
+                        ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
                         ["<C-h>"] = function(prompt_bufnr)
                             local action_state = require("telescope.actions.state")
                             local picker = action_state.get_current_picker(prompt_bufnr)
@@ -50,7 +52,9 @@ return {
             },
         })
 
+        -- Load extensions
         telescope.load_extension("fzf")
+        telescope.load_extension("file_browser")
 
         -- Key mappings
         local keymap = vim.keymap
@@ -70,7 +74,17 @@ return {
             }))
         end, { desc = "Fuzzy search in current file" })
 
-        -- Fuzzy search Harpoon files
+        keymap.set("n", "<leader>fe", function()
+            require("telescope").extensions.file_browser.file_browser(require("telescope.themes").get_dropdown({
+                previewer = false,
+                hidden = true,
+                respect_gitignore = true,
+                -- initial_mode = "normal",
+                -- width = 0.8,
+                -- height = 0.6,
+            }))
+        end, { desc = "Open File Explorer" })
+
         keymap.set("n", "<leader>fh", function()
             local harpoon_files = harpoon.get_mark_config().marks or {}
             local entries = {}

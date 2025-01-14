@@ -2,14 +2,13 @@ return {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPre", "BufNewFile" },
     opts = {
-
         signs = {
             add = { text = "+" },
             -- change = { text = "│" },
-            change = { text = "-" },
+            change = { text = "~" },
             delete = { text = "_" },
             topdelete = { text = "‾" },
-            changedelete = { text = "~" },
+            changedelete = { text = "-" },
         },
         signcolumn = false, -- Start with signs disabled
         numhl = false,
@@ -38,22 +37,22 @@ return {
             end
 
             -- Navigation
-            map("n", "]g", gs.next_hunk, "Next git hunk")
-            map("n", "[g", gs.prev_hunk, "Previous git hunk")
+            map("n", "]h", gs.next_hunk, "Next git hunk")
+            map("n", "[h", gs.prev_hunk, "Previous git hunk")
 
             -- Git actions with leader g (git)
-            map("n", "<leader>gs", gs.stage_hunk, "Git stage hunk")
-            map("n", "<leader>gr", gs.reset_hunk, "Git reset hunk")
-            map("v", "<leader>gs", function()
+            map("n", "<leader>hs", gs.stage_hunk, "Git stage hunk")
+            map("n", "<leader>hr", gs.reset_hunk, "Git reset hunk")
+            map("v", "<leader>hs", function()
                 gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
             end, "Git stage selected hunk")
-            map("v", "<leader>gr", function()
+            map("v", "<leader>hr", function()
                 gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
             end, "Git reset selected hunk")
             map("n", "<leader>gS", gs.stage_buffer, "Git stage entire buffer")
             map("n", "<leader>gR", gs.reset_buffer, "Git reset entire buffer")
-            map("n", "<leader>gu", gs.undo_stage_hunk, "Git undo stage hunk")
-            map("n", "<leader>gp", gs.preview_hunk, "Git preview hunk")
+            map("n", "<leader>hu", gs.undo_stage_hunk, "Git undo stage hunk")
+            map("n", "<leader>hp", gs.preview_hunk, "Git preview hunk")
             map("n", "<leader>gb", function()
                 gs.blame_line({ full = true })
             end, "Git blame line")

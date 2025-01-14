@@ -114,9 +114,14 @@ return {
 
 -- return {
 --     "folke/tokyonight.nvim",
---     lazy = false,
+--     name = "tokyonight",
 --     priority = 1000,
---     opts = {},
+--     config = function()
+--         require("tokyonight").setup({
+--             -- flavour = "mocha", -- or "latte", "frappe", "macchiato"
+--         })
+--         vim.cmd("colorscheme tokyonight")
+--     end,
 -- }
 
 -- return {}

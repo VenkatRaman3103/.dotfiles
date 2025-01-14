@@ -13,7 +13,6 @@ vim.opt.conceallevel = 1 -- or 2
 
 vim.api.nvim_set_hl(0, "@comment", { fg = "#777777", italic = true })
 vim.api.nvim_set_hl(0, "@comment.documentation", { fg = "#777777", italic = true })
-
 -- vim.cmd([[packadd pieces.nvim]])
 
 vim.cmd([[autocmd BufWritePre *.scss lua vim.lsp.buf.format({ async = true })]])
@@ -23,8 +22,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
         vim.cmd("set winhl=WinSeparator:WinSeparator")
     end,
 })
-
-local some
 
 -- Automatically wrap and enforce textwidth at 80 characters for Markdown files
 vim.api.nvim_create_autocmd("FileType", {

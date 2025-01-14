@@ -24,19 +24,19 @@ return {
     },
     keys = {
         {
-            "<leader>z",
+            "<leader>zz",
             function()
                 Snacks.zen()
             end,
             desc = "Toggle Zen Mode",
         },
-        {
-            "<leader>Z",
-            function()
-                Snacks.zen.zoom()
-            end,
-            desc = "Toggle Zoom",
-        },
+        -- {
+        --     "<leader>Z",
+        --     function()
+        --         Snacks.zen.zoom()
+        --     end,
+        --     desc = "Toggle Zoom",
+        -- },
         {
             "<leader>.",
             function()
