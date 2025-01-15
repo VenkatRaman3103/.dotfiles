@@ -93,9 +93,24 @@ return {
                 lspconfig["cssls"].setup({
                     capabilities = capabilities,
                     settings = {
-                        css = { validate = true },
-                        scss = { validate = true },
-                        less = { validate = true },
+                        css = {
+                            validate = true,
+                            -- Custom indentation
+                            tabSize = 4,
+                            indentSize = 4,
+                        },
+                        scss = {
+                            validate = true,
+                            -- Custom indentation
+                            tabSize = 4,
+                            indentSize = 4,
+                        },
+                        less = {
+                            validate = true,
+                            -- Custom indentation
+                            tabSize = 4,
+                            indentSize = 4,
+                        },
                     },
                     on_attach = function(_, bufnr)
                         -- Disable formatting for CSS/SCSS if you use an external formatter
