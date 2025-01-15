@@ -13,6 +13,7 @@ vim.opt.conceallevel = 1 -- or 2
 
 vim.api.nvim_set_hl(0, "@comment", { fg = "#777777", italic = true })
 vim.api.nvim_set_hl(0, "@comment.documentation", { fg = "#777777", italic = true })
+
 -- vim.diagnostic.config({
 --     virtual_text = false, -- Disables virtual text diagnostics
 --     signs = true, -- Keep diagnostic signs in the gutter

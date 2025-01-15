@@ -23,11 +23,19 @@ return {
 -- }
 
 -- return {
+--     "sainnhe/gruvbox-material",
+--     name = "gruvbox",
+--     priority = 1000,
+--     config = function()
+--         vim.cmd("colorscheme gruvbox-material")
+--     end,
+-- }
+-- return {
 --     "rebelot/kanagawa.nvim",
 --     name = "kanagawa",
 --     priority = 1000,
 --     config = function()
---         vim.cmd("colorscheme kanagawa-dragon")
+--         vim.cmd("colorscheme kanagawa-wave")
 --     end,
 -- }
 

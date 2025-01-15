@@ -26,6 +26,7 @@ return {
                 lualine_b = {
                     {
                         "buffers",
+                        -- "filename",
                         symbols = {
                             modified = " ✦",
                             alternate_file = "",
