@@ -71,13 +71,13 @@ function colorscheme.colorMyPencils()
     vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#555555", bg = bgColor })
 
     -- set title colors
-    vim.api.nvim_set_hl(0, "TelescopeTitle", { fg = "#ffffff", bold = true })
-    vim.api.nvim_set_hl(0, "TelescopePromptTitle", { fg = "#ffffff", bold = true })
-    vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { fg = "#ffffff", bold = true })
-    vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { fg = "#ffffff", bold = true })
+    vim.api.nvim_set_hl(0, "TelescopeTitle", { fg = "#ffffff", bold = false })
+    vim.api.nvim_set_hl(0, "TelescopePromptTitle", { fg = "#ffffff", bold = false })
+    vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { fg = "#ffffff", bold = false })
+    vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { fg = "#ffffff", bold = false })
     vim.api.nvim_set_hl(0, "HarpoonWindow", { fg = "#ffffff" })
-    vim.api.nvim_set_hl(0, "HarpoonTitle", { fg = "#ffffff", bold = true })
-    vim.api.nvim_set_hl(0, "FloatTitle", { fg = "#ffffff", bold = true })
+    vim.api.nvim_set_hl(0, "HarpoonTitle", { fg = "#ffffff", bold = false })
+    vim.api.nvim_set_hl(0, "FloatTitle", { fg = "#ffffff", bold = fasle })
 
     vim.api.nvim_set_hl(0, "NeogitNotificationInfo", { fg = "#4BB543", bold = true })
     vim.api.nvim_set_hl(0, "NeogitNotificationWarning", { fg = "#FFB800", bold = true })
@@ -98,6 +98,15 @@ function colorscheme.colorMyPencils()
     vim.api.nvim_set_hl(0, "NeogitHunkHeader", { bg = "#1e1e1e", fg = "#ffffff" })
     vim.api.nvim_set_hl(0, "NeogitHunkHeaderHighlight", { bg = "#2e2e2e", fg = "#ffffff", bold = true })
     vim.api.nvim_set_hl(0, "NeogitFoldIcon", { fg = "#ffb86c" })
+
+    -- markdown
+    -- vim.api.nvim_set_hl(0, "RenderMarkdownH1Bg", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "RenderMarkdownH2Bg", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "RenderMarkdownH3Bg", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "RenderMarkdownH4Bg", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "RenderMarkdownH5Bg", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "RenderMarkdownH6Bg", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "RenderMarkdownCode", { bg = "none" })
 
     -- Status highlights for better readability in the Neogit interface
     vim.api.nvim_set_hl(0, "NeogitBranch", { fg = "#ffb86c", bold = true }) -- branch name

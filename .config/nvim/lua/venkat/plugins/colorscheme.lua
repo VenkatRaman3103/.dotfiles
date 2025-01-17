@@ -1,3 +1,24 @@
+-- return {
+--     "diegoulloao/neofusion.nvim",
+--     name = "neofusion",
+--     priority = 1000,
+--     config = function()
+--         vim.cmd("colorscheme neofusion")
+--     end,
+-- }
+
+-- return {
+--     "kvrohit/substrata.nvim",
+--     name = "substrata",
+--     priority = 1000,
+--     config = function()
+--         -- require("substrata").setup({
+--         --     flavour = "mocha", -- or "latte", "frappe", "macchiato"
+--         -- })
+--         vim.cmd("colorscheme substrata")
+--     end,
+-- }
+
 return {
     "catppuccin/nvim",
     name = "catppuccin",

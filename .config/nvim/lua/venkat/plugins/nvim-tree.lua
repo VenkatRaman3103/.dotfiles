@@ -3,7 +3,8 @@ return {
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
         local nvimtree = require("nvim-tree")
-        -- recommended settings from nvim-tree documentation
+
+        -- Recommended settings from nvim-tree documentation
         vim.g.loaded_netrw = 1
         vim.g.loaded_netrwPlugin = 1
 
@@ -50,13 +51,18 @@ return {
                 },
             },
             filters = {
-                custom = { ".git", "node_modules", ".cache", ".DS_Store" },
+                -- custom = { ".git", "node_modules", ".cache", ".DS_Store" },
+                custom = { ".DS_Store" },
                 exclude = { "important_dir" },
             },
             git = {
                 ignore = false,
             },
+            filesystem_watchers = {
+                enable = false, -- Disable filesystem watchers to avoid ENOSPC issues
+            },
         })
+
         -- Define custom highlight colors with transparent backgrounds
         local function colors()
             vim.api.nvim_set_hl(0, "NvimTreeNormal", { fg = "#888888", bg = "none" })
@@ -70,7 +76,7 @@ return {
             vim.api.nvim_set_hl(0, "NvimTreeGitNew", { fg = "#4BB543", bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeGitDeleted", { fg = "#FF3333", bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeSpecialFile", { fg = "#999999", underline = true, bg = "none" })
-            vim.api.nvim_set_hl(0, "NvimTreeIndentMarker", { fg = "#999999", bg = "none" })
+            vim.api.nvim_set_hl(0, "NvimTreeIndentMarker", { fg = "#555555", bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeImageFile", { fg = "#888888", bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeSymlink", { fg = "#888888", bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeFile", { fg = "#888888", bg = "none" })

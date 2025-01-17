@@ -21,14 +21,18 @@ return {
         telescope.setup({
             defaults = {
                 layout_config = {
-                    width = 0.85,
-                    height = 0.95,
-                    preview_cutoff = 120,
+                    width = 0.95,
+                    height = 100,
+                    preview_cutoff = 10,
                     horizontal = {
                         preview_width = 0.5,
                         results_width = 0.5,
                     },
+                    -- prompt_position = "top",
                 },
+                prompt_title = "",
+                results_title = "",
+                -- sorting_strategy = "ascending",
                 path_display = { "smart" },
                 mappings = {
                     i = {
@@ -36,7 +40,7 @@ return {
                         ["<C-j>"] = actions.move_selection_next,
                         -- ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
                         ["<C-a>"] = actions.send_selected_to_qflist + actions.open_qflist,
-                        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+                        ["<C-q>"] = actions.send_to_qflist,
                         ["<C-h>"] = function(prompt_bufnr)
                             local action_state = require("telescope.actions.state")
                             local picker = action_state.get_current_picker(prompt_bufnr)

@@ -25,10 +25,10 @@ return {
                 lualine_a = {},
                 lualine_b = {
                     {
-                        "buffers",
-                        -- "filename",
+                        -- "buffers",
+                        "filename",
                         symbols = {
-                            modified = " ✦",
+                            modified = "✦",
                             alternate_file = "",
                             directory = "",
                         },
@@ -36,12 +36,14 @@ return {
                         hide_filename_extension = false,
                         show_modified_status = true,
                         buffers_color = {
-                            active = { fg = "#ffffff", bg = bgColor }, -- Active buffer: white foreground
-                            inactive = { fg = "#505050", bg = bgColor }, -- Inactive buffer: gray foreground
+                            active = { fg = "#ffffff", bg = bgColor },
+                            inactive = { fg = "#505050", bg = bgColor },
                         },
                     },
                 },
-                lualine_c = {},
+                lualine_c = {
+                    "diagnostics",
+                },
                 lualine_x = {},
                 lualine_y = {
                     {
@@ -51,7 +53,7 @@ return {
                 lualine_z = {
                     {
                         "branch",
-                        color = { fg = "#ffffff", bg = bgColor }, -- Grey foreground
+                        color = { fg = "#ffffff", bg = bgColor },
                     },
                 },
             },

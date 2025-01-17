@@ -38,16 +38,16 @@ return {
                     "jsonls",
                     "cssmodules_ls",
                     "dockerls",
-                    "webpack",
+                    -- "webpack",
 
                     -- Systems Programming
                     "clangd", -- C/C++
                     "rust_analyzer", -- Rust
-                    "cmake", -- CMake support
+                    -- "cmake", -- CMake support
 
                     -- Python Development
                     "pyright", -- Static type checker
-                    "ruff_lsp", -- Fast Python linter
+                    -- "ruff_lsp", -- Fast Python linter
 
                     -- Database
                     "sqlls",

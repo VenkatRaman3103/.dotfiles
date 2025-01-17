@@ -13,16 +13,16 @@ return {
         vim.api.nvim_set_keymap("n", "<leader>xr", ":call VrcQuery()<CR>", { noremap = true, silent = true })
 
         -- Set response buffer options
-        vim.api.nvim_create_autocmd("FileType", {
-            pattern = "vrc-response",
-            callback = function()
-                -- Make response buffer read-only
-                vim.opt_local.readonly = true
-                -- Enable line wrapping for better readability
-                vim.opt_local.wrap = true
-                -- Show line numbers in response buffer
-                vim.opt_local.number = true
-            end,
-        })
+        -- vim.api.nvim_create_autocmd("FileType", {
+        --     pattern = "vrc-response",
+        --     callback = function()
+        --         -- Make response buffer read-only
+        --         vim.opt_local.readonly = true
+        --         -- Enable line wrapping for better readability
+        --         vim.opt_local.wrap = true
+        --         -- Show line numbers in response buffer
+        --         vim.opt_local.number = true
+        --     end,
+        -- })
     end,
 }

@@ -21,8 +21,55 @@ return {
                 -- wo = { wrap = true } -- Wrap notifications
             },
         },
+        picker = {},
     },
     keys = {
+        -- picker
+        -- {
+        --     "<leader>re",
+        --     function()
+        --         Snacks.picker.registers()
+        --     end,
+        --     desc = "Registers",
+        -- },
+        -- {
+        --     "<leader>sw",
+        --     function()
+        --         Snacks.picker.grep_word()
+        --     end,
+        --     desc = "Visual selection or word",
+        --     mode = { "n", "x" },
+        -- },
+        --
+        -- {
+        --     "<leader>fg",
+        --     function()
+        --         Snacks.picker.git_files()
+        --     end,
+        --     desc = "Find Git Files",
+        -- },
+        -- -- git
+        -- {
+        --     "<leader>gc",
+        --     function()
+        --         Snacks.picker.git_log()
+        --     end,
+        --     desc = "Git Log",
+        -- },
+        -- {
+        --     "<leader>gs",
+        --     function()
+        --         Snacks.picker.git_status()
+        --     end,
+        --     desc = "Git Status",
+        -- },
+        -- {
+        --     "<leader><space>",
+        --     function()
+        --         Snacks.picker.files()
+        --     end,
+        --     desc = "Find Files",
+        -- },
         {
             "<leader>zz",
             function()

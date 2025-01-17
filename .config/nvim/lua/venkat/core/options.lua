@@ -79,3 +79,7 @@ end, {})
 api.nvim_create_user_command("GetDirectoryPath", function()
     print(vim.fn.expand("%:p:h"))
 end, {})
+
+api.nvim_create_user_command("GetFilePath", function()
+    print(vim.fn.expand("%"))
+end, {})

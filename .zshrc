@@ -75,6 +75,7 @@ alias t="tmuxifier"
 
 # ---- Eza (better ls) -----
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-user"
+alias tree="tree -I 'node_modules|.next'"
 
 alias vim="nvim" 
 alias python="python3"

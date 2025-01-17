@@ -1,9 +1,29 @@
 return {
-    "MeanderingProgrammer/render-markdown.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-    ---@module 'render-markdown'
-    ---@type render.md.UserConfig
-    opts = {},
+    -- "MeanderingProgrammer/render-markdown.nvim",
+    -- dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+    -- ---@module 'render-markdown'
+    -- ---@type render.md.UserConfig
+    -- opts = {
+    --     highlight = {
+    --         -- Remove background for headings
+    --         RenderMarkdownH1Bg = { bg = "none" },
+    --         RenderMarkdownH2Bg = { bg = "none" },
+    --         RenderMarkdownH3Bg = { bg = "none" },
+    --         RenderMarkdownH4Bg = { bg = "none" },
+    --         RenderMarkdownH5Bg = { bg = "none" },
+    --         RenderMarkdownH6Bg = { bg = "none" },
+    --         -- Remove background for code blocks
+    --         RenderMarkdownCode = { bg = "none" },
+    --     },
+    --     code = {
+    --         disable_background = true,
+    --         border = "none", -- Disable top and bottom borders
+    --         above = "", -- Remove any additional characters above the code block
+    --         below = "", -- Remove any additional characters below the code block
+    --     },
+    --     bullet = {
+    --         -- icons = { "● •", "○", "◆", "◇" },
+    --         icons = { "◉", "○", "◆", "◇" },
+    --     },
+    -- },
 }
