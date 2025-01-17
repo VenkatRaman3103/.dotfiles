@@ -7,19 +7,26 @@ return {
         { "folke/neodev.nvim", opts = {} },
     },
     config = function()
+        -- import lspconfig plugin
         local lspconfig = require("lspconfig")
+
+        -- import mason_lspconfig plugin
         local mason_lspconfig = require("mason-lspconfig")
+
+        -- import cmp-nvim-lsp plugin
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
-        local keymap = vim.keymap
+
+        local keymap = vim.keymap -- for conciseness
 
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
             callback = function(ev)
+                -- Buffer local mappings.
+                -- See `:help vim.lsp.*` for documentation on any of the below functions
                 local opts = { buffer = ev.buf, silent = true }
+
+                -- set keybinds
                 opts.desc = "Show LSP references"
-
-                keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
-
                 keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
 
                 opts.desc = "Go to declaration"
@@ -60,71 +67,48 @@ return {
             end,
         })
 
+        -- used to enable autocompletion (assign to every lsp server config)
         local capabilities = cmp_nvim_lsp.default_capabilities()
 
-        local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+        -- Change the Diagnostic symbols in the sign column (gutter)
+        -- (not in youtube nvim video)
+        local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
         for type, icon in pairs(signs) do
             local hl = "DiagnosticSign" .. type
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
         end
 
-        mason_lspconfig.setup({
-            ensure_installed = {
-                "html",
-                "cssls",
-                "tailwindcss",
-                "svelte",
-                "lua_ls",
-                "graphql",
-                "emmet_ls",
-                "prismals",
-                "pyright",
-                "ts_ls",
-            },
-        })
-
         mason_lspconfig.setup_handlers({
+            -- default handler for installed servers
             function(server_name)
                 lspconfig[server_name].setup({
                     capabilities = capabilities,
                 })
             end,
-            ["cssls"] = function()
-                lspconfig["cssls"].setup({
+            ["svelte"] = function()
+                -- configure svelte server
+                lspconfig["svelte"].setup({
                     capabilities = capabilities,
-                    settings = {
-                        css = {
-                            validate = true,
-                            -- Custom indentation
-                            tabSize = 4,
-                            indentSize = 4,
-                        },
-                        scss = {
-                            validate = true,
-                            -- Custom indentation
-                            tabSize = 4,
-                            indentSize = 4,
-                        },
-                        less = {
-                            validate = true,
-                            -- Custom indentation
-                            tabSize = 4,
-                            indentSize = 4,
-                        },
-                    },
-                    on_attach = function(_, bufnr)
-                        -- Disable formatting for CSS/SCSS if you use an external formatter
-                        vim.api.nvim_buf_set_option(bufnr, "formatexpr", "")
+                    on_attach = function(client, bufnr)
+                        vim.api.nvim_create_autocmd("BufWritePost", {
+                            pattern = { "*.js", "*.ts" },
+                            callback = function(ctx)
+                                -- Here use ctx.match instead of ctx.file
+                                client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
+                            end,
+                        })
                     end,
                 })
             end,
             ["graphql"] = function()
+                -- configure graphql language server
                 lspconfig["graphql"].setup({
                     capabilities = capabilities,
                     filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
                 })
             end,
             ["emmet_ls"] = function()
+                -- configure emmet language server
                 lspconfig["emmet_ls"].setup({
                     capabilities = capabilities,
                     filetypes = {
@@ -140,10 +124,12 @@ return {
                 })
             end,
             ["lua_ls"] = function()
+                -- configure lua server (with special settings)
                 lspconfig["lua_ls"].setup({
                     capabilities = capabilities,
                     settings = {
                         Lua = {
+                            -- make the language server recognize "vim" global
                             diagnostics = {
                                 globals = { "vim" },
                             },

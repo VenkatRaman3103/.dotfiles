@@ -1,5 +1,7 @@
 require("venkat.core")
 require("venkat.lazy")
+-- hello world
+-- hello big bird
 
 -- utils
 require("venkat.utils.diagnostics").setup()
