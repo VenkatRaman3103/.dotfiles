@@ -1,16 +1,8 @@
+-- File: lua/venkat/toggle_diagnostics.lua
+
 local diagnostics = {}
 
 vim.g.diagnostics_visible = true -- Start with diagnostics visible
-
--- vim.diagnostic.config({
---     virtual_text = {
---         source = "always",
---     },
---     update_in_insert = true,
---     float = {
---         source = "always",
---     },
--- })
 
 function diagnostics.toggle_diagnostics()
     if vim.g.diagnostics_visible then

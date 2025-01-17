@@ -142,5 +142,3 @@ alias type-test="toipe"
 
 eval $(tmuxifier init -)
 export PATH="$PATH:/usr/local/bin"
-
-. "$HOME/.local/bin/env"

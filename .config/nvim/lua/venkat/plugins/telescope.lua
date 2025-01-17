@@ -6,8 +6,8 @@ return {
         { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
         "nvim-tree/nvim-web-devicons",
         "nvim-telescope/telescope-live-grep-args.nvim",
-        "ThePrimeagen/harpoon",
-        "nvim-telescope/telescope-file-browser.nvim",
+        "ThePrimeagen/harpoon", -- Add Harpoon as a dependency
+        "nvim-telescope/telescope-file-browser.nvim", -- Add telescope-file-browser extension
     },
     config = function()
         local telescope = require("telescope")
@@ -15,7 +15,7 @@ return {
         local builtin = require("telescope.builtin")
         local harpoon = require("harpoon")
         local harpoon_mark = require("harpoon.mark")
-        -- local harpoon_ui = require("harpoon.ui")
+        local harpoon_ui = require("harpoon.ui")
 
         -- Setup Telescope
         telescope.setup({
@@ -39,8 +39,12 @@ return {
                         ["<C-k>"] = actions.move_selection_previous,
                         ["<C-j>"] = actions.move_selection_next,
                         -- ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+                        -- ["<C-a>"] = actions.send_selected_to_qflist + actions.open_qflist,
+                        -- ["<C-q>"] = actions.send_to_qflist,
+                        -- ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
                         ["<C-a>"] = actions.send_selected_to_qflist + actions.open_qflist,
-                        ["<C-q>"] = actions.send_to_qflist,
+                        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+                        ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
                         ["<C-h>"] = function(prompt_bufnr)
                             local action_state = require("telescope.actions.state")
                             local picker = action_state.get_current_picker(prompt_bufnr)
