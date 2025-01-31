@@ -1,5 +1,3 @@
--- File: lua/venkat/toggle_diagnostics.lua
-
 local diagnostics = {}
 
 vim.g.diagnostics_visible = true -- Start with diagnostics visible
@@ -25,6 +23,17 @@ function diagnostics.setup()
 
     -- Initially enable diagnostics
     vim.diagnostic.enable()
+
+    -- Configure diagnostic borders
+    local float_opts = { border = "rounded", focusable = false, scope = "line" }
+
+    vim.keymap.set("n", "[d", function()
+        vim.diagnostic.goto_prev({ float = float_opts })
+    end, { noremap = true, silent = true, desc = "Go to previous diagnostic" })
+
+    vim.keymap.set("n", "]d", function()
+        vim.diagnostic.goto_next({ float = float_opts })
+    end, { noremap = true, silent = true, desc = "Go to next diagnostic" })
 end
 
 return diagnostics

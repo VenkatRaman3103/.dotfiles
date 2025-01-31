@@ -22,6 +22,7 @@ return {
                 item = { "○", "●" },
                 hunk = { "", "" },
             },
+            -- disable_line_numbers = false,
             -- graph_style = "kitty",
             mappings = {
                 -- These are the valid commands from the error message

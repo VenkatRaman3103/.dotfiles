@@ -38,11 +38,13 @@ return {
                 width = function()
                     return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
                 end,
+                signcolumn = "no", -- Add this line to remove the signcolumn
             },
             renderer = {
                 indent_markers = { enable = true },
                 highlight_opened_files = "name",
                 icons = { glyphs = {} },
+                add_trailing = false, -- Add this line to remove trailing slashes
             },
             actions = {
                 open_file = {
@@ -51,7 +53,6 @@ return {
                 },
             },
             filters = {
-                -- custom = { ".git", "node_modules", ".cache", ".DS_Store" },
                 custom = { ".DS_Store" },
                 exclude = { "important_dir" },
             },
@@ -59,7 +60,7 @@ return {
                 ignore = false,
             },
             filesystem_watchers = {
-                enable = false, -- Disable filesystem watchers to avoid ENOSPC issues
+                enable = false,
             },
         })
 
@@ -83,6 +84,8 @@ return {
             vim.api.nvim_set_hl(0, "NvimTreeExecFile", { fg = "#888888", bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeOpenedFileIcon", { fg = "#888888", bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeModifiedFile", { fg = "#888888", italic = true, bg = "none" })
+            -- Add this highlight group to remove the right border
+            vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { fg = "none", bg = "none" })
         end
 
         colors()
@@ -103,14 +106,5 @@ return {
         )
         keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })
         keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
-
-        -- Optionally open nvim-tree when starting nvim (uncomment if desired)
-        -- vim.api.nvim_create_autocmd({ "VimEnter" }, {
-        --     callback = function()
-        --         if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0) == "" then
-        --             vim.cmd("NvimTreeOpen")
-        --         end
-        --     end,
-        -- })
     end,
 }

@@ -5,4 +5,3 @@ indent_width = 4
 # [[override]]
 #   files = { "*.jsx", "*.tsx", "*.js", "*.ts" }
 #   indent_width = 4
-

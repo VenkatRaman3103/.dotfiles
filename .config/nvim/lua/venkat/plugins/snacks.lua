@@ -5,7 +5,7 @@ return {
     ---@type snacks.Config
     opts = {
         bigfile = { enabled = true },
-        dashboard = { enabled = true },
+        dashboard = { enabled = false },
         indent = { enabled = false },
         input = { enabled = true },
         notifier = {
@@ -63,13 +63,13 @@ return {
         --     end,
         --     desc = "Git Status",
         -- },
-        -- {
-        --     "<leader><space>",
-        --     function()
-        --         Snacks.picker.files()
-        --     end,
-        --     desc = "Find Files",
-        -- },
+        {
+            "<leader><space>",
+            function()
+                Snacks.picker.files()
+            end,
+            desc = "Find Files",
+        },
         {
             "<leader>zz",
             function()
@@ -99,7 +99,7 @@ return {
             desc = "Select Scratch Buffer",
         },
         {
-            "<leader>n",
+            "<leader>his",
             function()
                 Snacks.notifier.show_history()
             end,
@@ -142,7 +142,7 @@ return {
             desc = "Lazygit Current File History",
         },
         {
-            "<leader>gg",
+            "<leader>lg",
             function()
                 Snacks.lazygit()
             end,
@@ -169,13 +169,13 @@ return {
             end,
             desc = "Toggle Terminal",
         },
-        {
-            "<c-_>",
-            function()
-                Snacks.terminal()
-            end,
-            desc = "which_key_ignore",
-        },
+        -- {
+        --     "<c-_>",
+        --     function()
+        --         Snacks.terminal()
+        --     end,
+        --     desc = "which_key_ignore",
+        -- },
         {
             "]]",
             function()
@@ -212,6 +212,7 @@ return {
         },
     },
     init = function()
+        vim.g.snacks_animate = true
         vim.api.nvim_create_autocmd("User", {
             pattern = "VeryLazy",
             callback = function()
@@ -238,6 +239,7 @@ return {
                 --     .option("background", { off = "light", on = "dark", name = "Dark Background" })
                 --     :map("<leader>ub")
                 Snacks.toggle.inlay_hints():map("<leader>th")
+
                 Snacks.toggle.indent():map("<leader>ti")
                 -- Snacks.toggle.dim():map("<leader>tD")
             end,

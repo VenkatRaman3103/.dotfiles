@@ -1,5 +1,6 @@
 require("venkat.core")
 require("venkat.lazy")
+
 -- hello world
 -- hello big bird
 
@@ -8,10 +9,13 @@ require("venkat.utils.diagnostics").setup()
 require("venkat.utils.colorscheme").colorMyPencils()
 -- require("venkat.utils.colorscheme").syntax()
 -- 4f5258
+-- require("command-completion").setup()
 
 -- vim.o.cmdheight = 0
-
+-- vim.opt.updatetime = 300
 vim.opt.conceallevel = 1 -- or 2
+
+-- vim.opt.guicursor = ""
 
 vim.api.nvim_set_hl(0, "@comment", { fg = "#777777", italic = true })
 vim.api.nvim_set_hl(0, "@comment.documentation", { fg = "#777777", italic = true })

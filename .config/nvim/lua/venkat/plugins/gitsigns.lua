@@ -3,14 +3,14 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     opts = {
         signs = {
-            add = { text = "+" },
+            add = { text = "+ " },
             -- change = { text = "│" },
-            change = { text = "~" },
-            delete = { text = "_" },
-            topdelete = { text = "‾" },
-            changedelete = { text = "-" },
+            change = { text = "~ " },
+            delete = { text = "_ " },
+            topdelete = { text = "‾ " },
+            changedelete = { text = "- " },
         },
-        signcolumn = false, -- Start with signs disabled
+        signcolumn = false,
         numhl = false,
         linehl = false,
         word_diff = false,

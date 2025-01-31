@@ -1,4 +1,3 @@
--- In your `lua/venkat/plugins/nvim-ts-autotag.lua`
 return {
     "windwp/nvim-ts-autotag",
     config = function()

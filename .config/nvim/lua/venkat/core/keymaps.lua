@@ -47,8 +47,8 @@ keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
 -- Buffers management
-keymap.set("n", "<leader>bn", "<cmd>bnext<CR>", { desc = "Got to next buffer" })
-keymap.set("n", "<leader>bp", "<cmd>bprev<CR>", { desc = "Got to previous buffer" })
+keymap.set("n", "]b", "<cmd>bnext<CR>", { desc = "Got to next buffer" })
+keymap.set("n", "[b", "<cmd>bprev<CR>", { desc = "Got to previous buffer" })
 -- Function to navigate to a specific buffer
 local function goto_buffer(n)
     local buffers = vim.fn.getbufinfo({ buflisted = true })
@@ -102,5 +102,15 @@ keymap.set("n", "<leader>qc", ":cclose<CR>")
 keymap.set("n", "<leader>a", function()
     vim.fn.setqflist({ { bufnr = vim.fn.bufnr() } }, "a")
 end)
-keymap.set("n", "<leader>qn", ":cnext<CR>")
-keymap.set("n", "<leader>qp", ":cprev<CR>")
+keymap.set("n", "]q", ":cnext<CR>")
+keymap.set("n", "[q", ":cprev<CR>")
+
+-- Key binding for navigating references
+-- vim.keymap.set("n", "]]", function()
+--     vim.lsp.buf.references()
+-- end, { desc = "Next reference" })
+--
+-- vim.keymap.set("n", "[[", function()
+--     vim.lsp.buf.references()
+-- end, { desc = "Previous reference" })
+-- Keymap for Treesitter usage
