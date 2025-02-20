@@ -42,8 +42,8 @@ keymap.set("n", "<leader>tw", ":set wrap!<CR>", { noremap = true, silent = true 
 -- Tabs management
 keymap.set("n", "<leader>tc", "<cmd>tabnew<CR>", { desc = "Open new tab" })
 keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" })
-keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" })
-keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
+keymap.set("n", "]t", "<cmd>tabn<CR>", { desc = "Go to next tab" })
+keymap.set("n", "[t", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
 -- Buffers management
@@ -114,3 +114,7 @@ keymap.set("n", "[q", ":cprev<CR>")
 --     vim.lsp.buf.references()
 -- end, { desc = "Previous reference" })
 -- Keymap for Treesitter usage
+
+keymap.set("n", "H", "^", { desc = "Yank to clipboard" })
+keymap.set("n", "L", "$", { desc = "Yank to clipboard" })
+keymap.set("n", "M", "%", { desc = "Yank to clipboard" })

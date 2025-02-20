@@ -3,6 +3,29 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
         local bgColor = ""
+
+        -- Create global table for storing tab names
+        _G.custom_tab_names = _G.custom_tab_names or {}
+
+        -- Tab renaming functionality
+        local function rename_tab()
+            local current_tab = vim.fn.tabpagenr()
+            local new_name = vim.fn.input("New tab name: ")
+            if new_name ~= "" then
+                _G.custom_tab_names[current_tab] = new_name
+                -- Force lualine to refresh
+                vim.cmd("redrawtabline")
+            end
+        end
+
+        -- Function to get tab name
+        local function get_tab_name(nr)
+            return _G.custom_tab_names[nr] or tostring(nr)
+        end
+
+        -- Create the command for tab renaming
+        vim.api.nvim_create_user_command("RenameTab", rename_tab, {})
+
         require("lualine").setup({
             options = {
                 theme = {
@@ -16,7 +39,6 @@ return {
                     replace = { a = { fg = "#ffffff", bg = bgColor } },
                     command = { a = { fg = "#ffffff", bg = bgColor } },
                 },
-
                 section_separators = { left = "", right = "" },
                 component_separators = { left = "", right = "" },
                 global_status = true,
@@ -25,7 +47,6 @@ return {
                 lualine_a = {
                     {
                         "filename",
-                        -- icon = { "▎", align = "left", color = { fg = "#3aa8e3" } }, -- Changed icon
                         symbols = {
                             modified = "✦",
                             alternate_file = "",
@@ -42,16 +63,41 @@ return {
                 },
                 lualine_b = {},
                 lualine_c = {
-                    "diagnostics",
+
+                    -- {
+                    --     "diff",
+                    --     symbols = { added = "+", modified = "~", removed = "-" },
+                    --     colored = false, -- Disable default colors
+                    --     color = { fg = "#505050", bg = bgColor }, -- Force grey color
+                    -- },
                 },
                 lualine_x = {},
                 lualine_y = {
+
                     {
-                        "diff",
-                        color = { fg = "#505050", bg = bgColor },
+                        function()
+                            local result = {}
+                            for i = 1, vim.fn.tabpagenr("$") do
+                                local name = get_tab_name(i)
+                                if i == vim.fn.tabpagenr() then
+                                    table.insert(result, "%#LualineTabActive#" .. name)
+                                else
+                                    table.insert(result, "%#LualineTabInactive#" .. name)
+                                end
+                            end
+                            return table.concat(result, " ")
+                        end,
                     },
+                    -- {
+                    --     "diagnostics",
+                    --     sources = { "nvim_diagnostic" },
+                    --     symbols = { error = " ", warn = " ", info = " ", hint = "󰌶 " },
+                    --     colored = false, -- Disable default colors
+                    --     color = { fg = "#505050", bg = bgColor }, -- Force grey color
+                    -- },
                 },
                 lualine_z = {
+
                     {
                         "branch",
                         color = { fg = "#505050", bg = bgColor },
@@ -61,7 +107,13 @@ return {
             },
             extensions = {},
         })
-        vim.cmd([[highlight LualineSeparator guifg=#0e0e0e guibg=NONE]])
-        vim.cmd([[highlight LualineBranch guifg=#808080 guibg=NONE]])
+
+        -- Create highlight groups for tabs
+        vim.cmd([[
+            highlight LualineTabActive guifg=#ffffff guibg=NONE
+            highlight LualineTabInactive guifg=#505050 guibg=NONE
+            highlight LualineSeparator guifg=#0e0e0e guibg=NONE
+            highlight LualineBranch guifg=#808080 guibg=NONE
+        ]])
     end,
 }

@@ -12,6 +12,71 @@ return {
             enabled = true,
             timeout = 3000,
         },
+        explorer = {
+            -- your explorer configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+            enabled = false,
+            finder = "explorer",
+            sort = { fields = { "sort" } },
+            supports_live = true,
+            tree = true,
+            watch = true,
+            diagnostics = true,
+            diagnostics_open = false,
+            git_status = true,
+            git_status_open = false,
+            git_untracked = true,
+            follow_file = true,
+            focus = "list",
+            auto_close = false,
+            jump = { close = false },
+            -- layout = { preset = "sidebar", preview = false },
+            -- to show the explorer to the right, add the below to
+            -- your config under `opts.picker.sources.explorer`
+            layout = { layout = { position = "right" } },
+            formatters = {
+                file = { filename_only = true },
+                severity = { pos = "right" },
+            },
+            matcher = { sort_empty = false, fuzzy = false },
+            config = function(opts)
+                return require("snacks.picker.source.explorer").setup(opts)
+            end,
+            win = {
+                list = {
+                    keys = {
+                        ["<BS>"] = "explorer_up",
+                        ["l"] = "confirm",
+                        ["h"] = "explorer_close", -- close directory
+                        ["a"] = "explorer_add",
+                        ["d"] = "explorer_del",
+                        ["r"] = "explorer_rename",
+                        ["c"] = "explorer_copy",
+                        ["m"] = "explorer_move",
+                        ["o"] = "explorer_open", -- open with system application
+                        ["P"] = "toggle_preview",
+                        ["y"] = "explorer_yank",
+                        ["u"] = "explorer_update",
+                        ["<c-c>"] = "tcd",
+                        ["<c-f>"] = "picker_grep",
+                        ["<c-t>"] = "terminal",
+                        ["."] = "explorer_focus",
+                        ["I"] = "toggle_ignored",
+                        ["H"] = "toggle_hidden",
+                        ["Z"] = "explorer_close_all",
+                        ["]g"] = "explorer_git_next",
+                        ["[g"] = "explorer_git_prev",
+                        ["]d"] = "explorer_diagnostic_next",
+                        ["[d"] = "explorer_diagnostic_prev",
+                        ["]w"] = "explorer_warn_next",
+                        ["[w"] = "explorer_warn_prev",
+                        ["]e"] = "explorer_error_next",
+                        ["[e"] = "explorer_error_prev",
+                    },
+                },
+            },
+        },
         quickfile = { enabled = true },
         scroll = { enabled = false },
         statuscolumn = { enabled = true },
@@ -21,9 +86,86 @@ return {
                 -- wo = { wrap = true } -- Wrap notifications
             },
         },
-        picker = {},
+        picker = {
+            enabled = true,
+            layout = {
+                -- preview = "main",
+                preset = "ivy",
+            },
+        },
     },
     keys = {
+
+        {
+            "<leader>eo",
+            function()
+                Snacks.explorer.open()
+            end,
+            desc = "Registers",
+        },
+        {
+            "<leader>gb",
+            function()
+                Snacks.picker.git_branches()
+            end,
+            desc = "Git Branches",
+        },
+        {
+            "<leader>gl",
+            function()
+                Snacks.picker.git_log()
+            end,
+            desc = "Git Log",
+        },
+        {
+            "<leader>gL",
+            function()
+                Snacks.picker.git_log_line()
+            end,
+            desc = "Git Log Line",
+        },
+        {
+            "<leader>gs",
+            function()
+                Snacks.picker.git_status()
+            end,
+            desc = "Git Status",
+        },
+        {
+            "<leader>gS",
+            function()
+                Snacks.picker.git_stash()
+            end,
+            desc = "Git Stash",
+        },
+        {
+            "<leader>gd",
+            function()
+                Snacks.picker.git_diff()
+            end,
+            desc = "Git Diff (Hunks)",
+        },
+        {
+            "<leader>gf",
+            function()
+                Snacks.picker.git_log_file()
+            end,
+            desc = "Git Log File",
+        },
+        {
+            "<leader>fp",
+            function()
+                Snacks.picker.projects()
+            end,
+            desc = "Projects",
+        },
+        {
+            "<leader>fr",
+            function()
+                Snacks.picker.recent()
+            end,
+            desc = "Recent",
+        },
         -- picker
         -- {
         --     "<leader>re",
@@ -64,11 +206,46 @@ return {
         --     desc = "Git Status",
         -- },
         {
-            "<leader><space>",
+            "<leader>fd",
             function()
-                Snacks.picker.files()
+                Snacks.picker.smart()
             end,
-            desc = "Find Files",
+            desc = "Smart Find Files",
+        },
+        {
+            "<leader>,",
+            function()
+                Snacks.picker.buffers()
+            end,
+            desc = "Buffers",
+        },
+        {
+            "<leader>fw",
+            function()
+                Snacks.picker.grep()
+            end,
+            desc = "Grep",
+        },
+        {
+            "<leader>:",
+            function()
+                Snacks.picker.command_history()
+            end,
+            desc = "Command History",
+        },
+        {
+            "<leader>n",
+            function()
+                Snacks.picker.notifications()
+            end,
+            desc = "Notification History",
+        },
+        {
+            "<leader>fg",
+            function()
+                Snacks.picker.git_files()
+            end,
+            desc = "Find Git Files",
         },
         {
             "<leader>zz",
@@ -231,9 +408,9 @@ return {
                 Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>tL")
                 Snacks.toggle.diagnostics():map("<leader>td")
                 Snacks.toggle.line_number():map("<leader>tl")
-                Snacks.toggle
-                    .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
-                    :map("<leader>tc")
+                -- Snacks.toggle
+                --     .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
+                --     :map("<leader>tc")
                 Snacks.toggle.treesitter():map("<leader>tT")
                 -- Snacks.toggle
                 --     .option("background", { off = "light", on = "dark", name = "Dark Background" })

@@ -22,23 +22,23 @@ return {
         })
 
         -- Keybindings for Neotest
-        vim.keymap.set("n", "<leader>tn", function()
+        vim.keymap.set("n", "<leader>nti", function()
             require("neotest").run.run()
         end, { desc = "Run nearest test" })
 
-        vim.keymap.set("n", "<leader>tf", function()
+        vim.keymap.set("n", "<leader>ntf", function()
             require("neotest").run.run(vim.fn.expand("%"))
         end, { desc = "Run test file" })
 
-        vim.keymap.set("n", "<leader>tr", function()
+        vim.keymap.set("n", "<leader>ntr", function()
             require("neotest").output.open()
         end, { desc = "Open test output" })
 
-        vim.keymap.set("n", "<leader>tS", function()
+        vim.keymap.set("n", "<leader>ntS", function()
             require("neotest").run.stop()
         end, { desc = "Stop test run" })
 
-        vim.keymap.set("n", "<leader>ts", function()
+        vim.keymap.set("n", "<leader>nts", function()
             require("neotest").summary.toggle()
         end, { desc = "Toggle test summary" })
     end,

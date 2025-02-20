@@ -72,7 +72,8 @@ setopt hist_verify
 alias ls="ls -la"
 alias cd="z"
 
-alias t="tmuxifier"
+alias tm="tmuxifier"
+alias t="tmux"
 
 # ---- Eza (better ls) -----
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-user"
@@ -173,3 +174,9 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-rust
 
 ### End of Zinit's installer chunk
+
+. "$HOME/.local/bin/env"
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"

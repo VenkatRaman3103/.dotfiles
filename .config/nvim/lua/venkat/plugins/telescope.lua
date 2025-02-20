@@ -28,7 +28,9 @@ return {
                         preview_width = 0.5,
                         results_width = 0.5,
                     },
+                    prompt_position = "top",
                 },
+                sorting_strategy = "ascending",
                 prompt_title = "",
                 results_title = "",
                 path_display = { "smart" },
@@ -76,15 +78,15 @@ return {
 
         -- Key mappings
         local keymap = vim.keymap
-        keymap.set("n", "<leader>fd", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
-        keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
-        keymap.set("n", "<leader>fs", builtin.lsp_document_symbols, {})
-        keymap.set("n", "<leader>fw", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
-        keymap.set("n", "<leader>fa", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
-        keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
-        keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
-        keymap.set("n", "<leader>fb", builtin.buffers, {})
-        keymap.set("n", "<leader>fj", "<cmd>Telescope jumplist<CR>")
+        keymap.set("n", "<leader>tfd", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
+        keymap.set("n", "<leader>tfr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
+        keymap.set("n", "<leader>tfs", builtin.lsp_document_symbols, {})
+        keymap.set("n", "<leader>tfw", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
+        keymap.set("n", "<leader>tfa", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
+        keymap.set("n", "<leader>tft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
+        keymap.set("n", "<leader>tfc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
+        keymap.set("n", "<leader>tfb", builtin.buffers, {})
+        keymap.set("n", "<leader>tfj", "<cmd>Telescope jumplist<CR>")
         keymap.set("n", "<leader>/", function()
             builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({ previewer = false }))
         end, { desc = "Fuzzy search in current file" })
