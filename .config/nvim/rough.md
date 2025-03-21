@@ -2,6 +2,8 @@
 
 # leap.nvim
 
+-- make conflict
+
 Leap is a general-purpose motion plugin for Neovim, building and improving
 primarily on [vim-sneak](https://github.com/justinmk/vim-sneak), with the
 ultimate goal of establishing a new standard interface for moving around in the
