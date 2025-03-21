@@ -11,6 +11,56 @@ return {
 }
 
 -- return {
+--     "vinitkumar/oscura-vim",
+--     lazy = false, -- Load during startup
+--     name = "oscura",
+--     priority = 1000,
+--     config = function()
+--         -- require("oscura").setup({
+--         -- flavour = "mocha", -- or "latte", "frappe", "macchiato"
+--         -- })
+--         vim.cmd("colorscheme oscura")
+--     end,
+-- }
+
+-- return {
+--     "aktersnurra/no-clown-fiesta.nvim",
+--     lazy = false,
+--     priority = 1000,
+--     init = function()
+--         vim.cmd.colorscheme("no-clown-fiesta")
+--         -- vim.cmd.colorscheme("lackluster-hack") -- my favorite
+--         -- vim.cmd.colorscheme("lackluster-mint")
+--     end,
+-- }
+
+-- return {
+--     "rjshkhr/shadow.nvim",
+--     priority = 1000,
+--     config = function()
+--         vim.opt.termguicolors = true
+--         vim.cmd.colorscheme("shadow")
+--     end,
+-- }
+
+-- return {
+--     "rose-pine/neovim",
+--     name = "rose-pine",
+--     config = function()
+--         vim.cmd("colorscheme rose-pine")
+--     end,
+-- }
+
+-- return {
+--     "datsfilipe/vesper.nvim",
+--     name = "vesper",
+--     priority = 1000,
+--     config = function()
+--         vim.cmd("colorscheme vesper")
+--     end,
+-- }
+
+-- return {
 --     "aditya-azad/candle-grey",
 --     priority = 1000,
 --     config = function()
@@ -118,6 +168,7 @@ return {
 --         vim.cmd("colorscheme vague")
 --     end,
 -- }
+
 -- return {
 --     "diegoulloao/neofusion.nvim",
 --     name = "neofusion",
@@ -224,17 +275,6 @@ return {
 --     priority = 1000,
 --     init = function()
 --         vim.cmd.colorscheme("lackluster")
---         -- vim.cmd.colorscheme("lackluster-hack") -- my favorite
---         -- vim.cmd.colorscheme("lackluster-mint")
---     end,
--- }
-
--- return {
---     "aktersnurra/no-clown-fiesta.nvim",
---     lazy = false,
---     priority = 1000,
---     init = function()
---         vim.cmd.colorscheme("no-clown-fiesta")
 --         -- vim.cmd.colorscheme("lackluster-hack") -- my favorite
 --         -- vim.cmd.colorscheme("lackluster-mint")
 --     end,

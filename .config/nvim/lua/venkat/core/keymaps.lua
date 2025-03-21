@@ -16,7 +16,10 @@ keymap.set("n", "<leader>y", '"+y', { desc = "Yank to clipboard" })
 keymap.set("v", "<leader>y", '"+y', { desc = "Yank selection to clipboard" })
 
 -- Map clean paste from system clipboard in all modes
-keymap.set("n", "<leader>p", paste_clean, { expr = true, desc = "Paste from clipboard (cleaned)" })
+keymap.set("n", "p", paste_clean, { expr = true, desc = "Paste from clipboard (cleaned)" })
+keymap.set("v", "p", '"_dP', { desc = "Paste without yanking replaced text" })
+-- keymap.set("v", "p", '"+p', { expr = true, desc = "normal paste" })
+
 keymap.set(
     "t",
     "<Esc",
@@ -33,18 +36,18 @@ keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
 
 -- Window management
 keymap.set("n", "<leader>|", "<C-w>v", { desc = "Split window vertically" })
-keymap.set("n", "<leader>-", "<C-w>s", { desc = "Split window horizontally" })
+keymap.set("n", "<leader>_", "<C-w>s", { desc = "Split window horizontally" })
 keymap.set("n", "<leader>eq", "<C-w>=", { desc = "Make splits equal size" })
 keymap.set("n", "<leader>xx", "<cmd>close<CR>", { desc = "Close current split" })
 
 keymap.set("n", "<leader>tw", ":set wrap!<CR>", { noremap = true, silent = true })
 
 -- Tabs management
-keymap.set("n", "<leader>tc", "<cmd>tabnew<CR>", { desc = "Open new tab" })
+keymap.set("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "Open new tab" })
 keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" })
 keymap.set("n", "]t", "<cmd>tabn<CR>", { desc = "Go to next tab" })
 keymap.set("n", "[t", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
-keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
+keymap.set("n", "<leader>tm", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
 -- Buffers management
 keymap.set("n", "]b", "<cmd>bnext<CR>", { desc = "Got to next buffer" })
@@ -99,22 +102,31 @@ end, { desc = "Delete all buffers except the current one" })
 -- quick fix likst
 keymap.set("n", "<leader>qo", ":copen<CR>")
 keymap.set("n", "<leader>qc", ":cclose<CR>")
-keymap.set("n", "<leader>a", function()
-    vim.fn.setqflist({ { bufnr = vim.fn.bufnr() } }, "a")
-end)
+
+-- keymap.set("n", "<leader>a", function()
+--     vim.fn.setqflist({ { bufnr = vim.fn.bufnr() } }, "a")
+-- end)
+
 keymap.set("n", "]q", ":cnext<CR>")
 keymap.set("n", "[q", ":cprev<CR>")
 
--- Key binding for navigating references
--- vim.keymap.set("n", "]]", function()
---     vim.lsp.buf.references()
--- end, { desc = "Next reference" })
---
--- vim.keymap.set("n", "[[", function()
---     vim.lsp.buf.references()
--- end, { desc = "Previous reference" })
--- Keymap for Treesitter usage
+keymap.set("n", "]]", function()
+    vim.lsp.buf.references()
+end, { desc = "Next reference" })
 
-keymap.set("n", "H", "^", { desc = "Yank to clipboard" })
-keymap.set("n", "L", "$", { desc = "Yank to clipboard" })
-keymap.set("n", "M", "%", { desc = "Yank to clipboard" })
+keymap.set("n", "[[", function()
+    vim.lsp.buf.references()
+end, { desc = "Previous reference" })
+
+keymap.set("n", "H", "^", { desc = "use H as ^" })
+keymap.set("n", "L", "$", { desc = "use L as $" })
+keymap.set("n", "M", "%", { desc = "use M as %" })
+
+keymap.set("v", ">", ">gv", { desc = "" })
+keymap.set("v", "<", "<gv", { desc = "" })
+
+-- Resize window
+keymap.set("n", "<A-Up>", ":resize +2<CR>", { desc = "Increase window height" })
+keymap.set("n", "<A-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
+keymap.set("n", "<A-Left>", ":vertical resize +2<CR>", { desc = "Decrease window width" })
+keymap.set("n", "<A-Right>", ":vertical resize -2<CR>", { desc = "Increase window width" })

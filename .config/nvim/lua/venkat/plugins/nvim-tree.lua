@@ -43,7 +43,28 @@ return {
             renderer = {
                 indent_markers = { enable = true },
                 highlight_opened_files = "name",
-                icons = { glyphs = {} },
+                icons = {
+                    glyphs = {
+                        git = {
+                            unstaged = "",
+                            staged = "",
+                            unmerged = "",
+                            renamed = "",
+                            untracked = "",
+                            deleted = "",
+                            ignored = "",
+                        },
+                        git = {
+                            unstaged = "",
+                            staged = "",
+                            unmerged = "",
+                            renamed = "",
+                            untracked = "",
+                            deleted = "",
+                            ignored = "",
+                        },
+                    },
+                },
                 add_trailing = false, -- Add this line to remove trailing slashes
             },
             actions = {

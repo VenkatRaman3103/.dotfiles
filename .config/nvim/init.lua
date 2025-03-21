@@ -1,14 +1,14 @@
 require("venkat.core")
 require("venkat.lazy")
 
--- hello world
--- hello big bird
-
 -- utils
 require("venkat.utils.diagnostics").setup()
 require("venkat.utils.colorscheme").colorMyPencils()
 
-local blue = "#3aa8e3"
+vim.opt.showtabline = 0
+
+-- local blue = "#3aa8e3"
+local blue = "#87adcc"
 -- local orange = "#fb8a20"
 local orange = "#de8430"
 local brightGree = "#5ad39d"
@@ -25,6 +25,9 @@ local redistOrange = "#c95b20" --#e25303
 -- -- Delimiters
 vim.api.nvim_set_hl(0, "@tag.delimiter", { fg = gray })
 vim.api.nvim_set_hl(0, "@tag.delimiter.tsx", { fg = gray })
+
+vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#545c7e", italic = true })
+
 --
 -- -- Attributes like className, id, class
 -- vim.api.nvim_set_hl(0, "@attribute", { fg = lightBlue })
@@ -38,7 +41,7 @@ vim.api.nvim_set_hl(0, "@tag.delimiter.tsx", { fg = gray })
 -- vim.opt.updatetime = 300
 vim.opt.conceallevel = 1 -- or 2
 
-vim.opt.guicursor = ""
+-- vim.opt.guicursor = ""
 
 -- vim.api.nvim_set_hl(0, "@comment", { fg = "#777777", italic = true })
 -- vim.api.nvim_set_hl(0, "@comment.documentation", { fg = "#777777", italic = true })

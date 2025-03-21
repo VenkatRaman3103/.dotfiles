@@ -1,0 +1,29 @@
+return {
+    -- "ray-x/lsp_signature.nvim",
+    -- event = { "BufReadPre", "BufNewFile" },
+    -- opts = {
+    --     bind = true,
+    --     handler_opts = {
+    --         border = "rounded",
+    --     },
+    --     hint_enable = true,
+    --     floating_window_above_cur_line = true,
+    --     hint_prefix = "",
+    --     floating_window = true,
+    --     fix_pos = false,
+    -- },
+    -- config = function(_, opts)
+    --     require("lsp_signature").setup(opts)
+    --
+    --     -- Attach to LSP
+    --     vim.api.nvim_create_autocmd("LspAttach", {
+    --         callback = function(args)
+    --             local bufnr = args.buf
+    --             local client = vim.lsp.get_client_by_id(args.data.client_id)
+    --             if client then
+    --                 require("lsp_signature").on_attach(opts, bufnr)
+    --             end
+    --         end,
+    --     })
+    -- end,
+}

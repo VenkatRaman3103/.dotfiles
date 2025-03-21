@@ -6,6 +6,8 @@ local api = vim.api
 opt.relativenumber = true
 opt.number = true
 
+opt.showmode = false
+
 -- -- tabs & indentation
 opt.tabstop = 4 -- 2 spaces for tabs (prettier default)
 opt.softtabstop = 4
@@ -27,8 +29,8 @@ opt.cursorline = true -- highlight the current cursor line
 
 -- turn on termguicolors for nightfly colorscheme to work
 opt.termguicolors = true
-opt.background = "dark" -- colorschemes that can be light or dark will be made dark
-opt.signcolumn = "yes" -- show sign column so that text doesn't shift
+opt.background = "dark"
+opt.signcolumn = "yes"
 
 -- backspace
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
@@ -66,7 +68,6 @@ api.nvim_create_autocmd("TextYankPost", {
         vim.highlight.on_yank()
     end,
 })
-vim.o.showtabline = 0
 
 api.nvim_create_user_command("ClearMarks", function()
     vim.cmd("delmarks a-zA-Z0-9")
@@ -83,3 +84,14 @@ end, {})
 api.nvim_create_user_command("GetFilePath", function()
     print(vim.fn.expand("%"))
 end, {})
+
+api.nvim_create_autocmd("BufWritePost", {
+    desc = "Clear command line message after saving file",
+    callback = function()
+        vim.defer_fn(function()
+            vim.cmd("echo ''")
+        end, 2000)
+    end,
+})
+
+opt.report = 9999

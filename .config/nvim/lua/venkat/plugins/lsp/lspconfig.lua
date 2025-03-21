@@ -11,6 +11,40 @@ return {
         local mason_lspconfig = require("mason-lspconfig")
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
         local keymap = vim.keymap
+        local on_attach = require("venkat.plugins.lsp.lspconfig").on_attach
+        local util = require("lspconfig/util")
+
+        -- Create a single LspAttach autocmd for inlay hints
+        -- vim.api.nvim_create_autocmd("LspAttach", {
+        --     callback = function(args)
+        --         local client = vim.lsp.get_client_by_id(args.data.client_id)
+        --         local bufnr = args.buf
+        --
+        --         -- Check for inlay hint capability and apply to all file types including TSX
+        --         if client and client.server_capabilities.inlayHintProvider then
+        --             -- Get buffer file type
+        --             local filetype = vim.api.nvim_buf_get_option(bufnr, "filetype")
+        --
+        --             -- Enable inlay hints for this buffer
+        --             pcall(function()
+        --                 vim.lsp.inlay_hint.enable(true, bufnr)
+        --             end)
+        --
+        --             -- Add a keymap to toggle inlay hints
+        --             local opts = { buffer = bufnr, silent = true, desc = "Toggle inlay hints" }
+        --             vim.keymap.set("n", "<leader>ih", function()
+        --                 local current_buffer = vim.api.nvim_get_current_buf()
+        --                 pcall(function()
+        --                     local enabled = vim.lsp.inlay_hint.is_enabled(current_buffer)
+        --                     vim.lsp.inlay_hint.enable(not enabled, current_buffer)
+        --                 end)
+        --             end, opts)
+        --
+        --             -- Log that inlay hints were enabled for this buffer/filetype
+        --             -- print("Inlay hints enabled for " .. filetype .. " in buffer " .. bufnr)
+        --         end
+        --     end,
+        -- })
 
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -20,25 +54,25 @@ return {
 
                 local telescope_builtin = require("telescope.builtin")
 
-                keymap.set("n", "gr", function()
-                    telescope_builtin.lsp_references({
-                        show_line = false,
-                    })
-                end, { desc = "Show LSP references", silent = true })
+                -- keymap.set("n", "gr", function()
+                --     telescope_builtin.lsp_references({
+                --         show_line = false,
+                --     })
+                -- end, { desc = "Show LSP references", silent = true })
+                --
+                -- keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
 
-                keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
+                -- opts.desc = "Go to declaration"
+                -- keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
 
-                opts.desc = "Go to declaration"
-                keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
+                -- opts.desc = "Show LSP definitions"
+                -- keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
 
-                opts.desc = "Show LSP definitions"
-                keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+                -- opts.desc = "Show LSP implementations"
+                -- keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
 
-                opts.desc = "Show LSP implementations"
-                keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
-
-                opts.desc = "Show LSP type definitions"
-                keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
+                -- opts.desc = "Show LSP type definitions"
+                -- keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
 
                 opts.desc = "See available code actions"
                 keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
@@ -85,8 +119,19 @@ return {
                 "emmet_ls",
                 "prismals",
                 "pyright",
-                "ts_ls",
+                -- "typescript-language-server", -- Use the full name here
+                -- "tsserver", -- Use the full name here
+                "ts_ls", -- Use the full name here
+                "rust_analyzer",
             },
+        })
+
+        -- Configure file type associations explicitly
+        vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+            pattern = "*.tsx",
+            callback = function()
+                vim.bo.filetype = "typescriptreact"
+            end,
         })
 
         mason_lspconfig.setup_handlers({
@@ -143,6 +188,104 @@ return {
                             },
                         },
                     },
+                })
+            end,
+            ["rust_analyzer"] = function()
+                lspconfig["rust_analyzer"].setup({
+                    capabilities = capabilities,
+                    on_attach = on_attach,
+                    filetypes = { "rust" },
+                    root_dir = util.root_pattern("Cargo.toml"),
+                    settings = {
+                        ["rust-analyzer"] = {
+                            cargo = {
+                                allFeatures = true,
+                            },
+                            -- checkOnSave = {
+                            --     command = "clippy",
+                            -- },
+                        },
+                    },
+                })
+            end,
+            ["ts_ls"] = function()
+                lspconfig["ts_ls"].setup({
+                    capabilities = capabilities,
+                    filetypes = {
+                        "typescript",
+                        "typescriptreact",
+                        "typescript.tsx",
+                        "javascript",
+                        "javascriptreact",
+                    },
+                    root_dir = function(fname)
+                        return require("lspconfig.util").root_pattern("tsconfig.json", "jsconfig.json", "package.json")(
+                            fname
+                        ) or vim.fn.getcwd()
+                    end,
+                    init_options = {
+                        preferences = {
+                            -- Use more concise parameter hints
+                            includeInlayParameterNameHints = "none", -- Change from "all" to "none"
+                            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                            includeInlayFunctionParameterTypeHints = false, -- Disable verbose parameter type hints
+                            includeInlayVariableTypeHints = false, -- Turn this off
+                            includeInlayPropertyDeclarationTypeHints = false, -- Turn this off
+                            includeInlayFunctionLikeReturnTypeHints = true, -- Keep return type hints as they're useful
+                            includeInlayEnumMemberValueHints = false, -- Turn this off
+                        },
+                    },
+                    settings = {
+                        typescript = {
+                            inlayHints = {
+                                includeInlayParameterNameHints = "none", -- Change from "all" to "none"
+                                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                                includeInlayFunctionParameterTypeHints = false, -- Disable verbose parameter type hints
+                                includeInlayVariableTypeHints = false, -- Turn this off
+                                includeInlayPropertyDeclarationTypeHints = false, -- Turn this off
+                                includeInlayFunctionLikeReturnTypeHints = true, -- Keep return type hints as they're useful
+                                includeInlayEnumMemberValueHints = false, -- Turn this off
+                            },
+                        },
+                        javascript = {
+                            inlayHints = {
+                                includeInlayParameterNameHints = "none",
+                                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                                includeInlayFunctionParameterTypeHints = false,
+                                includeInlayVariableTypeHints = false,
+                                includeInlayPropertyDeclarationTypeHints = false,
+                                includeInlayFunctionLikeReturnTypeHints = true,
+                                includeInlayEnumMemberValueHints = false,
+                            },
+                        },
+                        typescriptreact = {
+                            inlayHints = {
+                                includeInlayParameterNameHints = "none",
+                                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                                includeInlayFunctionParameterTypeHints = false,
+                                includeInlayVariableTypeHints = false,
+                                includeInlayPropertyDeclarationTypeHints = false,
+                                includeInlayFunctionLikeReturnTypeHints = true,
+                                includeInlayEnumMemberValueHints = false,
+                            },
+                        },
+                        javascriptreact = {
+                            inlayHints = {
+                                includeInlayParameterNameHints = "none",
+                                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                                includeInlayFunctionParameterTypeHints = false,
+                                includeInlayVariableTypeHints = false,
+                                includeInlayPropertyDeclarationTypeHints = false,
+                                includeInlayFunctionLikeReturnTypeHints = true,
+                                includeInlayEnumMemberValueHints = false,
+                            },
+                        },
+                    },
+                    -- on_attach = function(client, bufnr)
+                    --     if client.server_capabilities.inlayHintProvider then
+                    --         vim.lsp.inlay_hint.enable(true, bufnr)
+                    --     end
+                    -- end,
                 })
             end,
         })

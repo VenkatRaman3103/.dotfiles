@@ -41,18 +41,23 @@ return {
                 },
                 section_separators = { left = "", right = "" },
                 component_separators = { left = "", right = "" },
-                global_status = true,
+                global_status = false, -- Move lualine to the top
+                always_divide_middle = true,
             },
             sections = {
                 lualine_a = {
+
                     {
                         "filename",
+                        -- "buffers",
                         symbols = {
                             modified = "✦",
                             alternate_file = "",
                             directory = "",
                         },
-                        show_filename_only = true,
+                        path = 1, -- 0: Just filename, 1: Relative path, 2: Absolute path
+                        shorting_target = 40, -- Shorten if too long
+                        show_filename_only = false,
                         hide_filename_extension = true,
                         show_modified_status = true,
                         buffers_color = {
@@ -61,19 +66,15 @@ return {
                         },
                     },
                 },
-                lualine_b = {},
-                lualine_c = {
-
+                lualine_b = {
                     -- {
-                    --     "diff",
-                    --     symbols = { added = "+", modified = "~", removed = "-" },
-                    --     colored = false, -- Disable default colors
-                    --     color = { fg = "#505050", bg = bgColor }, -- Force grey color
+                    --     "diagnostics",
+                    --     color = { fg = "#505050", bg = bgColor },
                     -- },
                 },
+                lualine_c = {},
                 lualine_x = {},
                 lualine_y = {
-
                     {
                         function()
                             local result = {}
@@ -88,16 +89,8 @@ return {
                             return table.concat(result, " ")
                         end,
                     },
-                    -- {
-                    --     "diagnostics",
-                    --     sources = { "nvim_diagnostic" },
-                    --     symbols = { error = " ", warn = " ", info = " ", hint = "󰌶 " },
-                    --     colored = false, -- Disable default colors
-                    --     color = { fg = "#505050", bg = bgColor }, -- Force grey color
-                    -- },
                 },
                 lualine_z = {
-
                     {
                         "branch",
                         color = { fg = "#505050", bg = bgColor },
@@ -107,6 +100,10 @@ return {
             },
             extensions = {},
         })
+
+        -- Move lualine to the top
+        -- vim.o.showtabline = 2
+        -- vim.o.laststatus = 3 -- Ensures statusline is always shown at the top
 
         -- Create highlight groups for tabs
         vim.cmd([[

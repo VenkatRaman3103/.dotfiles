@@ -79,26 +79,27 @@ function colorscheme.colorMyPencils()
     vim.api.nvim_set_hl(0, "HarpoonTitle", { fg = "#ffffff", bold = false })
     vim.api.nvim_set_hl(0, "FloatTitle", { fg = "#ffffff", bold = fasle })
 
+    -- Notification highlights
     vim.api.nvim_set_hl(0, "NeogitNotificationInfo", { fg = "#4BB543", bold = true })
     vim.api.nvim_set_hl(0, "NeogitNotificationWarning", { fg = "#FFB800", bold = true })
     vim.api.nvim_set_hl(0, "NeogitNotificationError", { fg = "#FF3333", bold = true })
 
-    -- neogit specific highlights
-    vim.api.nvim_set_hl(0, "NeogitDiffAdd", { bg = "#103510", fg = "#4BB543" }) -- green background for added lines
-    vim.api.nvim_set_hl(0, "NeogitDiffDelete", { bg = "#351010", fg = "#FF3333" }) -- red background for deleted lines
-    vim.api.nvim_set_hl(0, "NeogitDiffContext", { bg = bgColor, fg = "#ffffff" }) -- context lines
-    vim.api.nvim_set_hl(0, "NeogitHunkHeader", { bg = bgColor, fg = "#ffffff", bold = true }) -- hunk headers
-    vim.api.nvim_set_hl(0, "NeogitHunkHeaderHighlight", { bg = "#333333", fg = "#ffffff", bold = true })
-    vim.api.nvim_set_hl(0, "NeogitDiffAddHighlight", { fg = "#4BB543" })
-    vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", { fg = "#FF3333" })
+    -- Diff highlights - consistent colors
+    vim.api.nvim_set_hl(0, "NeogitDiffAdd", { fg = "#4BB543" }) -- green text for added lines
+    vim.api.nvim_set_hl(0, "NeogitDiffDelete", { fg = "#FF3333" }) -- red text for deleted lines
+    vim.api.nvim_set_hl(0, "NeogitDiffContext", { fg = "#ffffff" }) -- white text for context lines
 
-    vim.api.nvim_set_hl(0, "NeogitDiffAddHighlight", { fg = "#4BB543", bg = bgColor })
-    vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", { fg = "#FF3333", bg = bgColor })
-    vim.api.nvim_set_hl(0, "NeogitDiffContextHighlight", { bg = "#1e1e1e" })
-    vim.api.nvim_set_hl(0, "NeogitHunkHeader", { bg = "#1e1e1e", fg = "#ffffff" })
-    vim.api.nvim_set_hl(0, "NeogitHunkHeaderHighlight", { bg = "#2e2e2e", fg = "#ffffff", bold = true })
+    -- Diff highlights with background for added/deleted lines only
+    vim.api.nvim_set_hl(0, "NeogitDiffAddHighlight", { fg = "#4BB543", bg = "#103510" }) -- green background only for added line
+    vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", { fg = "#FF3333", bg = "#351010" }) -- red background only for deleted line
+    vim.api.nvim_set_hl(0, "NeogitDiffContextHighlight", { fg = "#ffffff" }) -- no background for context
+
+    -- Header highlights
+    vim.api.nvim_set_hl(0, "NeogitHunkHeader", { fg = "#ffffff" }) -- removed background
+    vim.api.nvim_set_hl(0, "NeogitHunkHeaderHighlight", { fg = "#ffffff", bold = true }) -- removed background
+
+    -- Other highlights
     vim.api.nvim_set_hl(0, "NeogitFoldIcon", { fg = "#ffb86c" })
-
     -- markdown
     -- vim.api.nvim_set_hl(0, "RenderMarkdownH1Bg", { bg = "none" })
     -- vim.api.nvim_set_hl(0, "RenderMarkdownH2Bg", { bg = "none" })
