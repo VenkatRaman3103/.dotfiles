@@ -2,7 +2,7 @@
 
 # leap.nvim
 
--- osnosome osm hhjkjh added a new word
+// something
 
 Leap is a general-purpose motion plugin for Neovim, building and improving
 bjbjdbfap
