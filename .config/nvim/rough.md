@@ -2,7 +2,7 @@
 
 # leap.nvim
 
--- make conflict
+-- some osm hhjkjh added a new word
 
 Leap is a general-purpose motion plugin for Neovim, building and improving
 primarily on [vim-sneak](https://github.com/justinmk/vim-sneak), with the
