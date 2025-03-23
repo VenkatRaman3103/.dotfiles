@@ -118,15 +118,37 @@ keymap.set("n", "[[", function()
     vim.lsp.buf.references()
 end, { desc = "Previous reference" })
 
-keymap.set("n", "H", "^", { desc = "use H as ^" })
-keymap.set("n", "L", "$", { desc = "use L as $" })
-keymap.set("n", "M", "%", { desc = "use M as %" })
+keymap.set("n", "gh", "^", { desc = "use H as ^" })
+keymap.set("n", "gH", "^", { desc = "use H as 0" })
+keymap.set("n", "gl", "$", { desc = "use L as $" })
+keymap.set("n", "gm", "%", { desc = "use M as %" })
+
+keymap.set("v", "gh", "^", { desc = "use H as ^" })
+keymap.set("v", "gH", "^", { desc = "use H as 0" })
+keymap.set("v", "gl", "$", { desc = "use L as $" })
+keymap.set("v", "gm", "%", { desc = "use M as %" })
 
 keymap.set("v", ">", ">gv", { desc = "" })
 keymap.set("v", "<", "<gv", { desc = "" })
+
+-- keymap.set("n", "g-", "`^", { desc = "Last position in insert mode" })
+keymap.set("n", "g,", "`.", { desc = "Last change in current buffer" })
+keymap.set("n", 'g"', '`"', { desc = "Last exited current buffer" })
+keymap.set("n", "g.", "<cmd>edit #<CR>`.", { desc = "Jump to last edited file and position" })
+-- keymap.set("n", "g;", "''", { desc = "Back to line where jumped from" })
+keymap.set("n", "g;", "``", { desc = "Back to position where jumped from" })
+keymap.set("n", "g[", "`[", { desc = "To beginning of changed/yanked text" })
+keymap.set("n", "g]", "`]", { desc = "To end of changed/yanked text" })
+keymap.set("n", "g<", "`<", { desc = "To beginning of last visual selection" })
+keymap.set("n", "g>", "`>", { desc = "To end of last visual selection" })
+
+keymap.set("n", "g/", ":%s/", { desc = "Start substitute command" })
+keymap.set("n", "g?", ":%s/<C-r><C-w>", { desc = "Substitute word under cursor" })
 
 -- Resize window
 keymap.set("n", "<A-Up>", ":resize +2<CR>", { desc = "Increase window height" })
 keymap.set("n", "<A-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
 keymap.set("n", "<A-Left>", ":vertical resize +2<CR>", { desc = "Decrease window width" })
 keymap.set("n", "<A-Right>", ":vertical resize -2<CR>", { desc = "Increase window width" })
+
+-- some

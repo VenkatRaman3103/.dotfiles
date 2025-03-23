@@ -100,6 +100,7 @@ function colorscheme.colorMyPencils()
 
     -- Other highlights
     vim.api.nvim_set_hl(0, "NeogitFoldIcon", { fg = "#ffb86c" })
+
     -- markdown
     -- vim.api.nvim_set_hl(0, "RenderMarkdownH1Bg", { bg = "none" })
     -- vim.api.nvim_set_hl(0, "RenderMarkdownH2Bg", { bg = "none" })
@@ -110,12 +111,12 @@ function colorscheme.colorMyPencils()
     -- vim.api.nvim_set_hl(0, "RenderMarkdownCode", { bg = "none" })
 
     -- Status highlights for better readability in the Neogit interface
-    -- vim.api.nvim_set_hl(0, "NeogitBranch", { fg = "#ffb86c", bold = true }) -- branch name
-    -- vim.api.nvim_set_hl(0, "NeogitRemote", { fg = "#ff6a00", bold = true }) -- remote
-    -- vim.api.nvim_set_hl(0, "NeogitUntrackedfiles", { fg = "#ff6a00" }) -- untracked files
-    -- vim.api.nvim_set_hl(0, "NeogitStagedChanges", { fg = "#4BB543" }) -- staged changes
-    -- vim.api.nvim_set_hl(0, "NeogitUnstagedChanges", { fg = "#FFB800" }) -- unstaged changes
-    -- vim.api.nvim_set_hl(0, "NeogitRecentCommits", { fg = "#ffb86c" }) -- recent commits
+    vim.api.nvim_set_hl(0, "NeogitBranch", { fg = "#4BB543", bold = true }) -- branch name
+    vim.api.nvim_set_hl(0, "NeogitRemote", { fg = "#3aa8e3", bold = true }) -- remote
+    vim.api.nvim_set_hl(0, "NeogitUntrackedfiles", { fg = "#ff6a00", bold = true }) -- untracked files
+    vim.api.nvim_set_hl(0, "NeogitStagedChanges", { fg = "#4BB543", bold = true }) -- staged changes
+    vim.api.nvim_set_hl(0, "NeogitUnstagedChanges", { fg = "#ffb86c", bold = true }) -- unstaged changes
+    vim.api.nvim_set_hl(0, "NeogitRecentCommits", { fg = "#ffb86c", bold = true }) -- recent commits
 
     -- Section titles in Neogit (e.g., staged changes, untracked files)
     vim.api.nvim_set_hl(0, "NeogitSectionTitle", { fg = "#ffffff", bold = true })

@@ -1,1 +1,6 @@
+<<<<<<< HEAD
 This is a conflicting change from main branch.
+||||||| a731e6c
+=======
+This is a change from feature-branch.
+>>>>>>> feature-branch
