@@ -51,12 +51,12 @@ function colorscheme.colorMyPencils()
     -- vim.api.nvim_set_hl(0, "IblIndent", { fg = "#242424" })
     vim.api.nvim_set_hl(0, "IblIndent", { fg = "#333333" })
 
-    -- Zen-mode highlights
-    vim.api.nvim_set_hl(0, "ZenBg", { bg = bgColor })
+    -- -- Zen-mode highlights
+    -- vim.api.nvim_set_hl(0, "ZenBg", { bg = bgColor })
 
-    vim.api.nvim_set_hl(0, "Delimiter", { fg = white })
-    vim.api.nvim_set_hl(0, "@punctuation.bracket", { fg = white })
-    vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = white })
+    -- vim.api.nvim_set_hl(0, "Delimiter", { fg = white })
+    -- vim.api.nvim_set_hl(0, "@punctuation.bracket", { fg = white })
+    -- vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = white })
 
     -- Borders and caret highlights
     -- vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#ffffff", bg = bgColor })
@@ -65,10 +65,10 @@ function colorscheme.colorMyPencils()
     -- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ffffff", bg = bgColor })
 
     -- Borders and caret highlights
-    vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#555555", bg = bgColor })
-    vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = "#555555", bg = bgColor })
-    vim.api.nvim_set_hl(0, "HarpoonBorder", { fg = "#555555", bg = bgColor })
-    vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#555555", bg = bgColor })
+    -- vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#555555", bg = bgColor })
+    -- vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = "#555555", bg = bgColor })
+    -- vim.api.nvim_set_hl(0, "HarpoonBorder", { fg = "#555555", bg = bgColor })
+    -- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#555555", bg = bgColor })
 
     -- set title colors
     vim.api.nvim_set_hl(0, "TelescopeTitle", { fg = "#ffffff", bold = false })
@@ -77,7 +77,7 @@ function colorscheme.colorMyPencils()
     vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { fg = "#ffffff", bold = false })
     vim.api.nvim_set_hl(0, "HarpoonWindow", { fg = "#ffffff" })
     vim.api.nvim_set_hl(0, "HarpoonTitle", { fg = "#ffffff", bold = false })
-    vim.api.nvim_set_hl(0, "FloatTitle", { fg = "#ffffff", bold = fasle })
+    vim.api.nvim_set_hl(0, "FloatTitle", { fg = "#ffffff", bold = false })
 
     -- Notification highlights
     vim.api.nvim_set_hl(0, "NeogitNotificationInfo", { fg = "#4BB543", bold = true })
@@ -85,21 +85,21 @@ function colorscheme.colorMyPencils()
     vim.api.nvim_set_hl(0, "NeogitNotificationError", { fg = "#FF3333", bold = true })
 
     -- Diff highlights - consistent colors
-    vim.api.nvim_set_hl(0, "NeogitDiffAdd", { fg = "#4BB543" }) -- green text for added lines
-    vim.api.nvim_set_hl(0, "NeogitDiffDelete", { fg = "#FF3333" }) -- red text for deleted lines
-    vim.api.nvim_set_hl(0, "NeogitDiffContext", { fg = "#ffffff" }) -- white text for context lines
+    -- vim.api.nvim_set_hl(0, "NeogitDiffAdd", { fg = "#4BB543" })     -- green text for added lines
+    -- vim.api.nvim_set_hl(0, "NeogitDiffDelete", { fg = "#FF3333" })  -- red text for deleted lines
+    -- vim.api.nvim_set_hl(0, "NeogitDiffContext", { fg = "#ffffff" }) -- white text for context lines
 
     -- Diff highlights with background for added/deleted lines only
-    vim.api.nvim_set_hl(0, "NeogitDiffAddHighlight", { fg = "#4BB543", bg = "#103510" }) -- green background only for added line
-    vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", { fg = "#FF3333", bg = "#351010" }) -- red background only for deleted line
-    vim.api.nvim_set_hl(0, "NeogitDiffContextHighlight", { fg = "#ffffff" }) -- no background for context
+    -- vim.api.nvim_set_hl(0, "NeogitDiffAddHighlight", { fg = "#4BB543", bg = "#103510" })    -- green background only for added line
+    -- vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", { fg = "#FF3333", bg = "#351010" }) -- red background only for deleted line
+    -- vim.api.nvim_set_hl(0, "NeogitDiffContextHighlight", { fg = "#ffffff" })                -- no background for context
 
     -- Header highlights
-    vim.api.nvim_set_hl(0, "NeogitHunkHeader", { fg = "#ffffff" }) -- removed background
-    vim.api.nvim_set_hl(0, "NeogitHunkHeaderHighlight", { fg = "#ffffff", bold = true }) -- removed background
+    -- vim.api.nvim_set_hl(0, "NeogitHunkHeader", { fg = "#ffffff" })                       -- removed background
+    -- vim.api.nvim_set_hl(0, "NeogitHunkHeaderHighlight", { fg = "#ffffff", bold = true }) -- removed background
 
     -- Other highlights
-    vim.api.nvim_set_hl(0, "NeogitFoldIcon", { fg = "#ffb86c" })
+    -- vim.api.nvim_set_hl(0, "NeogitFoldIcon", { fg = "#ffb86c" })
 
     -- markdown
     -- vim.api.nvim_set_hl(0, "RenderMarkdownH1Bg", { bg = "none" })
@@ -111,16 +111,16 @@ function colorscheme.colorMyPencils()
     -- vim.api.nvim_set_hl(0, "RenderMarkdownCode", { bg = "none" })
 
     -- Status highlights for better readability in the Neogit interface
-    vim.api.nvim_set_hl(0, "NeogitBranch", { fg = "#4BB543", bold = true }) -- branch name
-    vim.api.nvim_set_hl(0, "NeogitRemote", { fg = "#3aa8e3", bold = true }) -- remote
-    vim.api.nvim_set_hl(0, "NeogitUntrackedfiles", { fg = "#ff6a00", bold = true }) -- untracked files
-    vim.api.nvim_set_hl(0, "NeogitStagedChanges", { fg = "#4BB543", bold = true }) -- staged changes
-    vim.api.nvim_set_hl(0, "NeogitUnstagedChanges", { fg = "#ffb86c", bold = true }) -- unstaged changes
-    vim.api.nvim_set_hl(0, "NeogitRecentCommits", { fg = "#ffb86c", bold = true }) -- recent commits
+    -- vim.api.nvim_set_hl(0, "NeogitBranch", { fg = "#4BB543", bold = true })          -- branch name
+    -- vim.api.nvim_set_hl(0, "NeogitRemote", { fg = "#3aa8e3", bold = true })          -- remote
+    -- vim.api.nvim_set_hl(0, "NeogitUntrackedfiles", { fg = "#ff6a00", bold = true })  -- untracked files
+    -- vim.api.nvim_set_hl(0, "NeogitStagedChanges", { fg = "#4BB543", bold = true })   -- staged changes
+    -- vim.api.nvim_set_hl(0, "NeogitUnstagedChanges", { fg = "#ffb86c", bold = true }) -- unstaged changes
+    -- vim.api.nvim_set_hl(0, "NeogitRecentCommits", { fg = "#ffb86c", bold = true })   -- recent commits
 
     -- Section titles in Neogit (e.g., staged changes, untracked files)
-    vim.api.nvim_set_hl(0, "NeogitSectionTitle", { fg = "#ffffff", bold = true })
-    vim.api.nvim_set_hl(0, "NeogitSectionHighlight", { bg = "#222222", fg = "#ffffff" })
+    -- vim.api.nvim_set_hl(0, "NeogitSectionTitle", { fg = "#ffffff", bold = true })
+    -- vim.api.nvim_set_hl(0, "NeogitSectionHighlight", { bg = "#222222", fg = "#ffffff" })
 
     -- -- Add these to your ColorMyPencils function or init.lua
     -- vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = "#4BB543" }) -- A nice bright green
@@ -138,7 +138,7 @@ function colorscheme.colorMyPencils()
 
     -- Visual selection highlight
     -- vim.api.nvim_set_hl(0, "Visual", { bg = "#ffb86c", fg = "#000000" })
-    vim.api.nvim_set_hl(0, "Visual", { bg = "#45475a", bold = false })
+    -- vim.api.nvim_set_hl(0, "Visual", { bg = "#45475a", bold = false })
 
     -- Highlight the current line with a subtle background 0e0e0e
     -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1a1a1a" })
@@ -197,12 +197,12 @@ function colorscheme.colorMyPencils()
 
     -- Enable window borders
     vim.opt.laststatus = 3 -- Global status line
-    vim.opt.winbar = "" -- Empty winbar to create space for top border
+    vim.opt.winbar = ""    -- Empty winbar to create space for top border
 
     -- Make sure window separators are always visible
     vim.opt.fillchars:append("eob: ") -- Hide empty line tildes
-    vim.opt.lazyredraw = false -- Ensure separators are always drawn
-    vim.opt.splitkeep = "screen" -- Maintain window separators during splits
+    vim.opt.lazyredraw = false        -- Ensure separators are always drawn
+    vim.opt.splitkeep = "screen"      -- Maintain window separators during splits
 
     -- vim.api.nvim_create_autocmd("ColorScheme", {
     --     callback = function()
@@ -244,9 +244,9 @@ function colorscheme.syntax()
     vim.api.nvim_set_hl(0, "@keyword.function", { fg = redistOrange })
     vim.api.nvim_set_hl(0, "@keyword.operator", { fg = redistOrange })
     vim.api.nvim_set_hl(0, "@keyword.return", { fg = redistOrange })
-    vim.api.nvim_set_hl(0, "@conditional", { fg = blue }) -- if, else, etc
-    vim.api.nvim_set_hl(0, "@repeat", { fg = blue }) -- for, while, etc
-    vim.api.nvim_set_hl(0, "@operator", { fg = blue }) -- =, +, -, etc
+    vim.api.nvim_set_hl(0, "@conditional", { fg = blue })   -- if, else, etc
+    vim.api.nvim_set_hl(0, "@repeat", { fg = blue })        -- for, while, etc
+    vim.api.nvim_set_hl(0, "@operator", { fg = blue })      -- =, +, -, etc
     vim.api.nvim_set_hl(0, "@operator.cpp", { fg = white }) -- =, +, -, etc
     -- vim.api.nvim_set_hl(0, "@lsp.type.operator.cpp", { fg = redistOrange }) -- =, +, -, etc
 
@@ -299,18 +299,18 @@ function colorscheme.syntax()
     vim.api.nvim_set_hl(0, "@lsp.typemod.variable.defaultLibrary", { fg = purple })
 
     -- Custom colors for syntax highlighting
-    vim.api.nvim_set_hl(0, "Keyword", { fg = blue, underline = false }) -- Blue
+    vim.api.nvim_set_hl(0, "Keyword", { fg = blue, underline = false })    -- Blue
     vim.api.nvim_set_hl(0, "Function", { fg = orange, underline = false }) -- Orange
     vim.api.nvim_set_hl(0, "Class", { fg = "#FF4500", underline = false }) -- Reddish Orange
-    vim.api.nvim_set_hl(0, "Tag", { fg = blue, underline = false }) -- Blue
-    vim.api.nvim_set_hl(0, "TagName", { fg = blue, underline = false }) -- Blue
+    vim.api.nvim_set_hl(0, "Tag", { fg = blue, underline = false })        -- Blue
+    vim.api.nvim_set_hl(0, "TagName", { fg = blue, underline = false })    -- Blue
 
     -- Other colors
-    vim.api.nvim_set_hl(0, "String", { fg = green }) -- Green
-    vim.api.nvim_set_hl(0, "Number", { fg = orange }) -- Light Orange
+    vim.api.nvim_set_hl(0, "String", { fg = green })   -- Green
+    vim.api.nvim_set_hl(0, "Number", { fg = orange })  -- Light Orange
     vim.api.nvim_set_hl(0, "Boolean", { fg = purple }) -- Purple
-    vim.api.nvim_set_hl(0, "Null", { fg = purple }) -- Purple
-    vim.api.nvim_set_hl(0, "None", { fg = purple }) -- Purple
+    vim.api.nvim_set_hl(0, "Null", { fg = purple })    -- Purple
+    vim.api.nvim_set_hl(0, "None", { fg = purple })    -- Purple
     vim.api.nvim_set_hl(0, "Identifier", { fg = "#FFFFFF", underline = false })
     vim.api.nvim_set_hl(0, "Normal", { fg = "#FFFFFF", bg = bgColor })
     vim.api.nvim_set_hl(0, "Variable", { fg = "#FFFFFF", bg = bgColor }) -- Variable names
@@ -334,10 +334,10 @@ function colorscheme.syntax()
 
     -- Component name in orange, brackets in blue
     vim.api.nvim_set_hl(0, "@constructor", { fg = orange }) -- For component names
-    vim.api.nvim_set_hl(0, "@tag", { fg = orange }) -- For component names
+    vim.api.nvim_set_hl(0, "@tag", { fg = orange })         -- For component names
     vim.api.nvim_set_hl(0, "@tag.delimiter", { fg = blue }) -- For < > / brackets
     vim.api.nvim_set_hl(0, "@constructor", { fg = orange }) -- Specific to TSX
-    vim.api.nvim_set_hl(0, "@tag.tsx", { fg = orange }) -- Specific to TSX
+    vim.api.nvim_set_hl(0, "@tag.tsx", { fg = orange })     -- Specific to TSX
     vim.api.nvim_set_hl(0, "@tag.delimiter", { fg = blue }) -- Specific to TSX
 
     -- Additional JSX/TSX specific highlights
@@ -345,19 +345,19 @@ function colorscheme.syntax()
     vim.api.nvim_set_hl(0, "@punctuation.special.tsx", { fg = blue }) -- For special characters like /
 
     -- Ensure consistency in JSX attributes
-    vim.api.nvim_set_hl(0, "@tag.attribute", { fg = white }) -- For props/attributes
+    vim.api.nvim_set_hl(0, "@tag.attribute", { fg = white })     -- For props/attributes
     vim.api.nvim_set_hl(0, "@tag.attribute.tsx", { fg = white }) -- For props/attributes in TSX
 
     -- HTML tags in blue, Component names in orange, brackets in blue
-    vim.api.nvim_set_hl(0, "@constructor", { fg = orange }) -- For component names (PascalCase)
+    vim.api.nvim_set_hl(0, "@constructor", { fg = orange })     -- For component names (PascalCase)
     vim.api.nvim_set_hl(0, "@constructor.tsx", { fg = orange }) -- For component names in TSX
 
     -- HTML tags in blue
-    vim.api.nvim_set_hl(0, "@tag", { fg = blue }) -- For HTML tags (div, span, etc)
+    vim.api.nvim_set_hl(0, "@tag", { fg = blue })         -- For HTML tags (div, span, etc)
     vim.api.nvim_set_hl(0, "@tag.builtin", { fg = blue }) -- For built-in HTML tags
 
     -- Angle brackets in blue
-    vim.api.nvim_set_hl(0, "@tag.delimiter", { fg = gray }) -- For < > / in JSX
+    vim.api.nvim_set_hl(0, "@tag.delimiter", { fg = gray })     -- For < > / in JSX
     vim.api.nvim_set_hl(0, "@tag.delimiter.tsx", { fg = gray }) -- For < > / in TSX
 
     -- Additional JSX/TSX specific highlights
@@ -365,11 +365,11 @@ function colorscheme.syntax()
     vim.api.nvim_set_hl(0, "@punctuation.special.tsx", { fg = blue }) -- For special characters like /
 
     -- Ensure consistency in JSX attributes
-    vim.api.nvim_set_hl(0, "@tag.attribute", { fg = white }) -- For props/attributes
+    vim.api.nvim_set_hl(0, "@tag.attribute", { fg = white })     -- For props/attributes
     vim.api.nvim_set_hl(0, "@tag.attribute.tsx", { fg = white }) -- For props/attributes in TSX
 
     -- Custom highlighting for capital-case components vs lowercase HTML tags
-    vim.api.nvim_set_hl(0, "@type.tsx", { fg = orange }) -- Ensures custom components (PascalCase) are orange
+    vim.api.nvim_set_hl(0, "@type.tsx", { fg = orange })  -- Ensures custom components (PascalCase) are orange
     vim.api.nvim_set_hl(0, "@keyword.tsx", { fg = blue }) -- Additional support for HTML keywords
 
     -- Specific HTML tag highlighting
@@ -378,7 +378,7 @@ function colorscheme.syntax()
 
     -- Make all brackets white
     vim.api.nvim_set_hl(0, "Delimiter", { fg = white })
-    vim.api.nvim_set_hl(0, "@punctuation.bracket", { fg = white }) -- Basic bracket highlighting
+    vim.api.nvim_set_hl(0, "@punctuation.bracket", { fg = white })   -- Basic bracket highlighting
     vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = white }) -- Other delimiters
 
     -- Ensure brackets are white in every language
@@ -392,20 +392,20 @@ function colorscheme.syntax()
 
     -- Move control flow keywords to orange
     vim.api.nvim_set_hl(0, "@keyword.conditional", { fg = redistOrange }) -- if, else
-    vim.api.nvim_set_hl(0, "@keyword.repeat", { fg = redistOrange }) -- for, while
-    vim.api.nvim_set_hl(0, "@keyword.function", { fg = redistOrange }) -- function keyword
-    vim.api.nvim_set_hl(0, "@conditional", { fg = redistOrange }) -- if, else (tree-sitter)
-    vim.api.nvim_set_hl(0, "@repeat", { fg = redistOrange }) -- for, while (tree-sitter)
+    vim.api.nvim_set_hl(0, "@keyword.repeat", { fg = redistOrange })      -- for, while
+    vim.api.nvim_set_hl(0, "@keyword.function", { fg = redistOrange })    -- function keyword
+    vim.api.nvim_set_hl(0, "@conditional", { fg = redistOrange })         -- if, else (tree-sitter)
+    vim.api.nvim_set_hl(0, "@repeat", { fg = redistOrange })              -- for, while (tree-sitter)
 
     -- Keep type-related keywords in blue
-    vim.api.nvim_set_hl(0, "@keyword", { fg = blue }) -- other keywords
-    vim.api.nvim_set_hl(0, "@keyword.operator", { fg = blue }) -- operators
+    vim.api.nvim_set_hl(0, "@keyword", { fg = blue })                -- other keywords
+    vim.api.nvim_set_hl(0, "@keyword.operator", { fg = blue })       -- operators
     vim.api.nvim_set_hl(0, "@keyword.return", { fg = redistOrange }) -- return
-    vim.api.nvim_set_hl(0, "@operator", { fg = blue }) -- =, +, -, etc
-    vim.api.nvim_set_hl(0, "@type.qualifier", { fg = blue }) -- const, let, var
-    vim.api.nvim_set_hl(0, "@storageclass", { fg = blue }) -- storage class keywords
-    vim.api.nvim_set_hl(0, "@type", { fg = blue }) -- int, char, etc.
-    vim.api.nvim_set_hl(0, "@type.builtin", { fg = blue }) -- int, char, etc.
+    vim.api.nvim_set_hl(0, "@operator", { fg = blue })               -- =, +, -, etc
+    vim.api.nvim_set_hl(0, "@type.qualifier", { fg = blue })         -- const, let, var
+    vim.api.nvim_set_hl(0, "@storageclass", { fg = blue })           -- storage class keywords
+    vim.api.nvim_set_hl(0, "@type", { fg = blue })                   -- int, char, etc.
+    vim.api.nvim_set_hl(0, "@type.builtin", { fg = blue })           -- int, char, etc.
 
     -- Functions and methods
     vim.api.nvim_set_hl(0, "@function", { fg = orange })
@@ -415,14 +415,14 @@ function colorscheme.syntax()
     vim.api.nvim_set_hl(0, "@method.call", { fg = orange })
 
     -- LSP semantic tokens
-    vim.api.nvim_set_hl(0, "@lsp.type.keyword.cpp", { fg = blue }) -- type keywords in C++
+    vim.api.nvim_set_hl(0, "@lsp.type.keyword.cpp", { fg = blue })        -- type keywords in C++
     vim.api.nvim_set_hl(0, "@lsp.type.keyword.typescript", { fg = blue }) -- type keywords in TypeScript
     vim.api.nvim_set_hl(0, "@lsp.type.keyword.javascript", { fg = blue }) -- type keywords in JavaScript
     -- Make sure all types of brackets are white
-    vim.api.nvim_set_hl(0, "MatchParen", { fg = white, bold = true }) -- Matching parentheses
+    vim.api.nvim_set_hl(0, "MatchParen", { fg = white, bold = true })     -- Matching parentheses
 
-    vim.api.nvim_set_hl(0, "@keyword.require", { fg = redistOrange }) -- require keyword in Lua
-    vim.api.nvim_set_hl(0, "@function.require", { fg = redistOrange }) -- require function calls
+    vim.api.nvim_set_hl(0, "@keyword.require", { fg = redistOrange })     -- require keyword in Lua
+    vim.api.nvim_set_hl(0, "@function.require", { fg = redistOrange })    -- require function calls
 end
 
 return colorscheme

@@ -50,8 +50,9 @@ keymap.set("n", "[t", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
 keymap.set("n", "<leader>tm", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
 -- Buffers management
-keymap.set("n", "]b", "<cmd>bnext<CR>", { desc = "Got to next buffer" })
-keymap.set("n", "[b", "<cmd>bprev<CR>", { desc = "Got to previous buffer" })
+keymap.set("n", "]j", "<cmd>bnext<CR>", { desc = "Got to next buffer" })
+keymap.set("n", "[j", "<cmd>bprev<CR>", { desc = "Got to previous buffer" })
+
 -- Function to navigate to a specific buffer
 local function goto_buffer(n)
     local buffers = vim.fn.getbufinfo({ buflisted = true })
@@ -110,13 +111,13 @@ keymap.set("n", "<leader>qc", ":cclose<CR>")
 keymap.set("n", "]q", ":cnext<CR>")
 keymap.set("n", "[q", ":cprev<CR>")
 
-keymap.set("n", "]]", function()
-    vim.lsp.buf.references()
-end, { desc = "Next reference" })
-
-keymap.set("n", "[[", function()
-    vim.lsp.buf.references()
-end, { desc = "Previous reference" })
+-- keymap.set("n", "]]", function()
+--     vim.lsp.buf.references()
+-- end, { desc = "Next reference" })
+--
+-- keymap.set("n", "[[", function()
+--     vim.lsp.buf.references()
+-- end, { desc = "Previous reference" })
 
 keymap.set("n", "gh", "^", { desc = "use H as ^" })
 keymap.set("n", "gH", "^", { desc = "use H as 0" })
@@ -132,11 +133,11 @@ keymap.set("v", ">", ">gv", { desc = "" })
 keymap.set("v", "<", "<gv", { desc = "" })
 
 -- keymap.set("n", "g-", "`^", { desc = "Last position in insert mode" })
-keymap.set("n", "g,", "`.", { desc = "Last change in current buffer" })
-keymap.set("n", 'g"', '`"', { desc = "Last exited current buffer" })
-keymap.set("n", "g.", "<cmd>edit #<CR>`.", { desc = "Jump to last edited file and position" })
--- keymap.set("n", "g;", "''", { desc = "Back to line where jumped from" })
+keymap.set("n", "g'", "`.", { desc = "Last change in current buffer" })
+keymap.set("n", 'g"', "<cmd>edit #<CR>`.", { desc = "Jump to last edited file and position" })
 keymap.set("n", "g;", "``", { desc = "Back to position where jumped from" })
+-- keymap.set("n", "g;", "''", { desc = "Back to line where jumped from" })
+-- keymap.set("n", "g.", '`"', { desc = "Last exited current buffer" })
 keymap.set("n", "g[", "`[", { desc = "To beginning of changed/yanked text" })
 keymap.set("n", "g]", "`]", { desc = "To end of changed/yanked text" })
 keymap.set("n", "g<", "`<", { desc = "To beginning of last visual selection" })

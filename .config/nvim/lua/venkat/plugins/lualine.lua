@@ -41,74 +41,66 @@ return {
                 },
                 section_separators = { left = "", right = "" },
                 component_separators = { left = "", right = "" },
-                global_status = false, -- Move lualine to the top
+                global_status = false,
                 always_divide_middle = true,
             },
             sections = {
                 lualine_a = {
                     {
-                        "buffers",
+                        "filename",
+                        -- "buffers",
                         symbols = {
                             modified = "✦",
                             alternate_file = "",
                             directory = "",
                         },
-                        path = 0,
-                        shorting_target = 40,
-                        file_status = true,
-                        show_filename_only = true,
-                        hide_filename_extension = false,
+                        path = 1, -- 0: Just filename, 1: Relative path, 2: Absolute path
+                        shorting_target = 40, -- Shorten if too long
+                        show_filename_only = false,
+                        hide_filename_extension = true,
                         show_modified_status = true,
                         buffers_color = {
                             active = { fg = "#ffffff", bg = bgColor },
                             inactive = { fg = "#505050", bg = bgColor },
                         },
-                        fmt = function(name, buf)
-                            -- Get the full file path
-                            local full_path = vim.api.nvim_buf_get_name(buf.bufnr)
-
-                            -- Extract parent directory and filename
-                            local parent_dir = vim.fn.fnamemodify(full_path, ":h:t")
-                            local filename = vim.fn.fnamemodify(full_path, ":t")
-
-                            -- Check if parent directory is "nvim" (root)
-                            if parent_dir == "nvim" then
-                                return "./" .. filename
-                            end
-
-                            -- If we have a parent directory, show it with the filename
-                            if parent_dir ~= "." and parent_dir ~= "" then
-                                return parent_dir .. "/" .. filename
-                            end
-
-                            -- Otherwise just return the filename
-                            return filename
-                        end,
-                    }, -- {
-                    --     "filename",
-                    --     -- "buffers",
+                    },
+                    -- {
+                    --     "buffers",
                     --     symbols = {
-                    --         modified = "✦",
+                    --         modified = " ✦",
                     --         alternate_file = "",
                     --         directory = "",
                     --     },
-                    --     path = 1, -- 0: Just filename, 1: Relative path, 2: Absolute path
-                    --     shorting_target = 40, -- Shorten if too long
-                    --     show_filename_only = false,
-                    --     hide_filename_extension = true,
+                    --     path = 0,
+                    --     shorting_target = 120,
+                    --     file_status = true,
+                    --     show_filename_only = true,
+                    --     hide_filename_extension = false,
                     --     show_modified_status = true,
                     --     buffers_color = {
                     --         active = { fg = "#ffffff", bg = bgColor },
                     --         inactive = { fg = "#505050", bg = bgColor },
                     --     },
+                    --     icons_enabled = false,
+                    --     fmt = function(name, buf)
+                    --         local full_path = vim.api.nvim_buf_get_name(buf.bufnr)
+                    --
+                    --         local parent_dir = vim.fn.fnamemodify(full_path, ":h:t")
+                    --         local filename = vim.fn.fnamemodify(full_path, ":t")
+                    --
+                    --         if parent_dir == "nvim" then
+                    --             return "./" .. filename
+                    --         end
+                    --
+                    --         if parent_dir ~= "." and parent_dir ~= "" then
+                    --             return parent_dir .. "/" .. filename
+                    --         end
+                    --
+                    --         return filename
+                    --     end,
                     -- },
                 },
-                lualine_b = {
-                    -- {
-                    --     "diagnostics",
-                    --     color = { fg = "#505050", bg = bgColor },
-                    -- },
-                },
+                lualine_b = {},
                 lualine_c = {},
                 lualine_x = {},
                 lualine_y = {
@@ -137,10 +129,6 @@ return {
             },
             extensions = {},
         })
-
-        -- Move lualine to the top
-        -- vim.o.showtabline = 2
-        -- vim.o.laststatus = 3 -- Ensures statusline is always shown at the top
 
         -- Create highlight groups for tabs
         vim.cmd([[

@@ -62,6 +62,11 @@ opt.ff = "unix"
 -- color column
 -- opt.colorcolumn = "80"
 
+api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = "*.rest",
+    command = "setfiletype rest",
+})
+
 api.nvim_create_autocmd("TextYankPost", {
     desc = "Highlight the yanked region",
     callback = function()

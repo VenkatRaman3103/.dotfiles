@@ -5,6 +5,8 @@ require("venkat.lazy")
 require("venkat.utils.diagnostics").setup()
 require("venkat.utils.colorscheme").colorMyPencils()
 
+vim.lsp.buf_request_timeout = 5000
+
 vim.opt.showtabline = 0
 
 -- local blue = "#3aa8e3"
