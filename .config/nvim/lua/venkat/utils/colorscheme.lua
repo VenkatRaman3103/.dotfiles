@@ -51,12 +51,12 @@ function colorscheme.colorMyPencils()
     -- vim.api.nvim_set_hl(0, "IblIndent", { fg = "#242424" })
     vim.api.nvim_set_hl(0, "IblIndent", { fg = "#333333" })
 
-    -- -- Zen-mode highlights
-    -- vim.api.nvim_set_hl(0, "ZenBg", { bg = bgColor })
+    -- Zen-mode highlights
+    vim.api.nvim_set_hl(0, "ZenBg", { bg = bgColor })
 
-    -- vim.api.nvim_set_hl(0, "Delimiter", { fg = white })
-    -- vim.api.nvim_set_hl(0, "@punctuation.bracket", { fg = white })
-    -- vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = white })
+    vim.api.nvim_set_hl(0, "Delimiter", { fg = white })
+    vim.api.nvim_set_hl(0, "@punctuation.bracket", { fg = white })
+    vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = white })
 
     -- Borders and caret highlights
     -- vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#ffffff", bg = bgColor })
@@ -65,10 +65,10 @@ function colorscheme.colorMyPencils()
     -- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ffffff", bg = bgColor })
 
     -- Borders and caret highlights
-    -- vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#555555", bg = bgColor })
-    -- vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = "#555555", bg = bgColor })
-    -- vim.api.nvim_set_hl(0, "HarpoonBorder", { fg = "#555555", bg = bgColor })
-    -- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#555555", bg = bgColor })
+    vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#555555", bg = bgColor })
+    vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = "#555555", bg = bgColor })
+    vim.api.nvim_set_hl(0, "HarpoonBorder", { fg = "#555555", bg = bgColor })
+    vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#555555", bg = bgColor })
 
     -- set title colors
     vim.api.nvim_set_hl(0, "TelescopeTitle", { fg = "#ffffff", bold = false })
@@ -79,26 +79,24 @@ function colorscheme.colorMyPencils()
     vim.api.nvim_set_hl(0, "HarpoonTitle", { fg = "#ffffff", bold = false })
     vim.api.nvim_set_hl(0, "FloatTitle", { fg = "#ffffff", bold = false })
 
-    -- Notification highlights
-    vim.api.nvim_set_hl(0, "NeogitNotificationInfo", { fg = "#4BB543", bold = true })
-    vim.api.nvim_set_hl(0, "NeogitNotificationWarning", { fg = "#FFB800", bold = true })
-    vim.api.nvim_set_hl(0, "NeogitNotificationError", { fg = "#FF3333", bold = true })
+    -- vim.api.nvim_set_hl(0, "NeogitNotificationInfo", { fg = "#4BB543", bold = true })
+    -- vim.api.nvim_set_hl(0, "NeogitNotificationWarning", { fg = "#FFB800", bold = true })
+    -- vim.api.nvim_set_hl(0, "NeogitNotificationError", { fg = "#FF3333", bold = true })
 
-    -- Diff highlights - consistent colors
-    -- vim.api.nvim_set_hl(0, "NeogitDiffAdd", { fg = "#4BB543" })     -- green text for added lines
-    -- vim.api.nvim_set_hl(0, "NeogitDiffDelete", { fg = "#FF3333" })  -- red text for deleted lines
-    -- vim.api.nvim_set_hl(0, "NeogitDiffContext", { fg = "#ffffff" }) -- white text for context lines
-
-    -- Diff highlights with background for added/deleted lines only
-    -- vim.api.nvim_set_hl(0, "NeogitDiffAddHighlight", { fg = "#4BB543", bg = "#103510" })    -- green background only for added line
-    -- vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", { fg = "#FF3333", bg = "#351010" }) -- red background only for deleted line
-    -- vim.api.nvim_set_hl(0, "NeogitDiffContextHighlight", { fg = "#ffffff" })                -- no background for context
-
-    -- Header highlights
-    -- vim.api.nvim_set_hl(0, "NeogitHunkHeader", { fg = "#ffffff" })                       -- removed background
-    -- vim.api.nvim_set_hl(0, "NeogitHunkHeaderHighlight", { fg = "#ffffff", bold = true }) -- removed background
-
-    -- Other highlights
+    -- neogit specific highlights
+    -- vim.api.nvim_set_hl(0, "NeogitDiffAdd", { bg = "#103510", fg = "#4BB543" })               -- green background for added lines
+    -- vim.api.nvim_set_hl(0, "NeogitDiffDelete", { bg = "#351010", fg = "#FF3333" })            -- red background for deleted lines
+    -- vim.api.nvim_set_hl(0, "NeogitDiffContext", { bg = bgColor, fg = "#ffffff" })             -- context lines
+    -- vim.api.nvim_set_hl(0, "NeogitHunkHeader", { bg = bgColor, fg = "#ffffff", bold = true }) -- hunk headers
+    -- vim.api.nvim_set_hl(0, "NeogitHunkHeaderHighlight", { bg = "#333333", fg = "#ffffff", bold = true })
+    -- vim.api.nvim_set_hl(0, "NeogitDiffAddHighlight", { fg = "#4BB543" })
+    -- vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", { fg = "#FF3333" })
+    --
+    -- vim.api.nvim_set_hl(0, "NeogitDiffAddHighlight", { fg = "#4BB543", bg = bgColor })
+    -- vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", { fg = "#FF3333", bg = bgColor })
+    -- vim.api.nvim_set_hl(0, "NeogitDiffContextHighlight", { bg = "#1e1e1e" })
+    -- vim.api.nvim_set_hl(0, "NeogitHunkHeader", { bg = "#1e1e1e", fg = "#ffffff" })
+    -- vim.api.nvim_set_hl(0, "NeogitHunkHeaderHighlight", { bg = "#2e2e2e", fg = "#ffffff", bold = true })
     -- vim.api.nvim_set_hl(0, "NeogitFoldIcon", { fg = "#ffb86c" })
 
     -- markdown
@@ -111,12 +109,12 @@ function colorscheme.colorMyPencils()
     -- vim.api.nvim_set_hl(0, "RenderMarkdownCode", { bg = "none" })
 
     -- Status highlights for better readability in the Neogit interface
-    -- vim.api.nvim_set_hl(0, "NeogitBranch", { fg = "#4BB543", bold = true })          -- branch name
-    -- vim.api.nvim_set_hl(0, "NeogitRemote", { fg = "#3aa8e3", bold = true })          -- remote
-    -- vim.api.nvim_set_hl(0, "NeogitUntrackedfiles", { fg = "#ff6a00", bold = true })  -- untracked files
-    -- vim.api.nvim_set_hl(0, "NeogitStagedChanges", { fg = "#4BB543", bold = true })   -- staged changes
-    -- vim.api.nvim_set_hl(0, "NeogitUnstagedChanges", { fg = "#ffb86c", bold = true }) -- unstaged changes
-    -- vim.api.nvim_set_hl(0, "NeogitRecentCommits", { fg = "#ffb86c", bold = true })   -- recent commits
+    -- vim.api.nvim_set_hl(0, "NeogitBranch", { fg = "#ffb86c", bold = true }) -- branch name
+    -- vim.api.nvim_set_hl(0, "NeogitRemote", { fg = "#ff6a00", bold = true }) -- remote
+    -- vim.api.nvim_set_hl(0, "NeogitUntrackedfiles", { fg = "#ff6a00" })      -- untracked files
+    -- vim.api.nvim_set_hl(0, "NeogitStagedChanges", { fg = "#4BB543" })       -- staged changes
+    -- vim.api.nvim_set_hl(0, "NeogitUnstagedChanges", { fg = "#FFB800" })     -- unstaged changes
+    -- vim.api.nvim_set_hl(0, "NeogitRecentCommits", { fg = "#ffb86c" })       -- recent commits
 
     -- Section titles in Neogit (e.g., staged changes, untracked files)
     -- vim.api.nvim_set_hl(0, "NeogitSectionTitle", { fg = "#ffffff", bold = true })
@@ -188,8 +186,8 @@ function colorscheme.colorMyPencils()
     -- }
 
     -- Make window separators more visible with a brighter color
-    vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#222222", bg = bgColor })
-    vim.api.nvim_set_hl(0, "IndentBlanklineChar", { fg = redistOrange })
+    -- vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#222222", bg = bgColor })
+    -- vim.api.nvim_set_hl(0, "IndentBlanklineChar", { fg = redistOrange })
 
     -- Add top and bottom border highlights for buffers
     vim.api.nvim_set_hl(0, "BufferLineTop", { fg = "#222222", bg = bgColor })

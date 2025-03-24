@@ -1,4 +1,3 @@
--- local grey = "#a9a9a9";
 local grey = "#a7a7a7";
 local lightGrey = "#666666";
 local white = "#ffffff";
@@ -6,13 +5,11 @@ local white = "#ffffff";
 return {
     "vague2k/vague.nvim",
     vague = "vague",
-
     config = function()
         require("vague").setup({
-            transparent = false, -- don't set background
-
+            transparent = true, -- set to true to remove background
             style = {
-                -- "none" is the same thing as default. But "italic" and "bold" are also valid options
+                -- Style settings unchanged
                 boolean = "none",
                 number = "none",
                 float = "none",
@@ -24,76 +21,57 @@ return {
                 operators = "none",
                 strings = "italic",
                 variables = "none",
-
-                -- keywords
                 keywords = "none",
                 keyword_return = "none",
                 keywords_loop = "none",
                 keywords_label = "none",
                 keywords_exception = "none",
-
-                -- builtin
                 builtin_constants = "none",
                 builtin_functions = "none",
                 builtin_types = "none",
                 builtin_variables = "none",
             },
-
             colors = {
                 bg = "#18191a",
                 fg = white,
-                floatBorder = "#878787",
-                line = lightGrey,
+                floatBorder = grey,
+                border = grey,
+                line = "#363738",
                 comment = lightGrey,
                 builtin = white,
                 func = white,
                 string = grey,
-                number = "#d2a374",
+                number = grey,
                 property = grey,
                 constant = white,
                 parameter = white,
                 visual = "#363738",
-                error = "#d2788c",
+                -- error = "#d2788c",
+                error = grey,
                 warning = "#e6be8c",
                 hint = grey,
                 operator = grey,
                 keyword = grey,
                 type = grey,
-                search = white,
+                search = "#e6be8c",
                 plus = "#8faf77",
                 delta = "#e6be8c",
                 punctuation = white,
             },
-
-            -- Override colors
-            -- colors = {
-            --     bg = "#18191a",
-            --     fg = "#cdcdcd",
-            --     floatBorder = "#878787",
-            --     line = "#282830",
-            --     comment = "#646477",
-            --     builtin = "#bad1ce",
-            --     func = "#be8c8c",
-            --     string = "#deb896",
-            --     number = "#d2a374",
-            --     property = "#c7c7d4",
-            --     constant = "#b4b4ce",
-            --     parameter = "#b9a3ba",
-            --     visual = "#363738",
-            --     error = "#d2788c",
-            --     warning = "#e6be8c",
-            --     hint = "#8ca0dc",
-            --     operator = "#96a3b2",
-            --     keyword = "#7894ab",
-            --     type = "#a1b3b9",
-            --     search = "#465362",
-            --     plus = "#8faf77",
-            --     delta = "#e6be8c",
-            -- },
+            -- You can also add specific border highlight groups if needed
+            -- highlights = {
+            --     -- Add specific border highlight groups
+            --     NormalBorder = { fg = grey, bg = "NONE" },
+            --     FloatBorder = { fg = grey, bg = "NONE" },
+            --     VertSplit = { fg = grey, bg = "NONE" },
+            --     StatusLineBorder = { fg = grey, bg = "NONE" },
+            --     WinSeparator = { fg = grey, bg = "NONE" },
+            -- }
         })
         vim.cmd("colorscheme vague")
     end,
 }
+
 -- return {
 --     'olivercederborg/poimandres.nvim',
 --     lazy = false,

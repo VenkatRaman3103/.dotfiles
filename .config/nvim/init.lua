@@ -9,31 +9,24 @@ vim.lsp.buf_request_timeout = 5000
 
 vim.opt.showtabline = 0
 
--- local blue = "#3aa8e3"
-local blue = "#87adcc"
--- local orange = "#fb8a20"
-local orange = "#de8430"
-local brightGree = "#5ad39d"
-local green = "#70b276"
-local purple = "#7b95ce"
-local white = "#FFFFFF"
-local lightBlue = "#8db4d4"
-local gray = "#5f5f5f"
-local yellow = "#e5c07b"
-local red = "#e06c75"
-local cyan = "#56b6c2"
-local redistOrange = "#c95b20" --#e25303
+local grey = "#a9a9a9";
+local lightGrey = "#666666";
+local white = "#ffffff";
 
 -- -- Delimiters
-vim.api.nvim_set_hl(0, "@tag.delimiter", { fg = gray })
-vim.api.nvim_set_hl(0, "@tag.delimiter.tsx", { fg = gray })
+vim.api.nvim_set_hl(0, "@tag.delimiter", { fg = grey })
+vim.api.nvim_set_hl(0, "@tag.delimiter.tsx", { fg = grey })
 
-vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#545c7e", italic = true })
+-- Add these lines to make delimiters white
+vim.api.nvim_set_hl(0, "Delimiter", { fg = "#ffffff" })
+vim.api.nvim_set_hl(0, "@punctuation.bracket", { fg = "#ffffff" })
+vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = "#ffffff" })
 
---
+-- vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#545c7e", italic = true })
+
 -- -- Attributes like className, id, class
--- vim.api.nvim_set_hl(0, "@attribute", { fg = lightBlue })
--- vim.api.nvim_set_hl(0, "@tag.attribute", { fg = lightBlue })
+vim.api.nvim_set_hl(0, "@attribute", { fg = grey })
+vim.api.nvim_set_hl(0, "@tag.attribute", { fg = grey })
 
 -- require("venkat.utils.colorscheme").syntax()
 -- 4f5258
