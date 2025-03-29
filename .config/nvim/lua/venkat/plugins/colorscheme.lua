@@ -1,6 +1,15 @@
 local grey = "#a7a7a7";
+-- local grey = "#b0b0b0";
 local lightGrey = "#666666";
+local evenLightGrey = "#505050";
 local white = "#ffffff";
+local black = "#191919";
+local oceanGray = "#70787f";
+local silver = "#bec2cb";
+local warnCoral = "#d2a374";  -- Warm coral for numbers
+local mutedTeal = "#5f9ea0";  -- Muted teal for operators
+local softSalmon = "#e67e7e"; -- Soft salmon for booleans
+local sageGreen = "#7ca68c";  -- Muted sage green
 
 return {
     "vague2k/vague.nvim",
@@ -30,6 +39,7 @@ return {
                 builtin_functions = "none",
                 builtin_types = "none",
                 builtin_variables = "none",
+                func = "none",
             },
             colors = {
                 bg = "#18191a",
@@ -39,25 +49,57 @@ return {
                 line = "#363738",
                 comment = lightGrey,
                 builtin = white,
-                func = white,
-                string = grey,
-                number = grey,
+                func = grey,
+                string = sageGreen,
+                -- string = "#7894ab",
+                -- number = "#d2a374",
+                -- number = grey,
+                number = warnCoral,
                 property = grey,
                 constant = white,
                 parameter = white,
                 visual = "#363738",
-                -- error = "#d2788c",
-                error = grey,
+                error = "#d2788c",
+                -- error = grey,
                 warning = "#e6be8c",
-                hint = grey,
+                hint = evenLightGrey,
                 operator = grey,
+                -- keyword = lightGrey,
                 keyword = grey,
                 type = grey,
-                search = "#e6be8c",
+                -- search = "#e6be8c",
+                -- search = grey,
+                search = "#363738",
                 plus = "#8faf77",
                 delta = "#e6be8c",
                 punctuation = white,
             },
+
+            -- Override colors
+            -- colors = {
+            --     bg = "#18191a",
+            --     fg = "#cdcdcd",
+            --     floatBorder = "#878787",
+            --     line = "#282830",
+            --     comment = "#646477",
+            --     builtin = "#bad1ce",
+            --     func = "#be8c8c",
+            --     string = "#deb896",
+            --     number = "#d2a374",
+            --     property = "#c7c7d4",
+            --     constant = "#b4b4ce",
+            --     parameter = "#b9a3ba",
+            --     visual = "#363738",
+            --     error = "#d2788c",
+            --     warning = "#e6be8c",
+            --     hint = "#8ca0dc",
+            --     operator = "#96a3b2",
+            --     keyword = "#7894ab",
+            --     type = "#a1b3b9",
+            --     search = "#465362",
+            --     plus = "#8faf77",
+            --     delta = "#e6be8c",
+            -- },
             -- You can also add specific border highlight groups if needed
             -- highlights = {
             --     -- Add specific border highlight groups
@@ -68,7 +110,7 @@ return {
             --     WinSeparator = { fg = grey, bg = "NONE" },
             -- }
         })
-        vim.cmd("colorscheme vague")
+        -- vim.cmd("colorscheme vague")
     end,
 }
 

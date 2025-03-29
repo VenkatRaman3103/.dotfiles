@@ -9,10 +9,10 @@ opt.number = true
 opt.showmode = false
 
 -- -- tabs & indentation
-opt.tabstop = 4 -- 2 spaces for tabs (prettier default)
+opt.tabstop = 4       -- 2 spaces for tabs (prettier default)
 opt.softtabstop = 4
-opt.shiftwidth = 4 -- 2 spaces for indent width
-opt.expandtab = true -- expand tab to spaces
+opt.shiftwidth = 4    -- 2 spaces for indent width
+opt.expandtab = true  -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 
 --line wrapping
@@ -20,7 +20,7 @@ opt.wrap = false -- disable line wrapping
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
-opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
+opt.smartcase = true  -- if you include mixed case in your search, assumes you want case-sensitive
 
 -- cursor line
 opt.cursorline = true -- highlight the current cursor line
@@ -57,6 +57,9 @@ opt.incsearch = true
 opt.scrolloff = 8
 
 opt.updatetime = 50
+
+opt.spelllang = 'en_us'
+opt.spell = true
 
 opt.ff = "unix"
 -- color column

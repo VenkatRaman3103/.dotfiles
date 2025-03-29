@@ -2,6 +2,7 @@
 
 # leap.nvim
 
+
 // something else
 
 Leap is a general-purpose motion plugin for Neovim, building and improving

@@ -92,7 +92,7 @@ return {
             layout = {
                 -- preview = "main",
                 preset = "ivy",
-                layout = { -- the layout itself
+                layout = {     -- the layout itself
                     width = 0, -- 0 is max
                     height = 0.5,
                 },
@@ -108,7 +108,7 @@ return {
             desc = "Goto Definition",
         },
         {
-            "<leader>sk",
+            "<leader>fk",
             function()
                 Snacks.picker.keymaps()
             end,
@@ -144,14 +144,14 @@ return {
             desc = "Goto T[y]pe Definition",
         },
         {
-            "<leader>ss",
+            "<leader>fs",
             function()
                 Snacks.picker.lsp_symbols()
             end,
             desc = "LSP Symbols",
         },
         {
-            "<leader>sS",
+            "<leader>fS",
             function()
                 Snacks.picker.lsp_workspace_symbols()
             end,

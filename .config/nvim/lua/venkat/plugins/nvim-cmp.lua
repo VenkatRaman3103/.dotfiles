@@ -63,7 +63,7 @@ return {
                 mapping = {
                     ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "c" }),
                     ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "c" }),
-                    ["<C-e>"] = cmp.mapping.abort(), -- Close the completion menu
+                    ["<C-e>"] = cmp.mapping.abort(),                   -- Close the completion menu
                     ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Confirm the selected item
                 },
                 sources = {
@@ -75,7 +75,7 @@ return {
                 mapping = {
                     ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "c" }),
                     ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "c" }),
-                    ["<C-e>"] = cmp.mapping.abort(), -- Close the completion menu
+                    ["<C-e>"] = cmp.mapping.abort(),                   -- Close the completion menu
                     ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Confirm the selected item
                 },
                 sources = {
@@ -93,5 +93,6 @@ return {
             lspconfig.cssls.setup({ capabilities = capabilities })
             lspconfig.html.setup({ capabilities = capabilities })
         end,
+
     },
 }

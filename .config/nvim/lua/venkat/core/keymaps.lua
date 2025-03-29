@@ -50,8 +50,8 @@ keymap.set("n", "[t", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
 keymap.set("n", "<leader>tm", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
 -- Buffers management
-keymap.set("n", "]j", "<cmd>bnext<CR>", { desc = "Got to next buffer" })
-keymap.set("n", "[j", "<cmd>bprev<CR>", { desc = "Got to previous buffer" })
+keymap.set("n", "<S-h>", "<cmd>bnext<CR>", { desc = "Got to next buffer" })
+keymap.set("n", "<S-l>", "<cmd>bprev<CR>", { desc = "Got to previous buffer" })
 
 -- Function to navigate to a specific buffer
 local function goto_buffer(n)
@@ -90,7 +90,7 @@ keymap.set("n", "<leader><CR>", ":source ~/.config/nvim/init.lua<CR>")
 
 -- closing all buffers
 vim.keymap.set("n", "<leader>bd", function()
-    local current_buf = vim.fn.bufnr("%") -- Get the current buffer number
+    local current_buf = vim.fn.bufnr("%")    -- Get the current buffer number
     local buffers = vim.api.nvim_list_bufs() -- List all buffers
 
     for _, buf in ipairs(buffers) do

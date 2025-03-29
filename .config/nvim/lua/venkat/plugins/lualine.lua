@@ -1,11 +1,15 @@
 return {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    event = "VeryLazy",
     config = function()
-        local bgColor = ""
+        local bgColor = "#060606" -- Dark gray background color
 
         -- Create global table for storing tab names
         _G.custom_tab_names = _G.custom_tab_names or {}
+
+        -- Create global variable for active Harpoon list
+        _G.active_harpoon_list = _G.active_harpoon_list or nil
 
         -- Tab renaming functionality
         local function rename_tab()
@@ -21,6 +25,15 @@ return {
         -- Function to get tab name
         local function get_tab_name(nr)
             return _G.custom_tab_names[nr] or tostring(nr)
+        end
+
+        -- Function to get active Harpoon list name
+        local function get_active_harpoon_list()
+            if _G.active_harpoon_list then
+                return "" .. _G.active_harpoon_list
+            else
+                return ""
+            end
         end
 
         -- Create the command for tab renaming
@@ -54,7 +67,7 @@ return {
                             alternate_file = "",
                             directory = "",
                         },
-                        path = 1, -- 0: Just filename, 1: Relative path, 2: Absolute path
+                        path = 1,             -- 0: Just filename, 1: Relative path, 2: Absolute path
                         shorting_target = 40, -- Shorten if too long
                         show_filename_only = false,
                         hide_filename_extension = true,
@@ -64,46 +77,27 @@ return {
                             inactive = { fg = "#505050", bg = bgColor },
                         },
                     },
-                    -- {
-                    --     "buffers",
-                    --     symbols = {
-                    --         modified = " ✦",
-                    --         alternate_file = "",
-                    --         directory = "",
-                    --     },
-                    --     path = 0,
-                    --     shorting_target = 120,
-                    --     file_status = true,
-                    --     show_filename_only = true,
-                    --     hide_filename_extension = false,
-                    --     show_modified_status = true,
-                    --     buffers_color = {
-                    --         active = { fg = "#ffffff", bg = bgColor },
-                    --         inactive = { fg = "#505050", bg = bgColor },
-                    --     },
-                    --     icons_enabled = false,
-                    --     fmt = function(name, buf)
-                    --         local full_path = vim.api.nvim_buf_get_name(buf.bufnr)
-                    --
-                    --         local parent_dir = vim.fn.fnamemodify(full_path, ":h:t")
-                    --         local filename = vim.fn.fnamemodify(full_path, ":t")
-                    --
-                    --         if parent_dir == "nvim" then
-                    --             return "./" .. filename
-                    --         end
-                    --
-                    --         if parent_dir ~= "." and parent_dir ~= "" then
-                    --             return parent_dir .. "/" .. filename
-                    --         end
-                    --
-                    --         return filename
-                    --     end,
-                    -- },
                 },
-                lualine_b = {},
+                lualine_b = {
+
+                    {
+                        "branch",
+                        color = { fg = "#505050", bg = bgColor },
+                        icon = { "󰘬", align = "left", color = { fg = "#505050" } },
+                    },
+                },
                 lualine_c = {},
-                lualine_x = {},
+                lualine_x = {
+                },
                 lualine_y = {
+
+                    {
+                        get_active_harpoon_list,
+                        color = { fg = "#505050", bg = bgColor }, -- Green color for the Harpoon list
+                    },
+                },
+                lualine_z = {
+
                     {
                         function()
                             local result = {}
@@ -119,23 +113,16 @@ return {
                         end,
                     },
                 },
-                lualine_z = {
-                    {
-                        "branch",
-                        color = { fg = "#505050", bg = bgColor },
-                        icon = { "󰘬", align = "left", color = { fg = "#505050" } },
-                    },
-                },
             },
             extensions = {},
         })
 
         -- Create highlight groups for tabs
         vim.cmd([[
-            highlight LualineTabActive guifg=#ffffff guibg=NONE
-            highlight LualineTabInactive guifg=#505050 guibg=NONE
-            highlight LualineSeparator guifg=#0e0e0e guibg=NONE
-            highlight LualineBranch guifg=#808080 guibg=NONE
+            highlight LualineTabActive guifg=#ffffff guibg=#111111
+            highlight LualineTabInactive guifg=#505050 guibg=#111111
+            highlight LualineSeparator guifg=#0e0e0e guibg=#111111
+            highlight LualineBranch guifg=#808080 guibg=#111111
         ]])
     end,
 }

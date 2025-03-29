@@ -37,18 +37,18 @@ return {
             end
 
             -- Navigation
-            map("n", "]h", gs.next_hunk, "Next git hunk")
-            map("n", "[h", gs.prev_hunk, "Previous git hunk")
+            -- map("n", "]h", gs.next_hunk, "Next git hunk")
+            -- map("n", "[h", gs.prev_hunk, "Previous git hunk")
 
             -- Git actions with leader g (git)
-            map("n", "<leader>hs", gs.stage_hunk, "Git stage hunk")
-            map("n", "<leader>hr", gs.reset_hunk, "Git reset hunk")
-            map("v", "<leader>hs", function()
-                gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-            end, "Git stage selected hunk")
-            map("v", "<leader>hr", function()
-                gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-            end, "Git reset selected hunk")
+            -- map("n", "<leader>hs", gs.stage_hunk, "Git stage hunk")
+            -- map("n", "<leader>hr", gs.reset_hunk, "Git reset hunk")
+            -- map("v", "<leader>hs", function()
+            --     gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+            -- end, "Git stage selected hunk")
+            -- map("v", "<leader>hr", function()
+            --     gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+            -- end, "Git reset selected hunk")
             map("n", "<leader>gS", gs.stage_buffer, "Git stage entire buffer")
             map("n", "<leader>gR", gs.reset_buffer, "Git reset entire buffer")
             map("n", "<leader>hu", gs.undo_stage_hunk, "Git undo stage hunk")
@@ -78,7 +78,7 @@ return {
             highlight GitSignsAdd    guifg=#85c379 guibg=NONE
             highlight GitSignsChange guifg=#e5c07b guibg=NONE
             highlight GitSignsDelete guifg=#e06c75 guibg=NONE
-            
+
             " highlight GitSignsAddInline    guibg=#2d3828
             " highlight GitSignsChangeInline guibg=#2d2e28
             " highlight GitSignsDeleteInline guibg=#2d2828
