@@ -72,10 +72,12 @@ return {
                         show_filename_only = false,
                         hide_filename_extension = true,
                         show_modified_status = true,
-                        buffers_color = {
-                            active = { fg = "#ffffff", bg = bgColor },
-                            inactive = { fg = "#505050", bg = bgColor },
-                        },
+                        -- buffers_color = {
+                        --     active = { fg = "#ffffff", bg = bgColor },
+                        --     inactive = { fg = "#505050", bg = bgColor },
+                        -- },
+
+                        color = { fg = "#a7a7a7", bg = "#111111" },
                     },
                 },
                 lualine_b = {

@@ -146,6 +146,9 @@ keymap.set("n", "g>", "`>", { desc = "To end of last visual selection" })
 keymap.set("n", "g/", ":%s/", { desc = "Start substitute command" })
 keymap.set("n", "g?", ":%s/<C-r><C-w>", { desc = "Substitute word under cursor" })
 
+keymap.set("v", "g/", ":s/", { desc = "Start substitute command" })
+keymap.set("v", "g?", ":s/<C-r><C-w>", { desc = "Substitute word under cursor" })
+
 -- Resize window
 keymap.set("n", "<A-Up>", ":resize +2<CR>", { desc = "Increase window height" })
 keymap.set("n", "<A-Down>", ":resize -2<CR>", { desc = "Decrease window height" })

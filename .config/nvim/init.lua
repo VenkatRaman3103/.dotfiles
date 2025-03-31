@@ -10,6 +10,7 @@ vim.lsp.buf_request_timeout = 5000
 
 vim.opt.showtabline = 0
 
+-- local grey = "#a9a9a9";
 local grey = "#a9a9a9";
 local lightGrey = "#666666";
 local white = "#ffffff";
@@ -37,7 +38,7 @@ vim.api.nvim_set_hl(0, "@tag.attribute", { fg = grey })
 -- 4f5258
 -- require("command-completion").setup()
 
--- vim.o.cmdheight = 0
+-- vim.o.cmdheight = 1
 -- vim.opt.updatetime = 300
 vim.opt.conceallevel = 1 -- or 2
 
@@ -67,7 +68,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 
 vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#a7a7a7", bg = "NONE" })  -- General floating windows
-vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#a7a7a7", bg = "NONE" }) -- Window separators
+-- vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#a7a7a7", bg = "NONE" }) -- Window separators
 vim.api.nvim_set_hl(0, "NormalBorder", { fg = "#a7a7a7", bg = "NONE" }) -- Normal floating borders
 vim.api.nvim_set_hl(0, "VertSplit", { fg = "#a7a7a7", bg = "NONE" })    -- Split lines
 
@@ -76,3 +77,5 @@ vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "NONE", bg = "#a7a7a7" })  -- 🔹 
 vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#505050", fg = "NONE" })     -- Selected item in the popup
 vim.api.nvim_set_hl(0, "PmenuThumb", { bg = "NONE" })                   -- Scrollbar color in completion popup
 vim.api.nvim_set_hl(0, "CmpBorder", { fg = "#505050", bg = "NONE" })
+
+vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#808080" }) -- Adjust grey shade if needed

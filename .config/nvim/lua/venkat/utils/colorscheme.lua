@@ -153,10 +153,13 @@ function colorscheme.colorMyPencils()
 
     -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1a1a1a" })
     vim.api.nvim_set_hl(0, "CursorLine", { bg = bgColor })
-    vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "", bg = "" })
+    -- vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "", bg = "" })
+    vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#666666", bg = "" })
 
     -- Inactive lines with grayed-out numbers
-    vim.api.nvim_set_hl(0, "LineNr", { fg = "#505050", bg = bgColor })
+    -- vim.api.nvim_set_hl(0, "LineNr", { fg = "#505050", bg = bgColor })
+    -- vim.api.nvim_set_hl(0, "LineNr", { fg = "#191919", bg = bgColor })
+    vim.api.nvim_set_hl(0, "LineNr", { fg = "#222222", bg = bgColor })
     vim.api.nvim_set_hl(0, "NormalNC", { bg = bgColor, fg = "none" })
 
     -- Custom settings for completion menu
@@ -385,6 +388,7 @@ function colorscheme.syntax()
     vim.api.nvim_set_hl(0, "Hint", { fg = evenLightGrey })
     vim.api.nvim_set_hl(0, "Info", { fg = mutedTeal })
 
+
     -- LSP semantic tokens support (newer treesitter integration)
     -- These can override treesitter highlighting in newer Neovim versions
     vim.api.nvim_set_hl(0, "@lsp.type.function", { fg = white })
@@ -393,6 +397,8 @@ function colorscheme.syntax()
     vim.api.nvim_set_hl(0, "@lsp.type.variable", { fg = white })
     vim.api.nvim_set_hl(0, "@lsp.type.parameter", { fg = white })
     vim.api.nvim_set_hl(0, "@lsp.type.keyword", { fg = grey })
+    -- vim.api.nvim_set_hl(0, "@lsp.type.function.javascript", { fg = warnCoral })
+    vim.api.nvim_set_hl(0, "@lsp.mod.defaultLibrary", { fg = grey })
 
     -- vim.api.nvim_set_hl(0, "Normal", { fg = white, bg = black })
 end

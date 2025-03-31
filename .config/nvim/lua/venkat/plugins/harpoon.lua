@@ -29,6 +29,11 @@ return {
         -- Basic Harpoon navigation
         vim.keymap.set("n", "<leader>ho", ui.toggle_quick_menu, { desc = "Open Harpoon Menu" })
 
+        -- Utility function to normalize paths by replacing dashes with underscores
+        local function normalize_path(path)
+            return path:gsub("%-", "_")
+        end
+
         -- Get current project's root directory (cached)
         local function get_project_root()
             -- Use cached value if available
@@ -40,12 +45,16 @@ return {
             -- Try to use git root if available
             local git_root = vim.fn.system("git rev-parse --show-toplevel 2>/dev/null"):gsub("%s+$", "")
             if git_root ~= "" and vim.v.shell_error == 0 then
+                -- Format root folder name replacing "-" with "_"
+                git_root = normalize_path(git_root)
                 _G.harpoon_state.project_root_cache = git_root
                 return git_root
             end
-
             -- Fallback to current working directory
-            _G.harpoon_state.project_root_cache = vim.fn.getcwd()
+            local cwd = vim.fn.getcwd()
+            -- Format root folder name replacing "-" with "_"
+            cwd = normalize_path(cwd)
+            _G.harpoon_state.project_root_cache = cwd
             return _G.harpoon_state.project_root_cache
         end
 
@@ -57,8 +66,32 @@ return {
             end
 
             local project_path = get_project_root()
-            -- Use just the last directory name as identifier for better readability
-            local project_name = vim.fn.fnamemodify(project_path, ":t")
+
+            -- Try to use a consistent project identifier
+            local project_name = nil
+
+            -- Option 1: Check if we're in a git repo and use the repo name
+            local git_origin = vim.fn.system("git config --get remote.origin.url 2>/dev/null"):gsub("%s+$", "")
+            if git_origin ~= "" and vim.v.shell_error == 0 then
+                -- Extract repo name from git URL
+                project_name = git_origin:match("([^/]+)%.git$") or git_origin:match("[^/]+$")
+            end
+
+            -- Option 2: If no git remote or couldn't extract name, use parent directory + current directory
+            if not project_name or project_name == "" then
+                local parent_dir = vim.fn.fnamemodify(project_path, ":h:t")
+                local current_dir = vim.fn.fnamemodify(project_path, ":t")
+                project_name = parent_dir .. "-" .. current_dir
+            end
+
+            -- Fallback to just the directory name if all else fails
+            if not project_name or project_name == "" then
+                project_name = vim.fn.fnamemodify(project_path, ":t")
+            end
+
+            -- Always normalize the project name by replacing dashes with underscores
+            project_name = normalize_path(project_name)
+
             _G.harpoon_state.project_id_cache = project_name
             return project_name
         end
@@ -83,19 +116,25 @@ return {
                 vim.fn.mkdir(save_dir, "p")
             end
 
-            -- Add project identifier to the save name, but check for redundancy
+            -- Make sure name is normalized
+            name = normalize_path(name)
+
+            -- Add project identifier to the save name with consistent format
             local project_id = get_project_id()
             local display_name = name
 
-            -- If name already starts with project_id, don't duplicate it
-            if not name:match("^" .. project_id) then
-                name = project_id .. "_" .. name
-            end
+            -- Clean up the name to avoid potential duplications
+            -- Remove any project_id prefix if already present
+            name = name:gsub("^" .. project_id .. "_", "")
 
-            local full_name = project_id .. "--" .. name
+            -- Use simple consistent format: project_id_name
+            local file_name = project_id .. "_" .. name
 
-            -- Save to file
-            local file_path = save_dir .. "/" .. full_name .. ".json"
+            -- Use consistent file path
+            local file_path = save_dir .. "/" .. file_name .. ".json"
+
+            debug_log("Saving to path: " .. file_path)
+
             local file = io.open(file_path, "w")
             if file then
                 file:write(vim.fn.json_encode(marks))
@@ -117,7 +156,16 @@ return {
 
         local function load_harpoon_list(full_name, display_name)
             debug_log("Loading list: " .. display_name)
+
+            -- Ensure both names are normalized
+            full_name = normalize_path(full_name)
+            display_name = normalize_path(display_name)
+
             local file_path = vim.fn.stdpath("data") .. "/harpoon_lists/" .. full_name .. ".json"
+
+            -- For debugging
+            debug_log("Looking for file at: " .. file_path)
+
             local file = io.open(file_path, "r")
             if file then
                 local content = file:read("*a")
@@ -134,12 +182,15 @@ return {
                 end
 
                 -- Set active Harpoon list name for lualine compatibility
+                -- Make sure we're using the cleaned display name
                 _G.active_harpoon_list = display_name
 
                 -- Defer status redraw
                 vim.defer_fn(function() vim.cmd("redrawstatus") end, 1)
 
                 return true
+            else
+                debug_log("Failed to open file: " .. file_path)
             end
             return false
         end
@@ -147,6 +198,11 @@ return {
         -- Delete a harpoon list file
         local function delete_harpoon_list(full_name, display_name)
             debug_log("Deleting list: " .. display_name)
+
+            -- Ensure both names are normalized
+            full_name = normalize_path(full_name)
+            display_name = normalize_path(display_name)
+
             local file_path = vim.fn.stdpath("data") .. "/harpoon_lists/" .. full_name .. ".json"
             local result = os.remove(file_path)
 
@@ -183,25 +239,21 @@ return {
             local files = vim.fn.readdir(save_dir)
             local lists = {}
 
+            debug_log("Project ID: " .. project_id)
+            debug_log("Found " .. #files .. " files in harpoon_lists directory")
+
+            -- Simplified matching - only match exact project ID prefix
             for _, file in ipairs(files) do
                 if file:match("%.json$") then
                     local list_name = file:gsub("%.json$", "")
 
-                    -- Check if this list belongs to the current project using pattern
-                    if list_name:match("^" .. project_id .. "%-%-") then
-                        local display_name = list_name:gsub("^" .. project_id .. "%-%-", "")
+                    -- Normalize the list name
+                    list_name = normalize_path(list_name)
 
-                        -- Further clean up display name to remove redundant project name
-                        display_name = display_name:gsub("^" .. project_id .. "[_%-]", "")
-
-                        -- Ensure numeric suffix is preserved if present
-                        local num_suffix = display_name:match("_(%d+)$")
-                        if num_suffix then
-                            -- Only keep the number part for cleaner display
-                            if display_name:match("^" .. project_id .. "_" .. num_suffix .. "$") then
-                                display_name = num_suffix
-                            end
-                        end
+                    -- Only match files that start with project_id followed by underscore
+                    if list_name:match("^" .. project_id .. "_") then
+                        -- Extract display name - get everything after the project_id_
+                        local display_name = list_name:gsub("^" .. project_id .. "_", "")
 
                         table.insert(lists, {
                             full_name = list_name,
@@ -213,8 +265,8 @@ return {
 
             -- Sort the lists
             table.sort(lists, function(a, b)
-                local a_num = tonumber(a.display_name:match("_(%d+)$") or a.display_name)
-                local b_num = tonumber(b.display_name:match("_(%d+)$") or b.display_name)
+                local a_num = tonumber(a.display_name:match("^(%d+)$"))
+                local b_num = tonumber(b.display_name:match("^(%d+)$"))
 
                 if a_num and b_num then
                     return a_num < b_num
@@ -231,13 +283,13 @@ return {
             _G.harpoon_state.project_lists_cache = lists
             return lists
         end
-        -- Find the highest numbered list for the current project
+
         local function find_highest_list_number()
             local lists = get_project_lists()
             local highest = 0
 
             for _, list in ipairs(lists) do
-                local num = tonumber(list.display_name:match("_(%d+)$"))
+                local num = tonumber(list.display_name:match("_?(%d+)$"))
                 if num and num > highest then
                     highest = num
                 end
@@ -305,6 +357,8 @@ return {
                     -- Ask for custom name
                     local custom_name = vim.fn.input("Enter custom list name: ")
                     if custom_name ~= "" then
+                        -- Normalize custom name
+                        custom_name = normalize_path(custom_name)
                         save_harpoon_list(custom_name)
                         vim.notify("Created new empty list '" .. custom_name .. "'")
                     else
@@ -385,13 +439,16 @@ return {
             local current_name = _G.active_harpoon_list
             local new_name = vim.fn.input("Rename list '" .. current_name .. "' to: ")
             if new_name ~= "" then
+                -- Normalize new name
+                new_name = normalize_path(new_name)
+
                 -- Get current list content
                 local harpoon_module = require("harpoon")
                 local marks = harpoon_module.get_mark_config().marks
 
-                -- Create the full names
+                -- Create the full names - use consistent underscore format
                 local project_id = get_project_id()
-                local old_full_name = project_id .. "--" .. current_name
+                local old_full_name = project_id .. "_" .. current_name
 
                 -- Delete old list
                 delete_harpoon_list(old_full_name, current_name)
@@ -410,6 +467,9 @@ return {
 
                 if new_name == "" then
                     new_name = default_name
+                else
+                    -- Normalize new name
+                    new_name = normalize_path(new_name)
                 end
 
                 local success, project_id = save_harpoon_list(new_name)
@@ -432,6 +492,8 @@ return {
                     elseif choice and choice:match("Save as new") then
                         local new_name = vim.fn.input("Save Harpoon list as: ")
                         if new_name ~= "" then
+                            -- Normalize new name
+                            new_name = normalize_path(new_name)
                             local success, project_id = save_harpoon_list(new_name)
                             if success then
                                 vim.notify("Harpoon list saved as '" ..
@@ -530,7 +592,7 @@ return {
                 elseif choice == "Create New Empty List" then
                     vim.cmd("normal <leader>hn")
                 elseif choice == "Rename Current List" then
-                    vim.cmd("normal <leader>hn")
+                    vim.cmd("normal <leader>hr")
                 end
             end)
         end, { desc = "Harpoon List Management" })
@@ -578,5 +640,173 @@ return {
             debug_log("Performing deferred initialization")
             initialize_default_list()
         end, 200) -- 200ms after startup
-    end,
-}
+
+        -- Command to show current project identification info
+        vim.api.nvim_create_user_command("HarpoonProjectInfo", function()
+            local project_root = get_project_root()
+            local project_id = get_project_id()
+            local lists = get_project_lists()
+            local lists_str = ""
+
+            for i, list in ipairs(lists) do
+                lists_str = lists_str .. "\n  " .. i .. ". " .. list.display_name .. " (full: " .. list.full_name .. ")"
+            end
+
+            local info = "Harpoon Project Info:\n" ..
+                "Project Root: " .. project_root .. "\n" ..
+                "Project ID: " .. project_id .. "\n" ..
+                "Active List: " .. (_G.active_harpoon_list or "none") .. "\n" ..
+                "Available Lists:" .. (lists_str ~= "" and lists_str or " none")
+
+            vim.notify(info, vim.log.levels.INFO, { title = "Harpoon Debug" })
+        end, {})
+
+        vim.api.nvim_create_user_command("HarpoonListFiles", function()
+            local save_dir = vim.fn.stdpath("data") .. "/harpoon_lists"
+            if vim.fn.isdirectory(save_dir) == 0 then
+                vim.notify("Harpoon lists directory does not exist", vim.log.levels.WARN)
+                return
+            end
+
+            local files = vim.fn.readdir(save_dir)
+            local file_list = "Harpoon list files in " .. save_dir .. ":\n"
+
+            for i, file in ipairs(files) do
+                file_list = file_list .. "  " .. i .. ". " .. file .. "\n"
+            end
+
+            vim.notify(file_list, vim.log.levels.INFO, { title = "Harpoon Files" })
+        end, {})
+
+        -- Comprehensive fix for all file names
+        vim.api.nvim_create_user_command("HarpoonFixFileNames", function()
+            local save_dir = vim.fn.stdpath("data") .. "/harpoon_lists"
+            if vim.fn.isdirectory(save_dir) == 0 then
+                vim.notify("Harpoon lists directory does not exist", vim.log.levels.WARN)
+                return
+            end
+
+            local files = vim.fn.readdir(save_dir)
+            local renamed = 0
+
+            for _, file in ipairs(files) do
+                if file:match("%.json$") then
+                    local filename = file:gsub("%.json$", "")
+                    local normalized = normalize_path(filename)
+
+                    -- Replace any dashes with underscores in the filename
+                    if normalized ~= filename then
+                        local old_path = save_dir .. "/" .. file
+                        local new_path = save_dir .. "/" .. normalized .. ".json"
+
+                        if vim.fn.rename(old_path, new_path) == 0 then
+                            renamed = renamed + 1
+                        end
+                    end
+
+                    -- Check for inconsistent separators (like -- vs _)
+                    local fixed_name = normalized:gsub("%-%-", "_")
+
+                    -- Extract project ID (first part before any separator)
+                    local project_id = fixed_name:match("^([^_%-]+)")
+
+                    if project_id then
+                        -- Handle cases with double project IDs
+                        fixed_name = fixed_name:gsub("^" .. project_id .. "_" .. project_id .. "_", project_id .. "_")
+                        -- Fix any other inconsistent format
+                        fixed_name = fixed_name:gsub(project_id .. "%-%-", project_id .. "_")
+
+                        if fixed_name ~= normalized then
+                            local old_path = save_dir .. "/" .. normalized .. ".json"
+                            if vim.fn.filereadable(old_path) == 1 then
+                                local new_path = save_dir .. "/" .. fixed_name .. ".json"
+                                if vim.fn.rename(old_path, new_path) == 0 then
+                                    renamed = renamed + 1
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+
+            vim.notify("Fixed " .. renamed .. " inconsistent Harpoon file names", vim.log.levels.INFO)
+
+            -- Invalidate cache after cleanup
+            _G.harpoon_state.project_lists_cache = nil
+        end, {})
+
+        -- Function to clean up and normalize all lists
+        local function cleanup_harpoon_lists()
+            local save_dir = vim.fn.stdpath("data") .. "/harpoon_lists"
+            if vim.fn.isdirectory(save_dir) == 0 then
+                vim.notify("Harpoon lists directory does not exist", vim.log.levels.WARN)
+                return
+            end
+
+            -- Invalidate caches first
+            _G.harpoon_state.project_lists_cache = nil
+            _G.harpoon_state.project_root_cache = nil
+            _G.harpoon_state.project_id_cache = nil
+
+            -- Call the fix command
+            vim.cmd("HarpoonFixFileNames")
+
+            -- Reload the current list if it exists
+            if _G.active_harpoon_list then
+                local project_id = get_project_id()
+                local full_name = project_id .. "_" .. _G.active_harpoon_list
+                load_harpoon_list(full_name, _G.active_harpoon_list)
+            end
+
+            vim.notify("Harpoon lists have been cleaned up and normalized", vim.log.levels.INFO)
+        end
+
+        -- Create command for cleanup
+        vim.api.nvim_create_user_command("HarpoonCleanup", function()
+            cleanup_harpoon_lists()
+        end, {})
+
+        -- Status line component for use with lualine
+        -- Add to lualine sections with: lualine_x = {..., require('harpoon-config').lualine_component, ...}
+        local M = {}
+
+        M.lualine_component = function()
+            if _G.active_harpoon_list then
+                -- Count current marks
+                local harpoon_module = require("harpoon")
+                local marks = harpoon_module.get_mark_config().marks
+                local count = #marks
+
+                return "⚓ " .. _G.active_harpoon_list .. " (" .. count .. ")"
+            else
+                return "⚓ No List"
+            end
+        end
+
+        -- Reset cache when navigating to a new buffer
+        vim.api.nvim_create_autocmd({ "BufEnter" }, {
+            callback = function()
+                -- Only invalidate root/project caches if we're in a different directory
+                local current_dir = vim.fn.getcwd()
+                if _G.harpoon_state.last_cwd ~= current_dir then
+                    _G.harpoon_state.last_cwd = current_dir
+                    _G.harpoon_state.project_root_cache = nil
+                    _G.harpoon_state.project_id_cache = nil
+                    _G.harpoon_state.project_lists_cache = nil
+
+                    -- Re-initialize for the new project
+                    vim.defer_fn(initialize_default_list, 100)
+                end
+            end
+        })
+
+        -- Hide the component when no list is active
+        _G.active_harpoon_list = nil
+
+        -- Automatically run cleanup on startup (can be removed if causing issues)
+        vim.defer_fn(cleanup_harpoon_lists, 1000)
+
+        -- Export module for use elsewhere
+        return M
+    end
+} -- Function to clean up and normalize all lists

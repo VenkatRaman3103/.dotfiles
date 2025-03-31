@@ -82,15 +82,21 @@ api.nvim_create_user_command("ClearMarks", function()
 end, {})
 
 api.nvim_create_user_command("GetFullPath", function()
-    print(vim.fn.expand("%:p"))
+    local path = vim.fn.expand("%:p") -- Get the full file path
+    vim.fn.setreg("+", path)          -- Set it to the system clipboard register
+    print(path)                       -- Optional confirmation message
 end, {})
 
 api.nvim_create_user_command("GetDirectoryPath", function()
-    print(vim.fn.expand("%:p:h"))
+    local path = vim.fn.expand("%:p:h")
+    vim.fn.setreg("+", path)
+    print(path)
 end, {})
 
 api.nvim_create_user_command("GetFilePath", function()
-    print(vim.fn.expand("%"))
+    local path = vim.fn.expand("%")
+    vim.fn.setreg("+", path)
+    print(path)
 end, {})
 
 api.nvim_create_autocmd("BufWritePost", {
@@ -101,5 +107,9 @@ api.nvim_create_autocmd("BufWritePost", {
         end, 2000)
     end,
 })
+
+api.nvim_create_user_command("ReloadConfig", function()
+    vim.cmd("source ~/Code/.dotfiles/.config/nvim/init.lua")
+end, {})
 
 opt.report = 9999
