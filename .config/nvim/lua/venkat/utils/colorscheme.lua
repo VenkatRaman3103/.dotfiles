@@ -310,13 +310,18 @@ function colorscheme.syntax()
     -- Custom colors for syntax highlighting - non-treesitter fallbacks
     vim.api.nvim_set_hl(0, "Keyword", { fg = grey, underline = false })
     -- vim.api.nvim_set_hl(0, "Function", { fg = white, underline = false }) -- Changed to warnCoral
+    -- vim.api.nvim_set_hl(0, "String", { fg = sageGreen })
     vim.api.nvim_set_hl(0, "String", { fg = sageGreen })
     vim.api.nvim_set_hl(0, "Number", { fg = warnCoral })
     vim.api.nvim_set_hl(0, "Boolean", { fg = warnCoral })
     vim.api.nvim_set_hl(0, "Identifier", { fg = white, underline = false })
     vim.api.nvim_set_hl(0, "Type", { fg = grey })
     vim.api.nvim_set_hl(0, "Special", { fg = grey })
+    vim.api.nvim_set_hl(0, "restKeyword", { fg = grey })
+    vim.api.nvim_set_hl(0, "restComment", { fg = lightGrey })
     vim.api.nvim_set_hl(0, "Statement", { fg = grey })
+    vim.api.nvim_set_hl(0, "yamlBlockMappingKey", { fg = grey })
+
     -- vim.api.nvim_set_hl(0, "Normal", { fg = white, bg = black })
 
     -- Additional language-specific highlighting

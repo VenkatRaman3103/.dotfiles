@@ -84,7 +84,7 @@ return {
         words = { enabled = false },
         styles = {
             notification = {
-                -- wo = { wrap = true } -- Wrap notifications
+                wo = { wrap = true } -- Wrap notifications
             },
         },
         picker = {
@@ -92,10 +92,15 @@ return {
             layout = {
                 -- preview = "main",
                 preset = "ivy",
+                -- preset = "default",
                 layout = {     -- the layout itself
                     width = 0, -- 0 is max
                     height = 0.5,
+                    -- position = "float",
+                    -- border = "none",
+                    -- preview = { width = 0.8 }
                 },
+
             },
         },
     },

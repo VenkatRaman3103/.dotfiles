@@ -10,6 +10,9 @@ return {
             { "rafamadriz/friendly-snippets" },
         },
         config = function()
+            -- local bg = "#090909"
+            local bg = "#101010"
+
             local cmp_ok, cmp = pcall(require, "cmp")
             if not cmp_ok then
                 return
@@ -19,7 +22,9 @@ return {
                 return
             end
 
-            vim.api.nvim_set_hl(0, "CmpBorder", { fg = "#555555", bg = "" })
+            -- Define custom highlight groups for the completion menu
+            vim.api.nvim_set_hl(0, "CmpNormal", { bg = bg })    -- Dark background (adjust the color to your preference)
+            vim.api.nvim_set_hl(0, "CmpDocNormal", { bg = bg }) -- Same color for documentation
 
             require("luasnip.loaders.from_vscode").lazy_load()
             cmp.setup({
@@ -49,25 +54,13 @@ return {
                 }),
                 window = {
                     completion = {
-                        border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-                        winhighlight = "Normal:Normal,FloatBorder:CmpBorder,CursorLine:PmenuSel,Search:None",
+                        -- No borders, but custom background color
+                        winhighlight = "Normal:CmpNormal,CursorLine:PmenuSel,Search:None",
                     },
                     documentation = {
-                        border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-                        winhighlight = "Normal:Normal,FloatBorder:CmpBorder,CursorLine:PmenuSel,Search:None",
+                        -- No borders, but custom background color
+                        winhighlight = "Normal:CmpDocNormal,CursorLine:PmenuSel,Search:None",
                     },
-                },
-            })
-
-            cmp.setup.cmdline("/", {
-                mapping = {
-                    ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "c" }),
-                    ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "c" }),
-                    ["<C-e>"] = cmp.mapping.abort(),                   -- Close the completion menu
-                    ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Confirm the selected item
-                },
-                sources = {
-                    { name = "buffer" },
                 },
             })
 
@@ -93,6 +86,5 @@ return {
             lspconfig.cssls.setup({ capabilities = capabilities })
             lspconfig.html.setup({ capabilities = capabilities })
         end,
-
     },
 }

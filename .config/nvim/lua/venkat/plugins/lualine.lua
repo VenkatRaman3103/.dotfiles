@@ -3,7 +3,8 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     event = "VeryLazy",
     config = function()
-        local bgColor = "#060606" -- Dark gray background color
+        -- local bgColor = "#060606" -- Dark gray background color
+        local bgColor = "#090909" -- Dark gray background color
 
         -- Create global table for storing tab names
         _G.custom_tab_names = _G.custom_tab_names or {}
@@ -27,14 +28,28 @@ return {
             return _G.custom_tab_names[nr] or tostring(nr)
         end
 
+        function split(str, delimiter)
+            local result = {}
+            for match in (str .. delimiter):gmatch("(.-)" .. delimiter) do
+                table.insert(result, match)
+            end
+            return result
+        end
+
         -- Function to get active Harpoon list name
         local function get_active_harpoon_list()
             if _G.active_harpoon_list then
-                return "" .. _G.active_harpoon_list
+                local parts = split(_G.active_harpoon_list, ':') -- Splitting the string
+                local folder_part = parts[1]                     -- First part (before ':')
+                local list_part = parts[2]                       -- Second part (after ':')
+
+                return list_part or
+                    "" -- Return list_part if it exists, otherwise return an empty string
             else
                 return ""
             end
         end
+
 
         -- Create the command for tab renaming
         vim.api.nvim_create_user_command("RenameTab", rename_tab, {})
@@ -121,7 +136,7 @@ return {
 
         -- Create highlight groups for tabs
         vim.cmd([[
-            highlight LualineTabActive guifg=#ffffff guibg=#111111
+            highlight LualineTabActive guifg=#a7a7a7 guibg=#111111
             highlight LualineTabInactive guifg=#505050 guibg=#111111
             highlight LualineSeparator guifg=#0e0e0e guibg=#111111
             highlight LualineBranch guifg=#808080 guibg=#111111

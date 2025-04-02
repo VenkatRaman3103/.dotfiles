@@ -155,4 +155,4 @@ keymap.set("n", "<A-Down>", ":resize -2<CR>", { desc = "Decrease window height" 
 keymap.set("n", "<A-Left>", ":vertical resize +2<CR>", { desc = "Decrease window width" })
 keymap.set("n", "<A-Right>", ":vertical resize -2<CR>", { desc = "Increase window width" })
 
--- some
+keymap.set("n", "<leader>dbo", ":DBUI<CR>")

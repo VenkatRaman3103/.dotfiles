@@ -14,6 +14,7 @@ return {
                     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
                     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
                 end,
+
                 settings = {
                     ["rust-analyzer"] = {
                         cargo = {
@@ -21,6 +22,15 @@ return {
                         },
                         checkOnSave = {
                             command = "clippy",
+                        },
+                        inlayHints = {
+                            enable = true,
+                            typeHints = {
+                                enable = true,
+                                -- You can also add position settings if needed
+                            },
+                            chainingHints = true,
+                            parameterHints = true,
                         },
                     },
                 },

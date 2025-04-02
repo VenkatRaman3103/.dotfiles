@@ -2,32 +2,14 @@ return {
     -- "folke/noice.nvim",
     -- event = "VeryLazy",
     -- opts = {
-    --     cmdline = {
-    --         enabled = false, -- Disables Noice's cmdline popup
-    --     },
-    --     messages = {
-    --         enabled = false, -- Disables Noice messages/notifications
-    --     },
-    --     notify = {
-    --         enabled = false, -- Disables the Noice notification system
-    --     },
-    --     lsp = {
-    --         override = {
-    --             ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-    --             ["vim.lsp.util.stylize_markdown"] = true,
-    --             ["cmp.entry.get_documentation"] = true,
-    --         },
-    --     },
-    --     presets = {
-    --         bottom_search = true,         -- Use classic search UI
-    --         command_palette = false,      -- No command palette
-    --         long_message_to_split = true, -- Keep long messages in a split
-    --         inc_rename = false,           -- Disable incremental rename
-    --         lsp_doc_border = false,       -- No borders for LSP docs
-    --     },
+    --     -- add any options here
     -- },
     -- dependencies = {
+    --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
     --     "MunifTanjim/nui.nvim",
-    --     -- "rcarriga/nvim-notify", -- Commented out as you had it
+    --     -- OPTIONAL:
+    --     --   `nvim-notify` is only needed, if you want to use the notification view.
+    --     --   If not available, we use `mini` as the fallback
+    --     -- "rcarriga/nvim-notify",
     -- },
 }

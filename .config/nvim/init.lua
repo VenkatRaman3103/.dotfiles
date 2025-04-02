@@ -15,6 +15,10 @@ local grey = "#a9a9a9";
 local lightGrey = "#666666";
 local white = "#ffffff";
 
+vim.api.nvim_set_hl(0, "FlashLabel", { fg = "#d2a374", bold = true })
+-- Prevent graying out
+vim.api.nvim_set_hl(0, "FlashBackdrop", { link = "Normal" })
+
 vim.api.nvim_set_hl(0, 'MsgArea', { fg = grey })  -- Command area text
 vim.api.nvim_set_hl(0, 'Question', { fg = grey }) -- Prompt/question text
 vim.api.nvim_set_hl(0, 'WildMenu', { fg = grey }) -- Command-line completion menu
@@ -67,15 +71,19 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 
-vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#a7a7a7", bg = "NONE" })  -- General floating windows
--- vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#a7a7a7", bg = "NONE" }) -- Window separators
-vim.api.nvim_set_hl(0, "NormalBorder", { fg = "#a7a7a7", bg = "NONE" }) -- Normal floating borders
-vim.api.nvim_set_hl(0, "VertSplit", { fg = "#a7a7a7", bg = "NONE" })    -- Split lines
+vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#060606", bg = "NONE" })  -- General floating windows
+-- vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#060606", bg = "NONE" }) -- Window separators
+vim.api.nvim_set_hl(0, "NormalBorder", { fg = "#060606", bg = "NONE" }) -- Normal floating borders
+vim.api.nvim_set_hl(0, "VertSplit", { fg = "#060606", bg = "NONE" })    -- Split lines
 
-vim.api.nvim_set_hl(0, "Pmenu", { bg = "NONE", fg = "#a7a7a7" })        -- Popup menu background & text
-vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "NONE", bg = "#a7a7a7" })  -- 🔹 Border for nvim-cmp popups
-vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#505050", fg = "NONE" })     -- Selected item in the popup
-vim.api.nvim_set_hl(0, "PmenuThumb", { bg = "NONE" })                   -- Scrollbar color in completion popup
-vim.api.nvim_set_hl(0, "CmpBorder", { fg = "#505050", bg = "NONE" })
+-- vim.api.nvim_set_hl(0, "Pmenu", { bg = "NONE", fg = "#a7a7a7" })        -- Popup menu background & text
+-- vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "NONE", bg = "#a7a7a7" })  -- 🔹 Border for nvim-cmp popups
+-- vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#505050", fg = "NONE" })     -- Selected item in the popup
+-- vim.api.nvim_set_hl(0, "PmenuThumb", { bg = "NONE" })                   -- Scrollbar color in completion popup
 
-vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#808080" }) -- Adjust grey shade if needed
+-- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#030303", bg = "#060606" }) -- Adjust grey shade if needed
+-- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#060606", bg = "#060606" }) -- Adjust grey shade if needed
+vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#505050", bg = "" }) -- Adjust grey shade if needed
+vim.api.nvim_set_hl(0, "CmpBorder", { fg = "#555555", bg = "#030303" })
+vim.api.nvim_set_hl(0, "CmpBorder", { fg = "#555555", bg = "" })
+-- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#060606", bg = "#060606" }) -- Adjust grey shade if needed

@@ -54,7 +54,7 @@ opt.undofile = true
 opt.hlsearch = false
 opt.incsearch = true
 
-opt.scrolloff = 8
+opt.scrolloff = 15
 
 opt.updatetime = 50
 
