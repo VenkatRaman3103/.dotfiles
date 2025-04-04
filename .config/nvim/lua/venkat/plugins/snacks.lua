@@ -91,16 +91,23 @@ return {
             enabled = true,
             layout = {
                 -- preview = "main",
-                preset = "ivy",
-                -- preset = "default",
-                layout = {     -- the layout itself
-                    width = 0, -- 0 is max
-                    height = 0.5,
-                    -- position = "float",
-                    -- border = "none",
-                    -- preview = { width = 0.8 }
+                -- preset = "ivy",
+                preset = "telescope",
+                layout = {
+                    box = "horizontal",
+                    width = 0.93,
+                    min_width = 120,
+                    height = 0.93,
+                    -- position = "",
+                    {
+                        box = "vertical",
+                        border = "rounded",
+                        title = "{title} {live} {flags}",
+                        { win = "input", height = 1,     border = "bottom" },
+                        { win = "list",  border = "none" },
+                    },
+                    { win = "preview", title = "{preview}", border = "rounded", width = 0.55 },
                 },
-
             },
         },
     },
@@ -274,7 +281,8 @@ return {
         {
             "<leader>fd",
             function()
-                Snacks.picker.smart()
+                Snacks.picker.smart(
+                )
             end,
             desc = "Smart Find Files",
         },

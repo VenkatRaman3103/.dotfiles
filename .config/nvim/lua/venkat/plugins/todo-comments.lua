@@ -32,7 +32,8 @@ return {
                 HACK = { icon = "", color = colors.info },
                 WARN = { icon = "", color = colors.error, alt = { "WARNING", "XXX" } },
                 PERF = { icon = "", color = colors.hint, alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-                NOTE = { icon = "", color = colors.warning, alt = { "INFO" } },
+                NOTE = { icon = "", color = colors.warning, alt = { "INFO", "note" } },
+                note = { icon = "", color = colors.warning, alt = { "note" } },
 
             },
             -- keywords = {
@@ -48,4 +49,3 @@ return {
         })
     end,
 }
-

@@ -1,6 +1,26 @@
 return {
     -- "j-hui/fidget.nvim",
+    -- event = "LspAttach",
     -- opts = {
-    --     -- options
+    --     progress = {
+    --         display = {
+    --             done_icon = "✔",
+    --             spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
+    --         },
+    --     },
+    --     notification = {
+    --         override_vim_notify = false,
+    --     },
+    --     window = {
+    --         winblend = 0,
+    --         border = "rounded",
+    --     },
     -- },
+    -- config = function(_, opts)
+    --     require("fidget").setup(opts)
+    --
+    --     -- Apply custom UI colors
+    --     vim.api.nvim_set_hl(0, "FidgetTitle", { fg = "#505050" })
+    --     vim.api.nvim_set_hl(0, "FidgetTask", { fg = "#505050" })
+    -- end,
 }

@@ -42,7 +42,7 @@ vim.api.nvim_set_hl(0, "@tag.attribute", { fg = grey })
 -- 4f5258
 -- require("command-completion").setup()
 
--- vim.o.cmdheight = 1
+vim.o.cmdheight = 1
 -- vim.opt.updatetime = 300
 vim.opt.conceallevel = 1 -- or 2
 
@@ -86,4 +86,10 @@ vim.api.nvim_set_hl(0, "VertSplit", { fg = "#060606", bg = "NONE" })    -- Split
 vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#505050", bg = "" }) -- Adjust grey shade if needed
 vim.api.nvim_set_hl(0, "CmpBorder", { fg = "#555555", bg = "#030303" })
 vim.api.nvim_set_hl(0, "CmpBorder", { fg = "#555555", bg = "" })
+-- Add these to your colorscheme or init.lua
+vim.api.nvim_set_hl(0, "NoiceNotifyNormal", { bg = "#1a1b26" })  -- Change background color
+vim.api.nvim_set_hl(0, "NoiceNotifyBorder", { fg = "#7aa2f7" })  -- Change border color
+
+vim.api.nvim_set_hl(0, "NoiceCmdlineNormal", { bg = "#090909" }) -- Command line background
+vim.api.nvim_set_hl(0, "NoiceCmdlineBorder", { fg = "#555555" }) -- Command line border
 -- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#060606", bg = "#060606" }) -- Adjust grey shade if needed

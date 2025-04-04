@@ -2,14 +2,41 @@ return {
     -- "folke/noice.nvim",
     -- event = "VeryLazy",
     -- opts = {
-    --     -- add any options here
+    --     cmdline = {
+    --         enabled = true,
+    --         view = "cmdline_popup",
+    --     },
+    --     views = {
+    --         cmdline_popup = {
+    --             border = {
+    --                 style = "rounded",
+    --             },
+    --         },
+    --         popupmenu = {
+    --             border = {
+    --                 style = "none", -- Remove borders from completion menu
+    --             },
+    --         },
+    --     },
     -- },
     -- dependencies = {
-    --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
     --     "MunifTanjim/nui.nvim",
-    --     -- OPTIONAL:
-    --     --   `nvim-notify` is only needed, if you want to use the notification view.
-    --     --   If not available, we use `mini` as the fallback
-    --     -- "rcarriga/nvim-notify",
     -- },
+    -- config = function(_, opts)
+    --     require("noice").setup(opts)
+    --
+    --     -- Set UI elements to minimal gray color scheme
+    --     vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = "#505050" })
+    --     vim.api.nvim_set_hl(0, "NoiceCmdlinePopupTitle", { fg = "#505050" })
+    --     vim.api.nvim_set_hl(0, "NoiceConfirmBorder", { fg = "#505050" })
+    --     vim.api.nvim_set_hl(0, "NoiceNotifyBorder", { fg = "#505050" })
+    --
+    --     -- Additional UI elements with the same minimal gray
+    --     vim.api.nvim_set_hl(0, "NoiceCmdlineIcon", { fg = "#505050" })
+    --     vim.api.nvim_set_hl(0, "NoiceCmdlineIconSearch", { fg = "#505050" })
+    --     vim.api.nvim_set_hl(0, "NoiceCmdlinePrompt", { fg = "#505050" })
+    --     vim.api.nvim_set_hl(0, "NoiceFormatTitle", { fg = "#505050" })
+    --     vim.api.nvim_set_hl(0, "NoiceFormatProgressDone", { fg = "#505050" })
+    --     vim.api.nvim_set_hl(0, "NoiceFormatProgressTodo", { fg = "#303030" })
+    -- end,
 }

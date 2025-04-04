@@ -22,7 +22,7 @@ return {
             signs = {
                 section = { "▶", "▼" },
                 item = { "○", "●" },
-                hunk = { "›", "›" },
+                hunk = { "›", "›" }, 
             },
 
             status = {
