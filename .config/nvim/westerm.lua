@@ -11,7 +11,7 @@ config.adjust_window_size_when_changing_font_size = false
 config.line_height = 1
 config.window_decorations = "RESIZE"
 config.enable_tab_bar = false
--- config.ligature = false
+config.ligature = false
 
 -- Set background image
 -- config.window_background_image = "C:/Users/Venkat Raman/Downloads/3440x1440 (1).jpeg"
@@ -40,8 +40,8 @@ config.window_padding = {
 -- Define custom colors
 local neofusion_theme = {
     background = "#0e0e0e",
-    foreground = "#ffffff", -- Set the text color to white
-    cursor_bg = "#ffffff", -- Cursor background (caret) color
+    foreground = "#ffffff",   -- Set the text color to white
+    cursor_bg = "#ffffff",    -- Cursor background (caret) color
     selection_bg = "#ffb86c", -- Selection background
     selection_fg = "#000000", -- Selection foreground
     cursor_border = "#ffffff",

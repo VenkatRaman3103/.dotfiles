@@ -4,7 +4,7 @@ return {
     cmd = { "ConformInfo" },
     keys = {
         {
-            "<leader>fm",
+            "<leader>mp",
             function()
                 require("conform").format({ timeout_ms = 10000, lsp_fallback = true })
             end,

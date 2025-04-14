@@ -87,11 +87,11 @@ return {
         keymap.set("n", "<leader>tfc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
         keymap.set("n", "<leader>tfb", builtin.buffers, {})
         keymap.set("n", "<leader>tfj", "<cmd>Telescope jumplist<CR>")
-        keymap.set("n", "<leader>/", function()
+        keymap.set("n", "<leader>t/", function()
             builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({ previewer = false }))
         end, { desc = "Fuzzy search in current file" })
 
-        keymap.set("n", "<leader>fe", function()
+        keymap.set("n", "<leader>tfe", function()
             require("telescope").extensions.file_browser.file_browser(require("telescope.themes").get_dropdown({
                 previewer = false,
                 hidden = true,

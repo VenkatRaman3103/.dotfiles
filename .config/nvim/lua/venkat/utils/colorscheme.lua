@@ -2,6 +2,10 @@ local colorscheme = {}
 
 -- local bgColor = "#0e0e0e"
 local bgColor = ""
+-- local secondaryBgColor = "#090909"
+-- local secondaryBgColor = "#101010"
+local secondaryBgColor = "#0c0c0c"
+local whiteLike = "#d0d0d0"
 
 local selectionBgColor = "#ffb86c"
 
@@ -14,14 +18,14 @@ function colorscheme.colorMyPencils()
 
     -- Set background to none for specific highlight groups
     local hl_groups = {
-        "Normal",
+        -- "Normal",
         "NormalFloat",
         "SignColumn",
         "StatusLine",
         "StatusLineNC",
         "LineNr",
         "FzfLuaNormal",
-        "HarpoonNormal",
+        -- "HarpoonNormal",
         "BufferLineFill",
         "BufferLineBackground",
         "BufferLineTab",
@@ -40,16 +44,22 @@ function colorscheme.colorMyPencils()
         -- "DiffChange",
         -- "DiffDelete",
         -- "DiffText",
-        "HarpoonWindow",
-        "HarpoonWindowTitle",
-        "HarpoonBorder",
+        -- "HarpoonWindow",
+        -- "HarpoonWindowTitle",
+        -- "HarpoonBorder",
+
     }
 
     --171717
     -- Set background to none for specific groups
     for _, group in ipairs(hl_groups) do
-        vim.api.nvim_set_hl(0, group, { bg = bgColor })
+        vim.api.nvim_set_hl(0, group, { bg = secondaryBgColor })
     end
+
+    vim.api.nvim_set_hl(0, "Normal", { bg = bgColor })
+
+    vim.api.nvim_set_hl(0, "CmpNormal", { bg = secondaryBgColor })    -- Dark background (adjust the color to your preference)
+    vim.api.nvim_set_hl(0, "CmpDocNormal", { bg = secondaryBgColor }) -- Same color for documentation
 
     -- vim.api.nvim_set_hl(0, "IblIndent", { fg = "#242424" })
     vim.api.nvim_set_hl(0, "IblIndent", { fg = "#333333" })
@@ -62,18 +72,25 @@ function colorscheme.colorMyPencils()
     vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = white })
 
     -- Borders and caret highlights
-    vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#555555", bg = bgColor })
-    vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = "#555555", bg = bgColor })
-    vim.api.nvim_set_hl(0, "HarpoonBorder", { fg = "#555555", bg = bgColor })
-    vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#555555", bg = bgColor })
+    -- vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#555555", bg = bgColor })
+    -- vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = "#555555", bg = bgColor })
+    -- vim.api.nvim_set_hl(0, "HarpoonBorder", { fg = secondaryBgColor, bg = secondaryBgColor })
+    -- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#555555", bg = bgColor })
+
+
+    vim.api.nvim_set_hl(0, "FloatBorder", { fg = secondaryBgColor, bg = secondaryBgColor }) -- General floating windows
+    vim.api.nvim_set_hl(0, "HarpoonWindow", { bg = secondaryBgColor, fg = "#ffffff" })
+    vim.api.nvim_set_hl(0, "HarpoonBorder", { fg = secondaryBgColor, bg = secondaryBgColor })
+    vim.api.nvim_set_hl(0, "NormalBorder", { fg = "#060606", bg = "NONE" }) -- Normal floating borders
+    vim.api.nvim_set_hl(0, "VertSplit", { fg = "#060606", bg = "NONE" })    -- Split lines
 
     -- set title colors
     vim.api.nvim_set_hl(0, "TelescopeTitle", { fg = "#ffffff", bold = false })
     vim.api.nvim_set_hl(0, "TelescopePromptTitle", { fg = "#ffffff", bold = false })
     vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { fg = "#ffffff", bold = false })
     vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { fg = "#ffffff", bold = false })
-    vim.api.nvim_set_hl(0, "HarpoonWindow", { fg = "#ffffff" })
-    vim.api.nvim_set_hl(0, "HarpoonTitle", { fg = "#ffffff", bold = false })
+    -- vim.api.nvim_set_hl(0, "HarpoonWindow", { fg = "#ffffff" })
+    -- vim.api.nvim_set_hl(0, "HarpoonTitle", { fg = "#ffffff", bold = false })
     vim.api.nvim_set_hl(0, "FloatTitle", { fg = "#ffffff", bold = false })
 
     -- Visual selection highlight
@@ -348,7 +365,8 @@ function colorscheme.syntax()
     vim.api.nvim_set_hl(0, "@structure", { fg = grey })       -- Struct, union, enum, etc.
 
     -- Strings and numeric values highlight settings
-    vim.api.nvim_set_hl(0, "@string", { fg = sageGreen })       -- String literals
+    -- vim.api.nvim_set_hl(0, "@string", { fg = sageGreen })       -- String literals
+    vim.api.nvim_set_hl(0, "@string", { fg = grey })            -- String literals
     vim.api.nvim_set_hl(0, "@string.regex", { fg = sageGreen }) -- Regular expressions
     vim.api.nvim_set_hl(0, "@string.escape", { fg = grey })     -- Escape characters in strings
     vim.api.nvim_set_hl(0, "@string.special", { fg = grey })    -- Special strings like urls, file paths
@@ -425,7 +443,7 @@ function colorscheme.syntax()
     vim.api.nvim_set_hl(0, "MatchParen", { fg = white, bold = true })
 
     -- UI-related highlights
-    vim.api.nvim_set_hl(0, "FloatBorder", { fg = grey })
+    -- vim.api.nvim_set_hl(0, "FloatBorder", { fg = grey })
     vim.api.nvim_set_hl(0, "Border", { fg = grey })
     vim.api.nvim_set_hl(0, "Visual", { bg = "#363738" })
     vim.api.nvim_set_hl(0, "Search", { bg = "#363738", fg = warnCoral })
@@ -438,11 +456,6 @@ function colorscheme.syntax()
     -- FZF specific highlights
     vim.api.nvim_set_hl(0, "fzf_match", { fg = warnCoral })
     vim.api.nvim_set_hl(0, "FzfLuaMatch", { fg = warnCoral })
-
-    -- Telescope specific highlights
-    -- vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = warnCoral })
-    -- vim.api.nvim_set_hl(0, "TelescopeSelectionCaret", { fg = warnCoral })
-    -- vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = "#363738" })
 
     -- Autocompletion menu highlights
     vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = warnCoral })
@@ -481,6 +494,85 @@ function colorscheme.syntax()
     vim.api.nvim_set_hl(0, "@lsp.mod.defaultLibrary", { fg = grey })
 
     -- vim.api.nvim_set_hl(0, "Normal", { fg = white, bg = black })
+
+    -- ============================================================
+    -- Markdown-specific highlighting
+    -- ============================================================
+
+    -- Headers with distinct highlighting based on level
+    vim.api.nvim_set_hl(0, "@markup.heading.1.markdown", { fg = lightGrey, bold = true })
+    vim.api.nvim_set_hl(0, "@markup.heading.2.markdown", { fg = lightGrey, bold = true })
+    vim.api.nvim_set_hl(0, "@markup.heading.3.markdown", { fg = lightGrey, bold = true })
+    vim.api.nvim_set_hl(0, "@markup.heading.4.markdown", { fg = lightGrey, bold = true })
+    vim.api.nvim_set_hl(0, "@markup.heading.5.markdown", { fg = lightGrey, bold = true })
+    vim.api.nvim_set_hl(0, "@markup.heading.6.markdown", { fg = lightGrey, bold = true })
+
+    vim.api.nvim_set_hl(0, "@text.markdown", { fg = whiteLike })
+    vim.api.nvim_set_hl(0, "markdownParagraph", { fg = whiteLike })
+
+    -- Header markers (# symbols)
+    vim.api.nvim_set_hl(0, "@markup.heading.marker.markdown", { fg = grey })
+
+    -- Text formatting
+    vim.api.nvim_set_hl(0, "@markup.bold.markdown", { fg = grey, bold = true })
+    vim.api.nvim_set_hl(0, "@markup.strong.markdown", { fg = grey, bold = true })
+    vim.api.nvim_set_hl(0, "@markup.strong", { fg = grey, bold = true })
+    vim.api.nvim_set_hl(0, "@markup.italic.markdown", { fg = white, italic = true })
+    vim.api.nvim_set_hl(0, "@markup.strikethrough.markdown", { fg = lightGrey, strikethrough = true })
+    vim.api.nvim_set_hl(0, "@markup.raw.markdown", { fg = sageGreen }) -- Inline code
+
+    -- Links and references
+    vim.api.nvim_set_hl(0, "@markup.link.markdown", { fg = mutedTeal, underline = true })
+    vim.api.nvim_set_hl(0, "@markup.link.label.markdown", { fg = mutedTeal })
+    vim.api.nvim_set_hl(0, "@markup.link.url.markdown", { fg = mutedTeal, italic = true })
+
+    -- List markers
+    vim.api.nvim_set_hl(0, "@markup.list.markdown", { fg = grey })
+    vim.api.nvim_set_hl(0, "@markup.list.checked.markdown", { fg = sageGreen })
+    vim.api.nvim_set_hl(0, "@markup.list.unchecked.markdown", { fg = grey })
+
+    -- Code blocks
+    vim.api.nvim_set_hl(0, "@markup.raw.block.markdown", { fg = sageGreen })
+    vim.api.nvim_set_hl(0, "@markup.raw.delimiter.markdown", { fg = grey })
+
+    -- Blockquotes
+    vim.api.nvim_set_hl(0, "@markup.quote.markdown", { fg = silver, italic = true })
+    vim.api.nvim_set_hl(0, "@markup.quote.delimiter.markdown", { fg = grey })
+
+    -- Tables
+    vim.api.nvim_set_hl(0, "@markup.table.markdown", { fg = white })
+    vim.api.nvim_set_hl(0, "@markup.table.delimiter.markdown", { fg = grey })
+
+    -- HTML in Markdown
+    vim.api.nvim_set_hl(0, "@markup.raw.html_inline.markdown", { fg = grey })
+
+    -- //@markup.heading.1.markdown
+
+    -- Traditional highlight groups for Markdown (fallbacks)
+    vim.api.nvim_set_hl(0, "markdownH1", { fg = whiteLike, bold = true })
+    vim.api.nvim_set_hl(0, "markdownH2", { fg = whiteLike, bold = true })
+    vim.api.nvim_set_hl(0, "markdownH3", { fg = whiteLike })
+    vim.api.nvim_set_hl(0, "markdownH4", { fg = whiteLike })
+    vim.api.nvim_set_hl(0, "markdownH5", { fg = silver })
+    vim.api.nvim_set_hl(0, "markdownH6", { fg = silver })
+    vim.api.nvim_set_hl(0, "@spell.markdown", { fg = whiteLike })
+
+    vim.api.nvim_set_hl(0, "markdownBold", { fg = grey, bold = true })
+    vim.api.nvim_set_hl(0, "markdownItalic", { fg = white, italic = true })
+    vim.api.nvim_set_hl(0, "markdownCode", { fg = sageGreen })
+    vim.api.nvim_set_hl(0, "markdownCodeBlock", { fg = sageGreen })
+    vim.api.nvim_set_hl(0, "markdownBlockquote", { fg = silver, italic = true })
+
+    vim.api.nvim_set_hl(0, "markdownLink", { fg = mutedTeal, underline = true })
+    vim.api.nvim_set_hl(0, "markdownLinkText", { fg = mutedTeal })
+    vim.api.nvim_set_hl(0, "markdownUrl", { fg = mutedTeal, italic = true })
+
+    vim.api.nvim_set_hl(0, "markdownListMarker", { fg = grey })
+    vim.api.nvim_set_hl(0, "markdownOrderedListMarker", { fg = grey })
+
+    vim.api.nvim_set_hl(0, "gitcommitComment", { fg = evenLightGrey })
+    vim.api.nvim_set_hl(0, "gitcommitFirstLine", { fg = white })
+    vim.api.nvim_set_hl(0, "gitcommitSummary", { fg = white })
 end
 
 return colorscheme

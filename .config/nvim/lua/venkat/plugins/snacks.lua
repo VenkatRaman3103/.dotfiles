@@ -14,9 +14,6 @@ return {
             timeout = 3000,
         },
         explorer = {
-            -- your explorer configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
             enabled = false,
             finder = "explorer",
             sort = { fields = { "sort" } },
@@ -30,12 +27,16 @@ return {
             git_untracked = true,
             follow_file = true,
             focus = "list",
-            auto_close = false,
-            jump = { close = false },
-            -- layout = { preset = "sidebar", preview = false },
-            -- to show the explorer to the right, add the below to
-            -- your config under `opts.picker.sources.explorer`
-            layout = { layout = { position = "right" } },
+            auto_close = true,
+            jump = { close = true },
+            layout = {
+                preset = "sidebar",
+                preview = false,
+                position = "left", -- Explicitly set position to left
+                width = 0.25,      -- Set width to 25% of screen
+                height = 1,
+                float = false,
+            },
             formatters = {
                 file = { filename_only = true },
                 severity = { pos = "right" },
@@ -49,13 +50,13 @@ return {
                     keys = {
                         ["<BS>"] = "explorer_up",
                         ["l"] = "confirm",
-                        ["h"] = "explorer_close", -- close directory
+                        ["h"] = "explorer_close",
                         ["a"] = "explorer_add",
                         ["d"] = "explorer_del",
                         ["r"] = "explorer_rename",
                         ["c"] = "explorer_copy",
                         ["m"] = "explorer_move",
-                        ["o"] = "explorer_open", -- open with system application
+                        ["o"] = "explorer_open",
                         ["P"] = "toggle_preview",
                         ["y"] = "explorer_yank",
                         ["u"] = "explorer_update",
@@ -95,7 +96,7 @@ return {
                 preset = "telescope",
                 layout = {
                     box = "horizontal",
-                    width = 0.93,
+                    width = 0.9,
                     min_width = 120,
                     height = 0.93,
                     -- position = "",
@@ -109,9 +110,73 @@ return {
                     { win = "preview", title = "{preview}", border = "rounded", width = 0.55 },
                 },
             },
+
+            layouts = {
+                sidebar = {
+                    layout = {
+                        width = 0.25,
+                        height = 1,
+                        position = "left",
+                        preview = false,
+                        float = false,
+                    },
+                    jump = { close = false }
+                },
+            }
         },
     },
     keys = {
+        {
+            "<leader>/",
+            function()
+                Snacks.picker.lines({
+                    layout = "vscode",
+                })
+            end,
+            desc = "man page",
+        },
+        {
+            "<leader>xp",
+            function()
+                Snacks.picker.diagnostics()
+            end,
+            desc = "man page",
+        },
+        {
+            "<leader>xf",
+            function()
+                Snacks.picker.diagnostics_buffer()
+            end,
+            desc = "man page",
+        },
+        {
+            "<leader>fq",
+            function()
+                Snacks.picker.qflist()
+            end,
+            desc = "man page",
+        },
+        {
+            "<leader>fm",
+            function()
+                Snacks.picker.marks()
+            end,
+            desc = "marks",
+        },
+        {
+            "<leader>fj",
+            function()
+                Snacks.picker.jumps()
+            end,
+            desc = "Jumps",
+        },
+        {
+            "<leader>man",
+            function()
+                Snacks.picker.man()
+            end,
+            desc = "man page",
+        },
         {
             "gd",
             function()
@@ -122,7 +187,9 @@ return {
         {
             "<leader>fk",
             function()
-                Snacks.picker.keymaps()
+                Snacks.picker.keymaps({
+                    layout = "vertical"
+                })
             end,
             desc = "Keymaps",
         },
@@ -163,6 +230,15 @@ return {
             desc = "LSP Symbols",
         },
         {
+            "<leader>reg",
+            function()
+                Snacks.picker.registers({
+                    layout = "vertical"
+                })
+            end,
+            desc = "View Registers",
+        },
+        {
             "<leader>fS",
             function()
                 Snacks.picker.lsp_workspace_symbols()
@@ -170,11 +246,39 @@ return {
             desc = "LSP Workspace Symbols",
         },
         -- {
-        -- "<leader>ex",
-        -- function()
-        --     Snacks.explorer.open()
-        -- end,
-        -- desc = "Registers",
+        --     "<leader>eo",
+        --     function()
+        --         Snacks.explorer.open({
+        --             layout = "sidebar",
+        --             position = "left",
+        --             float = false,
+        --         })
+        --     end,
+        --     desc = "Open Explorer",
+        -- },
+        -- {
+        --     "<leader>et",
+        --     function()
+        --         if Snacks.explorer.is_open() then
+        --             Snacks.explorer.close()
+        --         else
+        --             Snacks.explorer.open({
+        --                 layout = "sidebar",
+        --                 position = "left",
+        --                 float = false,
+        --             })
+        --         end
+        --     end,
+        --     desc = "Toggle Explorer",
+        -- },
+        -- {
+        --     "<leader>eo",
+        --     function()
+        --         Snacks.explorer.open({
+        --             layout = "sidebar",
+        --         })
+        --     end,
+        --     desc = "Registers",
         -- },
         -- {
         --     "<leader>gb",
@@ -186,7 +290,9 @@ return {
         {
             "<leader>gl",
             function()
-                Snacks.picker.git_log()
+                Snacks.picker.git_log({
+                    layout = "vertical"
+                })
             end,
             desc = "Git Log",
         },
@@ -303,7 +409,9 @@ return {
         {
             "<leader>:",
             function()
-                Snacks.picker.command_history()
+                Snacks.picker.command_history({
+                    layout = "vscode"
+                })
             end,
             desc = "Command History",
         },
@@ -399,13 +507,13 @@ return {
             end,
             desc = "Lazygit",
         },
-        {
-            "<leader>gl",
-            function()
-                Snacks.lazygit.log()
-            end,
-            desc = "Lazygit Log (cwd)",
-        },
+        -- {
+        --     "<leader>gl",
+        --     function()
+        --         Snacks.lazygit.log()
+        --     end,
+        --     desc = "Lazygit Log (cwd)",
+        -- },
         {
             "<leader>un",
             function()

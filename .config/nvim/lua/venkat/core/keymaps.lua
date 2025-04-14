@@ -83,8 +83,8 @@ keymap.set("n", "N", "Nzzzv")
 keymap.set("n", "<leader>d", '"_d')
 keymap.set("v", "<leader>d", '"_d')
 
-keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
+keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
 
 keymap.set("n", "<leader><CR>", ":source ~/.config/nvim/init.lua<CR>")
 
@@ -156,3 +156,51 @@ keymap.set("n", "<A-Left>", ":vertical resize +2<CR>", { desc = "Decrease window
 keymap.set("n", "<A-Right>", ":vertical resize -2<CR>", { desc = "Increase window width" })
 
 keymap.set("n", "<leader>dbo", ":DBUI<CR>")
+
+-- Keep cursor in the middle of the screen when jumping
+-- Add this to your existing configuration
+vim.keymap.set("n", "gd", "gdzz", { noremap = true })
+vim.keymap.set("n", "gr", "grzz", { noremap = true })
+
+-- Add for other similar jump commands you might use
+vim.keymap.set("n", "gD", "gDzz", { noremap = true })
+vim.keymap.set("n", "gi", "gizz", { noremap = true })
+vim.keymap.set("n", "gt", "gtzz", { noremap = true })
+
+-- Improved Netrw toggle function
+vim.g.netrw_banner = 0       -- Hide the banner
+vim.g.netrw_liststyle = 3    -- Tree view
+vim.g.netrw_browse_split = 4 -- Open files in previous window
+vim.g.netrw_altv = 1         -- Open splits to the right
+vim.g.netrw_winsize = 25     -- Set width to 25% of screen
+
+-- Global variable to track if Netrw is open
+-- vim.g.NetrwIsOpen = 0
+--
+-- -- Set Netrw preferences
+-- vim.g.netrw_browse_split = 0 -- Open files in the same window
+-- vim.g.netrw_liststyle = 3    -- Tree style listing
+-- vim.g.netrw_winsize = 25     -- Set explorer width to 25% of screen
+--
+-- vim.api.nvim_create_user_command("ToggleNetrw", function()
+--     if vim.g.NetrwIsOpen == 1 then
+--         -- Find the Netrw window and close it
+--         local i = 1
+--         while i <= vim.fn.winnr("$") do
+--             if vim.fn.getbufvar(vim.fn.winbufnr(i), "&filetype") == "netrw" then
+--                 vim.cmd(i .. "close")
+--                 vim.g.NetrwIsOpen = 0
+--                 break
+--             end
+--             i = i + 1
+--         end
+--     else
+--         vim.cmd("Lexplore")
+--         vim.g.NetrwIsOpen = 1
+--     end
+-- end, {})
+--
+-- vim.keymap.set("n", "<leader>eo", ":ToggleNetrw<CR>", {
+--     desc = "Toggle Netrw file explorer",
+--     silent = true,
+-- })

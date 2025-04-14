@@ -1,16 +1,18 @@
 <img align="left" width="150" height="85" src="../media/kangaroo.png?raw=true">
 
+"some", 'some', `some`,
+{ [ ( ) ] }
+
 # leap.nvim
 
-
-// something else
+// something some else
 
 Leap is a general-purpose motion plugin for Neovim, building and improving
 bjbjdbfap
 
 primarily on [vim-sneak](https://github.com/justinmk/vim-sneak), with the
 ultimate goal of [f] a new standard interface for moving around in the
-visible area in Vim-like modal editors. It allows you to reach any target in a
+visible area i 0 n Vim-like modal editors. It allows you to 0 reach any target in a
 very fast, uniform way, and minimizes the required focus level while executing
 a jump.
 

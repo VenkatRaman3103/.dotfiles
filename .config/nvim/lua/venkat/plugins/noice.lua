@@ -8,13 +8,36 @@ return {
     --     },
     --     views = {
     --         cmdline_popup = {
-    --             border = {
-    --                 style = "rounded",
-    --             },
+    --             -- border = {
+    --             --     style = "none", -- Remove borders from cmdline popup
+    --             -- },
+    --             -- Set background color for cmdline popup
+    --             -- win_options = {
+    --             --     winhighlight = "Normal:NoiceCmdlinePopup,FloatBorder:NoiceCmdlinePopupBorder",
+    --             -- },
     --         },
     --         popupmenu = {
     --             border = {
     --                 style = "none", -- Remove borders from completion menu
+    --             },
+    --             -- win_options = {
+    --             --     winhighlight = "Normal:NoicePopupmenu,FloatBorder:NoicePopupmenuBorder",
+    --             -- },
+    --         },
+    --         notify = {
+    --             border = {
+    --                 style = "none", -- Remove borders from notifications
+    --             },
+    --             win_options = {
+    --                 winhighlight = "Normal:NoiceNotify,FloatBorder:NoiceNotifyBorder",
+    --             },
+    --         },
+    --         confirm = {
+    --             border = {
+    --                 style = "none", -- Remove borders from confirmation dialogs
+    --             },
+    --             win_options = {
+    --                 winhighlight = "Normal:NoiceConfirm,FloatBorder:NoiceConfirmBorder",
     --             },
     --         },
     --     },
@@ -24,19 +47,51 @@ return {
     -- },
     -- config = function(_, opts)
     --     require("noice").setup(opts)
+    --     -- Set background color to #0e0e0e for all UI elements
+    --     local bg_color = "#0e0e0e"
+    --     local fg_color = "#505050"
+    --     local selected_bg = "#303030" -- Background for selected items
+    --     local selected_fg = "#eeeeee" -- Text color for selected items
     --
-    --     -- Set UI elements to minimal gray color scheme
-    --     vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = "#505050" })
-    --     vim.api.nvim_set_hl(0, "NoiceCmdlinePopupTitle", { fg = "#505050" })
-    --     vim.api.nvim_set_hl(0, "NoiceConfirmBorder", { fg = "#505050" })
-    --     vim.api.nvim_set_hl(0, "NoiceNotifyBorder", { fg = "#505050" })
+    --     -- Set border colors to match background (effectively hiding them)
+    --     vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = bg_color, bg = bg_color })
+    --     vim.api.nvim_set_hl(0, "NoiceCmdlinePopupTitle", { fg = fg_color, bg = bg_color })
+    --     vim.api.nvim_set_hl(0, "NoiceConfirmBorder", { fg = bg_color, bg = bg_color })
+    --     vim.api.nvim_set_hl(0, "NoiceNotifyBorder", { fg = bg_color, bg = bg_color })
+    --     vim.api.nvim_set_hl(0, "NoicePopupmenuBorder", { fg = bg_color, bg = bg_color })
     --
-    --     -- Additional UI elements with the same minimal gray
-    --     vim.api.nvim_set_hl(0, "NoiceCmdlineIcon", { fg = "#505050" })
-    --     vim.api.nvim_set_hl(0, "NoiceCmdlineIconSearch", { fg = "#505050" })
-    --     vim.api.nvim_set_hl(0, "NoiceCmdlinePrompt", { fg = "#505050" })
-    --     vim.api.nvim_set_hl(0, "NoiceFormatTitle", { fg = "#505050" })
-    --     vim.api.nvim_set_hl(0, "NoiceFormatProgressDone", { fg = "#505050" })
-    --     vim.api.nvim_set_hl(0, "NoiceFormatProgressTodo", { fg = "#303030" })
+    --     -- Set backgrounds for all UI components
+    --     vim.api.nvim_set_hl(0, "NoiceCmdlinePopup", { bg = bg_color })
+    --     vim.api.nvim_set_hl(0, "NoicePopupmenu", { bg = bg_color })
+    --     vim.api.nvim_set_hl(0, "NoiceConfirm", { bg = bg_color })
+    --     vim.api.nvim_set_hl(0, "NoiceNotify", { bg = bg_color })
+    --
+    --     -- Additional UI elements with consistent styling
+    --     vim.api.nvim_set_hl(0, "NoiceCmdlineIcon", { fg = fg_color, bg = bg_color })
+    --     vim.api.nvim_set_hl(0, "NoiceCmdlineIconSearch", { fg = fg_color, bg = bg_color })
+    --     vim.api.nvim_set_hl(0, "NoiceCmdlinePrompt", { fg = fg_color, bg = bg_color })
+    --     vim.api.nvim_set_hl(0, "NoiceFormatTitle", { fg = fg_color, bg = bg_color })
+    --     vim.api.nvim_set_hl(0, "NoiceFormatProgressDone", { fg = fg_color, bg = bg_color })
+    --     vim.api.nvim_set_hl(0, "NoiceFormatProgressTodo", { fg = "#303030", bg = bg_color })
+    --
+    --     -- Fix for search (/) command border and related elements
+    --     vim.api.nvim_set_hl(0, "NoiceCmdlineIconSearch", { fg = fg_color, bg = bg_color })        -- Search icon
+    --     vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderSearch", { fg = bg_color, bg = bg_color }) -- Search border
+    --     vim.api.nvim_set_hl(0, "NoiceCmdlinePopupSearch", { bg = bg_color })                      -- Search popup background
+    --     vim.api.nvim_set_hl(0, "NoiceFormatSearchCount", { fg = fg_color, bg = bg_color })        -- Search count info
+    --     vim.api.nvim_set_hl(0, "NoiceFormatSearchBorder", { fg = bg_color, bg = bg_color })       -- Any other search borders
+    --     vim.api.nvim_set_hl(0, "IncSearch", { bg = "#303030", fg = "#eeeeee" })                   -- Incremental search highlight
+    --     vim.api.nvim_set_hl(0, "Search", { bg = "#303030", fg = "#eeeeee" })                      -- Search highlight
+    --
+    --     -- Add highlight for selected item in command menu
+    --     vim.api.nvim_set_hl(0, "NoicePopupmenuSelected", { bg = selected_bg, fg = selected_fg })
+    --     vim.api.nvim_set_hl(0, "NoiceCmdlinePopupSelected", { bg = selected_bg, fg = selected_fg })
+    --
+    --     -- Fix for completion menu active item
+    --     vim.api.nvim_set_hl(0, "NoiceCompletionItemSelected", { bg = selected_bg, fg = selected_fg })
+    --     vim.api.nvim_set_hl(0, "NoiceCompletionItemWord", { bg = bg_color })
+    --     vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#303030", fg = "#eeeeee" })
+    --     vim.api.nvim_set_hl(0, "PmenuThumb", { bg = "#303030" })
+    --     vim.api.nvim_set_hl(0, "PmenuSbar", { bg = bg_color })
     -- end,
 }

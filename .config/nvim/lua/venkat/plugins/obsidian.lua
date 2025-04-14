@@ -16,7 +16,7 @@ return {
                 },
             },
             ui = {
-                enable = true,
+                enable = false,
             },
         },
     },

@@ -10,9 +10,7 @@ return {
             { "rafamadriz/friendly-snippets" },
         },
         config = function()
-            -- local bg = "#090909"
-            local bg = "#101010"
-
+            local bg = "#0e0e0e"
             local cmp_ok, cmp = pcall(require, "cmp")
             if not cmp_ok then
                 return
@@ -22,11 +20,8 @@ return {
                 return
             end
 
-            -- Define custom highlight groups for the completion menu
-            vim.api.nvim_set_hl(0, "CmpNormal", { bg = bg })    -- Dark background (adjust the color to your preference)
-            vim.api.nvim_set_hl(0, "CmpDocNormal", { bg = bg }) -- Same color for documentation
-
             require("luasnip.loaders.from_vscode").lazy_load()
+
             cmp.setup({
                 completion = {
                     completeopt = "menu,menuone,preview,noselect",
@@ -50,26 +45,33 @@ return {
                     { name = "luasnip" },
                     { name = "buffer" },
                     { name = "path" },
-                    { name = "cmdline" },
+                    { name = "vim-dadbod-completion" }, -- Add this source for SQL completion
                 }),
                 window = {
                     completion = {
-                        -- No borders, but custom background color
                         winhighlight = "Normal:CmpNormal,CursorLine:PmenuSel,Search:None",
                     },
                     documentation = {
-                        -- No borders, but custom background color
                         winhighlight = "Normal:CmpDocNormal,CursorLine:PmenuSel,Search:None",
                     },
                 },
+            })
+
+            -- SQL files configuration
+            cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
+                sources = cmp.config.sources({
+                    { name = "vim-dadbod-completion" }, -- Prioritize DB completion for SQL files
+                    { name = "buffer" },
+                    { name = "nvim_lsp" },
+                })
             })
 
             cmp.setup.cmdline("/", {
                 mapping = {
                     ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "c" }),
                     ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "c" }),
-                    ["<C-e>"] = cmp.mapping.abort(),                   -- Close the completion menu
-                    ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Confirm the selected item
+                    ["<C-e>"] = cmp.mapping.abort(),
+                    ["<CR>"] = cmp.mapping.confirm({ select = true }),
                 },
                 sources = {
                     { name = "buffer" },
@@ -82,7 +84,7 @@ return {
             lspconfig.ts_ls.setup({ capabilities = capabilities })
             -- lspconfig.rust_analyzer.setup({ capabilities = capabilities })
             lspconfig.clangd.setup({ capabilities = capabilities })
-            lspconfig.sqls.setup({ capabilities = capabilities })
+            -- lspconfig.sqls.setup({ capabilities = capabilities })
             lspconfig.cssls.setup({ capabilities = capabilities })
             lspconfig.html.setup({ capabilities = capabilities })
         end,

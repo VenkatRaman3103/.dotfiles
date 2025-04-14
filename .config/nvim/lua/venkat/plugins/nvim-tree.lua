@@ -8,8 +8,8 @@ return {
         vim.g.loaded_netrw = 1
         vim.g.loaded_netrwPlugin = 1
 
-        local HEIGHT_RATIO = 0.95 -- Adjust this as needed
-        local WIDTH_RATIO = 0.5 -- Adjust this as needed
+        local HEIGHT_RATIO = 0.9 -- Adjust this as needed
+        local WIDTH_RATIO = 0.5  -- Adjust this as needed
 
         nvimtree.setup({
             view = {
@@ -24,7 +24,7 @@ return {
                         local window_w_int = math.floor(window_w)
                         local window_h_int = math.floor(window_h)
                         local center_x = (screen_w - window_w) / 2
-                        local center_y = ((vim.opt.lines:get() - window_h) / 2) - vim.opt.cmdheight:get()
+                        local center_y = ((vim.opt.lines:get() - window_h) / 4) - vim.opt.cmdheight:get()
                         return {
                             border = "rounded",
                             relative = "editor",
@@ -45,15 +45,15 @@ return {
                 highlight_opened_files = "name",
                 icons = {
                     glyphs = {
-                        git = {
-                            unstaged = "",
-                            staged = "",
-                            unmerged = "",
-                            renamed = "",
-                            untracked = "",
-                            deleted = "",
-                            ignored = "",
-                        },
+                        -- git = {
+                        --     unstaged = "",
+                        --     staged = "",
+                        --     unmerged = "",
+                        --     renamed = "",
+                        --     untracked = "",
+                        --     deleted = "",
+                        --     ignored = "",
+                        -- },
                         git = {
                             unstaged = "",
                             staged = "",
@@ -92,7 +92,7 @@ return {
             vim.api.nvim_set_hl(0, "NvimTreeVertSplit", { fg = "#222222", bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeFolderName", { fg = "#ffffff", bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeFolderIcon", { fg = "#999999", bg = "none" })
-            vim.api.nvim_set_hl(0, "NvimTreeOpenedFolderName", { fg = "#ffffff", bold = true, bg = "none" })
+            vim.api.nvim_set_hl(0, "NvimTreeOpenedFolderName", { fg = "#888888", bold = true, bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeEmptyFolderName", { fg = "#888888", bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeGitDirty", { fg = "#FFB800", bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeGitNew", { fg = "#4BB543", bg = "none" })

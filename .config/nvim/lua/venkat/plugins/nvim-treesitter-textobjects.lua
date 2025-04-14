@@ -54,11 +54,11 @@ return {
                     enable = true,
                     swap_next = {
                         ["<leader>nm"] = "@parameter.inner", -- swap parameters/argument with next
-                        ["<leader>nf"] = "@function.outer", -- swap function with next
+                        ["<leader>nf"] = "@function.outer",  -- swap function with next
                     },
                     swap_previous = {
                         ["<leader>mn"] = "@parameter.inner", -- swap parameters/argument with prev
-                        ["<leader>pf"] = "@function.outer", -- swap function with previous
+                        ["<leader>pf"] = "@function.outer",  -- swap function with previous
                     },
                 },
                 move = {

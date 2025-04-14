@@ -4,7 +4,8 @@ return {
     event = "VeryLazy",
     config = function()
         -- local bgColor = "#060606" -- Dark gray background color
-        local bgColor = "#090909" -- Dark gray background color
+        -- local bgColor = "#090909" -- Dark gray background color
+        local bgColor = "#0c0c0c" -- Dark gray background color
 
         -- Create global table for storing tab names
         _G.custom_tab_names = _G.custom_tab_names or {}
@@ -92,26 +93,36 @@ return {
                         --     inactive = { fg = "#505050", bg = bgColor },
                         -- },
 
-                        color = { fg = "#a7a7a7", bg = "#111111" },
+                        -- color = { fg = "#a7a7a7", bg = "#171717" },
+                        color = { fg = "#a1a1a1", bg = "#111111" }
                     },
                 },
                 lualine_b = {
-
-                    {
-                        "branch",
-                        color = { fg = "#505050", bg = bgColor },
-                        icon = { "󰘬", align = "left", color = { fg = "#505050" } },
-                    },
+                    -- {
+                    --     "diagnostics",
+                    -- },
                 },
                 lualine_c = {},
                 lualine_x = {
                 },
                 lualine_y = {
-
                     {
-                        get_active_harpoon_list,
-                        color = { fg = "#505050", bg = bgColor }, -- Green color for the Harpoon list
+                        "macro-recording",
+                        fmt = function()
+                            local recording_register = vim.fn.reg_recording()
+                            if recording_register == "" then
+                                return ""
+                            else
+                                return "Recording @" .. recording_register
+                            end
+                        end,
+                        color = { fg = "#aaaaaa", bg = bgColor }, -- Red color to make it noticeable
                     },
+                    -- {
+                    --     get_active_harpoon_list,
+                    --     color = { fg = "#505050", bg = bgColor }, -- Green color for the Harpoon list
+                    -- },
+
                 },
                 lualine_z = {
 
@@ -129,6 +140,13 @@ return {
                             return table.concat(result, " ")
                         end,
                     },
+
+                    {
+                        "branch",
+                        color = { fg = "#505050", bg = bgColor },
+                        icon = { "󰘬", align = "left", color = { fg = "#505050" } },
+                    },
+
                 },
             },
             extensions = {},

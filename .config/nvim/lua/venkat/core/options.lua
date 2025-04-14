@@ -1,4 +1,4 @@
-vim.cmd("let g:netrw_liststyle = 3")
+-- vim.cmd("let g:netrw_liststyle = 3")
 
 local opt = vim.opt
 local api = vim.api
@@ -51,8 +51,8 @@ opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 opt.undofile = true
 
 -- searching
-opt.hlsearch = false
-opt.incsearch = true
+opt.incsearch = true -- This you already have
+opt.hlsearch = true  -- This will highlight search results
 
 opt.scrolloff = 15
 
@@ -76,6 +76,7 @@ api.nvim_create_autocmd("TextYankPost", {
         vim.highlight.on_yank()
     end,
 })
+
 
 api.nvim_create_user_command("ClearMarks", function()
     vim.cmd("delmarks a-zA-Z0-9")
@@ -113,3 +114,10 @@ api.nvim_create_user_command("ReloadConfig", function()
 end, {})
 
 opt.report = 9999
+
+-- netrw
+-- vim.g.netrw_banner = 0       -- Hide the banner
+-- vim.g.netrw_liststyle = 3    -- Tree view
+-- vim.g.netrw_browse_split = 4 -- Open files in previous window
+-- vim.g.netrw_altv = 1         -- Open splits to the right
+-- vim.g.netrw_winsize = 25     -- Set width to 25% of screen
