@@ -87,7 +87,7 @@ return {
         -- Keybinding for executing REST requests - keeping your preferred <leader>xr
         vim.api.nvim_set_keymap(
             "n",
-            "<leader>xr",
+            "<leader>hr",
             ":call VrcQuery()<CR>",
             { noremap = true, silent = true, desc = "Execute REST request" }
         )

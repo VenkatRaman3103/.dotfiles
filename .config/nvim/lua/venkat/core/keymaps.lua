@@ -4,22 +4,93 @@ vim.g.mapleader = " "
 local keymap = vim.keymap
 local fn = vim.fn
 
-local function paste_clean()
+-- Enhanced clean function to handle newlines in clipboard content
+local function clean_clipboard()
     local reg_content = vim.fn.getreg("+")
-    reg_content = reg_content:gsub("\r\n", "\n"):gsub("\r", "\n")
-    vim.fn.setreg("+", reg_content)
-    return '"+p'
+    if reg_content then
+        -- Replace Windows line endings (CRLF) with Unix line endings (LF)
+        reg_content = reg_content:gsub("\r\n", "\n"):gsub("\r", "\n")
+        -- Optionally trim trailing newlines when in insert mode or when cursor is between quotes
+        local mode = vim.api.nvim_get_mode().mode
+        if mode == 'i' then
+            -- In insert mode, trim trailing newlines
+            reg_content = reg_content:gsub("\n+$", "")
+        end
+        vim.fn.setreg("+", reg_content)
+    end
 end
 
--- Map copying to system clipboard
+-- Setup auto-command to clean clipboard content when entering Vim
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+    pattern = "*",
+    callback = clean_clipboard
+})
+
+-- Setup auto-command to clean clipboard before pasting
+vim.api.nvim_create_autocmd("InsertEnter", {
+    pattern = "*",
+    callback = clean_clipboard
+})
+
+-- Use the system clipboard for all operations
+vim.opt.clipboard = "unnamedplus"
+
+-- Make sure deleting text in visual mode doesn't overwrite the paste register
+vim.keymap.set("v", "p", '"_dP', { noremap = true, desc = "Paste without yanking selected text" })
+
+-- Always use the system clipboard for yanking
+vim.keymap.set("n", "y", '"+y', { noremap = true, desc = "Yank to system clipboard" })
+vim.keymap.set("v", "y", '"+y', { noremap = true, desc = "Yank selection to system clipboard" })
+vim.keymap.set("n", "Y", '"+Y', { noremap = true, desc = "Yank line to system clipboard" })
+
+-- Delete without yanking
+vim.keymap.set("n", "d", '"+d', { noremap = true, desc = "Delete without yanking" })
+vim.keymap.set("v", "d", '"+d', { noremap = true, desc = "Delete selection without yanking" })
+vim.keymap.set("n", "D", '"+D', { noremap = true, desc = "Delete to end of line without yanking" })
+
+-- Cut to system clipboard (when you actually want to cut)
+vim.keymap.set("n", "x", '"+x', { noremap = true, desc = "Cut to system clipboard" })
+vim.keymap.set("v", "x", '"+x', { noremap = true, desc = "Cut selection to system clipboard" })
+vim.keymap.set("n", "X", '"+X', { noremap = true, desc = "Cut char before cursor to system clipboard" })
+
+-- Map copying to system clipboard (for explicit operations)
 keymap.set("n", "<leader>y", '"+y', { desc = "Yank to clipboard" })
 keymap.set("v", "<leader>y", '"+y', { desc = "Yank selection to clipboard" })
 
--- Map clean paste from system clipboard in all modes
-keymap.set("n", "p", paste_clean, { expr = true, desc = "Paste from clipboard (cleaned)" })
-keymap.set("v", "p", '"_dP', { desc = "Paste without yanking replaced text" })
--- keymap.set("v", "p", '"+p', { expr = true, desc = "normal paste" })
+-- Optional: Add a smart paste command that intelligently trims newlines
+keymap.set("n", "<leader>p", function()
+    clean_clipboard()
+    local col = vim.fn.col('.')
+    local line = vim.fn.getline('.')
+    local before = line:sub(col, col)
+    local after = line:sub(col + 1, col + 1)
 
+    -- If we're between quotes, trim trailing newlines
+    if (before == '"' and after == '"') or (before == "'" and after == "'") then
+        local reg_content = vim.fn.getreg("+")
+        reg_content = reg_content:gsub("\n+$", "")
+        vim.fn.setreg("+", reg_content)
+    end
+
+    return 'p'
+end, { expr = true, desc = "Smart paste that handles newlines" })
+
+keymap.set("n", "p", function()
+    clean_clipboard()
+    local col = vim.fn.col('.')
+    local line = vim.fn.getline('.')
+    local before = line:sub(col, col)
+    local after = line:sub(col + 1, col + 1)
+
+    -- If we're between quotes, trim trailing newlines
+    if (before == '"' and after == '"') or (before == "'" and after == "'") then
+        local reg_content = vim.fn.getreg("+")
+        reg_content = reg_content:gsub("\n+$", "")
+        vim.fn.setreg("+", reg_content)
+    end
+
+    return 'p'
+end, { expr = true, desc = "Smart paste that handles newlines" })
 keymap.set(
     "t",
     "<Esc",
@@ -83,8 +154,11 @@ keymap.set("n", "N", "Nzzzv")
 keymap.set("n", "<leader>d", '"_d')
 keymap.set("v", "<leader>d", '"_d')
 
-keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
-keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
+-- keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
+-- keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
+
+keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 keymap.set("n", "<leader><CR>", ":source ~/.config/nvim/init.lua<CR>")
 
@@ -150,10 +224,11 @@ keymap.set("v", "g/", ":s/", { desc = "Start substitute command" })
 keymap.set("v", "g?", ":s/<C-r><C-w>", { desc = "Substitute word under cursor" })
 
 -- Resize window
-keymap.set("n", "<A-Up>", ":resize +2<CR>", { desc = "Increase window height" })
-keymap.set("n", "<A-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
-keymap.set("n", "<A-Left>", ":vertical resize +2<CR>", { desc = "Decrease window width" })
-keymap.set("n", "<A-Right>", ":vertical resize -2<CR>", { desc = "Increase window width" })
+keymap.set("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
+keymap.set("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
+keymap.set("n", "<C-Left>", ":vertical resize +2<CR>", { desc = "Decrease window width" })
+keymap.set("n", "<C-Right>", ":vertical resize -2<CR>", { desc = "Increase window width" })
+
 
 keymap.set("n", "<leader>dbo", ":DBUI<CR>")
 

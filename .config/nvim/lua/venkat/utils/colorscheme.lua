@@ -493,6 +493,9 @@ function colorscheme.syntax()
     -- vim.api.nvim_set_hl(0, "@lsp.type.function.javascript", { fg = warnCoral })
     vim.api.nvim_set_hl(0, "@lsp.mod.defaultLibrary", { fg = grey })
 
+    -- vim.api.nvim_set_hl(0, "@comment.documentation", { fg = grey })
+
+
     -- vim.api.nvim_set_hl(0, "Normal", { fg = white, bg = black })
 
     -- ============================================================

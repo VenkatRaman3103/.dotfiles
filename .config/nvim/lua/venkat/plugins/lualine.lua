@@ -94,7 +94,9 @@ return {
                         -- },
 
                         -- color = { fg = "#a7a7a7", bg = "#171717" },
-                        color = { fg = "#a1a1a1", bg = "#111111" }
+                        -- color = { fg = "#a1a1a1", bg = "#111111" }
+                        color = { fg = "#ffffff", bg = "#0c0c0c" }
+
                     },
                 },
                 lualine_b = {

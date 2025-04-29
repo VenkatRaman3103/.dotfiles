@@ -32,7 +32,8 @@ vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = "#ffffff" })
 vim.api.nvim_set_hl(0, "@attribute", { fg = grey })
 vim.api.nvim_set_hl(0, "@tag.attribute", { fg = grey })
 
-vim.o.cmdheight = 0
+-- vim.o.cmdheight = 0
+vim.o.cmdheight = 1
 -- vim.opt.updatetime = 300
 vim.opt.conceallevel = 1 -- or 2
 

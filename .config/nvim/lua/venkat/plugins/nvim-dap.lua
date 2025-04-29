@@ -25,7 +25,7 @@ return {
         end
 
         -- Key mappings for debugging
-        vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, {})
+        vim.keymap.set("n", "<leader>dtb", dap.toggle_breakpoint, {})
         vim.keymap.set("n", "<leader>dc", dap.continue, {})
         vim.keymap.set("n", "<leader>dn", dap.step_over, {}) -- Adds step over key binding
 
@@ -44,12 +44,12 @@ return {
             {
                 type = "node2",
                 request = "launch",
-                program = "${file}", -- Ensures the current file is launched
+                program = "${file}",   -- Ensures the current file is launched
                 cwd = vim.fn.getcwd(), -- Sets the current working directory
                 sourceMaps = true,
                 protocol = "inspector",
                 console = "integratedTerminal", -- Use the integrated terminal
-                runtimeExecutable = "node", -- Specifies the runtime to be used
+                runtimeExecutable = "node",     -- Specifies the runtime to be used
             },
         }
     end,

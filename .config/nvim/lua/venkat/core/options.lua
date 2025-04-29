@@ -121,3 +121,32 @@ opt.report = 9999
 -- vim.g.netrw_browse_split = 4 -- Open files in previous window
 -- vim.g.netrw_altv = 1         -- Open splits to the right
 -- vim.g.netrw_winsize = 25     -- Set width to 25% of screen
+
+-- api.nvim_create_autocmd("InsertEnter", {
+--     desc = "Center screen when entering insert mode",
+--     callback = function()
+--         vim.cmd("normal! zz")
+--     end,
+-- })
+-- api.nvim_create_autocmd("InsertLeave", {
+--     desc = "Restore normal scrolloff when leaving insert mode",
+--     callback = function()
+--         vim.opt_local.scrolloff = 15
+--     end,
+-- })
+
+-- api.nvim_create_autocmd("CursorMoved", {
+--     desc = "Center screen after vertical cursor movement",
+--     callback = function()
+--         local current_line = vim.fn.line(".")
+--         local last_line = tonumber(vim.b.last_cursor_line) or current_line
+--
+--         if current_line ~= last_line then
+--             vim.cmd("normal! zz")
+--             vim.b.last_cursor_line = current_line
+--         end
+--     end,
+-- })
+
+-- vim.keymap.set('n', 'k', 'kzz', { noremap = true })
+-- vim.keymap.set('n', 'j', 'jzz', { noremap = true })
