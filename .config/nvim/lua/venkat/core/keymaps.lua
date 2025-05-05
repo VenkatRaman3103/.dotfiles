@@ -53,28 +53,24 @@ vim.keymap.set("n", "x", '"+x', { noremap = true, desc = "Cut to system clipboar
 vim.keymap.set("v", "x", '"+x', { noremap = true, desc = "Cut selection to system clipboard" })
 vim.keymap.set("n", "X", '"+X', { noremap = true, desc = "Cut char before cursor to system clipboard" })
 
--- Map copying to system clipboard (for explicit operations)
-keymap.set("n", "<leader>y", '"+y', { desc = "Yank to clipboard" })
-keymap.set("v", "<leader>y", '"+y', { desc = "Yank selection to clipboard" })
+-- MODIFIED: Create separate Neovim clipboard history with leader commands
 
--- Optional: Add a smart paste command that intelligently trims newlines
-keymap.set("n", "<leader>p", function()
-    clean_clipboard()
-    local col = vim.fn.col('.')
-    local line = vim.fn.getline('.')
-    local before = line:sub(col, col)
-    local after = line:sub(col + 1, col + 1)
+-- Map copying to Neovim's internal registers (not system clipboard)
+keymap.set("n", "<leader>y", '"ay', { desc = "Yank to Neovim's register a" })
+keymap.set("v", "<leader>y", '"ay', { desc = "Yank selection to Neovim's register a" })
+keymap.set("n", "<leader>Y", '"aY', { desc = "Yank line to Neovim's register a" })
 
-    -- If we're between quotes, trim trailing newlines
-    if (before == '"' and after == '"') or (before == "'" and after == "'") then
-        local reg_content = vim.fn.getreg("+")
-        reg_content = reg_content:gsub("\n+$", "")
-        vim.fn.setreg("+", reg_content)
-    end
+-- Delete/cut to Neovim's internal registers
+keymap.set("n", "<leader>d", '"ad', { desc = "Delete to Neovim's register a" })
+keymap.set("v", "<leader>d", '"ad', { desc = "Delete selection to Neovim's register a" })
+keymap.set("n", "<leader>D", '"aD', { desc = "Delete to end of line to Neovim's register a" })
 
-    return 'p'
-end, { expr = true, desc = "Smart paste that handles newlines" })
+-- Paste from Neovim's internal register
+keymap.set("n", "<leader>p", '"ap', { desc = "Paste from Neovim's register a" })
+keymap.set("v", "<leader>p", '"ap', { desc = "Paste from Neovim's register a" })
+keymap.set("n", "<leader>P", '"aP', { desc = "Paste before cursor from Neovim's register a" })
 
+-- Optional: Enhanced smart paste from system clipboard
 keymap.set("n", "p", function()
     clean_clipboard()
     local col = vim.fn.col('.')
@@ -91,6 +87,8 @@ keymap.set("n", "p", function()
 
     return 'p'
 end, { expr = true, desc = "Smart paste that handles newlines" })
+
+-- Rest of your configuration remains unchanged
 keymap.set(
     "t",
     "<Esc",
@@ -150,10 +148,6 @@ keymap.set("n", "G", "Gzz")
 keymap.set("n", "n", "nzzzv")
 keymap.set("n", "N", "Nzzzv")
 
--- Pasting from the system clipboard
-keymap.set("n", "<leader>d", '"_d')
-keymap.set("v", "<leader>d", '"_d')
-
 -- keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
 -- keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
 
@@ -178,47 +172,39 @@ end, { desc = "Delete all buffers except the current one" })
 keymap.set("n", "<leader>qo", ":copen<CR>")
 keymap.set("n", "<leader>qc", ":cclose<CR>")
 
--- keymap.set("n", "<leader>a", function()
---     vim.fn.setqflist({ { bufnr = vim.fn.bufnr() } }, "a")
--- end)
-
 keymap.set("n", "]q", ":cnext<CR>")
 keymap.set("n", "[q", ":cprev<CR>")
 
--- keymap.set("n", "]]", function()
---     vim.lsp.buf.references()
--- end, { desc = "Next reference" })
---
--- keymap.set("n", "[[", function()
---     vim.lsp.buf.references()
--- end, { desc = "Previous reference" })
-
 keymap.set("n", "gh", "^", { desc = "use H as ^" })
+
 keymap.set("n", "gH", "^", { desc = "use H as 0" })
-keymap.set("n", "gl", "$", { desc = "use L as $" })
+keymap.set("n", "gl", "g_", { desc = "use L as last non-blank character" })
 keymap.set("n", "gm", "%", { desc = "use M as %" })
 
 keymap.set("v", "gh", "^", { desc = "use H as ^" })
+
 keymap.set("v", "gH", "^", { desc = "use H as 0" })
-keymap.set("v", "gl", "$", { desc = "use L as $" })
+keymap.set("v", "gl", "g_", { desc = "use L as last non-blank character" })
 keymap.set("v", "gm", "%", { desc = "use M as %" })
+
+keymap.set("n", "gn", "g,", { desc = "Next position in change list" })
+
+keymap.set("n", "gp", "g;", { desc = "Previous position in change list" })
 
 keymap.set("v", ">", ">gv", { desc = "" })
 keymap.set("v", "<", "<gv", { desc = "" })
 
--- keymap.set("n", "g-", "`^", { desc = "Last position in insert mode" })
 keymap.set("n", "g'", "`.", { desc = "Last change in current buffer" })
+
 keymap.set("n", 'g"', "<cmd>edit #<CR>`.", { desc = "Jump to last edited file and position" })
 keymap.set("n", "g;", "``", { desc = "Back to position where jumped from" })
--- keymap.set("n", "g;", "''", { desc = "Back to line where jumped from" })
--- keymap.set("n", "g.", '`"', { desc = "Last exited current buffer" })
-keymap.set("n", "g[", "`[", { desc = "To beginning of changed/yanked text" })
-keymap.set("n", "g]", "`]", { desc = "To end of changed/yanked text" })
-keymap.set("n", "g<", "`<", { desc = "To beginning of last visual selection" })
-keymap.set("n", "g>", "`>", { desc = "To end of last visual selection" })
+keymap.set("n", "gy[", "`[", { desc = "To beginning of changed/yanked text" })
+keymap.set("n", "gy]", "`]", { desc = "To end of changed/yanked text" })
+keymap.set("n", "gv[", "`<", { desc = "To beginning of last visual selection" })
+keymap.set("n", "gv]", "`>", { desc = "To end of last visual selection" })
 
 keymap.set("n", "g/", ":%s/", { desc = "Start substitute command" })
-keymap.set("n", "g?", ":%s/<C-r><C-w>", { desc = "Substitute word under cursor" })
+keymap.set("n", "g?", ":%s/<C-r><C-w>/", { desc = "Substitute word under cursor" })
 
 keymap.set("v", "g/", ":s/", { desc = "Start substitute command" })
 keymap.set("v", "g?", ":s/<C-r><C-w>", { desc = "Substitute word under cursor" })

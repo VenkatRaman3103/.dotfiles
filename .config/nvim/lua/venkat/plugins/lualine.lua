@@ -5,7 +5,8 @@ return {
     config = function()
         -- local bgColor = "#060606" -- Dark gray background color
         -- local bgColor = "#090909" -- Dark gray background color
-        local bgColor = "#0c0c0c" -- Dark gray background color
+        -- local bgColor = "#0c0c0c" -- Dark gray background color
+        local bgColor = "" -- Dark gray background color
 
         -- Create global table for storing tab names
         _G.custom_tab_names = _G.custom_tab_names or {}
@@ -95,7 +96,9 @@ return {
 
                         -- color = { fg = "#a7a7a7", bg = "#171717" },
                         -- color = { fg = "#a1a1a1", bg = "#111111" }
-                        color = { fg = "#ffffff", bg = "#0c0c0c" }
+                        -- color = { fg = "#ffffff", bg = "#0c0c0c" }
+                        color = { fg = "#a0a0a0", bg = "#0c0c0c" }
+
 
                     },
                 },
@@ -155,11 +158,18 @@ return {
         })
 
         -- Create highlight groups for tabs
+        -- vim.cmd([[
+        --     highlight LualineTabActive guifg=#a7a7a7 guibg=#111111
+        --     highlight LualineTabInactive guifg=#505050 guibg=#111111
+        --     highlight LualineSeparator guifg=#0e0e0e guibg=#111111
+        --     highlight LualineBranch guifg=#808080 guibg=#111111
+        -- ]])
+
         vim.cmd([[
-            highlight LualineTabActive guifg=#a7a7a7 guibg=#111111
-            highlight LualineTabInactive guifg=#505050 guibg=#111111
-            highlight LualineSeparator guifg=#0e0e0e guibg=#111111
-            highlight LualineBranch guifg=#808080 guibg=#111111
+            highlight LualineTabActive guifg=#a7a7a7 guibg=none
+            highlight LualineTabInactive guifg=#505050 guibg=none
+            highlight LualineSeparator guifg=#0e0e0e guibg=none
+            highlight LualineBranch guifg=#808080 guibg=none
         ]])
     end,
 }

@@ -384,13 +384,23 @@ return {
         --     end,
         --     desc = "Git Status",
         -- },
+        -- {
+        --     "<leader>fd",
+        --     function()
+        --         Snacks.picker.smart(
+        --         )
+        --     end,
+        --     desc = "Smart Find Files",
+        -- },
         {
             "<leader>fd",
             function()
-                Snacks.picker.smart(
-                )
+                Snacks.picker.files({
+                    cwd = vim.fn.getcwd(), -- Use current working directory
+                    prompt_title = "Project Files",
+                })
             end,
-            desc = "Smart Find Files",
+            desc = "Find Project Files",
         },
         {
             "<leader>fb",

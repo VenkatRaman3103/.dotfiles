@@ -14,7 +14,9 @@ vim.lsp.buf_request_timeout = 5000
 vim.opt.showtabline = 0
 
 -- local grey = "#a9a9a9";
-local grey = "#a9a9a9";
+-- local grey = "#a9a9a9";
+-- local grey = "#333333";
+local grey = "#505050";
 local lightGrey = "#666666";
 local white = "#ffffff";
 local secondaryBgColor = "#090909"

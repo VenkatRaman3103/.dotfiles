@@ -9,11 +9,11 @@ return {
         oil.setup({
             -- Customize the floating window to be smaller and remove background
             float = {
-                max_width = 80, -- Set maximum width for the floating window
-                max_height = 25, -- Set maximum height for the floating window
+                max_width = 80,     -- Set maximum width for the floating window
+                max_height = 25,    -- Set maximum height for the floating window
                 border = "rounded", -- Optional: Add rounded borders to the window
                 win_options = {
-                    winblend = 0, -- No blending (transparency)
+                    winblend = 0,   -- No blending (transparency)
                     -- Remove background by setting Normal highlight
                     winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder",
                 },
