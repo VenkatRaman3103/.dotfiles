@@ -96,7 +96,7 @@ return {
                 preset = "telescope",
                 layout = {
                     box = "horizontal",
-                    width = 0.9,
+                    width = 0,
                     min_width = 120,
                     height = 0.93,
                     -- position = "",

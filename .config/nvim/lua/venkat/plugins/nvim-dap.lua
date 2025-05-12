@@ -33,24 +33,24 @@ return {
         require("dapui").setup()
 
         -- Configure dap for JavaScript (Node.js)
-        dap.adapters.node2 = {
-            type = "executable",
-            command = "node",
-            args = { os.getenv("HOME") .. "/.local/share/nvim/dap-adapters/vscode-node-debug2/out/src/nodeDebug.js" },
-        }
+        -- dap.adapters.node2 = {
+        --     type = "executable",
+        --     command = "node",
+        --     args = { os.getenv("HOME") .. "/.local/share/nvim/dap-adapters/vscode-node-debug2/out/src/nodeDebug.js" },
+        -- }
 
         -- Set up configurations for JavaScript debugging
-        dap.configurations.javascript = {
-            {
-                type = "node2",
-                request = "launch",
-                program = "${file}",   -- Ensures the current file is launched
-                cwd = vim.fn.getcwd(), -- Sets the current working directory
-                sourceMaps = true,
-                protocol = "inspector",
-                console = "integratedTerminal", -- Use the integrated terminal
-                runtimeExecutable = "node",     -- Specifies the runtime to be used
-            },
-        }
+        -- dap.configurations.javascript = {
+        --     {
+        --         type = "node2",
+        --         request = "launch",
+        --         program = "${file}",   -- Ensures the current file is launched
+        --         cwd = vim.fn.getcwd(), -- Sets the current working directory
+        --         sourceMaps = true,
+        --         protocol = "inspector",
+        --         console = "integratedTerminal", -- Use the integrated terminal
+        --         runtimeExecutable = "node",     -- Specifies the runtime to be used
+        --     },
+        -- }
     end,
 }

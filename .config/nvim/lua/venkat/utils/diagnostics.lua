@@ -12,6 +12,19 @@ function diagnostics.toggle_diagnostics()
 end
 
 function diagnostics.setup()
+    -- Configure how diagnostics are displayed
+    vim.diagnostic.config({
+        virtual_text = false,
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+        severity_sort = true,
+        float = {
+            focusable = false,
+            scope = "line",
+        },
+    })
+
     vim.keymap.set("n", "<leader>td", function()
         diagnostics.toggle_diagnostics()
         if vim.g.diagnostics_visible then
@@ -24,7 +37,7 @@ function diagnostics.setup()
     -- Initially enable diagnostics
     vim.diagnostic.enable()
 
-    -- Configure diagnostic borders
+    -- Diagnostic navigation
     local float_opts = { border = "rounded", focusable = false, scope = "line" }
 
     vim.keymap.set("n", "[d", function()
@@ -34,6 +47,13 @@ function diagnostics.setup()
     vim.keymap.set("n", "]d", function()
         vim.diagnostic.goto_next({ float = float_opts })
     end, { noremap = true, silent = true, desc = "Go to next diagnostic" })
+
+    -- Show diagnostic for the current line
+    vim.keymap.set("n", "<leader>dl", function()
+        vim.diagnostic.open_float(nil, { border = "rounded", scope = "line" })
+    end, { noremap = true, silent = true, desc = "Show diagnostics for line" })
+
+    -- Disable underlines and apply color directly to the words with diagnostics
 end
 
 return diagnostics

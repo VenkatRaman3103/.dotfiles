@@ -28,8 +28,8 @@ vim.api.nvim_set_hl(0, 'MsgArea', { fg = grey })  -- Command area text
 vim.api.nvim_set_hl(0, 'Question', { fg = grey }) -- Prompt/question text
 vim.api.nvim_set_hl(0, 'WildMenu', { fg = grey }) -- Command-line completion menu
 vim.api.nvim_set_hl(0, "Delimiter", { fg = "#ffffff" })
-vim.api.nvim_set_hl(0, "@punctuation.bracket", { fg = "#ffffff" })
-vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = "#ffffff" })
+-- vim.api.nvim_set_hl(0, "@punctuation.bracket", { fg = "#ffffff" })
+-- vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = "#ffffff" })
 
 vim.api.nvim_set_hl(0, "@attribute", { fg = grey })
 vim.api.nvim_set_hl(0, "@tag.attribute", { fg = grey })

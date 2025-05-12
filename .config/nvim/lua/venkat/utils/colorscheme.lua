@@ -63,7 +63,8 @@ function colorscheme.colorMyPencils()
     vim.api.nvim_set_hl(0, "CmpDocNormal", { bg = secondaryBgColor }) -- Same color for documentation
 
     -- vim.api.nvim_set_hl(0, "IblIndent", { fg = "#242424" })
-    vim.api.nvim_set_hl(0, "IblIndent", { fg = "#333333" })
+    -- vim.api.nvim_set_hl(0, "IblIndent", { fg = "#333333" })
+    vim.api.nvim_set_hl(0, "IblIndent", { fg = "#222222" })
 
     -- Zen-mode highlights
     vim.api.nvim_set_hl(0, "ZenBg", { bg = bgColor })
@@ -198,12 +199,6 @@ function colorscheme.colorMyPencils()
     vim.api.nvim_set_hl(0, "TabLine", { fg = "#555555", bg = "NONE" })
     vim.api.nvim_set_hl(0, "TabLineFill", { fg = "#555555", bg = "NONE" })
     vim.api.nvim_set_hl(0, "TabLineSel", { fg = "#aaaaaa", bg = "#222222" })
-
-    -- For LSP diagnostics
-    vim.api.nvim_set_hl(0, "DiagnosticError", { fg = "#e67e7e", bg = "NONE" })
-    vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = "#d2a374", bg = "NONE" })
-    vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = "#7ca68c", bg = "NONE" })
-    vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = "#aaaaaa", bg = "NONE" })
 
     -- Links (such as HTML, help files)
     vim.api.nvim_set_hl(0, "Url", { fg = "#7ca68c", bg = "NONE", underline = true })
@@ -391,7 +386,7 @@ function colorscheme.syntax()
     vim.api.nvim_set_hl(0, "@namespace", { fg = white }) -- Namespace identifiers
 
     -- Comments highlight settings
-    vim.api.nvim_set_hl(0, "@comment", { fg = lightGrey })               -- Regular comments
+    vim.api.nvim_set_hl(0, "@comment", { fg = evenLightGrey })           -- Regular comments
     vim.api.nvim_set_hl(0, "@comment.documentation", { fg = lightGrey }) -- Documentation comments
     vim.api.nvim_set_hl(0, "@comment.error", { fg = "#d2788c" })         -- Error comments like TODO, FIXME
     vim.api.nvim_set_hl(0, "@comment.warning", { fg = "#e6be8c" })       -- Warning comments
@@ -434,6 +429,8 @@ function colorscheme.syntax()
     vim.api.nvim_set_hl(0, "@property.typescript", { fg = grey })     -- TS properties
     vim.api.nvim_set_hl(0, "@method.call.javascript", { fg = white }) -- JS method calls
     vim.api.nvim_set_hl(0, "@method.call.typescript", { fg = white }) -- TS method calls
+    vim.api.nvim_set_hl(0, "@tag.attribute.tsx", { fg = grey })       -- TS method calls
+
 
     -- Python specific
     vim.api.nvim_set_hl(0, "@method.python", { fg = white })  -- Python methods
@@ -476,6 +473,7 @@ function colorscheme.syntax()
     vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { fg = mutedTeal })
     vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { fg = evenLightGrey })
 
+
     -- Error and warning colors
     vim.api.nvim_set_hl(0, "Error", { fg = "#d2788c" })
     vim.api.nvim_set_hl(0, "Warning", { fg = "#e6be8c" })
@@ -493,6 +491,17 @@ function colorscheme.syntax()
     vim.api.nvim_set_hl(0, "@lsp.type.keyword", { fg = grey })
     -- vim.api.nvim_set_hl(0, "@lsp.type.function.javascript", { fg = warnCoral })
     vim.api.nvim_set_hl(0, "@lsp.mod.defaultLibrary", { fg = grey })
+
+    -- For LSP diagnostics
+    vim.api.nvim_set_hl(0, "DiagnosticError", { fg = "#e67e7e", bg = "NONE" })
+    vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = "#d2a374", bg = "NONE" })
+    vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = "#7ca68c", bg = "NONE" })
+    vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = "#aaaaaa", bg = "NONE" })
+
+    vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { fg = "#e67e7e", bg = "NONE" })
+    vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { fg = "#d2a374", bg = "NONE" })
+    vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { fg = "#7ca68c", bg = "NONE" })
+    vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = "#aaaaaa", bg = "NONE" })
 
     -- vim.api.nvim_set_hl(0, "@comment.documentation", { fg = grey })
 
