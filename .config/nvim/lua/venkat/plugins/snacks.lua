@@ -12,7 +12,8 @@ return {
         notifier = {
             enabled = true,
             timeout = 3000,
-            style = "compact"
+            ---@type snacks.notifier.style
+            style = "minimal"
         },
         explorer = {
             enabled = false,
