@@ -60,14 +60,14 @@ return {
             options = {
                 theme = {
                     normal = {
-                        a = { fg = "#ffffff", bg = bgColor },
-                        b = { fg = "#ffffff", bg = bgColor },
-                        c = { fg = "#ffffff", bg = bgColor },
+                        a = { fg = "#eeeeee", bg = bgColor },
+                        b = { fg = "#eeeeee", bg = bgColor },
+                        c = { fg = "#eeeeee", bg = bgColor },
                     },
-                    insert = { a = { fg = "#ffffff", bg = bgColor } },
-                    visual = { a = { fg = "#ffffff", bg = bgColor } },
-                    replace = { a = { fg = "#ffffff", bg = bgColor } },
-                    command = { a = { fg = "#ffffff", bg = bgColor } },
+                    insert = { a = { fg = "#eeeeee", bg = bgColor } },
+                    visual = { a = { fg = "#eeeeee", bg = bgColor } },
+                    replace = { a = { fg = "#eeeeee", bg = bgColor } },
+                    command = { a = { fg = "#eeeeee", bg = bgColor } },
                 },
                 section_separators = { left = "", right = "" },
                 component_separators = { left = "", right = "" },
@@ -97,7 +97,9 @@ return {
                         -- color = { fg = "#a7a7a7", bg = "#171717" },
                         -- color = { fg = "#a1a1a1", bg = "#111111" }
                         -- color = { fg = "#ffffff", bg = "#0c0c0c" }
-                        color = { fg = "#a0a0a0", bg = "#0c0c0c" }
+                        -- color = { fg = "#a0a0a0", bg = "#0c0c0c" }
+                        color = { fg = "#eeeeee", bg = "#0c0c0c" }
+
 
 
                     },
@@ -132,6 +134,12 @@ return {
                 lualine_z = {
 
                     {
+                        "branch",
+                        separator = " ",
+                        color = { fg = "#505050", bg = bgColor },
+                        icon = { "󰘬", align = "left", color = { fg = "#505050" } },
+                    },
+                    {
                         function()
                             local result = {}
                             for i = 1, vim.fn.tabpagenr("$") do
@@ -145,13 +153,10 @@ return {
                             return table.concat(result, " ")
                         end,
                     },
-
                     {
-                        "branch",
+                        "progress",
                         color = { fg = "#505050", bg = bgColor },
-                        icon = { "󰘬", align = "left", color = { fg = "#505050" } },
                     },
-
                 },
             },
             extensions = {},

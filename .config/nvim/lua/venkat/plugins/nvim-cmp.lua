@@ -1,3 +1,4 @@
+-- ~/.config/nvim/lua/venkat/plugins/nvim-cmp.lua
 return {
     {
         "hrsh7th/nvim-cmp",
@@ -19,8 +20,11 @@ return {
             if not luasnip_ok then
                 return
             end
-
             require("luasnip.loaders.from_vscode").lazy_load()
+
+            -- Setup completion highlights
+            vim.api.nvim_set_hl(0, "CmpNormal", { bg = bg })
+            vim.api.nvim_set_hl(0, "CmpDocNormal", { bg = bg })
 
             cmp.setup({
                 completion = {
@@ -45,7 +49,7 @@ return {
                     { name = "luasnip" },
                     { name = "buffer" },
                     { name = "path" },
-                    { name = "vim-dadbod-completion" }, -- Add this source for SQL completion
+                    { name = "vim-dadbod-completion" }, -- For SQL completion
                 }),
                 window = {
                     completion = {
@@ -57,15 +61,27 @@ return {
                 },
             })
 
-            -- SQL files configuration
+            -- Special filetypes configuration
+
+            -- SQL files
             cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
                 sources = cmp.config.sources({
-                    { name = "vim-dadbod-completion" }, -- Prioritize DB completion for SQL files
+                    { name = "vim-dadbod-completion" },
                     { name = "buffer" },
                     { name = "nvim_lsp" },
                 })
             })
 
+            -- CSS and SCSS files - prioritize LSP suggestions
+            cmp.setup.filetype({ "css", "scss", "sass", "less" }, {
+                sources = cmp.config.sources({
+                    { name = "nvim_lsp", priority = 1000 }, -- Give LSP highest priority
+                    { name = "buffer",   priority = 500 },
+                    { name = "path",     priority = 250 },
+                })
+            })
+
+            -- Command-line completion configuration
             cmp.setup.cmdline("/", {
                 mapping = {
                     ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "c" }),
@@ -78,15 +94,19 @@ return {
                 },
             })
 
-            local capabilities = require("cmp_nvim_lsp").default_capabilities()
-            local lspconfig = require("lspconfig")
-            lspconfig.pyright.setup({ capabilities = capabilities })
-            lspconfig.ts_ls.setup({ capabilities = capabilities })
-            -- lspconfig.rust_analyzer.setup({ capabilities = capabilities })
-            lspconfig.clangd.setup({ capabilities = capabilities })
-            -- lspconfig.sqls.setup({ capabilities = capabilities })
-            lspconfig.cssls.setup({ capabilities = capabilities })
-            lspconfig.html.setup({ capabilities = capabilities })
+            -- Command and search completion
+            cmp.setup.cmdline(":", {
+                mapping = {
+                    ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "c" }),
+                    ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "c" }),
+                    ["<C-e>"] = cmp.mapping.abort(),
+                    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+                },
+                sources = cmp.config.sources({
+                    { name = "path" },
+                    { name = "cmdline" },
+                }),
+            })
         end,
     },
 }

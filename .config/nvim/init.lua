@@ -57,3 +57,15 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.formatoptions:append("t") -- Enforce textwidth for new lines
     end,
 })
+local original_require = require
+
+_G.require = function(module_name)
+    if module_name == "mason-lspconfig.features.automatic_enable" then
+        return {
+            init = function()
+                vim.notify("Bypassed automatic_enable feature", vim.log.levels.INFO)
+            end
+        }
+    end
+    return original_require(module_name)
+end

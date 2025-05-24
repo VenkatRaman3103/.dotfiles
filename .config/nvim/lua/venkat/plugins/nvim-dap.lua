@@ -1,11 +1,9 @@
 return {
     "mfussenegger/nvim-dap",
-
     dependencies = {
         "rcarriga/nvim-dap-ui",
         "nvim-neotest/nvim-nio",
     },
-
     config = function()
         local dap = require("dap")
         local dapui = require("dapui")
@@ -27,30 +25,43 @@ return {
         -- Key mappings for debugging
         vim.keymap.set("n", "<leader>dtb", dap.toggle_breakpoint, {})
         vim.keymap.set("n", "<leader>dc", dap.continue, {})
-        vim.keymap.set("n", "<leader>dn", dap.step_over, {}) -- Adds step over key binding
+        vim.keymap.set("n", "<leader>dn", dap.step_over, {}) -- Step over
+        vim.keymap.set("n", "<leader>di", dap.step_into, {}) -- Step into
+        vim.keymap.set("n", "<leader>do", dap.step_out, {})  -- Step out
+        vim.keymap.set("n", "<leader>dr", dap.repl.open, {}) -- Open REPL
 
         -- Setup dap-ui
-        require("dapui").setup()
+        dapui.setup()
 
-        -- Configure dap for JavaScript (Node.js)
-        -- dap.adapters.node2 = {
-        --     type = "executable",
-        --     command = "node",
-        --     args = { os.getenv("HOME") .. "/.local/share/nvim/dap-adapters/vscode-node-debug2/out/src/nodeDebug.js" },
-        -- }
+        -- SIMPLIFIED NODE ADAPTER - Direct Node Inspector Protocol
+        dap.adapters.node = {
+            type = "executable",
+            command = "node",
+            args = { "--inspect-brk=${port}", "${file}" },
+            options = {
+                detached = false,
+            },
+        }
 
-        -- Set up configurations for JavaScript debugging
-        -- dap.configurations.javascript = {
-        --     {
-        --         type = "node2",
-        --         request = "launch",
-        --         program = "${file}",   -- Ensures the current file is launched
-        --         cwd = vim.fn.getcwd(), -- Sets the current working directory
-        --         sourceMaps = true,
-        --         protocol = "inspector",
-        --         console = "integratedTerminal", -- Use the integrated terminal
-        --         runtimeExecutable = "node",     -- Specifies the runtime to be used
-        --     },
-        -- }
+        -- Simple Node.js configuration
+        dap.configurations.javascript = {
+            {
+                type = "node",
+                request = "launch",
+                name = "Launch File (Node)",
+                runtimeArgs = { "--inspect-brk=${port}" },
+                program = "${file}",
+                cwd = "${workspaceFolder}",
+                sourceMaps = true,
+                protocol = "inspector",
+                console = "integratedTerminal",
+                port = function()
+                    return math.random(40000, 50000)
+                end,
+            },
+        }
+
+        -- Add TypeScript support (same as JavaScript)
+        dap.configurations.typescript = dap.configurations.javascript
     end,
 }

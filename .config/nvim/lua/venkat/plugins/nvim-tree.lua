@@ -8,8 +8,8 @@ return {
         vim.g.loaded_netrw = 1
         vim.g.loaded_netrwPlugin = 1
 
-        local HEIGHT_RATIO = 0.9 -- Adjust this as needed
-        local WIDTH_RATIO = 0.5  -- Adjust this as needed
+        local HEIGHT_RATIO = 0.93 -- Adjust this as needed
+        local WIDTH_RATIO = 0.5   -- Adjust this as needed
 
         nvimtree.setup({
             view = {
@@ -38,7 +38,7 @@ return {
                 width = function()
                     return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
                 end,
-                signcolumn = "no", -- Add this line to remove the signcolumn
+                signcolumn = "yes", -- Add this line to remove the signcolumn
             },
             renderer = {
                 indent_markers = { enable = true },
@@ -85,27 +85,32 @@ return {
             },
         })
 
+        local grey = "#888888"
+        local lightGrey = "#666666"
+        local evenLightGrey = "#404040"
+
         -- Define custom highlight colors with transparent backgrounds
         local function colors()
-            vim.api.nvim_set_hl(0, "NvimTreeNormal", { fg = "#888888", bg = "none" })
+            vim.api.nvim_set_hl(0, "NvimTreeNormal", { fg = evenLightGrey, bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeVertSplit", { fg = "#222222", bg = "none" })
-            vim.api.nvim_set_hl(0, "NvimTreeFolderName", { fg = "#ffffff", bg = "none" })
+            vim.api.nvim_set_hl(0, "NvimTreeFolderName", { fg = "#eeeeee", bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeFolderIcon", { fg = "#999999", bg = "none" })
-            vim.api.nvim_set_hl(0, "NvimTreeOpenedFolderName", { fg = "#888888", bold = true, bg = "none" })
-            vim.api.nvim_set_hl(0, "NvimTreeEmptyFolderName", { fg = "#888888", bg = "none" })
+            vim.api.nvim_set_hl(0, "NvimTreeOpenedFolderName", { fg = "#ffffff", bold = true, bg = "none" })
+            vim.api.nvim_set_hl(0, "NvimTreeEmptyFolderName", { fg = lightGrey, bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeGitDirty", { fg = "#FFB800", bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeGitNew", { fg = "#4BB543", bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeGitDeleted", { fg = "#FF3333", bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeSpecialFile", { fg = "#999999", underline = true, bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeIndentMarker", { fg = "#555555", bg = "none" })
-            vim.api.nvim_set_hl(0, "NvimTreeImageFile", { fg = "#888888", bg = "none" })
-            vim.api.nvim_set_hl(0, "NvimTreeSymlink", { fg = "#888888", bg = "none" })
-            vim.api.nvim_set_hl(0, "NvimTreeFile", { fg = "#888888", bg = "none" })
-            vim.api.nvim_set_hl(0, "NvimTreeExecFile", { fg = "#888888", bg = "none" })
-            vim.api.nvim_set_hl(0, "NvimTreeOpenedFileIcon", { fg = "#888888", bg = "none" })
-            vim.api.nvim_set_hl(0, "NvimTreeModifiedFile", { fg = "#888888", italic = true, bg = "none" })
-            -- Add this highlight group to remove the right border
+            vim.api.nvim_set_hl(0, "NvimTreeImageFile", { fg = lightGrey, bg = "none" })
+            vim.api.nvim_set_hl(0, "NvimTreeSymlink", { fg = lightGrey, bg = "none" })
+            vim.api.nvim_set_hl(0, "NvimTreeFile", { fg = lightGrey, bg = "none" })
+            vim.api.nvim_set_hl(0, "NvimTreeExecFile", { fg = lightGrey, bg = "none" })
+            vim.api.nvim_set_hl(0, "NvimTreeOpenedFileIcon", { fg = "#ffffff", bg = "none" })
+            vim.api.nvim_set_hl(0, "NvimTreeModifiedFile", { fg = "#ffffff", italic = true, bg = "none" })
+            vim.api.nvim_set_hl(0, "NvimTreeOpenedHL", { fg = "#ffffff", italic = true, bg = "none" })
+
             vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { fg = "none", bg = "none" })
         end
 

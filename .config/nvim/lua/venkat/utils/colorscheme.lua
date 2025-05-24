@@ -75,7 +75,7 @@ function colorscheme.colorMyPencils()
 
     -- Borders and caret highlights
     -- vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#555555", bg = bgColor })
-    -- vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = "#555555", bg = bgColor })
+    vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = secondaryBgColor, bg = secondaryBgColor })
     -- vim.api.nvim_set_hl(0, "HarpoonBorder", { fg = secondaryBgColor, bg = secondaryBgColor })
     -- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#555555", bg = bgColor })
 
@@ -87,10 +87,10 @@ function colorscheme.colorMyPencils()
     vim.api.nvim_set_hl(0, "VertSplit", { fg = "#060606", bg = "NONE" })    -- Split lines
 
     -- set title colors
-    vim.api.nvim_set_hl(0, "TelescopeTitle", { fg = "#ffffff", bold = false })
-    vim.api.nvim_set_hl(0, "TelescopePromptTitle", { fg = "#ffffff", bold = false })
-    vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { fg = "#ffffff", bold = false })
-    vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { fg = "#ffffff", bold = false })
+    vim.api.nvim_set_hl(0, "TelescopeTitle", { fg = bgColor, bold = false })
+    vim.api.nvim_set_hl(0, "TelescopePromptTitle", { fg = bgColor, bold = false })
+    vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { fg = bgColor, bold = false })
+    vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { fg = bgColor, bold = false })
     -- vim.api.nvim_set_hl(0, "HarpoonWindow", { fg = "#ffffff" })
     -- vim.api.nvim_set_hl(0, "HarpoonTitle", { fg = "#ffffff", bold = false })
     vim.api.nvim_set_hl(0, "FloatTitle", { fg = "#ffffff", bold = false })
@@ -113,10 +113,10 @@ function colorscheme.colorMyPencils()
     vim.api.nvim_set_hl(0, "PmenuThumb", { bg = "", fg = "none" })
 
     -- Telescope specific highlights
-    vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = bgColor })
-    vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = bgColor })
-    vim.api.nvim_set_hl(0, "TelescopeResultsNormal", { bg = bgColor })
-    vim.api.nvim_set_hl(0, "TelescopePreviewNormal", { bg = bgColor })
+    vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = secondaryBgColor})
+    vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = secondaryBgColor})
+    vim.api.nvim_set_hl(0, "TelescopeResultsNormal", { bg = secondaryBgColor})
+    vim.api.nvim_set_hl(0, "TelescopePreviewNormal", { bg = secondaryBgColor})
 
     -- Disable underlines
     vim.api.nvim_set_hl(0, "Underlined", { underline = false })
@@ -307,10 +307,13 @@ end
 
 function colorscheme.syntax()
     -- Monochrome color palette
-    local grey = "#a7a7a7"
+    -- local grey = "#a7a7a7"
+    local grey = "#888888"
     local lightGrey = "#666666"
-    local evenLightGrey = "#505050"
-    local white = "#ffffff"
+    -- local evenLightGrey = "#505050"
+    local evenLightGrey = "#404040"
+    -- local white = "#ffffff"
+    local white = "#eeeeee"
     local black = "#191919"
     local oceanGray = "#70787f"
     local silver = "#bec2cb"
@@ -362,19 +365,20 @@ function colorscheme.syntax()
 
     -- Strings and numeric values highlight settings
     -- vim.api.nvim_set_hl(0, "@string", { fg = sageGreen })       -- String literals
-    vim.api.nvim_set_hl(0, "@string", { fg = grey })            -- String literals
-    vim.api.nvim_set_hl(0, "@string.regex", { fg = sageGreen }) -- Regular expressions
-    vim.api.nvim_set_hl(0, "@string.escape", { fg = grey })     -- Escape characters in strings
-    vim.api.nvim_set_hl(0, "@string.special", { fg = grey })    -- Special strings like urls, file paths
-    vim.api.nvim_set_hl(0, "@character", { fg = sageGreen })    -- Character literals
-    vim.api.nvim_set_hl(0, "@number", { fg = warnCoral })       -- Numeric literals
-    vim.api.nvim_set_hl(0, "@boolean", { fg = warnCoral })      -- Boolean literals
-    vim.api.nvim_set_hl(0, "@float", { fg = warnCoral })        -- Floating point numbers
+    vim.api.nvim_set_hl(0, "@string", { fg = grey })         -- String literals
+    vim.api.nvim_set_hl(0, "@string.regex", { fg = grey })   -- Regular expressions
+    vim.api.nvim_set_hl(0, "@string.escape", { fg = grey })  -- Escape characters in strings
+    vim.api.nvim_set_hl(0, "@string.special", { fg = grey }) -- Special strings like urls, file paths
+    vim.api.nvim_set_hl(0, "@character", { fg = sageGreen }) -- Character literals
+    vim.api.nvim_set_hl(0, "@number", { fg = warnCoral })    -- Numeric literals
+    vim.api.nvim_set_hl(0, "@boolean", { fg = warnCoral })   -- Boolean literals
+    vim.api.nvim_set_hl(0, "@float", { fg = warnCoral })     -- Floating point numbers
 
     -- Properties and parameters - key section for controlling .len appearance
     vim.api.nvim_set_hl(0, "@property", { fg = grey })   -- Object/class properties - for .len and similar
     vim.api.nvim_set_hl(0, "@field", { fg = grey })      -- Struct/Union fields - also affects properties in some languages
     vim.api.nvim_set_hl(0, "@parameter", { fg = white }) -- Function parameters
+    -- vim.api.nvim_set_hl(0, "NvimTreeFolderName", { fg = white }) -- Function parameters
 
     -- Method properties - these can sometimes override @property for methods like .len()
     vim.api.nvim_set_hl(0, "@method.property", { fg = grey })      -- Custom rule for method properties
@@ -430,6 +434,8 @@ function colorscheme.syntax()
     vim.api.nvim_set_hl(0, "@method.call.javascript", { fg = white }) -- JS method calls
     vim.api.nvim_set_hl(0, "@method.call.typescript", { fg = white }) -- TS method calls
     vim.api.nvim_set_hl(0, "@tag.attribute.tsx", { fg = grey })       -- TS method calls
+    vim.api.nvim_set_hl(0, "@variable.member.tsx", { fg = white })    -- TS method calls
+    vim.api.nvim_set_hl(0, "@variable.member", { fg = white })        -- TS method calls
 
 
     -- Python specific
@@ -491,6 +497,8 @@ function colorscheme.syntax()
     vim.api.nvim_set_hl(0, "@lsp.type.keyword", { fg = grey })
     -- vim.api.nvim_set_hl(0, "@lsp.type.function.javascript", { fg = warnCoral })
     vim.api.nvim_set_hl(0, "@lsp.mod.defaultLibrary", { fg = grey })
+    vim.api.nvim_set_hl(0, "@tag.builtin", { fg = grey })
+
 
     -- For LSP diagnostics
     vim.api.nvim_set_hl(0, "DiagnosticError", { fg = "#e67e7e", bg = "NONE" })
@@ -498,10 +506,10 @@ function colorscheme.syntax()
     vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = "#7ca68c", bg = "NONE" })
     vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = "#aaaaaa", bg = "NONE" })
 
-    vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { fg = "#e67e7e", bg = "NONE" })
-    vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { fg = "#d2a374", bg = "NONE" })
-    vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { fg = "#7ca68c", bg = "NONE" })
-    vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = "#aaaaaa", bg = "NONE" })
+    -- vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { fg = "#e67e7e", bg = "NONE" })
+    -- vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { fg = "#d2a374", bg = "NONE" })
+    -- vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { fg = "#7ca68c", bg = "NONE" })
+    -- vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = "#aaaaaa", bg = "NONE" })
 
     -- vim.api.nvim_set_hl(0, "@comment.documentation", { fg = grey })
 
@@ -547,14 +555,19 @@ function colorscheme.syntax()
     -- Code blocks
     vim.api.nvim_set_hl(0, "@markup.raw.block.markdown", { fg = sageGreen })
     vim.api.nvim_set_hl(0, "@markup.raw.delimiter.markdown", { fg = grey })
+    vim.api.nvim_set_hl(0, "mkdCodeEnd", { fg = grey })
+    vim.api.nvim_set_hl(0, "@comment.documentation", { fg = evenLightGrey })
 
     -- Blockquotes
     vim.api.nvim_set_hl(0, "@markup.quote.markdown", { fg = silver, italic = true })
     vim.api.nvim_set_hl(0, "@markup.quote.delimiter.markdown", { fg = grey })
 
     -- Tables
-    vim.api.nvim_set_hl(0, "@markup.table.markdown", { fg = white })
+    vim.api.nvim_set_hl(0, "@markup.table.markdown", { fg = grey })
     vim.api.nvim_set_hl(0, "@markup.table.delimiter.markdown", { fg = grey })
+
+    vim.api.nvim_set_hl(0, "@markup.list.checked.markdown", { fg = "#7ca68c", bold = true })
+
 
     -- HTML in Markdown
     vim.api.nvim_set_hl(0, "@markup.raw.html_inline.markdown", { fg = grey })

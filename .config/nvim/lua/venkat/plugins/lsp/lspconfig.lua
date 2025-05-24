@@ -1,17 +1,33 @@
+-- lspconfig.lua
 return {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
+        "williamboman/mason.nvim",
+        -- We're NOT depending on mason-lspconfig.nvim here
         "hrsh7th/cmp-nvim-lsp",
         { "antosha417/nvim-lsp-file-operations", config = true },
         { "folke/neodev.nvim",                   opts = {} },
     },
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
         local lspconfig = require("lspconfig")
-        local mason_lspconfig = require("mason-lspconfig")
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
         local keymap = vim.keymap
-        local util = require("lspconfig/util")
+
+        -- Ensure mason is available
+        local mason_ok, mason = pcall(require, "mason")
+        if not mason_ok then
+            vim.notify("Mason not installed - installing now", vim.log.levels.ERROR)
+            vim.cmd([[Lazy install mason.nvim]])
+            return
+        end
+
+        -- Get the Mason registry to manage packages directly
+        local registry_ok, mr = pcall(require, "mason-registry")
+        if not registry_ok then
+            vim.notify("Mason registry not available", vim.log.levels.ERROR)
+            return
+        end
 
         -- Keep your keymapping setup
         vim.api.nvim_create_autocmd("LspAttach", {
@@ -47,129 +63,129 @@ return {
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
         end
 
-        -- Use correct server name: ts_ls instead of tsserver
-        mason_lspconfig.setup({
-            ensure_installed = {
-                "html",
-                "cssls",
-                "tailwindcss",
-                "svelte",
-                "lua_ls",
-                "graphql",
-                "emmet_ls",
-                "prismals",
-                "pyright",
-                "ts_ls", -- Correct name for TypeScript server in your setup
-                -- "rust_analyzer",
-            },
-        })
+        -- Define servers to install manually without mason-lspconfig
+        local servers = {
+            "lua_ls",
+            "ts_ls",
+            "html",
+            "cssls",
+            "tailwindcss",
+            "svelte",
+            "graphql",
+            "emmet_ls",
+            "prismals",
+            "pyright",
+        }
 
-        -- Configure file type associations explicitly
-        vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-            pattern = "*.tsx",
-            callback = function()
-                vim.bo.filetype = "typescriptreact"
-            end,
-        })
+        -- Create a mapping from server name to Mason package name
+        local server_to_package = {
+            ["lua_ls"] = "lua-language-server",
+            ["ts_ls"] = "typescript-language-server",
+            ["html"] = "html-lsp",
+            ["cssls"] = "css-lsp",
+            ["tailwindcss"] = "tailwindcss-language-server",
+            ["svelte"] = "svelte-language-server",
+            ["graphql"] = "graphql-language-service-cli",
+            ["emmet_ls"] = "emmet-ls",
+            ["prismals"] = "prisma-language-server",
+            ["pyright"] = "pyright",
+        }
 
-        mason_lspconfig.setup_handlers({
-            -- Default handler
-            function(server_name)
-                lspconfig[server_name].setup({
-                    capabilities = capabilities,
-                })
-            end,
+        -- Manually install servers using Mason registry
+        mr.refresh(function()
+            for _, server_name in ipairs(servers) do
+                local package_name = server_to_package[server_name]
+                if package_name then
+                    -- Only install if it's not already installed
+                    local package = mr.get_package(package_name)
+                    if not package:is_installed() then
+                        vim.notify("Installing " .. package_name, vim.log.levels.INFO)
+                        package:install()
+                    end
+                end
+            end
+
+            -- Now set up the servers
+            -- Default setup for most servers
+            for _, server_name in ipairs(servers) do
+                if server_name ~= "lua_ls" and
+                    server_name ~= "ts_ls" and
+                    server_name ~= "cssls" and
+                    server_name ~= "graphql" and
+                    server_name ~= "emmet_ls" then
+                    lspconfig[server_name].setup({
+                        capabilities = capabilities,
+                    })
+                end
+            end
 
             -- Server-specific configurations
-            ["cssls"] = function()
-                lspconfig["cssls"].setup({
-                    capabilities = capabilities,
-                    settings = {
-                        css = { validate = true },
-                        scss = { validate = true },
-                        less = { validate = true },
-                    },
-                })
-            end,
+            lspconfig["cssls"].setup({
+                capabilities = capabilities,
+                settings = {
+                    css = { validate = true },
+                    scss = { validate = true },
+                    less = { validate = true },
+                },
+            })
 
-            ["graphql"] = function()
-                lspconfig["graphql"].setup({
-                    capabilities = capabilities,
-                    filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
-                })
-            end,
+            lspconfig["graphql"].setup({
+                capabilities = capabilities,
+                filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
+            })
 
-            ["emmet_ls"] = function()
-                lspconfig["emmet_ls"].setup({
-                    capabilities = capabilities,
-                    filetypes = {
-                        "html",
-                        "typescriptreact",
-                        "javascriptreact",
-                        "css",
-                        "sass",
-                        "scss",
-                        "less",
-                        "svelte",
-                    },
-                })
-            end,
+            lspconfig["emmet_ls"].setup({
+                capabilities = capabilities,
+                filetypes = {
+                    "html",
+                    "typescriptreact",
+                    "javascriptreact",
+                    "css",
+                    "sass",
+                    "scss",
+                    "less",
+                    "svelte",
+                },
+            })
 
-            ["lua_ls"] = function()
-                lspconfig["lua_ls"].setup({
-                    capabilities = capabilities,
-                    settings = {
-                        Lua = {
-                            diagnostics = { globals = { "vim" } },
-                            completion = { callSnippet = "Replace" },
-                        },
+            lspconfig["lua_ls"].setup({
+                capabilities = capabilities,
+                settings = {
+                    Lua = {
+                        diagnostics = { globals = { "vim" } },
+                        completion = { callSnippet = "Replace" },
                     },
-                })
-            end,
+                },
+            })
 
-            -- ["rust_analyzer"] = function()
-            --     lspconfig["rust_analyzer"].setup({
-            --         capabilities = capabilities,
-            --         cmd = { "rust-analyzer" },
-            --         filetypes = { "rust" },
-            --         -- Extremely simplified settings to identify if specific features are causing issues
-            --         settings = {
-            --             ["rust-analyzer"] = {
-            --                 cargo = {
-            --                     allFeatures = false, -- Reduce features
-            --                     loadOutDirsFromCheck = false, -- Disable loading out dirs
-            --                 },
-            --                 checkOnSave = { enable = false }, -- Disable background checking
-            --                 procMacro = { enable = false }, -- Disable proc macros
-            --                 diagnostics = { disabled = { "*" } }, -- Disable all diagnostics
-            --                 inlayHints = { enable = false }, -- Disable inlay hints
-            --                 hover = { actions = { enable = false } }, -- Simplify hover
-            --                 completion = { autoimport = { enable = false } }, -- Disable autoimport
-            --             },
-            --         },
-            --         flags = {
-            --             debounce_text_changes = 500, -- Increase debounce time
-            --             allow_incremental_sync = false, -- Force full document sync
-            --         },
-            --     })
-            -- end,
-            ["ts_ls"] = function()
-                lspconfig["ts_ls"].setup({
-                    capabilities = capabilities,
-                    filetypes = {
-                        "typescript",
-                        "typescriptreact",
-                        "typescript.tsx",
-                        "javascript",
-                        "javascriptreact",
+            lspconfig["ts_ls"].setup({
+                capabilities = capabilities,
+                filetypes = {
+                    "typescript",
+                    "typescriptreact",
+                    "typescript.tsx",
+                    "javascript",
+                    "javascriptreact",
+                },
+                root_dir = function(fname)
+                    return require("lspconfig.util").root_pattern("tsconfig.json", "jsconfig.json", "package.json")(
+                        fname
+                    ) or vim.fn.getcwd()
+                end,
+                init_options = {
+                    preferences = {
+                        includeInlayParameterNameHints = "none",
+                        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                        includeInlayFunctionParameterTypeHints = false,
+                        includeInlayVariableTypeHints = false,
+                        includeInlayPropertyDeclarationTypeHints = false,
+                        includeInlayFunctionLikeReturnTypeHints = true,
+                        includeInlayEnumMemberValueHints = false,
                     },
-                    root_dir = function(fname)
-                        return require("lspconfig.util").root_pattern("tsconfig.json", "jsconfig.json", "package.json")(
-                            fname
-                        ) or vim.fn.getcwd()
-                    end,
-                    init_options = {
-                        preferences = {
+                },
+                settings = {
+                    typescript = {
+                        inlayHints = {
                             includeInlayParameterNameHints = "none",
                             includeInlayParameterNameHintsWhenArgumentMatchesName = false,
                             includeInlayFunctionParameterTypeHints = false,
@@ -179,31 +195,26 @@ return {
                             includeInlayEnumMemberValueHints = false,
                         },
                     },
-                    settings = {
-                        typescript = {
-                            inlayHints = {
-                                includeInlayParameterNameHints = "none",
-                                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                                includeInlayFunctionParameterTypeHints = false,
-                                includeInlayVariableTypeHints = false,
-                                includeInlayPropertyDeclarationTypeHints = false,
-                                includeInlayFunctionLikeReturnTypeHints = true,
-                                includeInlayEnumMemberValueHints = false,
-                            },
-                        },
-                        javascript = {
-                            inlayHints = {
-                                includeInlayParameterNameHints = "none",
-                                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                                includeInlayFunctionParameterTypeHints = false,
-                                includeInlayVariableTypeHints = false,
-                                includeInlayPropertyDeclarationTypeHints = false,
-                                includeInlayFunctionLikeReturnTypeHints = true,
-                                includeInlayEnumMemberValueHints = false,
-                            },
+                    javascript = {
+                        inlayHints = {
+                            includeInlayParameterNameHints = "none",
+                            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                            includeInlayFunctionParameterTypeHints = false,
+                            includeInlayVariableTypeHints = false,
+                            includeInlayPropertyDeclarationTypeHints = false,
+                            includeInlayFunctionLikeReturnTypeHints = true,
+                            includeInlayEnumMemberValueHints = false,
                         },
                     },
-                })
+                },
+            })
+        end)
+
+        -- Configure file type associations explicitly
+        vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+            pattern = "*.tsx",
+            callback = function()
+                vim.bo.filetype = "typescriptreact"
             end,
         })
     end,

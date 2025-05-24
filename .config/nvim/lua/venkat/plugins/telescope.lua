@@ -21,12 +21,12 @@ return {
         telescope.setup({
             defaults = {
                 layout_config = {
-                    width = 0.95,
-                    height = 100,
+                    width = 0.99,
+                    height = 0.95,
                     preview_cutoff = 10,
                     horizontal = {
-                        preview_width = 0.5,
-                        results_width = 0.5,
+                        preview_width = 0.6,
+                        results_width = 0.4,
                     },
                     prompt_position = "top",
                 },

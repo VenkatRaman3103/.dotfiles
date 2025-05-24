@@ -12,6 +12,7 @@ return {
         notifier = {
             enabled = true,
             timeout = 3000,
+            style = "compact"
         },
         explorer = {
             enabled = false,
@@ -93,11 +94,11 @@ return {
             layout = {
                 -- preview = "main",
                 -- preset = "ivy",
-                preset = "telescope",
+                preset = "default",
                 layout = {
                     box = "horizontal",
                     width = 0,
-                    min_width = 120,
+                    min_width = 100,
                     height = 0.93,
                     -- position = "",
                     {
@@ -122,6 +123,14 @@ return {
                     },
                     jump = { close = false }
                 },
+                default = {
+                    layout = {
+                        width = 0,
+                        height = 0.93,
+                        preview = true,
+                        float = true,
+                    },
+                },
             }
         },
     },
@@ -130,7 +139,7 @@ return {
             "<leader>/",
             function()
                 Snacks.picker.lines({
-                    layout = "vscode",
+                    layout = "default",
                 })
             end,
             desc = "man page",
@@ -609,7 +618,7 @@ return {
                 Snacks.toggle.inlay_hints():map("<leader>th")
 
                 Snacks.toggle.indent():map("<leader>ti")
-                -- Snacks.toggle.dim():map("<leader>tD")
+                Snacks.toggle.dim():map("<leader>tD")
             end,
         })
     end,
