@@ -21,8 +21,8 @@ return {
         })
 
         -- Set up a keymap to open Oil in a floating window
-        vim.keymap.set("n", "<leader>o", function()
-            oil.open_float()
-        end, { desc = "Open floating file explorer with Oil" })
+        -- vim.keymap.set("n", "<leader>o", function()
+        --     oil.open_float()
+        -- end, { desc = "Open floating file explorer with Oil" })
     end,
 }

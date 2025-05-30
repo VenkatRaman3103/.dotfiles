@@ -13,7 +13,7 @@ return {
             enabled = true,
             timeout = 3000,
             ---@type snacks.notifier.style
-            style = "minimal"
+            style = "compact",
         },
         explorer = {
             enabled = false,
@@ -301,7 +301,7 @@ return {
             "<leader>gl",
             function()
                 Snacks.picker.git_log({
-                    layout = "vertical"
+                    -- layout = "vertical"
                 })
             end,
             desc = "Git Log",

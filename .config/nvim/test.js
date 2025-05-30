@@ -1,8 +1,7 @@
-function add(a, b) {
-  if (true) {
-    //
-  }
-  return a + b;
+const num = Array.from({ length: 12 }).fill(1);
+
+for (let i = 0; i < num.length; i++) {
+  console.log(i);
 }
 
-add(12, 12);
+console.log("osomm");

@@ -33,6 +33,10 @@ return {
             -- require("mini.tabline").setup() -- Minimalist tabline
             -- require("mini.test").setup() -- Test framework
             -- require("mini.trailspace").setup() -- Remove trailing spaces
+
+            vim.keymap.set("n", "<leader>mo", function()
+                require("mini.files").open()
+            end, { desc = "Open Mini Files" })
         end,
     },
 }
