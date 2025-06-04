@@ -4,7 +4,8 @@ local colorscheme = {}
 local bgColor = ""
 -- local secondaryBgColor = "#090909"
 -- local secondaryBgColor = "#101010"
-local secondaryBgColor = "#0c0c0c"
+-- local secondaryBgColor = "#090909"
+local secondaryBgColor = "#080808"
 local whiteLike = "#d0d0d0"
 
 
@@ -88,9 +89,9 @@ function colorscheme.colorMyPencils()
 
     -- set title colors
     vim.api.nvim_set_hl(0, "TelescopeTitle", { fg = bgColor, bold = false })
-    vim.api.nvim_set_hl(0, "TelescopePromptTitle", { fg = bgColor, bold = false })
-    vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { fg = bgColor, bold = false })
-    vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { fg = bgColor, bold = false })
+    vim.api.nvim_set_hl(0, "TelescopePromptTitle", { fg = "#ffffff", bold = false })
+    vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { fg = "#ffffff", bold = false })
+    vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { fg = "#ffffff", bold = false })
     -- vim.api.nvim_set_hl(0, "HarpoonWindow", { fg = "#ffffff" })
     -- vim.api.nvim_set_hl(0, "HarpoonTitle", { fg = "#ffffff", bold = false })
     vim.api.nvim_set_hl(0, "FloatTitle", { fg = "#ffffff", bold = false })
@@ -113,10 +114,10 @@ function colorscheme.colorMyPencils()
     vim.api.nvim_set_hl(0, "PmenuThumb", { bg = "", fg = "none" })
 
     -- Telescope specific highlights
-    vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = secondaryBgColor})
-    vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = secondaryBgColor})
-    vim.api.nvim_set_hl(0, "TelescopeResultsNormal", { bg = secondaryBgColor})
-    vim.api.nvim_set_hl(0, "TelescopePreviewNormal", { bg = secondaryBgColor})
+    vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = secondaryBgColor })
+    vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = secondaryBgColor })
+    vim.api.nvim_set_hl(0, "TelescopeResultsNormal", { bg = secondaryBgColor })
+    vim.api.nvim_set_hl(0, "TelescopePreviewNormal", { bg = secondaryBgColor })
 
     -- Disable underlines
     vim.api.nvim_set_hl(0, "Underlined", { underline = false })
@@ -213,15 +214,15 @@ function colorscheme.colorMyPencils()
     local changeColor = "#d2a374"  -- Warm coral for changes
     local contextColor = "#aaaaaa" -- Gray for context
 
-    -- Base Neogit diff highlights (overview)
-    vim.api.nvim_set_hl(0, "NeogitDiffAdd", { bg = "NONE", fg = addColor })
-    vim.api.nvim_set_hl(0, "NeogitDiffDelete", { bg = "NONE", fg = deleteColor })
-    vim.api.nvim_set_hl(0, "NeogitDiffContext", { bg = "NONE", fg = contextColor })
-
-    -- Inside hunks - consistent with overview
-    vim.api.nvim_set_hl(0, "NeogitDiffAddHighlight", { bg = "NONE", fg = addColor })
-    vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", { bg = "NONE", fg = deleteColor })
-    vim.api.nvim_set_hl(0, "NeogitDiffContextHighlight", { bg = "NONE", fg = contextColor })
+    -- -- Base Neogit diff highlights (overview)
+    -- vim.api.nvim_set_hl(0, "NeogitDiffAdd", { bg = "NONE", fg = addColor })
+    -- vim.api.nvim_set_hl(0, "NeogitDiffDelete", { bg = "NONE", fg = deleteColor })
+    -- vim.api.nvim_set_hl(0, "NeogitDiffContext", { bg = "NONE", fg = contextColor })
+    --
+    -- -- Inside hunks - consistent with overview
+    -- vim.api.nvim_set_hl(0, "NeogitDiffAddHighlight", { bg = "NONE", fg = addColor })
+    -- vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", { bg = "NONE", fg = deleteColor })
+    -- vim.api.nvim_set_hl(0, "NeogitDiffContextHighlight", { bg = "NONE", fg = contextColor })
 
     -- Override core diff highlights to ensure consistency
     vim.api.nvim_set_hl(0, "DiffAdd", { bg = "NONE", fg = addColor })
@@ -234,48 +235,48 @@ function colorscheme.colorMyPencils()
     vim.api.nvim_set_hl(0, "diffRemoved", { fg = deleteColor, bg = "NONE" })
     vim.api.nvim_set_hl(0, "diffChanged", { fg = changeColor, bg = "NONE" })
 
-    -- Additional Neogit highlight groups that might be used in hunks
-    vim.api.nvim_set_hl(0, "NeogitDiffAddRegion", { bg = "NONE", fg = addColor })
-    vim.api.nvim_set_hl(0, "NeogitDiffDeleteRegion", { bg = "NONE", fg = deleteColor })
-    vim.api.nvim_set_hl(0, "NeogitDiffContextRegion", { bg = "NONE", fg = contextColor })
-
-    -- Use foreground colors only for hunk headers
-    vim.api.nvim_set_hl(0, "NeogitHunkHeader", {
-        bg = "#181818",
-        fg = "#888888",
-        bold = true
-    })
-    vim.api.nvim_set_hl(0, "NeogitHunkHeaderHighlight", {
-        bg = "#181818",
-        fg = "#aaaaaa",
-        bold = true
-    })
-
-    -- File names with foreground styling only
-    vim.api.nvim_set_hl(0, "NeogitFileName", {
-        bg = "#181818",
-        fg = "#aaaaaa",
-        bold = true
-    })
-
-    -- Consistent status highlights using grayscale
-    vim.api.nvim_set_hl(0, "NeogitBranch", { fg = "#a0a0a0", bold = true, bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NeogitRemote", { fg = "#909090", bold = true, bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NeogitUntrackedfiles", { fg = "#7a7a7a", bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NeogitStagedChanges", { fg = addColor, bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NeogitUnstagedChanges", { fg = "#5f9ea0", bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NeogitRecentCommits", { fg = changeColor, bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NeogitSectionTitle", { fg = "#ffffff", bold = true, bg = "NONE" })
-
-    -- Notifications with subtle colors
-    vim.api.nvim_set_hl(0, "NeogitNotificationInfo", { bg = "NONE", fg = "#5f9ea0" })
-    vim.api.nvim_set_hl(0, "NeogitNotificationWarning", { bg = "NONE", fg = changeColor })
-    vim.api.nvim_set_hl(0, "NeogitNotificationError", { fg = deleteColor, bold = true, bg = "NONE" })
-
-    -- Change highlighting for change/delete/add words
-    vim.api.nvim_set_hl(0, "NeogitChangeDeleted", { bg = "NONE", fg = deleteColor })
-    vim.api.nvim_set_hl(0, "NeogitChangeBroken", { bg = "NONE", fg = changeColor })
-    vim.api.nvim_set_hl(0, "NeogitChangeAdded", { bg = "NONE", fg = addColor })
+    -- -- Additional Neogit highlight groups that might be used in hunks
+    -- vim.api.nvim_set_hl(0, "NeogitDiffAddRegion", { bg = "NONE", fg = addColor })
+    -- vim.api.nvim_set_hl(0, "NeogitDiffDeleteRegion", { bg = "NONE", fg = deleteColor })
+    -- vim.api.nvim_set_hl(0, "NeogitDiffContextRegion", { bg = "NONE", fg = contextColor })
+    --
+    -- -- Use foreground colors only for hunk headers
+    -- vim.api.nvim_set_hl(0, "NeogitHunkHeader", {
+    --     bg = "#181818",
+    --     fg = "#888888",
+    --     bold = true
+    -- })
+    -- vim.api.nvim_set_hl(0, "NeogitHunkHeaderHighlight", {
+    --     bg = "#181818",
+    --     fg = "#aaaaaa",
+    --     bold = true
+    -- })
+    --
+    -- -- File names with foreground styling only
+    -- vim.api.nvim_set_hl(0, "NeogitFileName", {
+    --     bg = "#181818",
+    --     fg = "#aaaaaa",
+    --     bold = true
+    -- })
+    --
+    -- -- Consistent status highlights using grayscale
+    -- vim.api.nvim_set_hl(0, "NeogitBranch", { fg = "#a0a0a0", bold = true, bg = "NONE" })
+    -- vim.api.nvim_set_hl(0, "NeogitRemote", { fg = "#909090", bold = true, bg = "NONE" })
+    -- vim.api.nvim_set_hl(0, "NeogitUntrackedfiles", { fg = "#7a7a7a", bg = "NONE" })
+    -- vim.api.nvim_set_hl(0, "NeogitStagedChanges", { fg = addColor, bg = "NONE" })
+    -- vim.api.nvim_set_hl(0, "NeogitUnstagedChanges", { fg = "#5f9ea0", bg = "NONE" })
+    -- vim.api.nvim_set_hl(0, "NeogitRecentCommits", { fg = changeColor, bg = "NONE" })
+    -- vim.api.nvim_set_hl(0, "NeogitSectionTitle", { fg = "#ffffff", bold = true, bg = "NONE" })
+    --
+    -- -- Notifications with subtle colors
+    -- vim.api.nvim_set_hl(0, "NeogitNotificationInfo", { bg = "NONE", fg = "#5f9ea0" })
+    -- vim.api.nvim_set_hl(0, "NeogitNotificationWarning", { bg = "NONE", fg = changeColor })
+    -- vim.api.nvim_set_hl(0, "NeogitNotificationError", { fg = deleteColor, bold = true, bg = "NONE" })
+    --
+    -- -- Change highlighting for change/delete/add words
+    -- vim.api.nvim_set_hl(0, "NeogitChangeDeleted", { bg = "NONE", fg = deleteColor })
+    -- vim.api.nvim_set_hl(0, "NeogitChangeBroken", { bg = "NONE", fg = changeColor })
+    -- vim.api.nvim_set_hl(0, "NeogitChangeAdded", { bg = "NONE", fg = addColor })
 
     -- ====================================================================
     -- DIFFVIEW CUSTOMIZATIONS
@@ -314,6 +315,7 @@ function colorscheme.syntax()
     local evenLightGrey = "#404040"
     -- local white = "#ffffff"
     local white = "#eeeeee"
+
     local black = "#191919"
     local oceanGray = "#70787f"
     local silver = "#bec2cb"
@@ -602,5 +604,5 @@ function colorscheme.syntax()
 end
 
 return colorscheme
-
+-- 42cd8c
 -- vim.api.nvim_set_hl(0, "NeogitChangeModified", { bg = "NONE", fg = "#7ca68c" })

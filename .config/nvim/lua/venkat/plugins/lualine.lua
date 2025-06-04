@@ -52,6 +52,20 @@ return {
             end
         end
 
+        -- Function to get Harpoon marks count
+        local function get_harpoon_marks()
+            local ok, harpoon = pcall(require, "harpoon")
+            if not ok then
+                return ""
+            end
+
+            local marks = harpoon:list():length()
+            if marks > 0 then
+                return "⚓ " .. marks
+            else
+                return ""
+            end
+        end
 
         -- Create the command for tab renaming
         vim.api.nvim_create_user_command("RenameTab", rename_tab, {})
@@ -99,9 +113,6 @@ return {
                         -- color = { fg = "#ffffff", bg = "#0c0c0c" }
                         -- color = { fg = "#a0a0a0", bg = "#0c0c0c" }
                         color = { fg = "#eeeeee", bg = "#0c0c0c" }
-
-
-
                     },
                 },
                 lualine_b = {
@@ -111,34 +122,32 @@ return {
                 },
                 lualine_c = {},
                 lualine_x = {
+                    -- {
+                    --     get_harpoon_marks,
+                    --     color = { fg = "#888888", bg = bgColor },
+                    -- },
                 },
                 lualine_y = {
-                    {
-                        "macro-recording",
-                        fmt = function()
-                            local recording_register = vim.fn.reg_recording()
-                            if recording_register == "" then
-                                return ""
-                            else
-                                return "Recording @" .. recording_register
-                            end
-                        end,
-                        color = { fg = "#aaaaaa", bg = bgColor }, -- Red color to make it noticeable
-                    },
                     -- {
-                    --     get_active_harpoon_list,
-                    --     color = { fg = "#505050", bg = bgColor }, -- Green color for the Harpoon list
+                    --     "macro-recording",
+                    --     fmt = function()
+                    --         local recording_register = vim.fn.reg_recording()
+                    --         if recording_register == "" then
+                    --             return ""
+                    --         else
+                    --             return "Recording @" .. recording_register
+                    --         end
+                    --     end,
+                    --     color = { fg = "#aaaaaa", bg = bgColor }, -- Red color to make it noticeable
                     -- },
-
-                },
-                lualine_z = {
-
                     {
                         "branch",
                         separator = " ",
                         color = { fg = "#505050", bg = bgColor },
                         icon = { "󰘬", align = "left", color = { fg = "#505050" } },
                     },
+                },
+                lualine_z = {
                     {
                         function()
                             local result = {}
@@ -153,23 +162,21 @@ return {
                             return table.concat(result, " ")
                         end,
                     },
-                    {
-                        "progress",
-                        color = { fg = "#505050", bg = bgColor },
-                    },
+                    -- {
+                    --     "progress",
+                    --     color = { fg = "#505050", bg = bgColor },
+                    -- },
+
+                    -- {
+                    --     require('fleet').lualine_component,
+                    --     color = { fg = "#505050", bg = bgColor },
+                    -- },
                 },
             },
             extensions = {},
         })
 
         -- Create highlight groups for tabs
-        -- vim.cmd([[
-        --     highlight LualineTabActive guifg=#a7a7a7 guibg=#111111
-        --     highlight LualineTabInactive guifg=#505050 guibg=#111111
-        --     highlight LualineSeparator guifg=#0e0e0e guibg=#111111
-        --     highlight LualineBranch guifg=#808080 guibg=#111111
-        -- ]])
-
         vim.cmd([[
             highlight LualineTabActive guifg=#a7a7a7 guibg=none
             highlight LualineTabInactive guifg=#505050 guibg=none

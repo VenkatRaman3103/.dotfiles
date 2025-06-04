@@ -1,0 +1,51 @@
+return {
+    -- "VenkatRaman3103/fleet.nvim",
+    -- dependencies = {
+    --     "ThePrimeagen/harpoon"
+    -- },
+    -- config = function()
+    --     require("fleet").setup({
+    --         debug_mode = false,
+    --         auto_save = true,
+    --         keymaps = {
+    --             toggle_menu = "<leader>iho",
+    --             add_file = "<leader>ia",
+    --             new_list = "<leader>ihn",
+    --             remove_file = "<leader>ihx",
+    --             clear_list = "<leader>ihc",
+    --             save_list = "<leader>ihs",
+    --             load_list = "<leader>ihl",
+    --             delete_list = "<leader>ihd",
+    --             rename_list = "<leader>ihr",
+    --             where_am_i = "<leader>ihw",
+    --             nav_file_1 = "<leader>ij",
+    --             nav_file_2 = "<leader>ik",
+    --             nav_file_3 = "<leader>il",
+    --             nav_file_4 = "<leader>i;",
+    --             nav_file_5 = "<leader>i5",
+    --             -- nav_next = "<S-j>",
+    --             -- nav_prev = "<S-k>",
+    --         },
+    --         lualine_component = true,
+    --     })
+    -- end,
+    -- keys = {
+    --     { "<leader>iho", desc = "Fleet: Toggle Menu" },
+    --     { "<leader>ia",  desc = "Fleet: Add File" },
+    --     { "<leader>ihn", desc = "Fleet: New List" },
+    --     { "<leader>ihx", desc = "Fleet: Remove File" },
+    --     { "<leader>ihc", desc = "Fleet: Clear List" },
+    --     { "<leader>ihs", desc = "Fleet: Save List" },
+    --     { "<leader>ihl", desc = "Fleet: Load List" },
+    --     { "<leader>ihd", desc = "Fleet: Delete List" },
+    --     { "<leader>ihr", desc = "Fleet: Rename List" },
+    --     { "<leader>ihw", desc = "Fleet: Where Am I" },
+    --     { "<leader>ij",  desc = "Fleet: Nav File 1" },
+    --     { "<leader>ik",  desc = "Fleet: Nav File 2" },
+    --     { "<leader>il",  desc = "Fleet: Nav File 3" },
+    --     { "<leader>i;",  desc = "Fleet: Nav File 4" },
+    --     { "<leader>i5",  desc = "Fleet: Nav File 5" },
+    --     -- { "<S-j>",      desc = "Fleet: Next File" },
+    --     -- { "<S-k>",      desc = "Fleet: Previous File" },
+    -- },
+}
