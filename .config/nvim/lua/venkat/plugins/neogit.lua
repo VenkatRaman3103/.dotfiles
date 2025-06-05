@@ -114,197 +114,191 @@ return {
             return true
         end
 
-        -- Add delay to ensure proper loading order
-        vim.defer_fn(function()
-            local success, neogit = pcall(require, "neogit")
-            if not success then
-                vim.notify("Failed to load neogit: " .. tostring(neogit), vim.log.levels.ERROR)
+        local success, neogit = pcall(require, "neogit")
+        if not success then
+            vim.notify("Failed to load neogit: " .. tostring(neogit), vim.log.levels.ERROR)
+            return
+        end
+
+        -- Try to patch the highlight system
+        local patch_success = patch_neogit_highlights()
+        if not patch_success then
+            vim.notify("Could not patch neogit highlights - proceeding with caution", vim.log.levels.WARN)
+        end
+
+        -- Create comprehensive highlight groups before neogit setup
+        local function create_all_neogit_highlights()
+            local highlight_groups = {
+                -- Basic groups
+                "NeogitBranch", "NeogitRemote", "NeogitHunkHeader", "NeogitHunkHeaderHighlight",
+                "NeogitDiffAdd", "NeogitDiffDelete", "NeogitDiffContext",
+                "NeogitDiffAddHighlight", "NeogitDiffDeleteHighlight", "NeogitDiffContextHighlight",
+
+                -- Status groups
+                "NeogitChangeModified", "NeogitChangeAdded", "NeogitChangeDeleted",
+                "NeogitChangeRenamed", "NeogitChangeCopied", "NeogitChangeUpdated", "NeogitChangeNew",
+
+                -- Section groups
+                "NeogitSectionHeader", "NeogitSubtleText", "NeogitUntrackedfiles", "NeogitUnstagedchanges",
+                "NeogitStagedchanges", "NeogitStashes", "NeogitUnpulledchanges", "NeogitUnpushedchanges",
+                "NeogitRecentcommits", "NeogitUnmergedchanges",
+
+                -- Notification groups
+                "NeogitNotificationInfo", "NeogitNotificationWarning", "NeogitNotificationError",
+
+                -- Cursor groups
+                "NeogitCursorLine",
+
+                -- Popup groups
+                "NeogitPopupSectionTitle", "NeogitPopupBranchName", "NeogitPopupBold",
+                "NeogitPopupSwitchKey", "NeogitPopupSwitchEnabled", "NeogitPopupSwitchDisabled",
+                "NeogitPopupOptionKey", "NeogitPopupOptionEnabled", "NeogitPopupOptionDisabled",
+                "NeogitPopupConfigKey", "NeogitPopupConfigEnabled", "NeogitPopupConfigDisabled",
+                "NeogitPopupActionKey", "NeogitPopupActionDisabled",
+
+                -- Sign groups
+                "NeogitSignsAdd", "NeogitSignsChange", "NeogitSignsDelete",
+            }
+
+            for _, group in ipairs(highlight_groups) do
+                if vim.fn.hlexists(group) == 0 then
+                    -- Create basic highlight that links to a safe group
+                    vim.api.nvim_set_hl(0, group, { link = "Normal" })
+                end
+            end
+        end
+
+        create_all_neogit_highlights()
+
+        -- Ultra-minimal neogit setup
+        local setup_success, setup_error = pcall(function()
+            neogit.setup({
+                -- Disable everything possible
+                integrations = {},
+
+                -- Use plain text signs
+                signs = {
+                    section = { ">", "v" },
+                    item = { "*", "*" },
+                    hunk = { "", "" },
+                },
+
+                -- Minimal configuration
+                disable_line_numbers = true,
+                disable_signs = false,               -- Keep signs but make them simple
+                disable_context_highlighting = true, -- Disable problematic highlighting
+                disable_commit_confirmation = true,
+
+                -- Simple status config
+                status = {
+                    recent_commit_count = 3,
+                    HEAD_padding = 3,
+                    mode_padding = 1,
+                },
+
+                -- Conservative popup settings
+                popup = {
+                    kind = "split",
+                },
+
+                -- Minimal mappings
+                mappings = {
+                    status = {
+                        ["<tab>"] = "Toggle",
+                        ["s"] = "Stage",
+                        ["u"] = "Unstage",
+                        ["q"] = "Close",
+                        ["<C-r>"] = "RefreshBuffer",
+                    },
+                },
+            })
+        end)
+
+        if not setup_success then
+            vim.notify("Neogit setup failed: " .. tostring(setup_error), vim.log.levels.ERROR)
+            return
+        end
+
+        -- Apply custom highlights immediately after setup
+        apply_neogit_highlights()
+
+        -- Safe toggle function
+        vim.keymap.set("n", "<leader>go", function()
+            -- Check git repo
+            local git_check = vim.fn.system("git rev-parse --git-dir 2>/dev/null")
+            if git_check:match("^fatal:") then
+                vim.notify("Not in a git repository", vim.log.levels.WARN)
                 return
             end
 
-            -- Try to patch the highlight system
-            local patch_success = patch_neogit_highlights()
-            if not patch_success then
-                vim.notify("Could not patch neogit highlights - proceeding with caution", vim.log.levels.WARN)
-            end
-
-            -- Create comprehensive highlight groups before neogit setup
-            local function create_all_neogit_highlights()
-                local highlight_groups = {
-                    -- Basic groups
-                    "NeogitBranch", "NeogitRemote", "NeogitHunkHeader", "NeogitHunkHeaderHighlight",
-                    "NeogitDiffAdd", "NeogitDiffDelete", "NeogitDiffContext",
-                    "NeogitDiffAddHighlight", "NeogitDiffDeleteHighlight", "NeogitDiffContextHighlight",
-
-                    -- Status groups
-                    "NeogitChangeModified", "NeogitChangeAdded", "NeogitChangeDeleted",
-                    "NeogitChangeRenamed", "NeogitChangeCopied", "NeogitChangeUpdated", "NeogitChangeNew",
-
-                    -- Section groups
-                    "NeogitSectionHeader", "NeogitSubtleText", "NeogitUntrackedfiles", "NeogitUnstagedchanges",
-                    "NeogitStagedchanges", "NeogitStashes", "NeogitUnpulledchanges", "NeogitUnpushedchanges",
-                    "NeogitRecentcommits", "NeogitUnmergedchanges",
-
-                    -- Notification groups
-                    "NeogitNotificationInfo", "NeogitNotificationWarning", "NeogitNotificationError",
-
-                    -- Cursor groups
-                    "NeogitCursorLine",
-
-                    -- Popup groups
-                    "NeogitPopupSectionTitle", "NeogitPopupBranchName", "NeogitPopupBold",
-                    "NeogitPopupSwitchKey", "NeogitPopupSwitchEnabled", "NeogitPopupSwitchDisabled",
-                    "NeogitPopupOptionKey", "NeogitPopupOptionEnabled", "NeogitPopupOptionDisabled",
-                    "NeogitPopupConfigKey", "NeogitPopupConfigEnabled", "NeogitPopupConfigDisabled",
-                    "NeogitPopupActionKey", "NeogitPopupActionDisabled",
-
-                    -- Sign groups
-                    "NeogitSignsAdd", "NeogitSignsChange", "NeogitSignsDelete",
-                }
-
-                for _, group in ipairs(highlight_groups) do
-                    if vim.fn.hlexists(group) == 0 then
-                        -- Create basic highlight that links to a safe group
-                        vim.api.nvim_set_hl(0, group, { link = "Normal" })
-                    end
+            local success, error_msg = pcall(function()
+                -- Check if already open
+                local current_ft = vim.bo.filetype
+                if current_ft == 'NeogitStatus' then
+                    vim.cmd('bdelete!')
+                else
+                    -- Try opening with error handling
+                    neogit.open()
+                    -- Reapply highlights after opening
+                    apply_neogit_highlights()
                 end
-            end
-
-            create_all_neogit_highlights()
-
-            -- Ultra-minimal neogit setup
-            local setup_success, setup_error = pcall(function()
-                neogit.setup({
-                    -- Disable everything possible
-                    integrations = {},
-
-                    -- Use plain text signs
-                    signs = {
-                        section = { ">", "v" },
-                        item = { "*", "*" },
-                        hunk = { "", "" },
-                    },
-
-                    -- Minimal configuration
-                    disable_line_numbers = true,
-                    disable_signs = false,               -- Keep signs but make them simple
-                    disable_context_highlighting = true, -- Disable problematic highlighting
-                    disable_commit_confirmation = true,
-
-                    -- Simple status config
-                    status = {
-                        recent_commit_count = 3,
-                        HEAD_padding = 3,
-                        mode_padding = 1,
-                    },
-
-                    -- Conservative popup settings
-                    popup = {
-                        kind = "split",
-                    },
-
-                    -- Minimal mappings
-                    mappings = {
-                        status = {
-                            ["<tab>"] = "Toggle",
-                            ["s"] = "Stage",
-                            ["u"] = "Unstage",
-                            ["q"] = "Close",
-                            ["<C-r>"] = "RefreshBuffer",
-                        },
-                    },
-                })
             end)
 
-            if not setup_success then
-                vim.notify("Neogit setup failed: " .. tostring(setup_error), vim.log.levels.ERROR)
-                return
-            end
-
-            -- *** APPLY CUSTOM HIGHLIGHTS AFTER NEOGIT SETUP ***
-            -- This is the key fix - apply highlights after Neogit is configured
-            vim.defer_fn(function()
-                apply_neogit_highlights()
-            end, 100) -- Small delay to ensure Neogit is fully loaded
-
-            -- Safe toggle function
-            vim.keymap.set("n", "<leader>go", function()
-                -- Check git repo
-                local git_check = vim.fn.system("git rev-parse --git-dir 2>/dev/null")
-                if git_check:match("^fatal:") then
-                    vim.notify("Not in a git repository", vim.log.levels.WARN)
-                    return
-                end
-
-                local success, error_msg = pcall(function()
-                    -- Check if already open
-                    local current_ft = vim.bo.filetype
-                    if current_ft == 'NeogitStatus' then
-                        vim.cmd('bdelete!')
-                    else
-                        -- Try opening with error handling
-                        neogit.open()
-                        -- Reapply highlights after opening
-                        vim.defer_fn(apply_neogit_highlights, 50)
-                    end
+            if not success then
+                vim.notify("Neogit error: " .. tostring(error_msg), vim.log.levels.ERROR)
+                -- Try alternative approach
+                pcall(function()
+                    vim.cmd('tabnew | terminal git status')
                 end)
+            end
+        end, { desc = "Toggle Neogit", silent = true })
 
-                if not success then
-                    vim.notify("Neogit error: " .. tostring(error_msg), vim.log.levels.ERROR)
-                    -- Try alternative approach
-                    pcall(function()
-                        vim.cmd('tabnew | terminal git status')
-                    end)
-                end
-            end, { desc = "Toggle Neogit", silent = true })
+        -- Emergency fallback command
+        vim.api.nvim_create_user_command("NeogitFallback", function()
+            vim.cmd('tabnew | terminal lazygit || git status')
+        end, { desc = "Fallback git interface" })
 
-            -- Emergency fallback command
-            vim.api.nvim_create_user_command("NeogitFallback", function()
-                vim.cmd('tabnew | terminal lazygit || git status')
-            end, { desc = "Fallback git interface" })
+        -- Basic git commands that don't use neogit
+        vim.keymap.set("n", "<leader>ga", function()
+            vim.fn.system("git add .")
+            vim.notify("Added all files", vim.log.levels.INFO)
+        end, { desc = "Git add all" })
 
-            -- Basic git commands that don't use neogit
-            vim.keymap.set("n", "<leader>ga", function()
-                vim.fn.system("git add .")
-                vim.notify("Added all files", vim.log.levels.INFO)
-            end, { desc = "Git add all" })
+        vim.keymap.set("n", "<leader>gc", function()
+            vim.cmd('terminal git commit')
+        end, { desc = "Git commit" })
 
-            vim.keymap.set("n", "<leader>gc", function()
-                vim.cmd('terminal git commit')
-            end, { desc = "Git commit" })
+        vim.keymap.set("n", "<leader>gp", function()
+            local output = vim.fn.system("git push 2>&1")
+            if vim.v.shell_error == 0 then
+                vim.notify("Push successful", vim.log.levels.INFO)
+            else
+                vim.notify("Push failed: " .. output, vim.log.levels.ERROR)
+            end
+        end, { desc = "Git push" })
 
-            vim.keymap.set("n", "<leader>gp", function()
-                local output = vim.fn.system("git push 2>&1")
-                if vim.v.shell_error == 0 then
-                    vim.notify("Push successful", vim.log.levels.INFO)
-                else
-                    vim.notify("Push failed: " .. output, vim.log.levels.ERROR)
-                end
-            end, { desc = "Git push" })
+        -- Autocmd to reapply highlights when Neogit buffers are opened
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = "NeogitStatus",
+            callback = function()
+                pcall(function()
+                    vim.opt_local.number = false
+                    vim.opt_local.relativenumber = false
+                    vim.opt_local.signcolumn = "no"
+                    -- Disable all highlighting features that might cause issues
+                    vim.opt_local.syntax = "off"
 
-            -- Autocmd to reapply highlights when Neogit buffers are opened
-            vim.api.nvim_create_autocmd("FileType", {
-                pattern = "NeogitStatus",
-                callback = function()
-                    pcall(function()
-                        vim.opt_local.number = false
-                        vim.opt_local.relativenumber = false
-                        vim.opt_local.signcolumn = "no"
-                        -- Disable all highlighting features that might cause issues
-                        vim.opt_local.syntax = "off"
+                    -- Reapply custom highlights
+                    apply_neogit_highlights()
+                end)
+            end,
+        })
 
-                        -- Reapply custom highlights
-                        vim.defer_fn(apply_neogit_highlights, 10)
-                    end)
-                end,
-            })
-
-            -- Also reapply highlights when colorscheme changes
-            vim.api.nvim_create_autocmd("ColorScheme", {
-                callback = function()
-                    vim.defer_fn(apply_neogit_highlights, 100)
-                end,
-            })
-        end, 200) -- Increased delay to 200ms
+        -- Also reapply highlights when colorscheme changes
+        vim.api.nvim_create_autocmd("ColorScheme", {
+            callback = function()
+                apply_neogit_highlights()
+            end,
+        })
     end,
 }
