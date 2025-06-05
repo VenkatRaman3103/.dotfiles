@@ -150,7 +150,7 @@ return {
                 kind = "auto",
             },
             preview_buffer = {
-                kind = "vsplit", -- Changed from "floating_console" to "floating"
+                kind = "split", -- Changed from "floating_console" to "floating"
             },
             popup = {
                 kind = "split",
