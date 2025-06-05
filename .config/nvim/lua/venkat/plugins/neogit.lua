@@ -4,6 +4,86 @@ return {
         "nvim-lua/plenary.nvim",
     },
     config = function()
+        -- Function to apply custom highlights
+        local function apply_neogit_highlights()
+            -- Color definitions for consistency
+            local addColor = "#7ca68c"     -- Sage green for additions
+            local deleteColor = "#e67e7e"  -- Soft salmon for deletions
+            local changeColor = "#d2a374"  -- Warm coral for changes
+            local contextColor = "#aaaaaa" -- Gray for context
+
+            -- Base Neogit diff highlights (overview)
+            vim.api.nvim_set_hl(0, "NeogitDiffAdd", { bg = "NONE", fg = addColor })
+            vim.api.nvim_set_hl(0, "NeogitDiffDelete", { bg = "NONE", fg = deleteColor })
+            vim.api.nvim_set_hl(0, "NeogitDiffContext", { bg = "NONE", fg = contextColor })
+
+            -- Inside hunks - consistent with overview
+            vim.api.nvim_set_hl(0, "NeogitDiffAddHighlight", { bg = "NONE", fg = addColor })
+            vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", { bg = "NONE", fg = deleteColor })
+            vim.api.nvim_set_hl(0, "NeogitDiffContextHighlight", { bg = "NONE", fg = contextColor })
+
+            -- Override core diff highlights to ensure consistency
+            vim.api.nvim_set_hl(0, "DiffAdd", { bg = "NONE", fg = addColor })
+            vim.api.nvim_set_hl(0, "DiffDelete", { bg = "NONE", fg = deleteColor })
+            vim.api.nvim_set_hl(0, "DiffChange", { bg = "NONE", fg = changeColor })
+            vim.api.nvim_set_hl(0, "DiffText", { bg = "NONE", fg = changeColor, italic = true })
+
+            -- Generic diff view syntax highlights
+            vim.api.nvim_set_hl(0, "diffAdded", { fg = addColor, bg = "NONE" })
+            vim.api.nvim_set_hl(0, "diffRemoved", { fg = deleteColor, bg = "NONE" })
+            vim.api.nvim_set_hl(0, "diffChanged", { fg = changeColor, bg = "NONE" })
+
+            -- Additional Neogit highlight groups that might be used in hunks
+            vim.api.nvim_set_hl(0, "NeogitDiffAddRegion", { bg = "NONE", fg = addColor })
+            vim.api.nvim_set_hl(0, "NeogitDiffDeleteRegion", { bg = "NONE", fg = deleteColor })
+            vim.api.nvim_set_hl(0, "NeogitDiffContextRegion", { bg = "NONE", fg = contextColor })
+
+            -- Use foreground colors only for hunk headers
+            vim.api.nvim_set_hl(0, "NeogitHunkHeader", {
+                bg = "#181818",
+                fg = "#888888",
+                bold = true
+            })
+            vim.api.nvim_set_hl(0, "NeogitHunkHeaderHighlight", {
+                bg = "#181818",
+                fg = "#aaaaaa",
+                bold = true
+            })
+
+            -- File names with foreground styling only
+            vim.api.nvim_set_hl(0, "NeogitFileName", {
+                bg = "#181818",
+                fg = "#aaaaaa",
+                bold = true
+            })
+
+            -- Consistent status highlights using grayscale
+            vim.api.nvim_set_hl(0, "NeogitBranch", { fg = "#a0a0a0", bold = true, bg = "NONE" })
+            vim.api.nvim_set_hl(0, "NeogitRemote", { fg = "#909090", bold = true, bg = "NONE" })
+            vim.api.nvim_set_hl(0, "NeogitUntrackedfiles", { fg = "#7a7a7a", bg = "NONE" })
+            vim.api.nvim_set_hl(0, "NeogitStagedChanges", { fg = addColor, bg = "NONE" })
+            vim.api.nvim_set_hl(0, "NeogitUnstagedChanges", { fg = "#5f9ea0", bg = "NONE" })
+            vim.api.nvim_set_hl(0, "NeogitRecentCommits", { fg = changeColor, bg = "NONE" })
+            vim.api.nvim_set_hl(0, "NeogitSectionTitle", { fg = "#ffffff", bold = true, bg = "NONE" })
+
+            -- Notifications with subtle colors
+            vim.api.nvim_set_hl(0, "NeogitNotificationInfo", { bg = "NONE", fg = "#5f9ea0" })
+            vim.api.nvim_set_hl(0, "NeogitNotificationWarning", { bg = "NONE", fg = changeColor })
+            vim.api.nvim_set_hl(0, "NeogitNotificationError", { fg = deleteColor, bold = true, bg = "NONE" })
+
+            -- Change highlighting for change/delete/add words
+            vim.api.nvim_set_hl(0, "NeogitChangeDeleted", { bg = "NONE", fg = deleteColor })
+            vim.api.nvim_set_hl(0, "NeogitChangeBroken", { bg = "NONE", fg = changeColor })
+            vim.api.nvim_set_hl(0, "NeogitChangeAdded", { bg = "NONE", fg = addColor })
+
+            -- Additional status change highlights
+            vim.api.nvim_set_hl(0, "NeogitChangeModified", { bg = "NONE", fg = changeColor })
+            vim.api.nvim_set_hl(0, "NeogitChangeRenamed", { bg = "NONE", fg = "#d2a374" })
+            vim.api.nvim_set_hl(0, "NeogitChangeCopied", { bg = "NONE", fg = "#a0a0a0" })
+            vim.api.nvim_set_hl(0, "NeogitChangeUpdated", { bg = "NONE", fg = "#5f9ea0" })
+            vim.api.nvim_set_hl(0, "NeogitChangeNew", { bg = "NONE", fg = addColor })
+        end
+
         -- Pre-patch Neogit's highlight system before it loads
         local function patch_neogit_highlights()
             -- Get the neogit buffer module
@@ -141,6 +221,12 @@ return {
                 return
             end
 
+            -- *** APPLY CUSTOM HIGHLIGHTS AFTER NEOGIT SETUP ***
+            -- This is the key fix - apply highlights after Neogit is configured
+            vim.defer_fn(function()
+                apply_neogit_highlights()
+            end, 100) -- Small delay to ensure Neogit is fully loaded
+
             -- Safe toggle function
             vim.keymap.set("n", "<leader>go", function()
                 -- Check git repo
@@ -158,6 +244,8 @@ return {
                     else
                         -- Try opening with error handling
                         neogit.open()
+                        -- Reapply highlights after opening
+                        vim.defer_fn(apply_neogit_highlights, 50)
                     end
                 end)
 
@@ -194,7 +282,7 @@ return {
                 end
             end, { desc = "Git push" })
 
-            -- Minimal autocmd
+            -- Autocmd to reapply highlights when Neogit buffers are opened
             vim.api.nvim_create_autocmd("FileType", {
                 pattern = "NeogitStatus",
                 callback = function()
@@ -204,7 +292,17 @@ return {
                         vim.opt_local.signcolumn = "no"
                         -- Disable all highlighting features that might cause issues
                         vim.opt_local.syntax = "off"
+
+                        -- Reapply custom highlights
+                        vim.defer_fn(apply_neogit_highlights, 10)
                     end)
+                end,
+            })
+
+            -- Also reapply highlights when colorscheme changes
+            vim.api.nvim_create_autocmd("ColorScheme", {
+                callback = function()
+                    vim.defer_fn(apply_neogit_highlights, 100)
                 end,
             })
         end, 200) -- Increased delay to 200ms
