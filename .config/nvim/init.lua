@@ -3,8 +3,8 @@ require("venkat.lazy")
 
 -- utils
 require("venkat.utils.diagnostics").setup()
-require("venkat.utils.colorscheme").colorMyPencils()
-require("venkat.utils.colorscheme").syntax()
+require("venkat.utils.colorscheme_base").colorMyPencils()
+require("venkat.utils.colorscheme_syntax").syntax()
 
 vim.g.loaded_nvim_tree = 1
 vim.g.loaded_nvimtree = 1
@@ -20,19 +20,6 @@ local grey = "#505050";
 local lightGrey = "#666666";
 local white = "#ffffff";
 local secondaryBgColor = "#090909"
-
-vim.api.nvim_set_hl(0, "FlashLabel", { fg = "#d2a374", bold = true })
-vim.api.nvim_set_hl(0, "FlashBackdrop", { link = "Normal" })
-
-vim.api.nvim_set_hl(0, 'MsgArea', { fg = grey })  -- Command area text
-vim.api.nvim_set_hl(0, 'Question', { fg = grey }) -- Prompt/question text
-vim.api.nvim_set_hl(0, 'WildMenu', { fg = grey }) -- Command-line completion menu
-vim.api.nvim_set_hl(0, "Delimiter", { fg = "#ffffff" })
--- vim.api.nvim_set_hl(0, "@punctuation.bracket", { fg = "#ffffff" })
--- vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = "#ffffff" })
-
-vim.api.nvim_set_hl(0, "@attribute", { fg = grey })
-vim.api.nvim_set_hl(0, "@tag.attribute", { fg = grey })
 
 -- vim.o.cmdheight = 0
 vim.o.cmdheight = 1

@@ -54,6 +54,7 @@ return {
                         --     deleted = "",
                         --     ignored = "",
                         -- },
+                        --
                         git = {
                             unstaged = "",
                             staged = "",
@@ -102,7 +103,7 @@ return {
             vim.api.nvim_set_hl(0, "NvimTreeGitNew", { fg = "#4BB543", bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeGitDeleted", { fg = "#FF3333", bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeSpecialFile", { fg = "#999999", underline = true, bg = "none" })
-            vim.api.nvim_set_hl(0, "NvimTreeIndentMarker", { fg = "#555555", bg = "none" })
+            vim.api.nvim_set_hl(0, "NvimTreeIndentMarker", { fg = "#222222", bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeImageFile", { fg = lightGrey, bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeSymlink", { fg = lightGrey, bg = "none" })
             vim.api.nvim_set_hl(0, "NvimTreeFile", { fg = lightGrey, bg = "none" })

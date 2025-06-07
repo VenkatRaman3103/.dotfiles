@@ -4,7 +4,6 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
         local todo_comments = require("todo-comments")
-
         local colors = {
             error = "#e67e7e",
             warning = "#d2a374",
@@ -13,23 +12,22 @@ return {
             default = "#70787f",
             grey = "#505050",
         }
-
         todo_comments.setup({
-            signs = true,
+            signs = false,
             highlight = {
                 before = "",
                 keyword = "fg",
-                after = "fg",
+                after = "",
                 pattern = [[.*<(KEYWORDS)\s*:]],
             },
             keywords = {
-                DONE = { icon = "✔", color = colors.hint, alt = { "COMPLETE", "FINISHED" } },
-                FIX = { icon = "", color = colors.error, alt = { "FIXME", "BUG", "FIXIT", "ISSUE" } },
-                TODO = { icon = "", color = colors.grey },
-                HACK = { icon = "", color = colors.info },
-                WARN = { icon = "", color = colors.error, alt = { "WARNING", "XXX" } },
-                PERF = { icon = "", color = colors.hint, alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-                NOTE = { icon = "", color = colors.warning, alt = { "INFO" } },
+                DONE = { icon = "", color = colors.hint, alt = { "COMPLETE", "FINISHED" } },
+                FIX = { icon = "", color = colors.error, alt = { "FIXME", "BUG", "FIXIT", "ISSUE" } },
+                TODO = { icon = "", color = colors.grey },
+                HACK = { icon = "", color = colors.info },
+                WARN = { icon = "", color = colors.error, alt = { "WARNING", "XXX" } },
+                PERF = { icon = "", color = colors.hint, alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+                NOTE = { icon = "", color = colors.info, alt = { "INFO", "info" } },
             },
         })
     end,

@@ -169,7 +169,10 @@ return {
 
                     -- {
                     --     require('fleet').lualine_component,
-                    --     color = { fg = "#505050", bg = bgColor },
+                    -- },
+                    -- {
+                    --     get_active_harpoon_list,
+                    --     color = { fg = "#505050", bg = bgColor }, -- Green color for the Harpoon list
                     -- },
                 },
             },
