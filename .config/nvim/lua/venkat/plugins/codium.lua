@@ -3,7 +3,7 @@ return {
     "Exafunction/codeium.vim",
     config = function()
         -- Disable Codeium initially
-        vim.g.codeium_enabled = false
+        vim.g.codeium_enabled = true
 
         -- Keybindings
         vim.keymap.set("i", "<C-g>", function()

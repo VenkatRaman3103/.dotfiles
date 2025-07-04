@@ -2,9 +2,13 @@ local M = {}
 
 -- local bgColor = "#0e0e0e"
 local bgColor = ""
--- local secondaryBgColor = "#090909"
--- local secondaryBgColor = "#101010"
 local secondaryBgColor = "#090909"
+-- local secondaryBgColor = "#101010"
+-- local secondaryBgColor = "#090909"
+-- local secondaryBgColor = "#040404"
+-- local secondaryBgColor = "#030303"
+-- local secondaryBgColor = "#060606"
+
 -- local secondaryBgColor = "#080808"
 local whiteLike = "#d0d0d0"
 
@@ -204,10 +208,10 @@ function M.colorMyPencils()
     vim.api.nvim_set_hl(0, "Url", { fg = "#7ca68c", bg = "NONE", underline = true })
     vim.api.nvim_set_hl(0, "htmlLink", { fg = "#7ca68c", bg = "NONE", underline = true })
 
-    -- ====================================================================
-    -- NEOGIT CUSTOMIZATIONS
-    -- ====================================================================
-    -- Color definitions for consistency
+    -- -- ====================================================================
+    -- -- NEOGIT CUSTOMIZATIONS
+    -- -- ====================================================================
+    -- -- Color definitions for consistency
     local addColor = "#7ca68c"     -- Sage green for additions
     local deleteColor = "#e67e7e"  -- Soft salmon for deletions
     local changeColor = "#d2a374"  -- Warm coral for changes

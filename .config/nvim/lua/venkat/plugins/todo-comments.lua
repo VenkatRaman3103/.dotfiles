@@ -23,7 +23,7 @@ return {
             keywords = {
                 DONE = { icon = "", color = colors.hint, alt = { "COMPLETE", "FINISHED" } },
                 FIX = { icon = "", color = colors.error, alt = { "FIXME", "BUG", "FIXIT", "ISSUE" } },
-                TODO = { icon = "", color = colors.grey },
+                TODO = { icon = "", color = colors.warning },
                 HACK = { icon = "", color = colors.info },
                 WARN = { icon = "", color = colors.error, alt = { "WARNING", "XXX" } },
                 PERF = { icon = "", color = colors.hint, alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },

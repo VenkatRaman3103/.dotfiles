@@ -218,6 +218,7 @@ keymap.set("n", "<C-Right>", ":vertical resize -2<CR>", { desc = "Increase windo
 
 keymap.set("n", "<leader>dbo", ":DBUI<CR>")
 
+
 -- Keep cursor in the middle of the screen when jumping
 -- Add this to your existing configuration
 vim.keymap.set("n", "gd", "gdzz", { noremap = true })
@@ -227,6 +228,7 @@ vim.keymap.set("n", "gr", "grzz", { noremap = true })
 vim.keymap.set("n", "gD", "gDzz", { noremap = true })
 vim.keymap.set("n", "gi", "gizz", { noremap = true })
 vim.keymap.set("n", "gt", "gtzz", { noremap = true })
+
 
 -- Improved Netrw toggle function
 vim.g.netrw_banner = 0       -- Hide the banner
