@@ -51,7 +51,7 @@ return {
                 comment = lightGrey,
                 builtin = white,
                 func = grey,
-                string = sageGreen,
+                string = white,
                 -- string = "#7894ab",
                 -- number = "#d2a374",
                 -- number = grey,
@@ -304,6 +304,10 @@ return {
 --     name = "gruvbox",
 --     priority = 1000,
 --     config = function()
+--         vim.opt.background = "dark"
+--         vim.g.gruvbox_material_background = "hard"
+--
+--         -- Apply the colorscheme
 --         vim.cmd("colorscheme gruvbox-material")
 --     end,
 -- }
@@ -398,4 +402,41 @@ return {
 --     end,
 -- }
 
+-- return {
+--     "webhooked/kanso.nvim",
+--     name = "kanso",
+--     priority = 1000,
+--     config = function()
+--         require('kanso').setup({
+--             bold = true,      -- enable bold fonts
+--             italics = true,   -- enable italics
+--             compile = false,  -- enable compiling the colorscheme
+--             undercurl = true, -- enable undercurls
+--             commentStyle = { italic = true },
+--             functionStyle = {},
+--             keywordStyle = { italic = true },
+--             statementStyle = {},
+--             typeStyle = {},
+--             transparent = false,   -- do not set background color
+--             dimInactive = false,   -- dim inactive window `:h hl-NormalNC`
+--             terminalColors = true, -- define vim.g.terminal_color_{0,17}
+--             colors = {             -- add/modify theme and palette colors
+--                 palette = {},
+--                 theme = { zen = {}, pearl = {}, ink = {}, all = {} },
+--             },
+--             overrides = function(colors) -- add/modify highlights
+--                 return {}
+--             end,
+--             theme = "zen",      -- Load "zen" theme
+--             background = {      -- map the value of 'background' option to a theme
+--                 dark = "zen",   -- try "ink" !
+--                 light = "pearl" -- try "mist" !
+--             },
+--         })
+--
+--         -- setup must be called before loading
+--         -- vim.cmd("colorscheme kanso")
+--     end,
+-- }
 -- return {}
+--

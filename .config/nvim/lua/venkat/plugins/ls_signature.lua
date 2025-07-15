@@ -6,11 +6,11 @@ return {
     --     handler_opts = {
     --         border = "rounded",
     --     },
-    --     hint_enable = true,
+    --     hint_enable = false,
     --     floating_window_above_cur_line = true,
     --     hint_prefix = "",
     --     floating_window = true,
-    --     fix_pos = false,
+    --     fix_pos = true,
     -- },
     -- config = function(_, opts)
     --     require("lsp_signature").setup(opts)

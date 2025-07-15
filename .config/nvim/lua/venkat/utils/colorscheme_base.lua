@@ -3,6 +3,7 @@ local M = {}
 -- local bgColor = "#0e0e0e"
 local bgColor = ""
 local secondaryBgColor = "#090909"
+-- local secondaryBgColor = "#111111"
 -- local secondaryBgColor = "#101010"
 -- local secondaryBgColor = "#090909"
 -- local secondaryBgColor = "#040404"
@@ -263,13 +264,14 @@ function M.colorMyPencils()
     })
 
     -- Consistent status highlights using grayscale
-    vim.api.nvim_set_hl(0, "NeogitBranch", { fg = "#a0a0a0", bold = true, bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NeogitRemote", { fg = "#909090", bold = true, bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NeogitUntrackedfiles", { fg = "#7a7a7a", bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NeogitStagedChanges", { fg = addColor, bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NeogitUnstagedChanges", { fg = "#5f9ea0", bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NeogitRecentCommits", { fg = changeColor, bg = "NONE" })
+    vim.api.nvim_set_hl(0, "NeogitBranch", { fg = "#ffffff", bold = true, bg = "NONE" })
+    vim.api.nvim_set_hl(0, "NeogitRemote", { fg = "#ffffff", bold = true, bg = "NONE" })
+    vim.api.nvim_set_hl(0, "NeogitUntrackedfiles", { fg = "#7a7a7a", bold = true, bg = "NONE" })
+    vim.api.nvim_set_hl(0, "NeogitStagedChanges", { fg = addColor, bold = true, bg = "NONE" })
+    vim.api.nvim_set_hl(0, "NeogitUnstagedChanges", { fg = "#5f9ea0", bold = true, bg = "NONE" })
+    vim.api.nvim_set_hl(0, "NeogitRecentCommits", { fg = changeColor, bold = true, bg = "NONE" })
     vim.api.nvim_set_hl(0, "NeogitSectionTitle", { fg = "#ffffff", bold = true, bg = "NONE" })
+    vim.api.nvim_set_hl(0, "NeogitChangeModified", { bg = "NONE", bold = true, fg = "#7ca68c" })
 
     -- Notifications with subtle colors
     vim.api.nvim_set_hl(0, "NeogitNotificationInfo", { bg = "NONE", fg = "#5f9ea0" })
@@ -280,6 +282,7 @@ function M.colorMyPencils()
     vim.api.nvim_set_hl(0, "NeogitChangeDeleted", { bg = "NONE", fg = deleteColor })
     vim.api.nvim_set_hl(0, "NeogitChangeBroken", { bg = "NONE", fg = changeColor })
     vim.api.nvim_set_hl(0, "NeogitChangeAdded", { bg = "NONE", fg = addColor })
+
 
     -- ====================================================================
     -- DIFFVIEW CUSTOMIZATIONS
@@ -311,5 +314,3 @@ end
 
 
 return M
-
--- vim.api.nvim_set_hl(0, "NeogitChangeModified", { bg = "NONE", fg = "#7ca68c" })

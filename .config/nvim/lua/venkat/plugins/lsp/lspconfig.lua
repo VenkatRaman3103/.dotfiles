@@ -175,10 +175,10 @@ return {
                 init_options = {
                     preferences = {
                         includeInlayParameterNameHints = "none",
-                        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                        includeInlayFunctionParameterTypeHints = false,
+                        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                        includeInlayFunctionParameterTypeHints = true,
                         includeInlayVariableTypeHints = false,
-                        includeInlayPropertyDeclarationTypeHints = false,
+                        includeInlayPropertyDeclarationTypeHints = true,
                         includeInlayFunctionLikeReturnTypeHints = true,
                         includeInlayEnumMemberValueHints = false,
                     },
@@ -187,10 +187,10 @@ return {
                     typescript = {
                         inlayHints = {
                             includeInlayParameterNameHints = "none",
-                            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                            includeInlayFunctionParameterTypeHints = false,
+                            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                            includeInlayFunctionParameterTypeHints = true,
                             includeInlayVariableTypeHints = false,
-                            includeInlayPropertyDeclarationTypeHints = false,
+                            includeInlayPropertyDeclarationTypeHints = true,
                             includeInlayFunctionLikeReturnTypeHints = true,
                             includeInlayEnumMemberValueHints = false,
                         },
@@ -198,10 +198,10 @@ return {
                     javascript = {
                         inlayHints = {
                             includeInlayParameterNameHints = "none",
-                            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                            includeInlayFunctionParameterTypeHints = false,
+                            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                            includeInlayFunctionParameterTypeHints = true,
                             includeInlayVariableTypeHints = false,
-                            includeInlayPropertyDeclarationTypeHints = false,
+                            includeInlayPropertyDeclarationTypeHints = true,
                             includeInlayFunctionLikeReturnTypeHints = true,
                             includeInlayEnumMemberValueHints = false,
                         },

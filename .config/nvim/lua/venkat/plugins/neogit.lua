@@ -17,7 +17,7 @@ return {
             -- Hides the hints at the top of the status buffer
             disable_hint = false,
             -- Disables changing the buffer highlights based on where the cursor is.
-            disable_context_highlighting = false,
+            disable_context_highlighting = true,
             -- Disables signs for sections/items/hunks
             disable_signs = false,
             -- Offer to force push when branches diverge
@@ -29,7 +29,7 @@ return {
             -- When enabled, will watch the `.git/` directory for changes and refresh the status buffer in response to filesystem
             -- events.
             filewatcher = {
-                interval = 1000,
+                interval = 500,
                 enabled = true,
             },
             -- "ascii"   is the graph the git CLI generates
@@ -40,7 +40,7 @@ return {
             commit_date_format = nil,
             log_date_format = nil,
             -- Show message with spinning animation when a git command is running.
-            process_spinner = true,
+            process_spinner = false,
             -- Used to generate URL's for branch popup action "pull request".
             git_services = {
                 ["github.com"] = "https://github.com/${owner}/${repository}/compare/${branch_name}?expand=1",
@@ -100,10 +100,10 @@ return {
             notification_icon = "󰊢",
             status = {
                 show_head_commit_hash = true,
-                recent_commit_count = 10,
-                HEAD_padding = 10,
+                recent_commit_count = 30,
+                HEAD_padding = 5,
                 HEAD_folded = false,
-                mode_padding = 3,
+                mode_padding = 15,
                 mode_text = {
                     M = "modified",
                     N = "new file",
@@ -167,8 +167,9 @@ return {
             },
             signs = {
                 section = { "▶", "▼" },
-                hunk = { "󰐕", "󰐖" },
+                -- hunk = { "󰐕", "󰐖" },
                 -- item = { "󰁕", "󰁆" },
+                hunk = { "+", "-" },
                 item = { "○", "●" },
                 -- hunk = { "›", "›" },
             },

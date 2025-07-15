@@ -17,6 +17,13 @@ function M.syntax()
     local softSalmon = "#e67e7e" -- Soft salmon for booleans
     local sageGreen = "#7ca68c"  -- Muted sage green
 
+    -- local grey = "#999999"
+    -- local lightGrey = "#666666"
+    -- local evenLightGrey = "#404040"
+    -- local white = "#eeeeee"
+    -- local black = "#191919"
+    -- local oceanGray = "#70787f"
+
     vim.api.nvim_set_hl(0, "Function", { fg = white, bg = "NONE" })
 
     vim.api.nvim_set_hl(0, "FlashLabel", { fg = "#d2a374", bold = true })

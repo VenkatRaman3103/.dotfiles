@@ -117,6 +117,10 @@ return {
 
         colors()
 
+        -- local function toggleBufferExplorer()
+        --     require("nvim-tree.api").tree.toggle_no_buffer_filter()
+        -- end
+
         -- Apply colors when the ColorScheme changes
         vim.api.nvim_create_autocmd("ColorScheme", {
             callback = colors,
@@ -133,5 +137,10 @@ return {
         )
         keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })
         keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
+        -- keymap.set("n", "<leader>eb", function()
+        --     toggleBufferExplorer()
+        -- end)
+
+        -- api.tree.toggle_no_buffer_filter
     end,
 }

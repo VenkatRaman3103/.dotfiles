@@ -109,7 +109,7 @@ return {
                         { win = "input", height = 1,     border = "bottom" },
                         { win = "list",  border = "none" },
                     },
-                    { win = "preview", title = "{preview}", border = "rounded", width = 0.55 },
+                    { win = "preview", title = "{preview}", border = "rounded", width = 0.6 },
                 },
             },
 
@@ -132,6 +132,25 @@ return {
                         float = true,
                     },
                 },
+
+                -- preset = "ivy",
+                ivy = {
+                    layout = {
+                        box = "horizontal",
+                        width = 0,
+                        min_width = 100,
+                        height = 0.93,
+                        -- position = "",
+                        {
+                            box = "vertical",
+                            border = "rounded",
+                            title = "{title} {live} {flags}",
+                            { win = "input", height = 1,     border = "bottom" },
+                            { win = "list",  border = "none" },
+                        },
+                        { win = "preview", title = "{preview}", border = "rounded", width = 0.6 },
+                    },
+                }
             }
         },
     },
@@ -140,7 +159,7 @@ return {
             "<leader>/",
             function()
                 Snacks.picker.lines({
-                    layout = "default",
+                    layout = "ivy",
                 })
             end,
             desc = "man page",
