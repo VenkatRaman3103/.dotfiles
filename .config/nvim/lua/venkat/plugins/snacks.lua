@@ -109,7 +109,7 @@ return {
                         { win = "input", height = 1,     border = "bottom" },
                         { win = "list",  border = "none" },
                     },
-                    { win = "preview", title = "{preview}", border = "rounded", width = 0.6 },
+                    { win = "preview", title = "{preview}", border = "rounded", width = 0.55 },
                 },
             },
 
@@ -123,14 +123,6 @@ return {
                         float = false,
                     },
                     jump = { close = false }
-                },
-                default = {
-                    layout = {
-                        width = 0,
-                        height = 0.93,
-                        preview = true,
-                        float = true,
-                    },
                 },
 
                 -- preset = "ivy",
@@ -148,9 +140,50 @@ return {
                             { win = "input", height = 1,     border = "bottom" },
                             { win = "list",  border = "none" },
                         },
-                        { win = "preview", title = "{preview}", border = "rounded", width = 0.6 },
+                        { win = "preview", title = "{preview}", border = "rounded", width = 0.55 },
                     },
-                }
+                },
+
+                telescope = {
+                    reverse = true,
+                    layout = {
+                        box = "horizontal",
+                        width = 0,
+                        min_width = 100,
+                        height = 0.93,
+                        -- position = "",
+                        {
+                            box = "vertical",
+                            { win = "list",  title = " Results ", title_pos = "center", border = "rounded" },
+                            { win = "input", height = 1,          border = "rounded",   title = "{title} {live} {flags}", title_pos = "center" },
+                        },
+                        {
+                            win = "preview",
+                            title = "{preview:Preview}",
+                            width = 0.55,
+                            border = "rounded",
+                            title_pos = "center",
+                        },
+                    },
+                },
+
+                default = {
+                    layout = {
+                        box = "horizontal",
+                        width = 0,
+                        min_width = 100,
+                        height = 0.93,
+                        -- position = "",
+                        {
+                            box = "vertical",
+                            border = "rounded",
+                            title = "{title} {live} {flags}",
+                            { win = "input", height = 1,     border = "bottom" },
+                            { win = "list",  border = "none" },
+                        },
+                        { win = "preview", title = "{preview}", border = "rounded", width = 0.55 },
+                    },
+                },
             }
         },
     },
@@ -159,7 +192,7 @@ return {
             "<leader>/",
             function()
                 Snacks.picker.lines({
-                    layout = "ivy",
+                    layout = "default",
                 })
             end,
             desc = "man page",

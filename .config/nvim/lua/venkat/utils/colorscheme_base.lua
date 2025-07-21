@@ -263,6 +263,10 @@ function M.colorMyPencils()
         bold = true
     })
 
+    vim.api.nvim_set_hl(0, "NeogitHunkHeaderHighlight", { fg = changeColor, bold = true, bg = "#ffffff" })
+
+    -- vim.api.nvim_set_hl(0, "NeogitHunkHeader", { fg = changeColor, bold = true, bg = "#ffffff" })
+
     -- Consistent status highlights using grayscale
     vim.api.nvim_set_hl(0, "NeogitBranch", { fg = "#ffffff", bold = true, bg = "NONE" })
     vim.api.nvim_set_hl(0, "NeogitRemote", { fg = "#ffffff", bold = true, bg = "NONE" })
@@ -270,6 +274,7 @@ function M.colorMyPencils()
     vim.api.nvim_set_hl(0, "NeogitStagedChanges", { fg = addColor, bold = true, bg = "NONE" })
     vim.api.nvim_set_hl(0, "NeogitUnstagedChanges", { fg = "#5f9ea0", bold = true, bg = "NONE" })
     vim.api.nvim_set_hl(0, "NeogitRecentCommits", { fg = changeColor, bold = true, bg = "NONE" })
+
     vim.api.nvim_set_hl(0, "NeogitSectionTitle", { fg = "#ffffff", bold = true, bg = "NONE" })
     vim.api.nvim_set_hl(0, "NeogitChangeModified", { bg = "NONE", bold = true, fg = "#7ca68c" })
 

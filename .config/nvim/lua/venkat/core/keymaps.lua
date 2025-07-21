@@ -1,5 +1,6 @@
 -- Set leader key
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 local keymap = vim.keymap
 local fn = vim.fn

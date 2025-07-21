@@ -72,12 +72,23 @@ return {
                 })
             })
 
-            -- CSS and SCSS files - prioritize LSP suggestions
+            local types = require("cmp.types")
+
             cmp.setup.filetype({ "css", "scss", "sass", "less" }, {
                 sources = cmp.config.sources({
-                    { name = "nvim_lsp", priority = 1000 }, -- Give LSP highest priority
-                    { name = "buffer",   priority = 500 },
-                    { name = "path",     priority = 250 },
+                    {
+                        name = "nvim_lsp",
+                        priority = 1000,
+                        entry_filter = function(entry, ctx)
+                            -- Skip snippet completion items only
+                            if entry:get_kind() == types.lsp.CompletionItemKind.Snippet then
+                                return false
+                            end
+                            return true
+                        end,
+                    },
+                    { name = "buffer", priority = 500 },
+                    { name = "path",   priority = 250 },
                 })
             })
 

@@ -403,6 +403,18 @@ return {
 -- }
 
 -- return {
+--     "EdenEast/nightfox.nvim",
+--     name = "nightfox",
+--     priority = 1000,
+--     config = function()
+--         require("nightfox").setup({
+--             -- flavour = "mocha", -- or "latte", "frappe", "macchiato"
+--         })
+--         vim.cmd("colorscheme terafox")
+--     end,
+-- }
+
+-- return {
 --     "webhooked/kanso.nvim",
 --     name = "kanso",
 --     priority = 1000,

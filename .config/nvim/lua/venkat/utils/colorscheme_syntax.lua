@@ -29,6 +29,7 @@ function M.syntax()
     vim.api.nvim_set_hl(0, "FlashLabel", { fg = "#d2a374", bold = true })
     vim.api.nvim_set_hl(0, "FlashBackdrop", { link = "Normal" })
 
+
     vim.api.nvim_set_hl(0, 'MsgArea', { fg = grey })  -- Command area text
     vim.api.nvim_set_hl(0, 'Question', { fg = grey }) -- Prompt/question text
     vim.api.nvim_set_hl(0, 'WildMenu', { fg = grey }) -- Command-line completion menu
@@ -50,6 +51,8 @@ function M.syntax()
     vim.api.nvim_set_hl(0, "@constant", { fg = white })        -- User-defined constants
     vim.api.nvim_set_hl(0, "@constant.builtin", { fg = grey }) -- Built-in constants like nil, true, false
     vim.api.nvim_set_hl(0, "@constant.macro", { fg = grey })   -- Constants defined by macros
+
+    vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = grey, underline = true })
 
     -- Functions - all set to warnCoral (orange) for function names and calls
     vim.api.nvim_set_hl(0, "@function", { fg = white })         -- Function declarations

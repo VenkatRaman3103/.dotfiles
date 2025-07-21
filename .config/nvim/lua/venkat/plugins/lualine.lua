@@ -145,6 +145,7 @@ return {
                         separator = " ",
                         color = { fg = "#505050", bg = bgColor },
                         icon = { "󰘬", align = "left", color = { fg = "#505050" } },
+                        -- icon = { "", align = "left", color = { fg = "#505050" } },
                     },
                 },
                 lualine_z = {

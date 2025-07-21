@@ -16,8 +16,8 @@ return {
             cell_delimiter = "# %%",
             keymaps = {
                 send = "<leader>ss",
-                send_cell_and_switch = "<leader>ro",
-                send_cell_no_switch = "<leader>rr",
+                send_cell_and_switch = "<leader>so",
+                send_cell_no_switch = "<leader>sr",
                 pick_target = "<leader>st",
             }
         })
