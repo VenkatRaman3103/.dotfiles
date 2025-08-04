@@ -21,6 +21,9 @@ return {
             char = {
                 enabled = false, -- Completely disable `char` mode
             },
+            search = {
+                enabled = true, -- Disable search mode
+            },
         },
     },
     keys = {
@@ -33,7 +36,7 @@ return {
             desc = "Flash",
         },
         {
-            "<leader>S",
+            "S",
             mode = { "n", "x", "o" },
             function()
                 require("flash").treesitter()

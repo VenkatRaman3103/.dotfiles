@@ -52,8 +52,6 @@ function M.syntax()
     vim.api.nvim_set_hl(0, "@constant.builtin", { fg = grey }) -- Built-in constants like nil, true, false
     vim.api.nvim_set_hl(0, "@constant.macro", { fg = grey })   -- Constants defined by macros
 
-    vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = grey, underline = true })
-
     -- Functions - all set to warnCoral (orange) for function names and calls
     vim.api.nvim_set_hl(0, "@function", { fg = white })         -- Function declarations
     vim.api.nvim_set_hl(0, "@function.builtin", { fg = white }) -- Built-in functions
@@ -93,6 +91,7 @@ function M.syntax()
     vim.api.nvim_set_hl(0, "@number", { fg = warnCoral })    -- Numeric literals
     vim.api.nvim_set_hl(0, "@boolean", { fg = warnCoral })   -- Boolean literals
     vim.api.nvim_set_hl(0, "@float", { fg = warnCoral })     -- Floating point numbers
+
 
     -- Properties and parameters - key section for controlling .len appearance
     vim.api.nvim_set_hl(0, "@property", { fg = grey })   -- Object/class properties - for .len and similar
@@ -198,6 +197,8 @@ function M.syntax()
     vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { fg = "#e6be8c" })
     vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { fg = mutedTeal })
     vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { fg = evenLightGrey })
+
+    vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = white, underline = true }) -- Floating point numbers
 
 
     -- Error and warning colors
@@ -322,6 +323,8 @@ function M.syntax()
 
     vim.api.nvim_set_hl(0, "@property.json", { fg = white })
     vim.api.nvim_set_hl(0, "restComment", { fg = evenLightGrey })
+
+    vim.api.nvim_set_hl(0, "SnacksDim", { fg = evenLightGrey, bg = "none" }) -- Adjust as needed
 end
 
 return M

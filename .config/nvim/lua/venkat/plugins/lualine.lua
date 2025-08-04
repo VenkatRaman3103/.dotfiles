@@ -112,7 +112,8 @@ return {
                         -- color = { fg = "#a1a1a1", bg = "#111111" }
                         -- color = { fg = "#ffffff", bg = "#0c0c0c" }
                         -- color = { fg = "#a0a0a0", bg = "#0c0c0c" }
-                        color = { fg = "#eeeeee", bg = "#0c0c0c" }
+                        -- color = { fg = "#eeeeee", bg = "#0c0c0c" }
+                        color = { fg = "#eeeeee", bg = "#111111" }
                     },
                 },
                 lualine_b = {
@@ -187,5 +188,12 @@ return {
             highlight LualineSeparator guifg=#0e0e0e guibg=none
             highlight LualineBranch guifg=#808080 guibg=none
         ]])
+
+        -- vim.cmd([[
+        --     highlight LualineTabActive guifg=#a7a7a7 guibg=#090909
+        --     highlight LualineTabInactive guifg=#505050 guibg=#090909
+        --     highlight LualineSeparator guifg=#0e0e0e guibg=#090909
+        --     highlight LualineBranch guifg=#808080 guibg=#090909
+        -- ]])
     end,
 }

@@ -58,8 +58,8 @@ opt.scrolloff = 15
 
 opt.updatetime = 50
 
-opt.spelllang = 'en_us'
-opt.spell = true
+-- opt.spelllang = 'en_us'
+-- opt.spell = true
 
 opt.ff = "unix"
 -- color column

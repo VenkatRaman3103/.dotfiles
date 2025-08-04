@@ -56,3 +56,11 @@ _G.require = function(module_name)
     end
     return original_require(module_name)
 end
+
+vim.api.nvim_create_autocmd("BufWriteCmd", {
+    pattern = "kulala://*",
+    callback = function()
+        -- Just mark it as saved, avoid E212
+        vim.bo.modified = false
+    end,
+})

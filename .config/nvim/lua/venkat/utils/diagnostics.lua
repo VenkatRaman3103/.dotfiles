@@ -20,7 +20,7 @@ function diagnostics.setup()
         update_in_insert = false,
         severity_sort = true,
         float = {
-            focusable = false,
+            focusable = true,
             scope = "line",
         },
     })
