@@ -328,3 +328,5 @@ function M.syntax()
 end
 
 return M
+
+-- // NeogitUnmergedchanges

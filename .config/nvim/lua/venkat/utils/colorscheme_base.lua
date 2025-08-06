@@ -237,6 +237,7 @@ function M.colorMyPencils()
     vim.api.nvim_set_hl(0, "NeogitDiffDelete", { bg = "NONE", fg = deleteColor })
     vim.api.nvim_set_hl(0, "NeogitDiffContext", { bg = "NONE", fg = contextColor })
 
+
     -- Inside hunks - consistent with overview
     vim.api.nvim_set_hl(0, "NeogitDiffAddHighlight", { bg = "NONE", fg = addColor })
     vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", { bg = "NONE", fg = deleteColor })
@@ -284,10 +285,17 @@ function M.colorMyPencils()
     -- Consistent status highlights using grayscale
     vim.api.nvim_set_hl(0, "NeogitBranch", { fg = "#ffffff", bold = true, bg = "NONE" })
     vim.api.nvim_set_hl(0, "NeogitRemote", { fg = "#ffffff", bold = true, bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NeogitUntrackedfiles", { fg = "#7a7a7a", bold = true, bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NeogitStagedChanges", { fg = addColor, bold = true, bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NeogitUnstagedChanges", { fg = "#5f9ea0", bold = true, bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NeogitRecentCommits", { fg = changeColor, bold = true, bg = "NONE" })
+    -- vim.api.nvim_set_hl(0, "NeogitUntrackedfiles", { fg = "#7a7a7a", bold = true, bg = "NONE" })
+    -- vim.api.nvim_set_hl(0, "NeogitStagedChanges", { fg = addColor, bold = true, bg = "NONE" })
+    -- vim.api.nvim_set_hl(0, "NeogitUnstagedChanges", { fg = "#5f9ea0", bold = true, bg = "NONE" })
+
+    -- vim.api.nvim_set_hl(0, "NeogitRecentCommits", { fg = changeColor, bold = true, bg = "NONE" })
+
+    vim.api.nvim_set_hl(0, "NeogitRecentcommits", { bg = changeColor, bold = true, fg = "#000000" })
+    vim.api.nvim_set_hl(0, "NeogitUntrackedfiles", { bg = "#7a7a7a", bold = true, fg = "#000000" })
+    vim.api.nvim_set_hl(0, "NeogitStagedChanges", { bg = addColor, bold = true, fg = "#000000" })
+    vim.api.nvim_set_hl(0, "NeogitUnstagedChanges", { bg = "#5f9ea0", bold = true, fg = "#000000" })
+
 
     vim.api.nvim_set_hl(0, "NeogitSectionTitle", { fg = "#ffffff", bold = true, bg = "NONE" })
     vim.api.nvim_set_hl(0, "NeogitChangeModified", { bg = "NONE", bold = true, fg = "#7ca68c" })

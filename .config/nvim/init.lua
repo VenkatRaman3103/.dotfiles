@@ -64,3 +64,53 @@ vim.api.nvim_create_autocmd("BufWriteCmd", {
         vim.bo.modified = false
     end,
 })
+
+-- vim.api.nvim_create_autocmd("ModeChanged", {
+--     callback = function()
+--         local mode_map = {
+--             n = "Normal",
+--             i = "Insert",
+--             v = "Visual",
+--             V = "V-Line",
+--             [""] = "V-Block",
+--             c = "Command",
+--             R = "Replace",
+--             s = "Select",
+--             t = "Terminal",
+--         }
+--
+--         local mode = vim.fn.mode()
+--         local mode_name = mode_map[mode] or mode
+--         vim.cmd("echo 'MODE: " .. mode_name .. "'")
+--     end,
+-- })
+
+
+vim.cmd([[
+    highlight LualineModeText guifg=#ffffff guibg=NONE
+    highlight LualineModeBar guifg=#569CD6 guibg=NONE
+    augroup UpdateLualineModeBar
+        autocmd!
+        autocmd ModeChanged * lua UpdateLualineModeBar()
+    augroup END
+]])
+
+function UpdateLualineModeBar()
+    local mode = vim.fn.mode()
+    local mode_colors = {
+        n = "#569CD6",     -- Normal
+        i = "#98C379",     -- Insert
+        v = "#C678DD",     -- Visual
+        V = "#C678DD",     -- Visual Line
+        [""] = "#C678DD", -- Visual Block
+        c = "#E5C07B",     -- Command
+        R = "#E06C75",     -- Replace
+        t = "#56B6C2",     -- Terminal
+    }
+
+    local color = mode_colors[mode] or "#aaaaaa"
+    vim.api.nvim_set_hl(0, "LualineModeBar", { fg = color, bg = "NONE" })
+end
+
+-- Call once on startup
+UpdateLualineModeBar()

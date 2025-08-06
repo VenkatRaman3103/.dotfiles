@@ -90,6 +90,45 @@ return {
             },
             sections = {
                 lualine_a = {
+                    -- {
+                    --     function()
+                    --         local mode_map = {
+                    --             n = "NORMAL",
+                    --             i = "INSERT",
+                    --             v = "VISUAL",
+                    --             V = "V-LINE",
+                    --             [""] = "V-BLOCK",
+                    --             c = "COMMAND",
+                    --             R = "REPLACE",
+                    --             t = "TERMINAL",
+                    --         }
+                    --
+                    --         local mode = vim.fn.mode()
+                    --         local mode_name = mode_map[mode] or mode
+                    --         return string.format("%%#LualineModeBar#▎%%#LualineModeText# %s", mode_name)
+                    --         -- return string.format("%%#LualineModeBar#|%%#LualineModeText# %s", mode_name)
+                    --     end,
+                    --     color = {}, -- Disable lualine's auto-coloring so we can use highlights
+                    -- },
+
+                    {
+                        function()
+                            local mode_map = {
+                                n = "NORMAL",
+                                i = "INSERT",
+                                v = "VISUAL",
+                                V = "V-LINE",
+                                [""] = "V-BLOCK",
+                                c = "COMMAND",
+                                R = "REPLACE",
+                                t = "TERMINAL",
+                            }
+
+                            local mode = vim.fn.mode()
+                            return mode_map[mode] or mode
+                        end,
+                        color = { fg = "#ffffff", bg = "#1e1e1e" },
+                    },
                     {
                         "filename",
                         -- "buffers",

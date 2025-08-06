@@ -144,6 +144,8 @@ end
 keymap.set("n", "<C-d>", "<C-d>zz")
 keymap.set("n", "<C-u>", "<C-u>zz")
 keymap.set("n", "G", "Gzz")
+keymap.set("n", "<C-o>", "<C-o>zz")
+keymap.set("n", "<C-i>", "<C-i>zz")
 
 -- Searching in place
 keymap.set("n", "n", "nzzzv")
