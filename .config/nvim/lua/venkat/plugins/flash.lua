@@ -22,7 +22,7 @@ return {
                 enabled = false, -- Completely disable `char` mode
             },
             search = {
-                enabled = true, -- Disable search mode
+                enabled = false, -- Disable search mode
             },
         },
     },

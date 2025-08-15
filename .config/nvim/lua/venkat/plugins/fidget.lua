@@ -12,8 +12,8 @@ return {
     --         override_vim_notify = false,
     --     },
     --     window = {
-    --         winblend = 0,
-    --         border = "rounded",
+    --         winblend = 0, -- make it opaque
+    --         normal_hl = "Comment",
     --     },
     -- },
     -- config = function(_, opts)

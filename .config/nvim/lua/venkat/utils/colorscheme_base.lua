@@ -294,7 +294,8 @@ function M.colorMyPencils()
     vim.api.nvim_set_hl(0, "NeogitRecentcommits", { bg = changeColor, bold = true, fg = "#000000" })
     vim.api.nvim_set_hl(0, "NeogitUntrackedfiles", { bg = "#7a7a7a", bold = true, fg = "#000000" })
     vim.api.nvim_set_hl(0, "NeogitStagedChanges", { bg = addColor, bold = true, fg = "#000000" })
-    vim.api.nvim_set_hl(0, "NeogitUnstagedChanges", { bg = "#5f9ea0", bold = true, fg = "#000000" })
+    vim.api.nvim_set_hl(0, "NeogitUnstagedChanges", { bg = "#1e1e1e", bold = true, fg = "#ffffff" })
+    vim.api.nvim_set_hl(0, "NeogitUnmergedchanges", { bg = "#5f9ea0", bold = true, fg = "#000000" })
 
 
     vim.api.nvim_set_hl(0, "NeogitSectionTitle", { fg = "#ffffff", bold = true, bg = "NONE" })

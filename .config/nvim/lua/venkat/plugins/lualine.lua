@@ -38,34 +38,34 @@ return {
             return result
         end
 
-        -- Function to get active Harpoon list name
-        local function get_active_harpoon_list()
-            if _G.active_harpoon_list then
-                local parts = split(_G.active_harpoon_list, ':') -- Splitting the string
-                local folder_part = parts[1]                     -- First part (before ':')
-                local list_part = parts[2]                       -- Second part (after ':')
+        -- -- Function to get active Harpoon list name
+        -- local function get_active_harpoon_list()
+        --     if _G.active_harpoon_list then
+        --         local parts = split(_G.active_harpoon_list, ':') -- Splitting the string
+        --         local folder_part = parts[1]                     -- First part (before ':')
+        --         local list_part = parts[2]                       -- Second part (after ':')
+        --
+        --         return list_part or
+        --             "" -- Return list_part if it exists, otherwise return an empty string
+        --     else
+        --         return ""
+        --     end
+        -- end
 
-                return list_part or
-                    "" -- Return list_part if it exists, otherwise return an empty string
-            else
-                return ""
-            end
-        end
-
-        -- Function to get Harpoon marks count
-        local function get_harpoon_marks()
-            local ok, harpoon = pcall(require, "harpoon")
-            if not ok then
-                return ""
-            end
-
-            local marks = harpoon:list():length()
-            if marks > 0 then
-                return "⚓ " .. marks
-            else
-                return ""
-            end
-        end
+        -- -- Function to get Harpoon marks count
+        -- local function get_harpoon_marks()
+        --     local ok, harpoon = pcall(require, "harpoon")
+        --     if not ok then
+        --         return ""
+        --     end
+        --
+        --     local marks = harpoon:list():length()
+        --     if marks > 0 then
+        --         return "⚓ " .. marks
+        --     else
+        --         return ""
+        --     end
+        -- end
 
         -- Create the command for tab renaming
         vim.api.nvim_create_user_command("RenameTab", rename_tab, {})
@@ -127,7 +127,9 @@ return {
                             local mode = vim.fn.mode()
                             return mode_map[mode] or mode
                         end,
-                        color = { fg = "#ffffff", bg = "#1e1e1e" },
+                        -- color = { fg = "#ffffff", bg = "#1e1e1e" },
+                        color = { fg = "#a0a0a0", bg = "#1e1e1e" },
+                        --
                     },
                     {
                         "filename",
@@ -152,7 +154,8 @@ return {
                         -- color = { fg = "#ffffff", bg = "#0c0c0c" }
                         -- color = { fg = "#a0a0a0", bg = "#0c0c0c" }
                         -- color = { fg = "#eeeeee", bg = "#0c0c0c" }
-                        color = { fg = "#eeeeee", bg = "#111111" }
+                        -- color = { fg = "#eeeeee", bg = "#111111" }
+                        color = { fg = "#a0a0a0", bg = "#111111" }
                     },
                 },
                 lualine_b = {
@@ -162,6 +165,7 @@ return {
                 },
                 lualine_c = {},
                 lualine_x = {
+
                     -- {
                     --     get_harpoon_marks,
                     --     color = { fg = "#888888", bg = bgColor },
@@ -215,18 +219,57 @@ return {
                     --     get_active_harpoon_list,
                     --     color = { fg = "#505050", bg = bgColor }, -- Green color for the Harpoon list
                     -- },
+                    -- {
+                    --     function()
+                    --         return require("lsp-progress").progress()
+                    --     end,
+                    --     color = { fg = "#505050" },
+                    -- }
                 },
             },
+            -- tabline = {
+            --     lualine_a = {
+            --         {
+            --             "buffers",
+            --             symbols = {
+            --                 modified = "✦",
+            --                 alternate_file = "",
+            --                 directory = "",
+            --             },
+            --             show_filename_only = true,
+            --             hide_filename_extension = false,
+            --             show_modified_status = true,
+            --             mode = 0, -- 0: buffer name, 1: buffer index
+            --             max_length = vim.o.columns,
+            --             buffers_color = {
+            --                 active = { fg = "#ffffff", bg = "#111111" },
+            --                 inactive = { fg = "#505050", bg = "#060606" },
+            --             },
+            --         },
+            --     },
+            --     lualine_b = {},
+            --     lualine_c = {},
+            --     lualine_x = {},
+            --     lualine_y = {},
+            --     lualine_z = {},
+            -- },
             extensions = {},
         })
 
+        vim.api.nvim_create_augroup("lualine_augroup", { clear = true })
+        vim.api.nvim_create_autocmd("User", {
+            group = "lualine_augroup",
+            pattern = "LspProgressStatusUpdated",
+            callback = require("lualine").refresh,
+        })
+
         -- Create highlight groups for tabs
-        vim.cmd([[
-            highlight LualineTabActive guifg=#a7a7a7 guibg=none
-            highlight LualineTabInactive guifg=#505050 guibg=none
-            highlight LualineSeparator guifg=#0e0e0e guibg=none
-            highlight LualineBranch guifg=#808080 guibg=none
-        ]])
+        -- vim.cmd([[
+        --     highlight LualineTabActive guifg=#a0a0a0 guibg=none
+        --     highlight LualineTabInactive guifg=#505050 guibg=none
+        --     highlight LualineSeparator guifg=#0e0e0e guibg=none
+        --     highlight LualineBranch guifg=#808080 guibg=none
+        -- ]])
 
         -- vim.cmd([[
         --     highlight LualineTabActive guifg=#a7a7a7 guibg=#090909
@@ -234,5 +277,14 @@ return {
         --     highlight LualineSeparator guifg=#0e0e0e guibg=#090909
         --     highlight LualineBranch guifg=#808080 guibg=#090909
         -- ]])
+
+
+        vim.cmd([[
+            highlight LualineTabActive guifg=#a7a7a7 guibg=#060606
+            highlight LualineTabInactive guifg=#505050 guibg=#060606
+            highlight LualineSeparator guifg=#0e0e0e guibg=#060606
+            highlight LualineBranch guifg=#808080 guibg=#060606
+        ]])
     end,
+
 }

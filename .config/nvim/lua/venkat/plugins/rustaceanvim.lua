@@ -40,9 +40,8 @@ return {
         vim.api.nvim_create_autocmd("FileType", {
             pattern = "rust",
             callback = function()
-                local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+                local clients = vim.lsp.get_clients({ bufnr = 0 }) -- updated
                 for _, client in ipairs(clients) do
-                    -- If rust_analyzer is running but not from rustaceanvim, stop it
                     if client.name == "rust_analyzer" and not client.name:match("rustaceanvim") then
                         vim.lsp.stop_client(client.id, true)
                     end

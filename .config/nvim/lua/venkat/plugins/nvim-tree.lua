@@ -44,6 +44,7 @@ return {
                 indent_markers = { enable = true },
                 highlight_opened_files = "name",
                 icons = {
+                    webdev_colors = false,
                     glyphs = {
                         -- git = {
                         --     unstaged = "",

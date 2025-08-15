@@ -324,6 +324,14 @@ function M.syntax()
     vim.api.nvim_set_hl(0, "@property.json", { fg = white })
     vim.api.nvim_set_hl(0, "restComment", { fg = evenLightGrey })
 
+    vim.api.nvim_set_hl(0, "rustString", { fg = white })
+    vim.api.nvim_set_hl(0, "rustStringDelimiter", { fg = grey })
+    vim.api.nvim_set_hl(0, "rustString", { fg = grey })
+
+    vim.api.nvim_set_hl(0, "rustCommentLine", { fg = evenLightGrey })
+
+
+
     vim.api.nvim_set_hl(0, "SnacksDim", { fg = evenLightGrey, bg = "none" }) -- Adjust as needed
 end
 
