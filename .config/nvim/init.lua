@@ -114,3 +114,5 @@ end
 
 -- Call once on startup
 UpdateLualineModeBar()
+
+-- // 🔹 Extra data from first two tabs

@@ -11,6 +11,7 @@ return {
             hint = "#7ca68c",
             default = "#70787f",
             grey = "#505050",
+            white = "#eeeeee",
         }
         todo_comments.setup({
             signs = false,
@@ -27,7 +28,8 @@ return {
                 HACK = { icon = "", color = colors.info },
                 WARN = { icon = "", color = colors.error, alt = { "WARNING", "XXX" } },
                 PERF = { icon = "", color = colors.hint, alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-                NOTE = { icon = "", color = colors.info, alt = { "INFO", "info" } },
+                -- NOTE = { icon = "", color = colors.info, alt = { "INFO", "info" } },
+                NOTE = { icon = "", color = colors.white, alt = { "INFO", "info" } },
             },
         })
     end,

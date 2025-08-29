@@ -333,6 +333,9 @@ function M.syntax()
 
 
     vim.api.nvim_set_hl(0, "SnacksDim", { fg = evenLightGrey, bg = "none" }) -- Adjust as needed
+    -- vim.api.nvim_set_hl(0, "GrugFarResultsPath", { fg = white, bg = evenLightGrey }) -- Adjust as needed
+    -- vim.api.nvim_set_hl(0, "GrugFarResultsPath", { fg = white, bg = "none" }) -- Adjust as needed
+    vim.api.nvim_set_hl(0, "GrugFarResultsPath", { fg = white, bg = "none", bold = true }) -- Adjust as needed
 end
 
 return M

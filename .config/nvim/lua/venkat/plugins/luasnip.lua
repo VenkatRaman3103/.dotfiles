@@ -18,5 +18,14 @@ return {
         require("luasnip.loaders.from_lua").load({ paths = vim.fn.stdpath("config") .. "/lua/venkat/snippets/" })
 
         require("luasnip.loaders.from_lua").lazy_load({ paths = vim.fn.stdpath("config") .. "/lua/venkat/snippets/" })
+
+        require("luasnip.loaders.from_lua").load({ paths = vim.fn.stdpath("config") .. "/lua/venkat/snippets/reduxslice" })
+        require("luasnip.loaders.from_lua").lazy_load({ paths = vim.fn.stdpath("config") ..
+        "/lua/venkat/snippets/reduxslice" })
+
+        require("luasnip.loaders.from_lua").lazy_load({ paths = vim.fn.stdpath("config") ..
+        "/lua/venkat/snippets/reduxstore" })
+        require("luasnip.loaders.from_lua").lazy_load({ paths = vim.fn.stdpath("config") ..
+        "/lua/venkat/snippets/reduxstore" })
     end,
 }

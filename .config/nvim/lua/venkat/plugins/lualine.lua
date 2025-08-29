@@ -128,7 +128,8 @@ return {
                             return mode_map[mode] or mode
                         end,
                         -- color = { fg = "#ffffff", bg = "#1e1e1e" },
-                        color = { fg = "#a0a0a0", bg = "#1e1e1e" },
+                        -- color = { fg = "#a0a0a0", bg = "#1e1e1e" },
+                        color = { fg = "#eeeeee", bg = "#1e1e1e" },
                         --
                     },
                     {
@@ -154,14 +155,14 @@ return {
                         -- color = { fg = "#ffffff", bg = "#0c0c0c" }
                         -- color = { fg = "#a0a0a0", bg = "#0c0c0c" }
                         -- color = { fg = "#eeeeee", bg = "#0c0c0c" }
-                        -- color = { fg = "#eeeeee", bg = "#111111" }
-                        color = { fg = "#a0a0a0", bg = "#111111" }
+                        color = { fg = "#eeeeee", bg = "#111111" }
+                        -- color = { fg = "#a0a0a0", bg = "#111111" }
                     },
                 },
                 lualine_b = {
-                    -- {
-                    --     "diagnostics",
-                    -- },
+                    {
+                        "diagnostics",
+                    },
                 },
                 lualine_c = {},
                 lualine_x = {
@@ -264,12 +265,12 @@ return {
         })
 
         -- Create highlight groups for tabs
-        -- vim.cmd([[
-        --     highlight LualineTabActive guifg=#a0a0a0 guibg=none
-        --     highlight LualineTabInactive guifg=#505050 guibg=none
-        --     highlight LualineSeparator guifg=#0e0e0e guibg=none
-        --     highlight LualineBranch guifg=#808080 guibg=none
-        -- ]])
+        vim.cmd([[
+            highlight LualineTabActive guifg=#a0a0a0 guibg=none
+            highlight LualineTabInactive guifg=#505050 guibg=none
+            highlight LualineSeparator guifg=#0e0e0e guibg=none
+            highlight LualineBranch guifg=#808080 guibg=none
+        ]])
 
         -- vim.cmd([[
         --     highlight LualineTabActive guifg=#a7a7a7 guibg=#090909
@@ -279,12 +280,12 @@ return {
         -- ]])
 
 
-        vim.cmd([[
-            highlight LualineTabActive guifg=#a7a7a7 guibg=#060606
-            highlight LualineTabInactive guifg=#505050 guibg=#060606
-            highlight LualineSeparator guifg=#0e0e0e guibg=#060606
-            highlight LualineBranch guifg=#808080 guibg=#060606
-        ]])
+        -- vim.cmd([[
+        --     highlight LualineTabActive guifg=#a7a7a7 guibg=#060606
+        --     highlight LualineTabInactive guifg=#505050 guibg=#060606
+        --     highlight LualineSeparator guifg=#0e0e0e guibg=#060606
+        --     highlight LualineBranch guifg=#808080 guibg=#060606
+        -- ]])
     end,
 
 }

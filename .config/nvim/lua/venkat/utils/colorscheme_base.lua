@@ -201,6 +201,7 @@ function M.colorMyPencils()
 
     -- Fold styling
     vim.api.nvim_set_hl(0, "Folded", { fg = uiSubdued, bg = "#1a1a1a" })
+    -- vim.api.nvim_set_hl(0, "Folded", { fg = uiSubdued, bg = "NONE" })
     vim.api.nvim_set_hl(0, "FoldColumn", { fg = uiSubdued, bg = "NONE" })
 
     -- Error messages
