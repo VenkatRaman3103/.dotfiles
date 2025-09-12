@@ -3,6 +3,8 @@ local M = {}
 -- local bgColor = "#0e0e0e"
 local bgColor = ""
 local secondaryBgColor = "#090909"
+local borderColor = "#090909"
+-- local secondaryBgColor = "#090909"
 -- local secondaryBgColor = "#111111"
 -- local secondaryBgColor = "#101010"
 -- local secondaryBgColor = "#090909"
@@ -13,8 +15,9 @@ local secondaryBgColor = "#090909"
 -- local secondaryBgColor = "#080808"
 local whiteLike = "#d0d0d0"
 
-
 local selectionBgColor = "#ffb86c"
+
+-- Borders
 
 -- ====================================================================
 -- COLORSCHEME
@@ -81,16 +84,15 @@ function M.colorMyPencils()
 
     -- Borders and caret highlights
     -- vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#555555", bg = bgColor })
-    vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = secondaryBgColor, bg = secondaryBgColor })
+    vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = borderColor, bg = secondaryBgColor })
     -- vim.api.nvim_set_hl(0, "HarpoonBorder", { fg = secondaryBgColor, bg = secondaryBgColor })
     -- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#555555", bg = bgColor })
 
-
-    vim.api.nvim_set_hl(0, "FloatBorder", { fg = secondaryBgColor, bg = secondaryBgColor }) -- General floating windows
+    vim.api.nvim_set_hl(0, "FloatBorder", { fg = borderColor, bg = secondaryBgColor }) -- General floating windows
     vim.api.nvim_set_hl(0, "HarpoonWindow", { bg = secondaryBgColor, fg = "#ffffff" })
-    vim.api.nvim_set_hl(0, "HarpoonBorder", { fg = secondaryBgColor, bg = secondaryBgColor })
-    vim.api.nvim_set_hl(0, "NormalBorder", { fg = "#060606", bg = "NONE" }) -- Normal floating borders
-    vim.api.nvim_set_hl(0, "VertSplit", { fg = "#060606", bg = "NONE" })    -- Split lines
+    vim.api.nvim_set_hl(0, "HarpoonBorder", { fg = borderColor, bg = secondaryBgColor })
+    vim.api.nvim_set_hl(0, "NormalBorder", { fg = borderColor, bg = "NONE" }) -- Normal floating borders
+    vim.api.nvim_set_hl(0, "VertSplit", { fg = borderColor, bg = "NONE" })    -- Split lines
 
     -- set title colors
     vim.api.nvim_set_hl(0, "TelescopeTitle", { fg = bgColor, bold = false })
@@ -289,6 +291,8 @@ function M.colorMyPencils()
     -- vim.api.nvim_set_hl(0, "NeogitUntrackedfiles", { fg = "#7a7a7a", bold = true, bg = "NONE" })
     -- vim.api.nvim_set_hl(0, "NeogitStagedChanges", { fg = addColor, bold = true, bg = "NONE" })
     -- vim.api.nvim_set_hl(0, "NeogitUnstagedChanges", { fg = "#5f9ea0", bold = true, bg = "NONE" })
+
+    -- vim.api
 
     -- vim.api.nvim_set_hl(0, "NeogitRecentCommits", { fg = changeColor, bold = true, bg = "NONE" })
 

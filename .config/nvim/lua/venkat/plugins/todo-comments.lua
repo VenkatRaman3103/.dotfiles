@@ -14,12 +14,16 @@ return {
             white = "#eeeeee",
         }
         todo_comments.setup({
-            signs = false,
+            signs = true,
             highlight = {
                 before = "",
                 keyword = "fg",
                 after = "",
                 pattern = [[.*<(KEYWORDS)\s*:]],
+            },
+            gui_style = {
+                fg = "NONE",
+                bg = "NONE",
             },
             keywords = {
                 DONE = { icon = "", color = colors.hint, alt = { "COMPLETE", "FINISHED" } },
@@ -28,9 +32,18 @@ return {
                 HACK = { icon = "", color = colors.info },
                 WARN = { icon = "", color = colors.error, alt = { "WARNING", "XXX" } },
                 PERF = { icon = "", color = colors.hint, alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-                -- NOTE = { icon = "", color = colors.info, alt = { "INFO", "info" } },
-                NOTE = { icon = "", color = colors.white, alt = { "INFO", "info" } },
+                NOTE = { icon = "->", color = colors.white, alt = { "INFO", "info" } },
             },
         })
+
+        -- Remove background from NOTE highlight group
+        vim.api.nvim_set_hl(0, "TodoSignNOTE", { fg = "#505050", bg = "NONE" })
+        vim.api.nvim_set_hl(0, "TodoBgNOTE", { fg = "#eeeeee", bg = "NONE" })
+        vim.api.nvim_set_hl(0, "TodoFgNOTE", { fg = "#eeeeee", bg = "NONE" })
+
+        -- todo
+        vim.api.nvim_set_hl(0, "TodoSignTODO", { fg = "#505050", bg = "NONE" })
+        vim.api.nvim_set_hl(0, "TodoBgTODO", { fg = "#eeeeee", bg = "NONE" })
+        vim.api.nvim_set_hl(0, "TodoFgTODO", { fg = "#eeeeee", bg = "NONE" })
     end,
 }

@@ -116,3 +116,9 @@ end
 UpdateLualineModeBar()
 
 -- // 🔹 Extra data from first two tabs
+
+
+-- vim.api.nvim_set_hl(0, "GitConflictCurrent", { link = "DiffAdd" })
+-- vim.api.nvim_set_hl(0, "GitConflictIncoming", { link = "DiffDelete" })
+-- vim.api.nvim_set_hl(0, "GitConflictAncestor", { link = "DiffChange" })
+-- vim.api.nvim_set_hl(0, "GitConflictMarker", { link = "Comment" })

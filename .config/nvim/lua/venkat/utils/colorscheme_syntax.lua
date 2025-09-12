@@ -168,12 +168,12 @@ function M.syntax()
     -- UI-related highlights
     -- vim.api.nvim_set_hl(0, "FloatBorder", { fg = grey })
     vim.api.nvim_set_hl(0, "Border", { fg = grey })
-    vim.api.nvim_set_hl(0, "Visual", { bg = "#363738" })
-    vim.api.nvim_set_hl(0, "Search", { bg = "#363738", fg = warnCoral })
+    vim.api.nvim_set_hl(0, "Visual", { bg = "#2C2C2D" })
+    vim.api.nvim_set_hl(0, "Search", { bg = "#2C2C2D", fg = warnCoral })
 
     -- Search highlight and UI integrations (FZF, Telescope, completion)
-    vim.api.nvim_set_hl(0, "Search", { bg = "#363738" })
-    vim.api.nvim_set_hl(0, "IncSearch", { bg = "#363738", fg = warnCoral })
+    vim.api.nvim_set_hl(0, "Search", { bg = "#2C2C2D" })
+    vim.api.nvim_set_hl(0, "IncSearch", { bg = "#2C2C2D", fg = warnCoral })
     vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" })
 
     -- FZF specific highlights
@@ -185,7 +185,7 @@ function M.syntax()
     vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = warnCoral })
     vim.api.nvim_set_hl(0, "CmpItemKind", { fg = grey })
     vim.api.nvim_set_hl(0, "CmpItemMenu", { fg = grey })
-    vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#363738" })
+    vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#2C2C2D" })
     vim.api.nvim_set_hl(0, "Pmenu", { bg = black, fg = white })
 
     -- Native neovim completion highlights
@@ -199,7 +199,6 @@ function M.syntax()
     vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { fg = evenLightGrey })
 
     vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = white, underline = true }) -- Floating point numbers
-
 
     -- Error and warning colors
     vim.api.nvim_set_hl(0, "Error", { fg = "#d2788c" })

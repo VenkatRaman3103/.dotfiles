@@ -11,6 +11,19 @@ local mutedTeal = "#5f9ea0";  -- Muted teal for operators
 local softSalmon = "#e67e7e"; -- Soft salmon for booleans
 local sageGreen = "#7ca68c";  -- Muted sage green
 
+-- return {
+--     'kyza0d/xeno.nvim',
+--     lazy = false,
+--     priority = 1000, -- Load colorscheme early
+--     config = function()
+--         -- Create your custom theme here
+--         require('xeno').new_theme('my-theme', {
+--             base = '#1E1E1E',
+--             accent = '#8CBE8C',
+--         })
+--         vim.cmd('colorscheme my-theme')
+--     end,
+-- }
 
 return {
     "vague2k/vague.nvim",
@@ -47,7 +60,7 @@ return {
                 fg = white,
                 floatBorder = grey,
                 border = grey,
-                line = "#363738",
+                line = "#2C2C2D",
                 comment = lightGrey,
                 builtin = white,
                 func = grey,
@@ -59,7 +72,7 @@ return {
                 property = grey,
                 constant = white,
                 parameter = white,
-                visual = "#363738",
+                visual = "#2C2C2D",
                 error = "#d2788c",
                 -- error = grey,
                 warning = "#e6be8c",
@@ -70,7 +83,7 @@ return {
                 type = grey,
                 -- search = "#e6be8c",
                 -- search = grey,
-                search = "#363738",
+                search = "#2C2C2D",
                 plus = "#8faf77",
                 delta = "#e6be8c",
                 punctuation = white,
@@ -90,7 +103,7 @@ return {
             --     property = "#c7c7d4",
             --     constant = "#b4b4ce",
             --     parameter = "#b9a3ba",
-            --     visual = "#363738",
+            --     visual = "#2C2C2D",
             --     error = "#d2788c",
             --     warning = "#e6be8c",
             --     hint = "#8ca0dc",
@@ -139,9 +152,9 @@ return {
 --     priority = 1000,
 --     config = function()
 --         require("nightfox").setup({
---             flavour = "nordfox", -- or "latte", "frappe", "macchiato"
+--             flavour = "nordfox",
 --         })
---         vim.cmd("colorscheme nightfox")
+--         vim.cmd("colorscheme terafox")
 --     end,
 -- }
 
@@ -317,7 +330,7 @@ return {
 --     name = "kanagawa",
 --     priority = 1000,
 --     config = function()
---         vim.cmd("colorscheme kanagawa-wave")
+--         vim.cmd("colorscheme kanagawa-dragon")
 --     end,
 -- }
 
