@@ -17,27 +17,26 @@ return {
         },
         ---@class snacks.dim.Config
         dim = {
+            enabled = true,
             ---@type snacks.scope.Config
             scope = {
                 min_size = 5,
                 max_size = 20,
                 siblings = true,
             },
-            -- animate scopes. Enabled by default for Neovim >= 0.10
-            -- Works on older versions but has to trigger redraws during animation.
             ---@type snacks.animate.Config|{enabled?: boolean}
             animate = {
-                -- enabled = vim.fn.has("nvim-0.10") == 1,
                 enabled = false,
                 easing = "outQuad",
                 duration = {
-                    step = 20,   -- ms per step
-                    total = 300, -- maximum duration
+                    step = 20,
+                    total = 300,
                 },
             },
-            -- what buffers to dim
             filter = function(buf)
-                return vim.g.snacks_dim ~= false and vim.b[buf].snacks_dim ~= false and vim.bo[buf].buftype == ""
+                return vim.g.snacks_dim ~= false
+                    and vim.b[buf].snacks_dim ~= false
+                    and vim.bo[buf].buftype == ""
             end,
         },
         explorer = {
@@ -59,8 +58,8 @@ return {
             layout = {
                 preset = "sidebar",
                 preview = false,
-                position = "left", -- Explicitly set position to left
-                width = 0.25,      -- Set width to 25% of screen
+                position = "left",
+                width = 0.25,
                 height = 1,
                 float = false,
             },
@@ -112,22 +111,22 @@ return {
         words = { enabled = false },
         styles = {
             notification = {
-                wo = { wrap = true } -- Wrap notifications
+                wo = { wrap = true },
             },
         },
-        dim = { enabled = true },
+
+        --- ✅ FIX: Added show_delay + show_duration to prevent nil arithmetic error
         picker = {
             enabled = true,
+            show_delay = 0,
+            show_duration = 100,
             layout = {
-                -- preview = "main",
-                -- preset = "ivy",
                 preset = "default",
                 layout = {
                     box = "horizontal",
                     width = 0,
                     min_width = 100,
                     height = 0.93,
-                    -- position = "top",
                     {
                         box = "vertical",
                         border = "rounded",
@@ -135,10 +134,9 @@ return {
                         { win = "input", height = 1,     border = "bottom" },
                         { win = "list",  border = "none" },
                     },
-                    { win = "preview", title = "{preview}", border = "rounded", width = 0.6 },
+                    { win = "preview", title = "{preview}", border = "rounded", width = 0.55 },
                 },
             },
-
             layouts = {
                 sidebar = {
                     layout = {
@@ -148,17 +146,14 @@ return {
                         preview = false,
                         float = false,
                     },
-                    jump = { close = false }
+                    jump = { close = false },
                 },
-
-                -- preset = "ivy",
                 ivy = {
                     layout = {
                         box = "horizontal",
                         width = 0,
                         min_width = 100,
                         height = 0.93,
-                        -- position = "",
                         {
                             box = "vertical",
                             border = "rounded",
@@ -169,7 +164,6 @@ return {
                         { win = "preview", title = "{preview}", border = "rounded", width = 0.55 },
                     },
                 },
-
                 telescope = {
                     reverse = true,
                     layout = {
@@ -177,7 +171,6 @@ return {
                         width = 0,
                         min_width = 100,
                         height = 0.93,
-                        -- position = "",
                         {
                             box = "vertical",
                             { win = "list",  title = " Results ", title_pos = "center", border = "rounded" },
@@ -192,14 +185,12 @@ return {
                         },
                     },
                 },
-
                 default = {
                     layout = {
                         box = "horizontal",
                         width = 0,
                         min_width = 100,
                         height = 0.93,
-                        -- position = "",
                         {
                             box = "vertical",
                             border = "rounded",
@@ -210,46 +201,45 @@ return {
                         { win = "preview", title = "{preview}", border = "rounded", width = 0.55 },
                     },
                 },
-            }
+            },
         },
     },
+
     keys = {
         {
             "<leader>/",
             function()
-                Snacks.picker.lines({
-                    layout = "default",
-                })
+                Snacks.picker.lines({ layout = "default" })
             end,
-            desc = "man page",
+            desc = "Search Lines",
         },
         {
             "<leader>xp",
             function()
                 Snacks.picker.diagnostics()
             end,
-            desc = "man page",
+            desc = "Diagnostics (Project)",
         },
         {
             "<leader>xf",
             function()
                 Snacks.picker.diagnostics_buffer()
             end,
-            desc = "man page",
+            desc = "Diagnostics (File)",
         },
         {
             "<leader>fq",
             function()
                 Snacks.picker.qflist()
             end,
-            desc = "man page",
+            desc = "Quickfix List",
         },
         {
             "<leader>fm",
             function()
                 Snacks.picker.marks()
             end,
-            desc = "marks",
+            desc = "Marks",
         },
         {
             "<leader>fj",
@@ -263,21 +253,47 @@ return {
             function()
                 Snacks.picker.man()
             end,
-            desc = "man page",
+            desc = "Man Pages",
         },
         {
             "gd",
             function()
-                Snacks.picker.lsp_definitions()
+                local client = vim.lsp.get_active_clients({ bufnr = 0 })[1]
+                if not client then
+                    return
+                end
+
+                local encoding = client.offset_encoding or "utf-16"
+
+                local params = vim.lsp.util.make_position_params(0, encoding)
+
+                vim.lsp.buf_request(0, "textDocument/definition", params, function(err, result)
+                    if err or not result then
+                        return
+                    end
+
+                    if result.result then
+                        result = result.result
+                    end
+
+                    if not result or vim.tbl_isempty(result) then
+                        return
+                    end
+
+                    if #result == 1 then
+                        vim.lsp.util.jump_to_location(result[1], encoding)
+                        return
+                    end
+
+                    Snacks.picker.lsp_definitions()
+                end)
             end,
             desc = "Goto Definition",
         },
         {
             "<leader>fk",
             function()
-                Snacks.picker.keymaps({
-                    layout = "vertical"
-                })
+                Snacks.picker.keymaps({ layout = "vertical" })
             end,
             desc = "Keymaps",
         },
@@ -308,7 +324,7 @@ return {
             function()
                 Snacks.picker.lsp_type_definitions()
             end,
-            desc = "Goto T[y]pe Definition",
+            desc = "Goto Type Definition",
         },
         {
             "<leader>fs",
@@ -318,86 +334,19 @@ return {
             desc = "LSP Symbols",
         },
         {
-            "<leader>reg",
-            function()
-                Snacks.picker.registers({
-                    layout = "vertical"
-                })
-            end,
-            desc = "View Registers",
-        },
-        {
             "<leader>fS",
             function()
                 Snacks.picker.lsp_workspace_symbols()
             end,
-            desc = "LSP Workspace Symbols",
+            desc = "Workspace Symbols",
         },
-        -- {
-        --     "<leader>eo",
-        --     function()
-        --         Snacks.explorer.open({
-        --             layout = "sidebar",
-        --             position = "left",
-        --             float = false,
-        --         })
-        --     end,
-        --     desc = "Open Explorer",
-        -- },
-        -- {
-        --     "<leader>et",
-        --     function()
-        --         if Snacks.explorer.is_open() then
-        --             Snacks.explorer.close()
-        --         else
-        --             Snacks.explorer.open({
-        --                 layout = "sidebar",
-        --                 position = "left",
-        --                 float = false,
-        --             })
-        --         end
-        --     end,
-        --     desc = "Toggle Explorer",
-        -- },
-        -- {
-        --     "<leader>eo",
-        --     function()
-        --         Snacks.explorer.open({
-        --             layout = "sidebar",
-        --         })
-        --     end,
-        --     desc = "Registers",
-        -- },
-        -- {
-        --     "<leader>gb",
-        --     function()
-        --         Snacks.picker.git_branches()
-        --     end,
-        --     desc = "Git Branches",
-        -- },
         {
             "<leader>gl",
             function()
-                Snacks.picker.git_log({
-                    -- layout = "vertical"
-                })
+                Snacks.picker.git_log()
             end,
             desc = "Git Log",
         },
-        -- {
-        --     "<leader>gL",
-        --     function()
-        --         Snacks.picker.git_log_line()
-        --     end,
-        --     desc = "Git Log Line",
-        -- },
-        -- {
-        --     "<leader>gs",
-        --     function()
-        --         Snacks.picker.git_status()
-        --     end,
-        --     desc = "Git Status",
-        -- },
         {
             "<leader>gS",
             function()
@@ -417,7 +366,7 @@ return {
             function()
                 Snacks.picker.git_log_file()
             end,
-            desc = "Git Log File",
+            desc = "Git Log (File)",
         },
         {
             "<leader>fp",
@@ -431,60 +380,21 @@ return {
             function()
                 Snacks.picker.recent()
             end,
-            desc = "Recent",
+            desc = "Recent Files",
         },
-        -- picker
-        -- {
-        --     "<leader>re",
-        --     function()
-        --         Snacks.picker.registers()
-        --     end,
-        --     desc = "Registers",
-        -- },
         {
             "<leader>fc",
             function()
                 Snacks.picker.grep_word()
             end,
-            desc = "Visual selection or word",
+            desc = "Grep Word / Selection",
             mode = { "n", "x" },
         },
-        --
-        -- {
-        --     "<leader>fg",
-        --     function()
-        --         Snacks.picker.git_files()
-        --     end,
-        --     desc = "Find Git Files",
-        -- },
-        -- -- git
-        -- {
-        --     "<leader>gc",
-        --     function()
-        --         Snacks.picker.git_log()
-        --     end,
-        --     desc = "Git Log",
-        -- },
-        -- {
-        --     "<leader>gs",
-        --     function()
-        --         Snacks.picker.git_status()
-        --     end,
-        --     desc = "Git Status",
-        -- },
-        -- {
-        --     "<leader>fd",
-        --     function()
-        --         Snacks.picker.smart(
-        --         )
-        --     end,
-        --     desc = "Smart Find Files",
-        -- },
         {
             "<leader>fd",
             function()
                 Snacks.picker.files({
-                    cwd = vim.fn.getcwd(), -- Use current working directory
+                    cwd = vim.fn.getcwd(),
                     prompt_title = "Project Files",
                 })
             end,
@@ -507,9 +417,7 @@ return {
         {
             "<leader>:",
             function()
-                Snacks.picker.command_history({
-                    layout = "vscode"
-                })
+                Snacks.picker.command_history({ layout = "vscode" })
             end,
             desc = "Command History",
         },
@@ -534,19 +442,12 @@ return {
             end,
             desc = "Toggle Zen Mode",
         },
-        -- {
-        --     "<leader>Z",
-        --     function()
-        --         Snacks.zen.zoom()
-        --     end,
-        --     desc = "Toggle Zoom",
-        -- },
         {
             "<leader>.",
             function()
                 Snacks.scratch()
             end,
-            desc = "Toggle Scratch Buffer",
+            desc = "Scratch Buffer",
         },
         {
             "<leader>fsb",
@@ -562,13 +463,6 @@ return {
             end,
             desc = "Notification History",
         },
-        -- {
-        --     "<leader>bd",
-        --     function()
-        --         Snacks.bufdelete()
-        --     end,
-        --     desc = "Delete Buffer",
-        -- },
         {
             "<leader>cR",
             function()
@@ -584,40 +478,26 @@ return {
             desc = "Git Browse",
             mode = { "n", "v" },
         },
-        -- {
-        --     "<leader>gb",
-        --     function()
-        --         Snacks.git.blame_line()
-        --     end,
-        --     desc = "Git Blame Line",
-        -- },
         {
             "<leader>gf",
             function()
                 Snacks.lazygit.log_file()
             end,
-            desc = "Lazygit Current File History",
+            desc = "Lazygit File History",
         },
         {
             "<leader>gg",
             function()
                 Snacks.lazygit()
             end,
-            desc = "Lazygit",
+            desc = "Open Lazygit",
         },
-        -- {
-        --     "<leader>gl",
-        --     function()
-        --         Snacks.lazygit.log()
-        --     end,
-        --     desc = "Lazygit Log (cwd)",
-        -- },
         {
             "<leader>un",
             function()
                 Snacks.notifier.hide()
             end,
-            desc = "Dismiss All Notifications",
+            desc = "Dismiss Notifications",
         },
         {
             "<c-/>",
@@ -626,13 +506,6 @@ return {
             end,
             desc = "Toggle Terminal",
         },
-        -- {
-        --     "<c-_>",
-        --     function()
-        --         Snacks.terminal()
-        --     end,
-        --     desc = "which_key_ignore",
-        -- },
         {
             "]]",
             function()
@@ -646,7 +519,7 @@ return {
             function()
                 Snacks.words.jump(-vim.v.count1)
             end,
-            desc = "Prev Reference",
+            desc = "Previous Reference",
             mode = { "n", "t" },
         },
         {
@@ -668,37 +541,23 @@ return {
             end,
         },
     },
+
     init = function()
         vim.api.nvim_create_autocmd("User", {
             pattern = "VeryLazy",
             callback = function()
-                -- Setup some globals for debugging (lazy-loaded)
-                _G.dd = function(...)
-                    Snacks.debug.inspect(...)
-                end
-                _G.bt = function()
-                    Snacks.debug.backtrace()
-                end
-                vim.print = _G.dd -- Override print to use snacks for `:=` command
+                _G.dd = function(...) Snacks.debug.inspect(...) end
+                _G.bt = function() Snacks.debug.backtrace() end
+                vim.print = _G.dd
 
-                -- Create some toggle mappings
-                -- Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>ts")
                 Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>tw")
                 Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>tL")
                 Snacks.toggle.diagnostics():map("<leader>td")
                 Snacks.toggle.line_number():map("<leader>tl")
-                -- Snacks.toggle
-                --     .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
-                --     :map("<leader>tc")
                 Snacks.toggle.treesitter():map("<leader>tT")
-                -- Snacks.toggle
-                --     .option("background", { off = "light", on = "dark", name = "Dark Background" })
-                --     :map("<leader>ub")
                 Snacks.toggle.inlay_hints():map("<leader>th")
-
                 Snacks.toggle.indent():map("<leader>ti")
                 Snacks.toggle.dim():map("<leader>tD")
-                -- Snacks.dim.enable()
             end,
         })
     end,

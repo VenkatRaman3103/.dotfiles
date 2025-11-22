@@ -155,6 +155,14 @@ function M.colorMyPencils()
         verthoriz = "┼", -- Cross piece (thin)
     }
 
+    -- vim.opt.fillchars = {
+    --     horiz = " ",     -- Horizontal separator (thin)
+    --     vert = " ",      -- Vertical separator (thin)
+    --     vertleft = " ",  -- T-piece pointing left (thin)
+    --     vertright = " ", -- T-piece pointing right (thin)
+    --     verthoriz = " ", -- Cross piece (thin)
+    -- }
+
     -- Make window separators more visible with a brighter color
     vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#222222", bg = bgColor })
 

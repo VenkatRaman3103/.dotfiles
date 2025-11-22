@@ -13,8 +13,9 @@ end
 
 function diagnostics.setup()
     -- Configure how diagnostics are displayed
+
     vim.diagnostic.config({
-        virtual_text = true,
+        virtual_text = false,
         signs = false,
         underline = true,
         update_in_insert = false,

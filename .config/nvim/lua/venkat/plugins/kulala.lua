@@ -55,7 +55,7 @@ return {
             split_direction = "horizontal", -- this ensures response opens in horizontal split
             win_opts = { bo = {}, wo = {} }, ---@type kulala.ui.win_config
             default_view = "body",
-            winbar = false,
+            winbar = true,
             default_winbar_panes = {
                 "body",
                 "headers",
@@ -65,7 +65,7 @@ return {
                 "report",
                 -- "help"
             },
-            show_variable_info_text = "float",
+            show_variable_info_text = { mode = "float" },
             show_icons = "on_request",
             icons = {
                 inlay = {
@@ -101,8 +101,8 @@ return {
                 snacks = {
                     layout = function()
                         local has_snacks, snacks_picker = pcall(require, "snacks.picker")
-                        return not has_snacks and {}
-                            or vim.tbl_deep_extend("force", snacks_picker.config.layout("telescope"), {
+                        if not has_snacks or type(snacks_picker.config.layout("telescope")) ~= "table" then
+                            return {
                                 reverse = true,
                                 layout = {
                                     { { win = "list" }, { height = 1, win = "input" }, box = "vertical" },
@@ -110,7 +110,18 @@ return {
                                     box = "horizontal",
                                     width = 0.8,
                                 },
-                            })
+                            }
+                        end
+
+                        return vim.tbl_deep_extend("force", snacks_picker.config.layout("telescope"), {
+                            reverse = true,
+                            layout = {
+                                { { win = "list" }, { height = 1, win = "input" }, box = "vertical" },
+                                { win = "preview",  width = 0.6 },
+                                box = "horizontal",
+                                width = 0.8,
+                            },
+                        })
                     end,
                 },
             },

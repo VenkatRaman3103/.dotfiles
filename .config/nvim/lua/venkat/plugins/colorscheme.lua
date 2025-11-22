@@ -25,6 +25,20 @@ local sageGreen = "#7ca68c";  -- Muted sage green
 --     end,
 -- }
 
+-- return {
+--     "craftzdog/solarized-osaka.nvim",
+--     lazy = false,
+--     priority = 1000,
+--     config = function()
+--         require("solarized-osaka").setup({
+--             -- flavour = "mocha", -- or "latte", "frappe", "macchiato"
+--         })
+--         vim.cmd("colorscheme solarized-osaka")
+--     end,
+--     opts = {},
+-- }
+
+
 return {
     "vague2k/vague.nvim",
     vague = "vague",

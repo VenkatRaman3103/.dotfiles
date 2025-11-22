@@ -13,6 +13,7 @@ return {
             grey = "#505050",
             white = "#eeeeee",
         }
+
         todo_comments.setup({
             signs = true,
             highlight = {
@@ -33,17 +34,37 @@ return {
                 WARN = { icon = "", color = colors.error, alt = { "WARNING", "XXX" } },
                 PERF = { icon = "", color = colors.hint, alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
                 NOTE = { icon = "->", color = colors.white, alt = { "INFO", "info" } },
+
+                -- ✅ Fixed: no spaces in key
+                TIMECOMPLEXICITY = {
+                    color = "#888888",
+                    alt = { "TIME COMPLEXICITY", "TIME COMPLEXITY" },
+                },
+
+                SPACECOMPLEXICITY = {
+                    color = "#888888",
+                    alt = { "SPACE COMPLEXICITY", "SPACE COMPLEXITY" },
+                },
             },
         })
 
-        -- Remove background from NOTE highlight group
+        -- NOTE highlight
         vim.api.nvim_set_hl(0, "TodoSignNOTE", { fg = "#505050", bg = "NONE" })
         vim.api.nvim_set_hl(0, "TodoBgNOTE", { fg = "#eeeeee", bg = "NONE" })
         vim.api.nvim_set_hl(0, "TodoFgNOTE", { fg = "#eeeeee", bg = "NONE" })
 
-        -- todo
+        -- TODO highlight
         vim.api.nvim_set_hl(0, "TodoSignTODO", { fg = "#505050", bg = "NONE" })
         vim.api.nvim_set_hl(0, "TodoBgTODO", { fg = "#eeeeee", bg = "NONE" })
         vim.api.nvim_set_hl(0, "TodoFgTODO", { fg = "#eeeeee", bg = "NONE" })
+
+        -- ✅ TIME COMPLEXICITY highlight
+        vim.api.nvim_set_hl(0, "TodoSignTIMECOMPLEXICITY", { fg = "#505050", bg = "NONE" })
+        vim.api.nvim_set_hl(0, "TodoBgTIMECOMPLEXICITY", { fg = "#888888", bg = "NONE" })
+        vim.api.nvim_set_hl(0, "TodoFgTIMECOMPLEXICITY", { fg = "#888888", bg = "NONE" })
+
+        vim.api.nvim_set_hl(0, "TodoSignSPACECOMPLEXICITY", { fg = "#505050", bg = "NONE" })
+        vim.api.nvim_set_hl(0, "TodoBgSPACECOMPLEXICITY", { fg = "#888888", bg = "NONE" })
+        vim.api.nvim_set_hl(0, "TodoFgSPACECOMPLEXICITY", { fg = "#888888", bg = "NONE" })
     end,
 }
