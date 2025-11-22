@@ -6,6 +6,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load
 ZSH_THEME="robbyrussell"
+# ZSH_THEME="af-magic"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -69,7 +70,7 @@ setopt hist_verify
 # source /home/linuxbrew/.linuxbrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # ls for ls -la
-alias ls="ls -la"
+# alias ls="ls -la"
 alias cd="z"
 
 alias tm="tmuxifier"
@@ -80,6 +81,10 @@ alias ls="eza --color=always --long --git --no-filesize --icons=always --no-user
 alias tree="tree -I 'node_modules|.next'"
 
 alias vim="nvim" 
+# alias tms='tm load-session $(tm ls | fzf)'
+
+# alias tms='tm load-session "$(tm ls | fzf --no-reverse --height=40%  --border)"'
+alias tm-ls='tm load-session "$(tm ls | fzf --no-reverse --height=40%  --border)"'
 
 # ---- Zoxide (better cd) ----
 eval "$(zoxide init zsh)"
@@ -126,6 +131,10 @@ _fzf_comprun() {
 
 # bat theme variable
 export BAT_THEME="Catppuccin Mocha"
+# export BAT_THEME="ansi"
+# export BAT_THEME="Sequoia Monochrome"
+# export BAT_THEME="Visual Studio Dark+"
+
 
 # tmuxifier
 export PATH="$HOME/.tmuxifier/bin:$PATH"
@@ -179,4 +188,12 @@ zinit light-mode for \
 
 . "$HOME/.atuin/bin/env"
 
-eval "$(atuin init zsh)"
+export PATH="$HOME/.cargo/bin:$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin:$PATH"
+
+export MANPAGER='sh -c '\''col -b | nvim -R -c "set ft=man" -'\'''
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
