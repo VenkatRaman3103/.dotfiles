@@ -1,52 +1,68 @@
 return {
-    "mrcjkb/rustaceanvim",
-    version = "^5",
-    lazy = false,
-    ft = { "rust" },
-    config = function()
-        vim.g.rustaceanvim = {
-            tools = {
-                mason = false,
-            },
-            server = {
-                on_attach = function(client, bufnr)
-                    local opts = { buffer = bufnr, silent = true }
-                    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-                    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-                end,
-
-                settings = {
-                    ["rust-analyzer"] = {
-                        cargo = {
-                            allFeatures = true,
-                        },
-                        checkOnSave = {
-                            command = "clippy",
-                        },
-                        inlayHints = {
-                            enable = true,
-                            typeHints = {
-                                enable = true,
-                                -- You can also add position settings if needed
-                            },
-                            chainingHints = true,
-                            parameterHints = true,
-                        },
-                    },
-                },
-            },
-        }
-
-        vim.api.nvim_create_autocmd("FileType", {
-            pattern = "rust",
-            callback = function()
-                local clients = vim.lsp.get_clients({ bufnr = 0 }) -- updated
-                for _, client in ipairs(clients) do
-                    if client.name == "rust_analyzer" and not client.name:match("rustaceanvim") then
-                        vim.lsp.stop_client(client.id, true)
-                    end
-                end
-            end,
-        })
-    end,
+    -- "mrcjkb/rustaceanvim",
+    -- version = "^5",
+    -- lazy = false,
+    -- dependencies = {
+    --     "hrsh7th/cmp-nvim-lsp",
+    -- },
+    -- ft = { "rust" },
+    -- init = function()
+    --     -- Ensure we have the capabilities for nvim-cmp
+    --     local capabilities = vim.lsp.protocol.make_client_capabilities()
+    --     local cmp_ok, cmp_lsp = pcall(require, "cmp_nvim_lsp")
+    --     if cmp_ok then
+    --         capabilities = cmp_lsp.default_capabilities(capabilities)
+    --     end
+    --
+    --     vim.g.rustaceanvim = {
+    --         tools = {
+    --             mason = true,
+    --         },
+    --         server = {
+    --             capabilities = capabilities,
+    --             on_attach = function(client, bufnr)
+    --                 local opts = { buffer = bufnr, silent = true }
+    --                 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+    --             end,
+    --             settings = {
+    --                 ["rust-analyzer"] = {
+    --                     cargo = {
+    --                         allFeatures = true,
+    --                         loadOutDirsFromCheck = true,
+    --                         buildScripts = {
+    --                             enable = true,
+    --                         },
+    --                     },
+    --                     procMacro = {
+    --                         enable = true,
+    --                         ignored = {
+    --                             ["async-trait"] = { "async_trait" },
+    --                             ["napi-derive"] = { "napi" },
+    --                             ["async-recursion"] = { "async_recursion" },
+    --                         },
+    --                     },
+    --                     checkOnSave = true,
+    --                     check = {
+    --                         command = "clippy",
+    --                     },
+    --                     diagnostics = {
+    --                         enable = true,
+    --                         experimental = {
+    --                             enable = true,
+    --                         },
+    --                     },
+    --                     inlayHints = {
+    --                         enable = true,
+    --                         showParameterNames = true,
+    --                         parameterHintsPrefix = "<- ",
+    --                         otherHintsPrefix = "=> ",
+    --                     },
+    --                 },
+    --             },
+    --         },
+    --     }
+    -- end,
+    -- config = function(_, opts)
+    --     -- No additional config needed as g.rustaceanvim is set in init
+    -- end,
 }

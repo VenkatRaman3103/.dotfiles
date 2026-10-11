@@ -206,6 +206,23 @@ return {
     },
 
     keys = {
+        -- {
+        --   "<leader>fe",
+        --   function()
+        --     Snacks.picker.explorer({
+        --       auto_close = true,
+        --     })
+        --   end,
+        --   desc = "File explorer",
+        -- },
+        {
+            "<leader>ff",
+            function()
+                Snacks.picker.dir()
+            end,
+            desc = "Search dir",
+        },
+
         {
             "<leader>/",
             function()
@@ -255,41 +272,20 @@ return {
             end,
             desc = "Man Pages",
         },
-        {
-            "gd",
-            function()
-                local client = vim.lsp.get_active_clients({ bufnr = 0 })[1]
-                if not client then
-                    return
-                end
-
-                local encoding = client.offset_encoding or "utf-16"
-
-                local params = vim.lsp.util.make_position_params(0, encoding)
-
-                vim.lsp.buf_request(0, "textDocument/definition", params, function(err, result)
-                    if err or not result then
-                        return
-                    end
-
-                    if result.result then
-                        result = result.result
-                    end
-
-                    if not result or vim.tbl_isempty(result) then
-                        return
-                    end
-
-                    if #result == 1 then
-                        vim.lsp.util.jump_to_location(result[1], encoding)
-                        return
-                    end
-
-                    Snacks.picker.lsp_definitions()
-                end)
-            end,
-            desc = "Goto Definition",
-        },
+        { "gd",  function() Snacks.picker.lsp_definitions() end,      desc = "Goto Definition" },
+        { "gD",  function() Snacks.picker.lsp_declarations() end,     desc = "Goto Declaration" },
+        { "gr",  function() Snacks.picker.lsp_references() end,       nowait = true,                  desc = "References" },
+        { "gI",  function() Snacks.picker.lsp_implementations() end,  desc = "Goto Implementation" },
+        { "gy",  function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
+        { "gai", function() Snacks.picker.lsp_incoming_calls() end,   desc = "C[a]lls Incoming" },
+        { "gao", function() Snacks.picker.lsp_outgoing_calls() end,   desc = "C[a]lls Outgoing" },
+        -- {
+        --     "<leader>ca",
+        --     function()
+        --         Snacks.picker.actions()
+        --     end,
+        --     desc = "Goto Definition",
+        -- - },
         {
             "<leader>fk",
             function()
@@ -449,13 +445,13 @@ return {
             end,
             desc = "Scratch Buffer",
         },
-        {
-            "<leader>fsb",
-            function()
-                Snacks.scratch.select()
-            end,
-            desc = "Select Scratch Buffer",
-        },
+        -- {
+        --     "<leader>fsb",
+        --     function()
+        --         Snacks.scratch.select()
+        --     end,
+        --     desc = "Select Scratch Buffer",
+        -- },
         {
             "<leader>his",
             function()

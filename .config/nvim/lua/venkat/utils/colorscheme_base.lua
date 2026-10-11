@@ -1,9 +1,19 @@
 local M = {}
 
+-- local bgColor = "#111111"
 -- local bgColor = "#0e0e0e"
 local bgColor = ""
-local secondaryBgColor = "#090909"
-local borderColor = "#090909"
+-- local secondaryBgColor = "#090909"
+-- local borderColor = "#090909"
+-- local secondaryBgColor = "#101010"
+-- local borderColor = "#101010"
+
+-- local secondaryBgColor = "#191919"
+-- local borderColor = "#191919"
+
+local secondaryBgColor = "#151515"
+local borderColor = "#151515"
+
 -- local secondaryBgColor = "#090909"
 -- local secondaryBgColor = "#111111"
 -- local secondaryBgColor = "#101010"
@@ -25,7 +35,6 @@ local selectionBgColor = "#ffb86c"
 function M.colorMyPencils()
     -- Set a dark background
     vim.opt.background = "dark"
-
     -- Set background to none for specific highlight groups
     local hl_groups = {
         -- "Normal",
@@ -123,10 +132,10 @@ function M.colorMyPencils()
 
     -- Cursorline customization
     vim.api.nvim_set_hl(0, "CursorLine", { bg = bgColor })
-    vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#666666", bg = "" })
+    vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#999999", bg = "" })
 
     -- Inactive lines with grayed-out numbers
-    vim.api.nvim_set_hl(0, "LineNr", { fg = "#222222", bg = bgColor })
+    vim.api.nvim_set_hl(0, "LineNr", { fg = "#333333", bg = "none" })
     vim.api.nvim_set_hl(0, "NormalNC", { bg = bgColor, fg = "none" })
 
     -- Custom settings for completion menu
@@ -248,7 +257,6 @@ function M.colorMyPencils()
     vim.api.nvim_set_hl(0, "NeogitDiffDelete", { bg = "NONE", fg = deleteColor })
     vim.api.nvim_set_hl(0, "NeogitDiffContext", { bg = "NONE", fg = contextColor })
 
-
     -- Inside hunks - consistent with overview
     vim.api.nvim_set_hl(0, "NeogitDiffAddHighlight", { bg = "NONE", fg = addColor })
     vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", { bg = "NONE", fg = deleteColor })
@@ -325,6 +333,7 @@ function M.colorMyPencils()
     vim.api.nvim_set_hl(0, "NeogitChangeAdded", { bg = "NONE", fg = addColor })
 
 
+
     -- ====================================================================
     -- DIFFVIEW CUSTOMIZATIONS
     -- ====================================================================
@@ -347,6 +356,11 @@ function M.colorMyPencils()
     vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = addColor, bg = "NONE" })
     vim.api.nvim_set_hl(0, "GitSignsChange", { fg = changeColor, bg = "NONE" })
     vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = deleteColor, bg = "NONE" })
+
+    -- vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "FoldColumn", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
+    -- vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "none" })
 end
 
 -- ====================================================================

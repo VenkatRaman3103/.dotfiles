@@ -44,11 +44,11 @@ return {
                 indent_markers = { enable = true },
                 highlight_opened_files = "name",
                 icons = {
-                    webdev_colors = false,
+                    webdev_colors = true,
                     show = {
-                        file = true,
-                        folder = true,
-                        folder_arrow = true,
+                        file = false,
+                        folder = false,
+                        folder_arrow = false,
                         git = false,
                     },
                     glyphs = {
@@ -73,7 +73,7 @@ return {
                         },
                     },
                 },
-                add_trailing = false, -- Add this line to remove trailing slashes
+                add_trailing = true, -- Add this line to remove trailing slashes
             },
             actions = {
                 open_file = {

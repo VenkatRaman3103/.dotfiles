@@ -4,4 +4,4 @@ for (let i = 0; i < num.length; i++) {
   console.log(i);
 }
 
-console.log("osomm");
+console.log("Hello world");

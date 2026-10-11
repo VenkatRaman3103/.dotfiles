@@ -6,88 +6,88 @@ local keymap = vim.keymap
 local fn = vim.fn
 
 -- Enhanced clean function to handle newlines in clipboard content
-local function clean_clipboard()
-    local reg_content = vim.fn.getreg("+")
-    if reg_content then
-        -- Replace Windows line endings (CRLF) with Unix line endings (LF)
-        reg_content = reg_content:gsub("\r\n", "\n"):gsub("\r", "\n")
-        -- Optionally trim trailing newlines when in insert mode or when cursor is between quotes
-        local mode = vim.api.nvim_get_mode().mode
-        if mode == 'i' then
-            -- In insert mode, trim trailing newlines
-            reg_content = reg_content:gsub("\n+$", "")
-        end
-        vim.fn.setreg("+", reg_content)
-    end
-end
+-- local function clean_clipboard()
+--     local reg_content = vim.fn.getreg("+")
+--     if reg_content then
+--         -- Replace Windows line endings (CRLF) with Unix line endings (LF)
+--         reg_content = reg_content:gsub("\r\n", "\n"):gsub("\r", "\n")
+--         -- Optionally trim trailing newlines when in insert mode or when cursor is between quotes
+--         local mode = vim.api.nvim_get_mode().mode
+--         if mode == 'i' then
+--             -- In insert mode, trim trailing newlines
+--             reg_content = reg_content:gsub("\n+$", "")
+--         end
+--         vim.fn.setreg("+", reg_content)
+--     end
+-- end
 
 -- Setup auto-command to clean clipboard content when entering Vim
-vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
-    pattern = "*",
-    callback = clean_clipboard
-})
+-- vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+--     pattern = "*",
+--     callback = clean_clipboard
+-- })
 
 -- Setup auto-command to clean clipboard before pasting
-vim.api.nvim_create_autocmd("InsertEnter", {
-    pattern = "*",
-    callback = clean_clipboard
-})
+-- vim.api.nvim_create_autocmd("InsertEnter", {
+--     pattern = "*",
+--     callback = clean_clipboard
+-- })
 
 -- Use the system clipboard for all operations
 vim.opt.clipboard = "unnamedplus"
 
 -- Make sure deleting text in visual mode doesn't overwrite the paste register
-vim.keymap.set("v", "p", '"_dP', { noremap = true, desc = "Paste without yanking selected text" })
-
--- Always use the system clipboard for yanking
-vim.keymap.set("n", "y", '"+y', { noremap = true, desc = "Yank to system clipboard" })
-vim.keymap.set("v", "y", '"+y', { noremap = true, desc = "Yank selection to system clipboard" })
-vim.keymap.set("n", "Y", '"+Y', { noremap = true, desc = "Yank line to system clipboard" })
-
--- Delete without yanking
-vim.keymap.set("n", "d", '"+d', { noremap = true, desc = "Delete without yanking" })
-vim.keymap.set("v", "d", '"+d', { noremap = true, desc = "Delete selection without yanking" })
-vim.keymap.set("n", "D", '"+D', { noremap = true, desc = "Delete to end of line without yanking" })
-
--- Cut to system clipboard (when you actually want to cut)
-vim.keymap.set("n", "x", '"+x', { noremap = true, desc = "Cut to system clipboard" })
-vim.keymap.set("v", "x", '"+x', { noremap = true, desc = "Cut selection to system clipboard" })
-vim.keymap.set("n", "X", '"+X', { noremap = true, desc = "Cut char before cursor to system clipboard" })
-
--- MODIFIED: Create separate Neovim clipboard history with leader commands
-
--- Map copying to Neovim's internal registers (not system clipboard)
-keymap.set("n", "<leader>y", '"ay', { desc = "Yank to Neovim's register a" })
-keymap.set("v", "<leader>y", '"ay', { desc = "Yank selection to Neovim's register a" })
-keymap.set("n", "<leader>Y", '"aY', { desc = "Yank line to Neovim's register a" })
-
--- Delete/cut to Neovim's internal registers
-keymap.set("n", "<leader>d", '"ad', { desc = "Delete to Neovim's register a" })
-keymap.set("v", "<leader>d", '"ad', { desc = "Delete selection to Neovim's register a" })
-keymap.set("n", "<leader>D", '"aD', { desc = "Delete to end of line to Neovim's register a" })
-
--- Paste from Neovim's internal register
-keymap.set("n", "<leader>p", '"ap', { desc = "Paste from Neovim's register a" })
-keymap.set("v", "<leader>p", '"ap', { desc = "Paste from Neovim's register a" })
-keymap.set("n", "<leader>P", '"aP', { desc = "Paste before cursor from Neovim's register a" })
+-- vim.keymap.set("v", "p", '"_dP', { noremap = true, desc = "Paste without yanking selected text" })
+--
+-- -- Always use the system clipboard for yanking
+-- vim.keymap.set("n", "y", '"+y', { noremap = true, desc = "Yank to system clipboard" })
+-- vim.keymap.set("v", "y", '"+y', { noremap = true, desc = "Yank selection to system clipboard" })
+-- vim.keymap.set("n", "Y", '"+Y', { noremap = true, desc = "Yank line to system clipboard" })
+--
+-- -- Delete without yanking
+-- vim.keymap.set("n", "d", '"+d', { noremap = true, desc = "Delete without yanking" })
+-- vim.keymap.set("v", "d", '"+d', { noremap = true, desc = "Delete selection without yanking" })
+-- vim.keymap.set("n", "D", '"+D', { noremap = true, desc = "Delete to end of line without yanking" })
+--
+-- -- Cut to system clipboard (when you actually want to cut)
+-- vim.keymap.set("n", "x", '"+x', { noremap = true, desc = "Cut to system clipboard" })
+-- vim.keymap.set("v", "x", '"+x', { noremap = true, desc = "Cut selection to system clipboard" })
+-- vim.keymap.set("n", "X", '"+X', { noremap = true, desc = "Cut char before cursor to system clipboard" })
+--
+-- -- MODIFIED: Create separate Neovim clipboard history with leader commands
+--
+-- -- Map copying to Neovim's internal registers (not system clipboard)
+-- keymap.set("n", "<leader>y", '"ay', { desc = "Yank to Neovim's register a" })
+-- keymap.set("v", "<leader>y", '"ay', { desc = "Yank selection to Neovim's register a" })
+-- keymap.set("n", "<leader>Y", '"aY', { desc = "Yank line to Neovim's register a" })
+--
+-- -- Delete/cut to Neovim's internal registers
+-- keymap.set("n", "<leader>d", '"ad', { desc = "Delete to Neovim's register a" })
+-- keymap.set("v", "<leader>d", '"ad', { desc = "Delete selection to Neovim's register a" })
+-- keymap.set("n", "<leader>D", '"aD', { desc = "Delete to end of line to Neovim's register a" })
+--
+-- -- Paste from Neovim's internal register
+-- keymap.set("n", "<leader>p", '"ap', { desc = "Paste from Neovim's register a" })
+-- keymap.set("v", "<leader>p", '"ap', { desc = "Paste from Neovim's register a" })
+-- keymap.set("n", "<leader>P", '"aP', { desc = "Paste before cursor from Neovim's register a" })
 
 -- Optional: Enhanced smart paste from system clipboard
-keymap.set("n", "p", function()
-    clean_clipboard()
-    local col = vim.fn.col('.')
-    local line = vim.fn.getline('.')
-    local before = line:sub(col, col)
-    local after = line:sub(col + 1, col + 1)
-
-    -- If we're between quotes, trim trailing newlines
-    if (before == '"' and after == '"') or (before == "'" and after == "'") then
-        local reg_content = vim.fn.getreg("+")
-        reg_content = reg_content:gsub("\n+$", "")
-        vim.fn.setreg("+", reg_content)
-    end
-
-    return 'p'
-end, { expr = true, desc = "Smart paste that handles newlines" })
+-- keymap.set("n", "p", function()
+--     clean_clipboard()
+--     local col = vim.fn.col('.')
+--     local line = vim.fn.getline('.')
+--     local before = line:sub(col, col)
+--     local after = line:sub(col + 1, col + 1)
+--
+--     -- If we're between quotes, trim trailing newlines
+--     if (before == '"' and after == '"') or (before == "'" and after == "'") then
+--         local reg_content = vim.fn.getreg("+")
+--         reg_content = reg_content:gsub("\n+$", "")
+--         vim.fn.setreg("+", reg_content)
+--     end
+--
+--     return 'p'
+-- end, { expr = true, desc = "Smart paste that handles newlines" })
 
 -- Rest of your configuration remains unchanged
 keymap.set(
@@ -239,6 +239,17 @@ vim.g.netrw_liststyle = 3    -- Tree view
 vim.g.netrw_browse_split = 4 -- Open files in previous window
 vim.g.netrw_altv = 1         -- Open splits to the right
 vim.g.netrw_winsize = 25     -- Set width to 25% of screen
+
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {
+    noremap = true,
+    silent = true,
+    desc = "LSP Rename Symbol"
+})
+
+-- Code actions
+vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {
+    desc = "LSP Code Action"
+})
 
 -- Global variable to track if Netrw is open
 -- vim.g.NetrwIsOpen = 0

@@ -9,11 +9,21 @@ opt.number = true
 opt.showmode = false
 
 -- -- tabs & indentation
-opt.tabstop = 4       -- 2 spaces for tabs (prettier default)
+
+-- opt.tabstop = 2    -- 2 spaces for tabs (prettier default)
+-- opt.softtabstop = 2
+-- opt.shiftwidth = 2 -- 2 spaces for indent width
+--
+opt.tabstop = 4
 opt.softtabstop = 4
-opt.shiftwidth = 4    -- 2 spaces for indent width
-opt.expandtab = true  -- expand tab to spaces
-opt.autoindent = true -- copy indent from current line when starting new one
+opt.shiftwidth = 4
+opt.expandtab = true
+opt.autoindent = true
+opt.cindent = true
+opt.formatoptions = opt.formatoptions + "cro"
+
+-- Enable filetype-based plugins and indentation
+vim.cmd("filetype plugin indent on")
 
 --line wrapping
 opt.wrap = false -- disable line wrapping
@@ -82,11 +92,11 @@ api.nvim_create_user_command("ClearMarks", function()
     vim.cmd("delmarks a-zA-Z0-9")
 end, {})
 
-api.nvim_create_user_command("GetFullPath", function()
-    local path = vim.fn.expand("%:p") -- Get the full file path
-    vim.fn.setreg("+", path)          -- Set it to the system clipboard register
-    print(path)                       -- Optional confirmation message
-end, {})
+-- api.nvim_create_user_command("GetFullPath", function()
+--     local path = vim.fn.expand("%:p") -- Get the full file path
+--     vim.fn.setreg("+", path)          -- Set it to the system clipboard register
+--     print(path)                       -- Optional confirmation message
+-- end, {})
 
 api.nvim_create_user_command("GetDirectoryPath", function()
     local path = vim.fn.expand("%:p:h")
@@ -114,6 +124,7 @@ api.nvim_create_user_command("ReloadConfig", function()
 end, {})
 
 opt.report = 9999
+
 
 -- netrw
 -- vim.g.netrw_banner = 0       -- Hide the banner
@@ -150,3 +161,7 @@ opt.report = 9999
 
 -- vim.keymap.set('n', 'k', 'kzz', { noremap = true })
 -- vim.keymap.set('n', 'j', 'jzz', { noremap = true })
+
+opt.backup = false
+opt.writebackup = false
+opt.swapfile = false

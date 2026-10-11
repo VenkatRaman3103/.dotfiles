@@ -91,7 +91,7 @@ return {
             builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({ previewer = false }))
         end, { desc = "Fuzzy search in current file" })
 
-        keymap.set("n", "<leader>tfe", function()
+        keymap.set("n", "<leader>fe", function()
             require("telescope").extensions.file_browser.file_browser(require("telescope.themes").get_dropdown({
                 previewer = false,
                 hidden = true,

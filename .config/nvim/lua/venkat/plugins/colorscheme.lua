@@ -12,6 +12,89 @@ local softSalmon = "#e67e7e"; -- Soft salmon for booleans
 local sageGreen = "#7ca68c";  -- Muted sage green
 
 -- return {
+--   'kungfusheep/mfd.nvim',
+--   lazy = false,
+--   priority = 1000,
+--   config = function()
+--     -- vim.cmd('colorscheme mfd-stealth')
+--     -- vim.cmd('colorscheme mfd-paper')
+--     -- vim.cmd('colorscheme mfd-hud')
+--     vim.cmd('colorscheme mfd')
+--   end,
+-- }
+
+-- return {
+--   "vague-theme/vague.nvim",
+--   lazy = false,
+--   priority = 1000,
+--   config = function()
+--     vim.cmd("colorscheme vague")
+--   end
+-- }
+
+-- return {
+--     "armannikoyan/rusty",
+--     lazy = false,
+--     priority = 1000,
+--     opts = {
+--         transparent = true,
+--         italic_comments = true,
+--         underline_current_line = true,
+--         colors = {
+--             foreground = "#c5c8c6",
+--             background = "#1d1f21",
+--             selection = "#373b41",
+--             line = "#282a2e",
+--             comment = "#969896",
+--             red = "#cc6666",
+--             orange = "#de935f",
+--             yellow = "#f0c674",
+--             green = "#b5bd68",
+--             aqua = "#8abeb7",
+--             blue = "#81a2be",
+--             purple = "#b294bb",
+--             window = "#4d5057",
+--         },
+--     },
+--     config = function(_, opts)
+--         require("rusty").setup(opts)
+--         vim.cmd("colorscheme rusty")
+--     end,
+-- }
+-- return {
+--     "nickkadutskyi/jb.nvim",
+--     lazy = false,
+--     priority = 1000,
+--     opts = {},
+--     config = function()
+--         -- require("jb").setup({transparent = true})
+--         vim.cmd("colorscheme jb")
+--     end,
+-- }
+
+-- return {
+--   'kungfusheep/mfd.nvim',
+--   lazy = false,
+--   priority = 1000,
+--   config = function()
+--     -- vim.cmd('colorscheme mfd-stealth')
+--     -- vim.cmd('colorscheme mfd-paper')
+--     -- vim.cmd('colorscheme mfd-hud')
+--     vim.cmd('colorscheme mfd')
+--   end,
+-- }
+
+-- return {
+-- "oskarnurm/koda.nvim",
+-- lazy = false, -- make sure we load this during startup if it is your main colorscheme
+-- priority = 1000, -- make sure to load this before all the other start plugins
+-- config = function()
+--   -- require("koda").setup({ transparent = true })
+--   vim.cmd("colorscheme koda")
+-- end,
+-- }
+
+-- return {
 --     'kyza0d/xeno.nvim',
 --     lazy = false,
 --     priority = 1000, -- Load colorscheme early
@@ -39,108 +122,108 @@ local sageGreen = "#7ca68c";  -- Muted sage green
 -- }
 
 
-return {
-    "vague2k/vague.nvim",
-    vague = "vague",
-    config = function()
-        require("vague").setup({
-            transparent = true, -- set to true to remove background
-            style = {
-                -- Style settings unchanged
-                boolean = "none",
-                number = "none",
-                float = "none",
-                error = "none",
-                comments = "italic",
-                conditionals = "none",
-                functions = "none",
-                headings = "bold",
-                operators = "none",
-                strings = "italic",
-                variables = "none",
-                keywords = "none",
-                keyword_return = "none",
-                keywords_loop = "none",
-                keywords_label = "none",
-                keywords_exception = "none",
-                builtin_constants = "none",
-                builtin_functions = "none",
-                builtin_types = "none",
-                builtin_variables = "none",
-                func = "none",
-            },
-            colors = {
-                bg = "#18191a",
-                fg = white,
-                floatBorder = grey,
-                border = grey,
-                line = "#2C2C2D",
-                comment = lightGrey,
-                builtin = white,
-                func = grey,
-                string = white,
-                -- string = "#7894ab",
-                -- number = "#d2a374",
-                -- number = grey,
-                number = warnCoral,
-                property = grey,
-                constant = white,
-                parameter = white,
-                visual = "#2C2C2D",
-                error = "#d2788c",
-                -- error = grey,
-                warning = "#e6be8c",
-                hint = evenLightGrey,
-                operator = grey,
-                -- keyword = lightGrey,
-                keyword = grey,
-                type = grey,
-                -- search = "#e6be8c",
-                -- search = grey,
-                search = "#2C2C2D",
-                plus = "#8faf77",
-                delta = "#e6be8c",
-                punctuation = white,
-            },
-
-            -- Override colors
-            -- colors = {
-            --     bg = "#18191a",
-            --     fg = "#cdcdcd",
-            --     floatBorder = "#878787",
-            --     line = "#282830",
-            --     comment = "#646477",
-            --     builtin = "#bad1ce",
-            --     func = "#be8c8c",
-            --     string = "#deb896",
-            --     number = "#d2a374",
-            --     property = "#c7c7d4",
-            --     constant = "#b4b4ce",
-            --     parameter = "#b9a3ba",
-            --     visual = "#2C2C2D",
-            --     error = "#d2788c",
-            --     warning = "#e6be8c",
-            --     hint = "#8ca0dc",
-            --     operator = "#96a3b2",
-            --     keyword = "#7894ab",
-            --     type = "#a1b3b9",
-            --     search = "#465362",
-            --     plus = "#8faf77",
-            --     delta = "#e6be8c",
-            -- },
-            -- You can also add specific border highlight groups if needed
-            -- highlights = {
-            --     -- Add specific border highlight groups
-            --     NormalBorder = { fg = grey, bg = "NONE" },
-            --     FloatBorder = { fg = grey, bg = "NONE" },
-            --     VertSplit = { fg = grey, bg = "NONE" },
-            --     StatusLineBorder = { fg = grey, bg = "NONE" },
-            --     WinSeparator = { fg = grey, bg = "NONE" },
-            -- }
-        })
-        -- vim.cmd("colorscheme vague")
-    end,
-}
+-- return {
+--     "vague2k/vague.nvim",
+--     vague = "vague",
+--     config = function()
+--         require("vague").setup({
+--             transparent = true, -- set to true to remove background
+--             style = {
+--                 -- Style settings unchanged
+--                 boolean = "none",
+--                 number = "none",
+--                 float = "none",
+--                 error = "none",
+--                 comments = "italic",
+--                 conditionals = "none",
+--                 functions = "none",
+--                 headings = "bold",
+--                 operators = "none",
+--                 strings = "italic",
+--                 variables = "none",
+--                 keywords = "none",
+--                 keyword_return = "none",
+--                 keywords_loop = "none",
+--                 keywords_label = "none",
+--                 keywords_exception = "none",
+--                 builtin_constants = "none",
+--                 builtin_functions = "none",
+--                 builtin_types = "none",
+--                 builtin_variables = "none",
+--                 func = "none",
+--             },
+--             colors = {
+--                 bg = "#18191a",
+--                 fg = white,
+--                 floatBorder = grey,
+--                 border = grey,
+--                 line = "#2C2C2D",
+--                 comment = lightGrey,
+--                 builtin = white,
+--                 func = grey,
+--                 string = white,
+--                 -- string = "#7894ab",
+--                 -- number = "#d2a374",
+--                 -- number = grey,
+--                 number = warnCoral,
+--                 property = grey,
+--                 constant = white,
+--                 parameter = white,
+--                 visual = "#2C2C2D",
+--                 error = "#d2788c",
+--                 -- error = grey,
+--                 warning = "#e6be8c",
+--                 hint = evenLightGrey,
+--                 operator = grey,
+--                 -- keyword = lightGrey,
+--                 keyword = grey,
+--                 type = grey,
+--                 -- search = "#e6be8c",
+--                 -- search = grey,
+--                 search = "#2C2C2D",
+--                 plus = "#8faf77",
+--                 delta = "#e6be8c",
+--                 punctuation = white,
+--             },
+--
+--             -- Override colors
+--             -- colors = {
+--             --     bg = "#18191a",
+--             --     fg = "#cdcdcd",
+--             --     floatBorder = "#878787",
+--             --     line = "#282830",
+--             --     comment = "#646477",
+--             --     builtin = "#bad1ce",
+--             --     func = "#be8c8c",
+--             --     string = "#deb896",
+--             --     number = "#d2a374",
+--             --     property = "#c7c7d4",
+--             --     constant = "#b4b4ce",
+--             --     parameter = "#b9a3ba",
+--             --     visual = "#2C2C2D",
+--             --     error = "#d2788c",
+--             --     warning = "#e6be8c",
+--             --     hint = "#8ca0dc",
+--             --     operator = "#96a3b2",
+--             --     keyword = "#7894ab",
+--             --     type = "#a1b3b9",
+--             --     search = "#465362",
+--             --     plus = "#8faf77",
+--             --     delta = "#e6be8c",
+--             -- },
+--             -- You can also add specific border highlight groups if needed
+--             -- highlights = {
+--             --     -- Add specific border highlight groups
+--             --     NormalBorder = { fg = grey, bg = "NONE" },
+--             --     FloatBorder = { fg = grey, bg = "NONE" },
+--             --     VertSplit = { fg = grey, bg = "NONE" },
+--             --     StatusLineBorder = { fg = grey, bg = "NONE" },
+--             --     WinSeparator = { fg = grey, bg = "NONE" },
+--             -- }
+--         })
+--         -- vim.cmd("colorscheme vague")
+--     end,
+-- }
 
 -- return {
 --     'olivercederborg/poimandres.nvim',
@@ -185,15 +268,16 @@ return {
 -- }
 
 -- return {
---     "catppuccin/nvim",
---     name = "catppuccin",
---     priority = 1000,
---     config = function()
---         require("catppuccin").setup({
---             flavour = "mocha", -- or "latte", "frappe", "macchiato"
---         })
---         vim.cmd("colorscheme catppuccin")
---     end,
+--   "catppuccin/nvim",
+--   name = "catppuccin",
+--   priority = 1000,
+--   config = function()
+--     require("catppuccin").setup({
+--       flavour = "mocha", -- or "latte", "frappe", "macchiato"
+--     })
+--     vim.cmd("colorscheme catppuccin")
+--   end,
+--   nit
 -- }
 
 -- return {
@@ -327,16 +411,17 @@ return {
 -- }
 
 -- return {
---     "sainnhe/gruvbox-material",
---     name = "gruvbox",
---     priority = 1000,
---     config = function()
---         vim.opt.background = "dark"
---         vim.g.gruvbox_material_background = "hard"
+--   "sainnhe/gruvbox-material",
+--   name = "gruvbox",
+--   priority = 1000,
+--   config = function()
+--     vim.opt.background = "dark"
+--     vim.g.gruvbox_material_background = "hard"
+--     vim.g.gruvbox_contrast = 'hard'
 --
---         -- Apply the colorscheme
---         vim.cmd("colorscheme gruvbox-material")
---     end,
+--     -- Apply the colorscheme
+--     vim.cmd("colorscheme gruvbox-material")
+--   end,
 -- }
 
 -- return {
@@ -377,14 +462,16 @@ return {
 -- return {
 --     "projekt0n/github-nvim-theme",
 --     name = "github-theme",
---     lazy = false, -- make sure we load this during startup if it is your main colorscheme
+--     lazy = false,    -- make sure we load this during startup if it is your main colorscheme
 --     priority = 1000, -- make sure to load this before all the other start plugins
 --     config = function()
 --         require("github-theme").setup({
 --             -- ...
 --         })
 --
---         vim.cmd("colorscheme github_dark_default")
+--         -- vim.cmd("colorscheme github_dark_default")
+--         vim.cmd("colorscheme github_dark_dimmed")
+--         -- vim.cmd("colorscheme github_dark_high_contrast")
 --     end,
 -- }
 
@@ -398,14 +485,14 @@ return {
 -- }
 
 -- return {
---     "slugbyte/lackluster.nvim",
---     lazy = false,
---     priority = 1000,
---     init = function()
---         vim.cmd.colorscheme("lackluster")
---         -- vim.cmd.colorscheme("lackluster-hack") -- my favorite
---         -- vim.cmd.colorscheme("lackluster-mint")
---     end,
+-- "slugbyte/lackluster.nvim",
+-- lazy = false,
+-- priority = 1000,
+-- init = function()
+--     vim.cmd.colorscheme("lackluster")
+--     -- vim.cmd.colorscheme("lackluster-hack") -- my favorite
+--     -- vim.cmd.colorscheme("lackluster-mint")
+-- end,
 -- }
 
 -- return {
@@ -418,15 +505,15 @@ return {
 -- }
 
 -- return {
---     "folke/tokyonight.nvim",
---     name = "tokyonight",
---     priority = 1000,
---     config = function()
---         require("tokyonight").setup({
---             -- flavour = "mocha", -- or "latte", "frappe", "macchiato"
---         })
---         vim.cmd("colorscheme tokyonight")
---     end,
+--   "folke/tokyonight.nvim",
+--   name = "tokyonight",
+--   priority = 1000,
+--   config = function()
+--     require("tokyonight").setup({
+--       -- flavour = "mocha", -- or "latte", "frappe", "macchiato"
+--     })
+--     vim.cmd("colorscheme tokyonight")
+--   end,
 -- }
 
 -- return {
@@ -474,8 +561,11 @@ return {
 --         })
 --
 --         -- setup must be called before loading
---         -- vim.cmd("colorscheme kanso")
+--         vim.cmd("colorscheme kanso")
 --     end,
 -- }
 
--- return {}
+return {}
+-- return {
+--   --
+-- }

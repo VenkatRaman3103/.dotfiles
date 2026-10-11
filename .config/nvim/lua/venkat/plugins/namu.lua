@@ -1,0 +1,25 @@
+return {
+    -- "bassamsdata/namu.nvim",
+    --
+    -- opts = {
+    --     namu_symbols = {
+    --         options = {
+    --             window = {
+    --                 relative = "editor",
+    --                 width = 60,
+    --                 height = 30,
+    --                 row = 5,
+    --                 col = 100,
+    --             },
+    --         },
+    --     },
+    -- },
+    --
+    -- keys = {
+    --     {
+    --         "<leader>fs",
+    --         "<cmd>Namu symbols<cr>",
+    --         desc = "Jump to LSP symbol",
+    --     },
+    -- },
+}

@@ -1,38 +1,46 @@
 return {
     {
-
         "echasnovski/mini.nvim",
         version = "*",
         config = function()
-            -- require("mini.ai").setup() -- Enhanced text objects
-            -- require("mini.align").setup() -- Alignment of text blocks
-            -- require("mini.animate").setup() -- Smooth animations
-            -- require("mini.bracketed").setup() -- Jump between brackets
-            -- require("mini.bufremove").setup() -- Buffer deletion without messing layout
-            -- require("mini.clue").setup() -- Keybinding hints
-            -- require("mini.comment").setup() -- Commenting
-            -- require("mini.completion").setup() -- Lightweight completion
-            -- require("mini.cursorword").setup() -- Highlight word under cursor
-            -- require("mini.diff").setup() -- Enhanced diffing
-            -- require("mini.files").setup() -- File explorer
-            -- require("mini.fuzzy").setup() -- Fuzzy matching
-            -- require("mini.hipatterns").setup() -- Highlight patterns
-            -- require("mini.indentscope").setup() -- Indentation guide
-            -- require("mini.jump").setup() -- Quick jumps
-            -- require("mini.jump2d").setup() -- Jump around visible text
-            -- require("mini.map").setup() -- Scrollbar minimap
-            -- require("mini.move").setup() -- Move text
-            -- require("mini.operators").setup() -- Custom operators
-            -- require("mini.pairs").setup() -- Auto pairs
-            -- require("mini.pick").setup() -- Fuzzy picker
-            -- require("mini.sessions").setup() -- Session management
-            -- require("mini.splitjoin").setup() -- Toggle single/multiline statements
-            -- require("mini.starter").setup() -- Startup screen
-            -- require("mini.statusline").setup() -- Minimalist statusline
-            -- require("mini.surround").setup() -- Surround text objects
-            -- require("mini.tabline").setup() -- Minimalist tabline
-            -- require("mini.test").setup() -- Test framework
-            -- require("mini.trailspace").setup() -- Remove trailing spaces
+            require("mini.files").setup({
+                -- No need to copy this inside `setup()`. Will be used automatically.
+                content = {
+                    filter = nil,
+                    highlight = nil,
+                    prefix = nil,
+                    sort = nil,
+                },
+
+                mappings = {
+                    close       = 'q',
+                    go_in       = 'L',
+                    -- go_in_plus  = 'L',
+                    go_out      = 'H',
+                    -- go_out_plus = 'H',
+                    mark_goto   = "'",
+                    mark_set    = 'm',
+                    reset       = '<BS>',
+                    reveal_cwd  = '@',
+                    show_help   = 'g?',
+                    synchronize = '=',
+                    trim_left   = '<',
+                    trim_right  = '>',
+                },
+
+                options = {
+                    permanent_delete = true,
+                    use_as_default_explorer = false,
+                },
+
+                windows = {
+                    max_number = math.huge,
+                    preview = false,
+                    width_focus = 50,
+                    width_nofocus = 15,
+                    width_preview = 25,
+                },
+            })
 
             vim.keymap.set("n", "<leader>mo", function()
                 require("mini.files").open()

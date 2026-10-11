@@ -15,7 +15,7 @@ return {
 
         neogit.setup {
             -- Hides the hints at the top of the status buffer
-            disable_hint = false,
+            disable_hint = true,
             -- Disables changing the buffer highlights based on where the cursor is.
             disable_context_highlighting = true,
             -- Disables signs for sections/items/hunks
@@ -189,13 +189,21 @@ return {
                 kind = "tab",
             },
             signs = {
-                section = { "▶", "▼" },
+                section = { "", "" },
                 -- hunk = { "󰐕", "󰐖" },
                 -- item = { "󰁕", "󰁆" },
-                hunk = { "+", "-" },
-                item = { "○", "●" },
+                hunk = { "", "" },
+                item = { "", "" },
                 -- hunk = { "›", "›" },
             },
+            -- signs = {
+            --     section = { "▶", "▼" },
+            --     -- hunk = { "󰐕", "󰐖" },
+            --     -- item = { "󰁕", "󰁆" },
+            --     hunk = { "+", "-" },
+            --     item = { "○", "●" },
+            --     -- hunk = { "›", "›" },
+            -- },
             -- Each Integration is auto-detected through plugin presence, however, it can be disabled by setting to `false`
             integrations = {
                 -- If enabled, use telescope for menu selection rather than vim.ui.select.

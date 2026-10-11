@@ -1,0 +1,120 @@
+# Dynamic theme colors
+config-file = ?"~/.local/state/omarchy/current/theme/ghostty.conf"
+
+keybind = ctrl+shift+r=reload_config
+
+# Font
+font-family = "JetBrainsMono Nerd Font Mono"
+# font-family = "Iosevka Nerd Font Mono"
+font-style = Regular
+font-size = 15
+# font-size = 13
+# font-feature = -calt,-liga, -dlig
+font-feature =  -liga, -dlig
+# adjust-cell-height = 0.15
+
+# theme = Catppuccin Mocha
+# theme = Kanagawa Dragon
+# theme = Gruvbox Dark Hard
+# theme = Dark Modern
+# theme = Solarized Dark Patched
+
+# Window
+window-theme = ghostty
+window-padding-x = 100,100
+#window-padding-x = 180,180
+# window-padding-x = 50,50
+window-padding-y = 15,0
+confirm-close-surface=false
+resize-overlay = never
+gtk-toolbar-style = flat
+
+# Cursor styling
+cursor-style = "block"
+cursor-style-blink = false
+
+
+# Cursor styling + SSH session terminfo
+# (all shell integration options must be passed together)
+shell-integration-features = no-cursor,ssh-env
+
+# Keyboard bindings
+keybind = shift+insert=paste_from_clipboard
+keybind = control+insert=copy_to_clipboard
+# Legacy encoding sends Alt+Shift+Enter the same as Alt+Enter; send CSI-u so tmux can match M-S-Enter.
+keybind = alt+shift+enter=csi:13;4u
+# Send Shift+Enter as CSI-u so TUIs can distinguish it from Enter.
+keybind = shift+enter=csi:13;2u
+keybind = super+control+shift+alt+arrow_down=resize_split:down,100
+keybind = super+control+shift+alt+arrow_up=resize_split:up,100
+keybind = super+control+shift+alt+arrow_left=resize_split:left,100
+keybind = super+control+shift+alt+arrow_right=resize_split:right,100
+
+keybind = ctrl+enter=ignore
+
+# background-image = /home/venkat/Downloads/mono_dark_distortion_2.jpg
+# background-image = /home/venkat/Downloads/red_distortion_1.jpg
+# background-image = /home/venkat/Downloads/IMG_23481.JPG
+# background-image = /home/venkat/Downloads/grok-image-Im using a wide desktop where the image looks very low quality_increase the image quality-make it 4k crisp_remove the workings-c133a29b-be3f-44ee-b336-368e1c953d6e-image-edit-0_0-image-edit-0_0.png
+# background-image = /home/venkat/Downloads/grok-image-Im using a wide desktop where the image looks very low quality_increase the image quality-make it 4k crisp_remove the workings-c133a29b-be3f-44ee-b336-368e1c953d6e-image-edit-0_0-image-edit-0_0.png
+
+# 0.0 is fully transparent, 1.0 is fully opaque
+# background-image-opacity = 0.003
+# background-image-opacity = 0.02
+# background-image-opacity = 0.002
+# background-opacity = 0.6
+# background-blur = 0
+# background-image-position = top-left
+# background-image-fit = cover
+# background-image-repeat = no-repeat
+
+# Slowdown mouse scrolling
+mouse-scroll-multiplier = 0.95
+
+
+# Decorations
+# decorations=none
+# tabs=false
+
+# Background
+# background=#010101
+# cursor-color=#ffffff
+# foreground=#e7e7e8
+
+# # ---------- Colors ----------
+# # ANSI
+# palette=0=#a7a7a7
+# palette=1=#d2788c
+# palette=2=#8faf77
+# palette=3=#e6be8c
+# palette=4=#666666
+# palette=5=#eeeeee
+# palette=6=#666666
+# palette=7=#eeeeee
+#
+# # Bright
+# palette=8=#666666
+# palette=9=#d2788c
+# palette=10=#8faf77
+# palette=11=#e6be8c
+# palette=12=#eeeeee
+# palette=13=#666666
+# palette=14=#a7a7a7
+# palette=15=#eeeeee
+#
+# # ~/.config/ghostty/config
+# custom-shader = shaders/cursor_tail.glsl
+# custom-shader = shaders/ripple_cursor.glsl
+#
+#
+# # Cursor
+cursor-style=block
+#
+# # # Padding (Ghostty calls it “padding”)
+# # padding-top=12
+# # padding-left=80
+# # padding-right=80
+# # padding-bottom=0
+
+# Fix general slowness on hyprland (https://github.com/ghostty-org/ghostty/discussions/3224)
+async-backend = epoll

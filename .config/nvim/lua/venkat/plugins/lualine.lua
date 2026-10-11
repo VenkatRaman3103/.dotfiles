@@ -155,8 +155,10 @@ return {
                         -- color = { fg = "#ffffff", bg = "#0c0c0c" }
                         -- color = { fg = "#a0a0a0", bg = "#0c0c0c" }
                         -- color = { fg = "#eeeeee", bg = "#0c0c0c" }
-                        color = { fg = "#eeeeee", bg = "#111111" }
-                        -- color = { fg = "#a0a0a0", bg = "#111111" }
+                        -- color = { fg = "#eeeeee", bg = "#111111" }
+                        -- color = { fg = "#eeeeee", bg = "#191919" }
+                        -- color = { fg = "#eeeeee", bg = "#191919" }
+                        color = { fg = "#a0a0a0", bg = "#111111" }
                     },
                 },
                 lualine_b = {

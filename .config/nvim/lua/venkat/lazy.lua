@@ -12,8 +12,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Setup lazy.nvim with your plugins
 require("lazy").setup({
-	{ import = "venkat.plugins" }, -- This should correctly point to your plugins
-	{ import = "venkat.plugins.lsp" }, -- Ensure this is also valid
+	{ import = "venkat.plugins" },
 }, {
 	checker = {
 		enabled = true,

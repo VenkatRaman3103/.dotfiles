@@ -5,7 +5,7 @@
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
 # ZSH_THEME="af-magic"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -43,7 +43,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Fix bindkey error by ensuring bindkey has correct arguments
 bindkey '^[[A' history-search-backward
@@ -73,11 +73,15 @@ setopt hist_verify
 # alias ls="ls -la"
 alias cd="z"
 
+# alias gs="git status"
+# alias ga="git add ."
+# alias gc="git commit -m"
+
 alias tm="tmuxifier"
 alias t="tmux"
 
 # ---- Eza (better ls) -----
-alias ls="eza --color=always --long --git --no-filesize --icons=always --no-user"
+alias ls="eza --color=always --long --all --git --no-filesize --icons=always --no-user"
 alias tree="tree -I 'node_modules|.next'"
 
 alias vim="nvim" 
@@ -92,6 +96,8 @@ eval "$(zoxide init zsh)"
 # setting fzf and fuzzy completion
 eval "$(fzf --zsh)"
 # -- Use fd instead of fzf --
+
+eval "$(starship init zsh)"
 
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -108,7 +114,7 @@ _fzf_compgen_path() {
 _fzf_compgen_dir() {
   fd --type=d --hidden --exclude .git . "$1"
 }
-source ~/fzf-git.sh/fzf-git.sh
+# source ~/fzf-git.sh/fzf-git.sh
 
 # fzf preview
 export FZF_CTRL_T_OPTS="--preview '([[ -d {} ]] && eza --tree --level=2 --color=always {} | head -200) || (bat -n --color=always --line-range :500 {})'"
@@ -130,7 +136,8 @@ _fzf_comprun() {
 }
 
 # bat theme variable
-export BAT_THEME="Catppuccin Mocha"
+# export BAT_THEME="Catppuccin Mocha"
+export BAT_THEME="monochrome"
 # export BAT_THEME="ansi"
 # export BAT_THEME="Sequoia Monochrome"
 # export BAT_THEME="Visual Studio Dark+"
@@ -152,6 +159,7 @@ alias type-test="toipe"
 
 eval $(tmuxifier init -)
 export PATH="$PATH:/usr/local/bin"
+
 
 # pnpm
 export PNPM_HOME="/home/venkat/.local/share/pnpm"
@@ -182,18 +190,23 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
 
+
 ### End of Zinit's installer chunk
 
-. "$HOME/.local/bin/env"
-
-. "$HOME/.atuin/bin/env"
+# . "$HOME/.local/bin/env"
+# . "$HOME/.atuin/bin/env"
 
 export PATH="$HOME/.cargo/bin:$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin:$PATH"
+export PATH="$HOME/.config/emacs/bin:$PATH"
 
 export MANPAGER='sh -c '\''col -b | nvim -R -c "set ft=man" -'\'''
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH=$HOME/.local/bin:$PATH
 
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
